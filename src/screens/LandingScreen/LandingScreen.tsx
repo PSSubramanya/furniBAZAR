@@ -11,19 +11,26 @@ import {
   Platform,
   TouchableOpacity,
 } from 'react-native';
+import FBAppHeaderText from '../../components/FBAppHeaderText/FBAppHeaderText';
 import imagePath from '../../constants/imagePath';
 import colors from '../../constants/colors';
 import fontFamily from '../../constants/fontFamily';
 
-const LandingScreen = (): React.JSX.Element => {
+const LandingScreen = (props: any): React.JSX.Element => {
+  const {navigation} = props;
   return (
     <View
       style={{
         flex: 1,
-        backgroundColor: colors?.appBackgroundColor3,
+        backgroundColor: colors?.appBackgroundColor2,
         alignItems: 'center',
       }}>
       <ScrollView contentContainerStyle={{alignItems: 'center'}}>
+        <FBAppHeaderText
+          fontsize={36}
+          styleProp={{marginTop: 60}}
+          iconSize={50}
+        />
         <Image
           source={imagePath?.furnitureImages2}
           height={1}
@@ -47,7 +54,10 @@ const LandingScreen = (): React.JSX.Element => {
             We provide quality products just for you
           </Text>
         </View>
-        <TouchableOpacity onPress={() => {}}>
+        <TouchableOpacity
+          onPress={() => {
+            navigation?.navigate('LoginScreen');
+          }}>
           <View
             style={{
               backgroundColor: colors?.black,
@@ -76,8 +86,22 @@ const LandingScreen = (): React.JSX.Element => {
 export default LandingScreen;
 /**
  * TOPICS COVERED AND TO COVER GENERALLY AND SPECIALLY:
+ * Types and interfaces
  * Google fonts
  * Navigation
- * Splash Screen
+ * Splash Screen and AppIcon
  * Redux
+ * Handlebars and Plops
+ * Test cases
+ * Story book
+ * Hooks
+ * Custom Hooks
+ * API Integration - All
+ * Data Fetching
+ * Font Scaling
+ * JS related course
+ * React JS related course
+ * test cases related course
+ * Animations
+ * Ant design type components build
  */

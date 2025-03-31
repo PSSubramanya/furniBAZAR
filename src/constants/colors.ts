@@ -4,6 +4,8 @@ const colors = {
   appBackgroundColor3: '#e5b55b',
   white: '#ffffff',
   black: '#000000',
+  primaryColor: '#43939e',
+  borderColor: '#8baeb3',
 };
 
 export default colors;
