@@ -54,28 +54,30 @@ const LoginScreen = () => {
             elevation: 10,
             borderRadius: 10,
           }}>
-          <View
-            style={{
-              flexDirection: 'row',
-              height: 40,
-              marginHorizontal: 20,
-              marginTop: 10,
-              borderWidth: 1,
-              borderColor: colors?.borderColor,
-              borderRadius: 5,
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}>
-            <Text style={{fontFamily: fontFamily?.primaryFont?.regular}}>
-              Continue with Google
-            </Text>
-            <Image
-              source={imagePath?.googleIcon}
-              height={1}
-              width={1}
-              style={{height: 30, width: 30}}
-            />
-          </View>
+          <TouchableOpacity onPress={() => {}}>
+            <View
+              style={{
+                flexDirection: 'row',
+                height: 40,
+                marginHorizontal: 20,
+                marginTop: 10,
+                borderWidth: 1,
+                borderColor: colors?.borderColor,
+                borderRadius: 5,
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+              <Text style={{fontFamily: fontFamily?.primaryFont?.regular}}>
+                Continue with Google
+              </Text>
+              <Image
+                source={imagePath?.googleIcon}
+                height={1}
+                width={1}
+                style={{height: 30, width: 30}}
+              />
+            </View>
+          </TouchableOpacity>
           <View
             style={{
               flexDirection: 'row',
