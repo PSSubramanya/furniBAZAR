@@ -88,7 +88,7 @@ export default LandingScreen;
  * TOPICS COVERED AND TO COVER GENERALLY AND SPECIALLY:
  * Types and interfaces
  * Google fonts
- * Navigation
+ * Navigation - ALL TYPES
  * Splash Screen and AppIcon
  * Redux
  * Handlebars and Plops
@@ -96,6 +96,7 @@ export default LandingScreen;
  * Story book
  * Hooks
  * Custom Hooks
+ * Custom Components
  * API Integration - All
  * Data Fetching
  * Font Scaling
