@@ -1,148 +1,333 @@
-import React from 'react';
-import {View, Text, Image, TouchableOpacity} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {
+  View,
+  Text,
+  TextInput,
+  Image,
+  TouchableOpacity,
+  Platform,
+  KeyboardAvoidingView,
+} from 'react-native';
 import imagePath from '../../constants/imagePath';
 import FBAppHeaderText from '../../components/FBAppHeaderText/FBAppHeaderText';
 import colors from '../../constants/colors';
 import fontFamily from '../../constants/fontFamily';
 import FBShortButton from '../../components/FBShortButton/FBShortButton';
+import styles from './styles';
+import {
+  mobileNumberValidation,
+  passwordValidation,
+  validateUsername,
+} from '../../utils/regexValidation';
+import strings from '../../constants/strings';
 
 const LoginScreen = () => {
+  const [showPassword, setShowPassword] = useState<boolean>(false);
+
+  const [mobileAuthentication, setMobileAuthentication] =
+    useState<boolean>(false);
+
+  const [userNameFocus, setUserNameFocus] = useState<boolean>(false);
+  const [passwordFocus, setPasswordFocus] = useState<boolean>(false);
+  const [mobileNumberFocus, setMobileNumberFocus] = useState<boolean>(false);
+
+  const [username, setUsername] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [mobileNumber, setMobileNumber] = useState<string>('');
+
+  const [usernameError, setUsernameError] = useState<string>('');
+  const [passwordError, setPasswordError] = useState<string>('');
+  const [mobileNumberError, setMobileNumberError] = useState<string>('');
+
+  const handleUsernameInput = () => {
+    setUserNameFocus(false);
+    const errorMessage = validateUsername(username);
+    if (errorMessage?.length !== 0) {
+      setUsernameError(errorMessage);
+    }
+  };
+  const handlePasswordInput = () => {
+    setPasswordFocus(false);
+    const errorMessage = passwordValidation(password);
+    if (errorMessage?.length !== 0) {
+      setPasswordError(errorMessage);
+    }
+  };
+  const handleMobileNumberInput = () => {
+    setMobileNumberFocus(false);
+    const errorMessage = mobileNumberValidation(mobileNumber);
+    if (errorMessage?.length !== 0) {
+      setMobileNumberError(errorMessage);
+    }
+  };
+
+  const borderColorDecider = (focus: boolean, errorMessage: string) => {
+    if (focus) {
+      return colors?.secondaryColor;
+    } else {
+      if (errorMessage !== '') {
+        return colors?.errorColor2;
+      }
+      return colors?.borderColor;
+    }
+  };
+
   return (
-    <View
-      style={{
-        flex: 1,
-      }}>
-      <View
-        style={{
-          backgroundColor: colors?.appBackgroundColor2,
-          alignItems: 'center',
-          height: 350,
-          borderBottomLeftRadius: 25,
-          borderBottomRightRadius: 25,
-        }}>
-        <Image
-          source={imagePath?.illustrationIcon1}
-          height={1}
-          width={1}
-          style={{height: 150, width: 150, marginTop: 60}}
-        />
-        <FBAppHeaderText iconSize={40} />
-        <Text
-          style={{
-            marginTop: 20,
-            alignSelf: 'flex-start',
-            // textAlign: 'center',
-            marginLeft: 35,
-            fontFamily: fontFamily?.primaryFont?.regular,
-            // maxWidth: 200,
-          }}>
-          Enter your credentials to Login
-        </Text>
-      </View>
-      <View>
-        <View
-          style={{
-            backgroundColor: colors?.white,
-            height: 300,
-            marginHorizontal: 23,
-            zIndex: 1,
-            marginTop: -50,
-            shadowColor: colors?.black,
-            shadowOffset: {width: 10, height: 10},
-            shadowOpacity: 0.3,
-            shadowRadius: 25,
-            elevation: 10,
-            borderRadius: 10,
-          }}>
-          <TouchableOpacity onPress={() => {}}>
-            <View
-              style={{
-                flexDirection: 'row',
-                height: 40,
-                marginHorizontal: 20,
-                marginTop: 10,
-                borderWidth: 1,
-                borderColor: colors?.borderColor,
-                borderRadius: 5,
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}>
-              <Text style={{fontFamily: fontFamily?.primaryFont?.regular}}>
-                Continue with Google
-              </Text>
-              <Image
-                source={imagePath?.googleIcon}
-                height={1}
-                width={1}
-                style={{height: 30, width: 30}}
+    <View style={styles?.flexContainer}>
+      <KeyboardAvoidingView behavior={'position'}>
+        <View style={styles?.topContainer}>
+          <Image
+            source={imagePath?.illustrationIcon1}
+            height={1}
+            width={1}
+            style={styles?.illustrationImageStyle}
+          />
+          <FBAppHeaderText iconSize={40} />
+          <Text style={styles?.signInInstructionsStyle}>
+            {strings?.loginInsrtuctionLine}
+          </Text>
+        </View>
+        <View>
+          <View style={styles?.signinCardView}>
+            <TouchableOpacity onPress={() => {}}>
+              <View style={styles?.googleLoginButton}>
+                <Text style={styles?.googleLoginButtonText}>
+                  {strings?.continueWithGoogle}
+                </Text>
+                <Image
+                  source={imagePath?.googleIcon}
+                  height={1}
+                  width={1}
+                  style={styles?.googleIcon}
+                />
+              </View>
+            </TouchableOpacity>
+            <View style={styles?.shortButtonsView}>
+              <FBShortButton
+                text={strings?.faceBook}
+                icon={imagePath?.faceBookIcon}
+                onPress={() => {}}
+              />
+              <FBShortButton
+                text={strings?.twitter}
+                icon={imagePath?.twitterIcon}
+                onPress={() => {}}
+              />
+              <FBShortButton
+                text={strings?.amazon}
+                icon={imagePath?.amazonIcon}
+                onPress={() => {}}
+              />
+              <FBShortButton
+                text={strings?.mobile}
+                icon={
+                  !mobileAuthentication
+                    ? imagePath?.mobileIcon
+                    : imagePath?.usernameIcon
+                }
+                onPress={() => {
+                  setMobileAuthentication(!mobileAuthentication);
+                }}
               />
             </View>
-          </TouchableOpacity>
-          <View
-            style={{
-              flexDirection: 'row',
-              marginHorizontal: 20,
-              justifyContent: 'space-between',
-            }}>
-            <FBShortButton
-              text={'Facebook'}
-              icon={imagePath?.faceBookIcon}
-              onPress={() => {}}
-            />
-            <FBShortButton
-              text={'Twitter'}
-              icon={imagePath?.twitterIcon}
-              onPress={() => {}}
-            />
-            <FBShortButton
-              text={'Amazon'}
-              icon={imagePath?.amazonIcon}
-              onPress={() => {}}
-            />
-            <FBShortButton
-              text={'Mobile'}
-              icon={imagePath?.mobileIcon}
-              onPress={() => {}}
-            />
-          </View>
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              marginHorizontal: 20,
-              marginTop: 10,
-            }}>
-            <View
-              style={{
-                borderWidth: 0.5,
-                borderColor: colors?.borderColor,
-                height: 1,
-                width: 100,
-                marginTop: 10,
-              }}
-            />
-            <View style={{}}>
+            <View style={styles?.dividerView}>
+              <View style={styles?.dividerStyle} />
+              <View style={{}}>
+                <Text style={styles?.dividerTextStyle}>
+                  {strings?.orLoginWith}
+                </Text>
+              </View>
+              <View style={styles?.dividerStyle} />
+            </View>
+            {!mobileAuthentication ? (
+              <View
+                style={[
+                  styles?.textInputViewStyle,
+                  {
+                    borderColor: borderColorDecider(
+                      userNameFocus,
+                      usernameError,
+                    ),
+                    borderWidth: userNameFocus ? 2 : 1,
+                  },
+                ]}>
+                <TextInput
+                  value={username}
+                  onChangeText={(val: string) => {
+                    setUsername(val);
+                  }}
+                  placeholder={strings?.username}
+                  placeholderTextColor={colors?.borderColor}
+                  style={styles?.textInputStyle}
+                  onFocus={() => {
+                    setUserNameFocus(true);
+                    setUsernameError('');
+                  }}
+                  onBlur={handleUsernameInput}
+                />
+                <Image
+                  source={imagePath?.usernameIcon}
+                  height={1}
+                  width={1}
+                  style={[styles?.textInputImage, styles?.textInputImageStyle]}
+                />
+              </View>
+            ) : null}
+            {usernameError && !mobileAuthentication ? (
               <Text
                 style={{
-                  fontFamily: fontFamily?.primaryFont?.medium,
-                  fontSize: 12,
-                  color: colors?.borderColor,
+                  marginTop: 5,
+                  marginLeft: 16,
+                  fontFamily: fontFamily?.primaryFont?.regular,
+                  color: colors?.errorColor1,
                 }}>
-                Or login with
+                {usernameError}
               </Text>
-            </View>
-            <View
-              style={{
-                borderWidth: 0.5,
-                borderColor: colors?.borderColor,
-                height: 1,
-                width: 100,
-                marginTop: 10,
-              }}
-            />
+            ) : null}
+
+            {!mobileAuthentication ? (
+              <View
+                style={[
+                  styles?.textInputViewStyle,
+                  {
+                    borderColor: borderColorDecider(
+                      passwordFocus,
+                      passwordError,
+                    ),
+                    borderWidth: passwordFocus ? 2 : 1,
+                  },
+                ]}>
+                <TextInput
+                  value={password}
+                  onChangeText={(val: string) => {
+                    setPassword(val);
+                  }}
+                  placeholder={strings?.password}
+                  placeholderTextColor={colors?.borderColor}
+                  style={styles?.textInputStyle}
+                  secureTextEntry={showPassword}
+                  onFocus={() => {
+                    setPasswordFocus(true);
+                    setPasswordError('');
+                  }}
+                  onBlur={handlePasswordInput}
+                />
+                <TouchableOpacity
+                  style={{
+                    marginLeft: Platform?.OS === 'ios' ? 10 : 30,
+                    justifyContent: 'center',
+                  }}
+                  onPress={() => {
+                    setShowPassword(!showPassword);
+                  }}>
+                  <Image
+                    source={
+                      !showPassword ? imagePath?.hideIcon : imagePath?.showIcon
+                    }
+                    height={1}
+                    width={1}
+                    style={styles?.textInputImage}
+                  />
+                </TouchableOpacity>
+              </View>
+            ) : null}
+            {passwordError && !mobileAuthentication ? (
+              <Text
+                style={{
+                  marginTop: 5,
+                  marginLeft: 16,
+                  fontFamily: fontFamily?.primaryFont?.regular,
+                  color: colors?.errorColor1,
+                }}>
+                {passwordError}
+              </Text>
+            ) : null}
+
+            {mobileAuthentication ? (
+              <View
+                style={{
+                  flexDirection: 'row',
+                }}>
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    height: 60,
+                    width: 60,
+                    marginTop: 10,
+                    marginLeft: 15,
+                    paddingHorizontal: 10,
+                    borderWidth: 1,
+                    borderColor: colors?.borderColor,
+                    borderRadius: 5,
+                  }}>
+                  <TextInput
+                    value={'+91'}
+                    style={styles?.textInputStyle}
+                    editable={false}
+                  />
+                </View>
+                <View>
+                  <View
+                    style={[
+                      {
+                        flexDirection: 'row',
+                        height: 60,
+                        width: 240,
+                        marginTop: 10,
+                        marginHorizontal: 15,
+                        paddingHorizontal: 10,
+                        borderRadius: 5,
+                      },
+                      {
+                        borderColor: borderColorDecider(
+                          mobileNumberFocus,
+                          mobileNumberError,
+                        ),
+                        borderWidth: passwordFocus ? 2 : 1,
+                      },
+                    ]}>
+                    <TextInput
+                      value={mobileNumber}
+                      onChangeText={(val: string) => {
+                        setMobileNumber(val);
+                      }}
+                      placeholder={strings?.password}
+                      placeholderTextColor={colors?.borderColor}
+                      style={styles?.textInputStyle}
+                      keyboardType={'numeric'}
+                      onFocus={() => {
+                        setMobileNumberFocus(true);
+                        setMobileNumberError('');
+                      }}
+                      onBlur={handleMobileNumberInput}
+                    />
+                    <Image
+                      source={imagePath?.mobileIcon}
+                      height={1}
+                      width={1}
+                      style={[
+                        styles?.textInputImage,
+                        styles?.textInputImageStyle,
+                      ]}
+                    />
+                  </View>
+                  {mobileNumberError ? (
+                    <Text
+                      style={{
+                        marginTop: 5,
+                        marginLeft: 16,
+                        fontFamily: fontFamily?.primaryFont?.regular,
+                        color: colors?.errorColor1,
+                      }}>
+                      {mobileNumberError}
+                    </Text>
+                  ) : null}
+                </View>
+              </View>
+            ) : null}
           </View>
         </View>
-      </View>
+      </KeyboardAvoidingView>
     </View>
   );
 };

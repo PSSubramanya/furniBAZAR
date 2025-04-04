@@ -13,19 +13,15 @@ import {
 } from 'react-native';
 import FBAppHeaderText from '../../components/FBAppHeaderText/FBAppHeaderText';
 import imagePath from '../../constants/imagePath';
-import colors from '../../constants/colors';
-import fontFamily from '../../constants/fontFamily';
+import styles from './styles';
+import strings from '../../constants/strings';
 
 const LandingScreen = (props: any): React.JSX.Element => {
   const {navigation} = props;
+
   return (
-    <View
-      style={{
-        flex: 1,
-        backgroundColor: colors?.appBackgroundColor2,
-        alignItems: 'center',
-      }}>
-      <ScrollView contentContainerStyle={{alignItems: 'center'}}>
+    <View style={styles?.mainContainer}>
+      <ScrollView contentContainerStyle={styles?.horizontalCentralAlignment}>
         <FBAppHeaderText
           fontsize={36}
           styleProp={{marginTop: 60}}
@@ -35,46 +31,18 @@ const LandingScreen = (props: any): React.JSX.Element => {
           source={imagePath?.furnitureImages2}
           height={1}
           width={1}
-          style={{
-            height: 300,
-            width: 300,
-            shadowColor: 'black',
-            shadowOffset: {height: 10, width: -1},
-            shadowOpacity: 0.5,
-            shadowRadius: 10,
-          }}
+          style={styles.sofaImageStyle}
         />
-        <View style={{width: 200}}>
-          <Text
-            style={{
-              fontSize: 24,
-              textAlign: 'center',
-              fontFamily: fontFamily?.primaryFont?.medium,
-            }}>
-            We provide quality products just for you
-          </Text>
+        <View style={styles?.posterTextView}>
+          <Text style={styles?.posterText}>{strings?.tagLine}</Text>
         </View>
         <TouchableOpacity
           onPress={() => {
             navigation?.navigate('LoginScreen');
           }}>
-          <View
-            style={{
-              backgroundColor: colors?.black,
-              width: 100,
-              height: 50,
-              alignItems: 'center',
-              justifyContent: 'center',
-              borderRadius: 25,
-              marginTop: 20,
-            }}>
-            <Text
-              style={{
-                fontSize: 12,
-                fontFamily: fontFamily?.primaryFont?.medium,
-                color: colors?.white,
-              }}>
-              LET'S START
+          <View style={styles?.navigationButtonView}>
+            <Text style={styles?.navigationButtonTextStyle}>
+              {strings?.letsStart}
             </Text>
           </View>
         </TouchableOpacity>
@@ -91,8 +59,37 @@ export default LandingScreen;
  * Navigation - ALL TYPES
  * Splash Screen and AppIcon
  * Redux
+ * Regex
  * Handlebars and Plops
- * Test cases
+ * Test cases - components, screens, packages, functions, navigations and redux
+    - @types/react-test-renderer,
+    - render
+      - getBytestId
+      - getByText
+    - fireEvent
+    - react-test-renderer, 
+    - create
+    - describe, 
+    - test or it,
+    - beforeEach, 
+    - afterEach,
+    - beforeAll, 
+    - afterAll, 
+    - jest
+      - jest.fn()
+      - jest.mock()
+    - expect
+      - toMatchSnapshot()
+      - toBeOnTheScreen()
+      - toBe()
+      - toEqual()
+      - toBeNull()
+      - toBeUndefined()
+      - toBeDefined()
+      - toBeTruthy()
+      - toBeFalsy()
+      - toHaveBeenCalled()
+    - ThemeProvider
  * Story book
  * Hooks
  * Custom Hooks

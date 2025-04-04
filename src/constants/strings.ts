@@ -1,0 +1,22 @@
+const strings = {
+  amazon: 'Amazon',
+  appName: 'FurniBAZAR',
+  continueWithGoogle: 'Continue with Google',
+  enterMobileNumber: 'Enter mobile number',
+  enterPassword: 'Enter password',
+  faceBook: 'Facebook',
+  greaterThanTenDigitsError: 'Mobile number is exceeding 10 digits',
+  letsStart: "LET'S START",
+  loginInsrtuctionLine: 'Enter your credentials to Login',
+  mobile: 'Mobile',
+  orLoginWith: 'Or login with',
+  password: 'Password',
+  tagLine: 'We provide quality products just for you',
+  tenDigitsErrorMessage: 'Mobile number needs to have 10 digits',
+  twitter: 'Twitter',
+  username: 'Username',
+  validPassword: 'Enter valid password',
+  validUsername: 'Enter valid username',
+  validMobileNumber: 'Enter valid mobile number',
+};
+export default strings;

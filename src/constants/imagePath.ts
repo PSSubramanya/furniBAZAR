@@ -12,6 +12,9 @@ const imagePath = {
   googleIcon: require('../assets/images/icons/googleIcon.png'),
   mobileIcon: require('../assets/images/icons/mobileIcon.png'),
   twitterIcon: require('../assets/images/icons/twitterIcon.png'),
+  usernameIcon: require('../assets/images/icons/usernameIcon.png'),
+  showIcon: require('../assets/images/icons/showIcon.png'),
+  hideIcon: require('../assets/images/icons/hideIcon.png'),
 
   // Illustrations
   illustrationIcon1: require('../assets/images/illustrations/illustration1.png'),
