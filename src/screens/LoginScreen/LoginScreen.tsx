@@ -119,7 +119,9 @@ const LoginScreen = () => {
                 onPress={() => {}}
               />
               <FBShortButton
-                text={strings?.mobile}
+                text={
+                  !mobileAuthentication ? strings?.mobile : strings?.username
+                }
                 icon={
                   !mobileAuthentication
                     ? imagePath?.mobileIcon
@@ -328,6 +330,26 @@ const LoginScreen = () => {
           </View>
         </View>
       </KeyboardAvoidingView>
+      <TouchableOpacity onPress={() => {}}>
+        <View
+          style={{
+            backgroundColor: colors?.black,
+            height: 60,
+            alignItems: 'center',
+            justifyContent: 'center',
+            marginTop: 10,
+            marginHorizontal: 20,
+            borderRadius: 5,
+          }}>
+          <Text
+            style={{
+              color: colors?.white,
+              fontFamily: fontFamily?.primaryFont?.regular,
+            }}>
+            CONTINUE
+          </Text>
+        </View>
+      </TouchableOpacity>
     </View>
   );
 };
