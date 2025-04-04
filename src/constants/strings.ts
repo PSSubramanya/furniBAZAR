@@ -1,6 +1,7 @@
 const strings = {
   amazon: 'Amazon',
   appName: 'FurniBAZAR',
+  continue: 'CONTINUE',
   continueWithGoogle: 'Continue with Google',
   enterMobileNumber: 'Enter mobile number',
   enterPassword: 'Enter password',

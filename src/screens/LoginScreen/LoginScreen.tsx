@@ -346,7 +346,7 @@ const LoginScreen = () => {
               color: colors?.white,
               fontFamily: fontFamily?.primaryFont?.regular,
             }}>
-            CONTINUE
+            {strings?.continue}
           </Text>
         </View>
       </TouchableOpacity>
