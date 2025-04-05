@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import {
   View,
   Text,
@@ -7,6 +7,8 @@ import {
   TouchableOpacity,
   Platform,
   KeyboardAvoidingView,
+  Animated,
+  useAnimatedValue,
 } from 'react-native';
 import imagePath from '../../constants/imagePath';
 import FBAppHeaderText from '../../components/FBAppHeaderText/FBAppHeaderText';
@@ -22,7 +24,12 @@ import {
 import strings from '../../constants/strings';
 
 const LoginScreen = () => {
+  const fadeAnim = useAnimatedValue(0);
+  const animatedValue = useRef(new Animated.Value(280)).current;
+
   const [showPassword, setShowPassword] = useState<boolean>(false);
+
+  const [onConfirm, setOnConfirm] = useState<boolean>(false);
 
   const [mobileAuthentication, setMobileAuthentication] =
     useState<boolean>(false);
@@ -39,12 +46,49 @@ const LoginScreen = () => {
   const [passwordError, setPasswordError] = useState<string>('');
   const [mobileNumberError, setMobileNumberError] = useState<string>('');
 
+  useEffect(() => {
+    if (onConfirm) {
+      if (!mobileAuthentication) {
+        handleUsernameInput();
+        handlePasswordInput();
+      } else {
+        handleMobileNumberInput();
+      }
+    }
+    showToast();
+  }, [onConfirm]);
+
+  const fadeIn = () => {
+    Animated.timing(fadeAnim, {
+      toValue: 1,
+      duration: 200,
+      useNativeDriver: true,
+    }).start();
+  };
+
+  const fadeOut = () => {
+    Animated.timing(fadeAnim, {
+      toValue: 0,
+      duration: 200,
+      useNativeDriver: true,
+    }).start();
+  };
+
+  const startDecayAnimation = () => {
+    Animated.decay(animatedValue, {
+      velocity: -1, // Initial velocity of the animation
+      deceleration: 0.997, // Rate of deceleration (close to 1 for slower decay)
+      useNativeDriver: true, // Use native driver for better performance
+    }).start(); // Start the animation
+  };
+
   const handleUsernameInput = () => {
     setUserNameFocus(false);
     const errorMessage = validateUsername(username);
     if (errorMessage?.length !== 0) {
       setUsernameError(errorMessage);
     }
+    setOnConfirm(false);
   };
   const handlePasswordInput = () => {
     setPasswordFocus(false);
@@ -52,6 +96,7 @@ const LoginScreen = () => {
     if (errorMessage?.length !== 0) {
       setPasswordError(errorMessage);
     }
+    setOnConfirm(false);
   };
   const handleMobileNumberInput = () => {
     setMobileNumberFocus(false);
@@ -59,6 +104,7 @@ const LoginScreen = () => {
     if (errorMessage?.length !== 0) {
       setMobileNumberError(errorMessage);
     }
+    setOnConfirm(false);
   };
 
   const borderColorDecider = (focus: boolean, errorMessage: string) => {
@@ -69,6 +115,13 @@ const LoginScreen = () => {
         return colors?.errorColor2;
       }
       return colors?.borderColor;
+    }
+  };
+
+  const showToast = () => {
+    if (usernameError || passwordError || mobileNumberError) {
+      fadeIn();
+      startDecayAnimation();
     }
   };
 
@@ -330,7 +383,10 @@ const LoginScreen = () => {
           </View>
         </View>
       </KeyboardAvoidingView>
-      <TouchableOpacity onPress={() => {}}>
+      <TouchableOpacity
+        onPress={() => {
+          setOnConfirm(true);
+        }}>
         <View
           style={{
             backgroundColor: colors?.black,
@@ -350,6 +406,36 @@ const LoginScreen = () => {
           </Text>
         </View>
       </TouchableOpacity>
+      <Animated.View
+        style={{
+          minHeight: 100,
+          marginHorizontal: 10,
+          marginVertical: 20,
+          paddingLeft: 10,
+          paddingTop: 10,
+          borderRadius: 5,
+          zIndex: 1,
+          backgroundColor: colors?.darkGrey,
+          opacity: fadeAnim,
+          transform: [{translateY: animatedValue}],
+        }}>
+        <Text
+          style={{
+            fontFamily: fontFamily?.primaryFont?.semiBold,
+            color: colors?.white,
+            fontSize: 16,
+          }}>
+          Toast Message
+        </Text>
+        <Text
+          style={{
+            fontFamily: fontFamily?.primaryFont?.regular,
+            color: colors?.white,
+            marginTop: 5,
+          }}>
+          Toast Description
+        </Text>
+      </Animated.View>
     </View>
   );
 };
