@@ -408,6 +408,8 @@ const LoginScreen = () => {
       </TouchableOpacity>
       <Animated.View
         style={{
+          flexDirection: 'row',
+          justifyContent: 'space-between',
           minHeight: 100,
           marginHorizontal: 10,
           marginVertical: 20,
@@ -419,22 +421,57 @@ const LoginScreen = () => {
           opacity: fadeAnim,
           transform: [{translateY: animatedValue}],
         }}>
-        <Text
-          style={{
-            fontFamily: fontFamily?.primaryFont?.semiBold,
-            color: colors?.white,
-            fontSize: 16,
+        <View style={{flexDirection: 'row'}}>
+          <View style={{marginRight: 5}}>
+            <Image
+              source={imagePath?.roundCloseIcon}
+              height={1}
+              width={1}
+              style={{height: 25, width: 25}}
+            />
+          </View>
+          <Image
+            source={imagePath?.shiningStarIcon}
+            height={1}
+            width={1}
+            style={{height: 25, width: 25}}
+          />
+          <View style={{marginLeft: 0}}>
+            <Text
+              style={{
+                fontFamily: fontFamily?.primaryFont?.semiBold,
+                color: colors?.white,
+                fontSize: 16,
+              }}>
+              Error Notification
+            </Text>
+            <Text
+              style={{
+                fontFamily: fontFamily?.primaryFont?.regular,
+                color: colors?.white,
+                marginTop: 5,
+                maxWidth: 260,
+              }}>
+              Please enter the credential details. If not create an account to
+              proceed ahead.
+            </Text>
+          </View>
+        </View>
+        <TouchableOpacity
+          onPress={() => {
+            animatedValue.setValue(280);
           }}>
-          Toast Message
-        </Text>
-        <Text
-          style={{
-            fontFamily: fontFamily?.primaryFont?.regular,
-            color: colors?.white,
-            marginTop: 5,
-          }}>
-          Toast Description
-        </Text>
+          <Image
+            source={imagePath?.closeIconWhite}
+            height={1}
+            width={1}
+            style={{
+              height: 16,
+              width: 16,
+              marginRight: 10,
+            }}
+          />
+        </TouchableOpacity>
       </Animated.View>
     </View>
   );
@@ -444,5 +481,6 @@ export default LoginScreen;
 OTP Screen
 OTP Messaging
 toast UI
+CUSTOM Toast Component Build
 test case for components, and all screens
 */
