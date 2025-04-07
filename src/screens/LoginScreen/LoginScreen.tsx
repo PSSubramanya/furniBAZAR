@@ -25,7 +25,7 @@ import strings from '../../constants/strings';
 
 const LoginScreen = () => {
   const fadeAnim = useAnimatedValue(0);
-  const animatedValue = useRef(new Animated.Value(280)).current;
+  const animatedValue = useRef(new Animated.Value(-850)).current; //280
 
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
@@ -76,7 +76,7 @@ const LoginScreen = () => {
 
   const startDecayAnimation = () => {
     Animated.decay(animatedValue, {
-      velocity: -1, // Initial velocity of the animation
+      velocity: 0.45, //-1 // Initial velocity of the animation
       deceleration: 0.997, // Rate of deceleration (close to 1 for slower decay)
       useNativeDriver: true, // Use native driver for better performance
     }).start(); // Start the animation
@@ -459,7 +459,7 @@ const LoginScreen = () => {
         </View>
         <TouchableOpacity
           onPress={() => {
-            animatedValue.setValue(280);
+            animatedValue.setValue(-850); //280
           }}>
           <Image
             source={imagePath?.closeIconWhite}
