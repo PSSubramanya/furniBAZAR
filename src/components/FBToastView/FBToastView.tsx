@@ -1,18 +1,31 @@
-import React, {useRef} from 'react';
-import {
-  Animated,
-  Image,
-  Text,
-  TouchableOpacity,
-  View,
-  useAnimatedValue,
-} from 'react-native';
+import React from 'react';
+import {Animated, Image, Text, TouchableOpacity, View} from 'react-native';
 import imagePath from '../../constants/imagePath';
 import colors from '../../constants/colors';
 import fontFamily from '../../constants/fontFamily';
 
 const FBToastView = (props: any) => {
-  const {fadeAnim, animatedValue} = props;
+  const {
+    fadeAnim,
+    animatedValue,
+    type,
+    headerText,
+    descriptionText,
+    setShowToastView,
+  } = props;
+
+  const selectIconType = () => {
+    if (type === 'success') {
+      return imagePath?.circleTickIcon;
+    } else if (type === 'error') {
+      return imagePath?.roundCloseIcon;
+    } else if (type === 'info') {
+      return imagePath?.infoIcon;
+    }
+    return imagePath?.warningIcon;
+  };
+  const iconValue = selectIconType();
+
   return (
     <Animated.View
       style={{
@@ -32,7 +45,7 @@ const FBToastView = (props: any) => {
       <View style={{flexDirection: 'row'}}>
         <View style={{marginRight: 5}}>
           <Image
-            source={imagePath?.roundCloseIcon}
+            source={iconValue}
             height={1}
             width={1}
             style={{height: 25, width: 25}}
@@ -51,7 +64,7 @@ const FBToastView = (props: any) => {
               color: colors?.white,
               fontSize: 16,
             }}>
-            Error Notification
+            {headerText}
           </Text>
           <Text
             style={{
@@ -60,14 +73,14 @@ const FBToastView = (props: any) => {
               marginTop: 5,
               maxWidth: 260,
             }}>
-            Please enter the credential details. If not create an account to
-            proceed ahead.
+            {descriptionText}
           </Text>
         </View>
       </View>
       <TouchableOpacity
         onPress={() => {
-          animatedValue.setValue(-850); //280
+          animatedValue.setValue(-870); //280 //-870
+          setShowToastView(false);
         }}>
         <Image
           source={imagePath?.closeIconWhite}

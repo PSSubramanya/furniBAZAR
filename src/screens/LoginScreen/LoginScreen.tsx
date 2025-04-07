@@ -27,7 +27,7 @@ import useToastAnimation from '../../components/FBToastView/useToastAnimatons';
 
 const LoginScreen = () => {
   const fadeAnim = useAnimatedValue(0);
-  const animatedValue = useRef(new Animated.Value(-850)).current; //280
+  const animatedValue = useRef(new Animated.Value(-850)).current; //280 //-850
   const {fadeIn, startDecayAnimation} = useToastAnimation(
     fadeAnim,
     animatedValue,
@@ -36,6 +36,8 @@ const LoginScreen = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
   const [onConfirm, setOnConfirm] = useState<boolean>(false);
+
+  const [showToastView, setShowToastView] = useState<boolean>(false);
 
   const [mobileAuthentication, setMobileAuthentication] =
     useState<boolean>(false);
@@ -201,6 +203,7 @@ const LoginScreen = () => {
                     setUsernameError('');
                   }}
                   onBlur={handleUsernameInput}
+                  editable={showToastView}
                 />
                 <Image
                   source={imagePath?.usernameIcon}
@@ -248,6 +251,7 @@ const LoginScreen = () => {
                     setPasswordError('');
                   }}
                   onBlur={handlePasswordInput}
+                  editable={!showToastView}
                 />
                 <TouchableOpacity
                   style={{
@@ -337,6 +341,7 @@ const LoginScreen = () => {
                         setMobileNumberError('');
                       }}
                       onBlur={handleMobileNumberInput}
+                      editable={!showToastView}
                     />
                     <Image
                       source={imagePath?.mobileIcon}
@@ -367,8 +372,10 @@ const LoginScreen = () => {
       </KeyboardAvoidingView>
       <TouchableOpacity
         onPress={() => {
+          setShowToastView(true);
           setOnConfirm(true);
-        }}>
+        }}
+        disabled={showToastView}>
         <View
           style={{
             backgroundColor: colors?.black,
@@ -388,7 +395,16 @@ const LoginScreen = () => {
           </Text>
         </View>
       </TouchableOpacity>
-      <FBToastView fadeAnim={fadeAnim} animatedValue={animatedValue} />
+      <FBToastView
+        fadeAnim={fadeAnim}
+        animatedValue={animatedValue}
+        type={'error'}
+        headerText={'Error Notification'}
+        descriptionText={
+          'Please enter the credential details. If not create an account to proceed ahead.'
+        }
+        setShowToastView={setShowToastView}
+      />
     </View>
   );
 };
