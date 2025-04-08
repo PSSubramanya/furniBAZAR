@@ -19,9 +19,9 @@ const useToastAnimation = (fadeAnim: any, animatedValue: any, height: any) => {
   };
 
   const startDecayAnimation = () => {
-    animatedValue.setValue(-height);
+    animatedValue.setValue(height);
     Animated.decay(animatedValue, {
-      velocity: 2.8, //-1 //0.45 // Initial velocity of the animation
+      velocity: -0.4, //-0.4 for bottom //2.8 for top // Initial velocity of the animation
       deceleration: 0.997, // Rate of deceleration (close to 1 for slower decay)
       useNativeDriver: true, // Use native driver for better performance
     }).start(); // Start the animation

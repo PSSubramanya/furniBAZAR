@@ -88,7 +88,8 @@ const FBToastView = (props: any) => {
       </View>
       <TouchableOpacity
         onPress={() => {
-          animatedValue.setValue(-height); //280 //-870
+          //Positive value for bottom //Negative value for top
+          animatedValue.setValue(height);
           setShowToastView(false);
         }}>
         <Image

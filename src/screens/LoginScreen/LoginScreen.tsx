@@ -29,7 +29,7 @@ import useToastAnimation from '../../components/FBToastView/useToastAnimatons';
 const LoginScreen = () => {
   const {height} = Dimensions.get('window');
   const fadeAnim = useAnimatedValue(0);
-  const animatedValue = useRef(new Animated.Value(-height)).current; //280 //-850
+  const animatedValue = useRef(new Animated.Value(height)).current; //Positive value for bottom //Negative value for top
   const {fadeIn, startDecayAnimation} = useToastAnimation(
     fadeAnim,
     animatedValue,
