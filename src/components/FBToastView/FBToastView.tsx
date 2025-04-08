@@ -19,6 +19,7 @@ const FBToastView = (props: any) => {
     headerText,
     descriptionText,
     setShowToastView,
+    toastDirectionFromTop,
   } = props;
 
   const {height} = Dimensions.get('window');
@@ -88,8 +89,7 @@ const FBToastView = (props: any) => {
       </View>
       <TouchableOpacity
         onPress={() => {
-          //Positive value for bottom //Negative value for top
-          animatedValue.setValue(height);
+          animatedValue.setValue(toastDirectionFromTop ? -height : height);
           setShowToastView(false);
         }}>
         <Image

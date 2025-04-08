@@ -28,12 +28,16 @@ import useToastAnimation from '../../components/FBToastView/useToastAnimatons';
 
 const LoginScreen = () => {
   const {height} = Dimensions.get('window');
+  const toastDirectionFromTop = true;
   const fadeAnim = useAnimatedValue(0);
-  const animatedValue = useRef(new Animated.Value(height)).current; //Positive value for bottom //Negative value for top
+  const animatedValue = useRef(
+    new Animated.Value(toastDirectionFromTop ? -height : height),
+  ).current;
   const {fadeIn, startDecayAnimation} = useToastAnimation(
     fadeAnim,
     animatedValue,
     height,
+    toastDirectionFromTop,
   );
 
   const [showPassword, setShowPassword] = useState<boolean>(false);
@@ -407,6 +411,7 @@ const LoginScreen = () => {
           'Please enter the credential details. If not create an account to proceed ahead.'
         }
         setShowToastView={setShowToastView}
+        toastDirectionFromTop={toastDirectionFromTop}
       />
     </View>
   );
