@@ -9,6 +9,7 @@ import {
   KeyboardAvoidingView,
   Animated,
   useAnimatedValue,
+  Dimensions,
 } from 'react-native';
 import imagePath from '../../constants/imagePath';
 import FBAppHeaderText from '../../components/FBAppHeaderText/FBAppHeaderText';
@@ -26,11 +27,13 @@ import {FBToastView} from '../../components/FBToastView/FBToastView';
 import useToastAnimation from '../../components/FBToastView/useToastAnimatons';
 
 const LoginScreen = () => {
+  const {height} = Dimensions.get('window');
   const fadeAnim = useAnimatedValue(0);
-  const animatedValue = useRef(new Animated.Value(-850)).current; //280 //-850
+  const animatedValue = useRef(new Animated.Value(-height)).current; //280 //-850
   const {fadeIn, startDecayAnimation} = useToastAnimation(
     fadeAnim,
     animatedValue,
+    height,
   );
 
   const [showPassword, setShowPassword] = useState<boolean>(false);

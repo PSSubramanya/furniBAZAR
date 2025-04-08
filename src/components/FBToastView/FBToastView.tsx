@@ -1,5 +1,12 @@
 import React from 'react';
-import {Animated, Image, Text, TouchableOpacity, View} from 'react-native';
+import {
+  Animated,
+  Dimensions,
+  Image,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import imagePath from '../../constants/imagePath';
 import colors from '../../constants/colors';
 import fontFamily from '../../constants/fontFamily';
@@ -13,6 +20,8 @@ const FBToastView = (props: any) => {
     descriptionText,
     setShowToastView,
   } = props;
+
+  const {height} = Dimensions.get('window');
 
   const selectIconType = () => {
     if (type === 'success') {
@@ -32,12 +41,12 @@ const FBToastView = (props: any) => {
         flexDirection: 'row',
         justifyContent: 'space-between',
         minHeight: 100,
-        marginHorizontal: 10,
-        marginVertical: 20,
         paddingLeft: 10,
         paddingTop: 10,
         borderRadius: 5,
         zIndex: 1,
+        position: 'absolute',
+        left: 20,
         backgroundColor: colors?.darkGrey,
         opacity: fadeAnim,
         transform: [{translateY: animatedValue}],
@@ -79,7 +88,7 @@ const FBToastView = (props: any) => {
       </View>
       <TouchableOpacity
         onPress={() => {
-          animatedValue.setValue(-870); //280 //-870
+          animatedValue.setValue(-height); //280 //-870
           setShowToastView(false);
         }}>
         <Image
