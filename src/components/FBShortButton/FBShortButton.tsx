@@ -3,9 +3,9 @@ import {View, Text, Image, TouchableOpacity} from 'react-native';
 import styles from './styles';
 
 const FBShortButton = (props: any) => {
-  const {icon, text, onPress} = props;
+  const {icon, text, onPress, disabled} = props;
   return (
-    <TouchableOpacity onPress={onPress}>
+    <TouchableOpacity onPress={onPress} disabled={disabled}>
       <View style={styles?.shortbuttonView}>
         <Image
           source={icon}

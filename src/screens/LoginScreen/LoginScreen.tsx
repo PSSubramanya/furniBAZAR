@@ -133,7 +133,7 @@ const LoginScreen = () => {
         </View>
         <View>
           <View style={styles?.signinCardView}>
-            <TouchableOpacity onPress={() => {}}>
+            <TouchableOpacity onPress={() => {}} disabled={showToastView}>
               <View style={styles?.googleLoginButton}>
                 <Text style={styles?.googleLoginButtonText}>
                   {strings?.continueWithGoogle}
@@ -151,16 +151,19 @@ const LoginScreen = () => {
                 text={strings?.faceBook}
                 icon={imagePath?.faceBookIcon}
                 onPress={() => {}}
+                disabled={showToastView}
               />
               <FBShortButton
                 text={strings?.twitter}
                 icon={imagePath?.twitterIcon}
                 onPress={() => {}}
+                disabled={showToastView}
               />
               <FBShortButton
                 text={strings?.amazon}
                 icon={imagePath?.amazonIcon}
                 onPress={() => {}}
+                disabled={showToastView}
               />
               <FBShortButton
                 text={
@@ -174,6 +177,7 @@ const LoginScreen = () => {
                 onPress={() => {
                   setMobileAuthentication(!mobileAuthentication);
                 }}
+                disabled={showToastView}
               />
             </View>
             <View style={styles?.dividerView}>
@@ -210,7 +214,7 @@ const LoginScreen = () => {
                     setUsernameError('');
                   }}
                   onBlur={handleUsernameInput}
-                  editable={showToastView}
+                  editable={!showToastView}
                 />
                 <Image
                   source={imagePath?.usernameIcon}
