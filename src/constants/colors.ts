@@ -10,6 +10,8 @@ const colors = {
   primaryColor: '#43939e',
   secondaryColor: '#1382d9',
   white: '#ffffff',
+  skyBlue: '#dcfdfe',
+  lightSkyBlue: '#e7feff',
 };
 
 export default colors;

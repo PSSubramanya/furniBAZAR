@@ -21,6 +21,7 @@ const imagePath = {
   lockIcon: require('../assets/images/icons/lock.png'),
   mobileIcon: require('../assets/images/icons/mobileIcon.png'),
   otpIcon: require('../assets/images/icons/otp.png'),
+  otpIcon2: require('../assets/images/icons/otpIcon2.png'),
   rightChevronIcon: require('../assets/images/icons/rightChevronIcon.png'),
   roundCloseIcon: require('../assets/images/icons/roundCloseIcon.png'),
   roundCloseIconFilled: require('../assets/images/icons/roundCloseIconFilled.png'),

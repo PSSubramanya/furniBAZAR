@@ -26,7 +26,8 @@ import strings from '../../constants/strings';
 import {FBToastView} from '../../components/FBToastView/FBToastView';
 import useToastAnimation from '../../components/FBToastView/useToastAnimatons';
 
-const LoginScreen = () => {
+const LoginScreen = (props: any) => {
+  const {navigation} = props;
   const {height} = Dimensions.get('window');
   const toastDirectionFromTop = true;
   const fadeAnim = useAnimatedValue(0);
@@ -113,6 +114,8 @@ const LoginScreen = () => {
     if (usernameError || passwordError || mobileNumberError) {
       fadeIn();
       startDecayAnimation();
+    } else {
+      navigation.navigate('OtpScreen');
     }
   };
 
