@@ -1,0 +1,9 @@
+import React from 'react';
+import renderer from 'react-test-renderer';
+import {{pascalCase name}} from './{{pascalCase name}}';
+
+
+test('rendered {{pascalCase name}} Screen perfectly', () => {
+  const tree = renderer.create(<{{pascalCase name}} />).toJSON();
+  expect(tree).toMatchSnapshot();
+});
