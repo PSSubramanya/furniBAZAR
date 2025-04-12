@@ -42,6 +42,7 @@ const FBToastView = (props: any) => {
         flexDirection: 'row',
         justifyContent: 'space-between',
         minHeight: 100,
+        minWidth: 350,
         paddingLeft: 10,
         paddingTop: 10,
         borderRadius: 5,
@@ -90,7 +91,9 @@ const FBToastView = (props: any) => {
       <TouchableOpacity
         onPress={() => {
           animatedValue.setValue(toastDirectionFromTop ? -height : height);
-          setShowToastView(false);
+          if (setShowToastView) {
+            setShowToastView(false);
+          }
         }}>
         <Image
           source={imagePath?.closeIconWhite}

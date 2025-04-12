@@ -7,11 +7,12 @@ const colors = {
   darkGrey: '#363636',
   errorColor1: '#d9131c',
   errorColor2: '#ed0c17',
+  greyColor: '#b8b8b8',
+  lightSkyBlue: '#d2e3ff',
   primaryColor: '#43939e',
   secondaryColor: '#1382d9',
+  skyBlue: '#97befd',
   white: '#ffffff',
-  skyBlue: '#dcfdfe',
-  lightSkyBlue: '#e7feff',
 };
 
 export default colors;
