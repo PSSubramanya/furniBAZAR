@@ -7,7 +7,7 @@ import styles from './styles';
 const FBButton = (props: any) => {
   const {
     onPress,
-    enableButton,
+    enableButton = false,
     buttonText,
     customStyle,
     buttonType = 'normal',

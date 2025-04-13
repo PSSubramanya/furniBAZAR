@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect, useRef, useCallback} from 'react';
 import {
   View,
   Text,
@@ -27,6 +27,7 @@ import {FBToastView} from '../../components/FBToastView/FBToastView';
 import useToastAnimation from '../../components/FBToastView/useToastAnimatons';
 import FBButton from '../../components/FBButton/FBButton';
 import screenNames from '../../constants/screenNames';
+import {useFocusEffect} from '@react-navigation/native';
 
 const LoginScreen = (props: any) => {
   const {navigation} = props;
@@ -67,6 +68,19 @@ const LoginScreen = (props: any) => {
       showToast();
     }
   }, [onConfirm]);
+
+  useFocusEffect(
+    useCallback(() => {
+      // This will run when the screen is focused (coming back from another screen)
+      console.log('Screen is focused again!');
+      setOnConfirm(false);
+
+      // Optional cleanup if needed
+      return () => {
+        console.log('Screen lost focus');
+      };
+    }, []),
+  );
 
   const onPressContinue = () => {
     if (!mobileAuthentication) {
@@ -140,7 +154,7 @@ const LoginScreen = (props: any) => {
         </View>
         <View>
           <View style={styles?.signinCardView}>
-            <TouchableOpacity onPress={() => {}} disabled={onConfirm}>
+            <TouchableOpacity onPress={() => {}}>
               <View style={styles?.googleLoginButton}>
                 <Text style={styles?.googleLoginButtonText}>
                   {strings?.continueWithGoogle}
@@ -158,19 +172,16 @@ const LoginScreen = (props: any) => {
                 text={strings?.faceBook}
                 icon={imagePath?.faceBookIcon}
                 onPress={() => {}}
-                disabled={onConfirm}
               />
               <FBShortButton
                 text={strings?.twitter}
                 icon={imagePath?.twitterIcon}
                 onPress={() => {}}
-                disabled={onConfirm}
               />
               <FBShortButton
                 text={strings?.amazon}
                 icon={imagePath?.amazonIcon}
                 onPress={() => {}}
-                disabled={onConfirm}
               />
               <FBShortButton
                 text={
@@ -184,7 +195,6 @@ const LoginScreen = (props: any) => {
                 onPress={() => {
                   setMobileAuthentication(!mobileAuthentication);
                 }}
-                disabled={onConfirm}
               />
             </View>
             <View style={styles?.dividerView}>
@@ -221,7 +231,6 @@ const LoginScreen = (props: any) => {
                     setUsernameError('');
                   }}
                   onBlur={handleUsernameInput}
-                  editable={!onConfirm}
                 />
                 <Image
                   source={imagePath?.usernameIcon}
@@ -269,7 +278,6 @@ const LoginScreen = (props: any) => {
                     setPasswordError('');
                   }}
                   onBlur={handlePasswordInput}
-                  editable={!onConfirm}
                 />
                 <TouchableOpacity
                   style={{
@@ -359,7 +367,6 @@ const LoginScreen = (props: any) => {
                         setMobileNumberError('');
                       }}
                       onBlur={handleMobileNumberInput}
-                      editable={!onConfirm}
                     />
                     <Image
                       source={imagePath?.mobileIcon}
@@ -396,7 +403,6 @@ const LoginScreen = (props: any) => {
         customStyle={{
           marginHorizontal: 20,
         }}
-        enableButton={onConfirm}
       />
       <FBToastView
         fadeAnim={fadeAnim}
