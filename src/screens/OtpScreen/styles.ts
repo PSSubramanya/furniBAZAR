@@ -23,6 +23,30 @@ const styles = StyleSheet?.create({
     alignSelf: 'center',
     fontFamily: fontFamily?.primaryFont?.regular,
   },
+  headerText: {
+    marginTop: 100,
+  },
+  otpTimerTextStyle: {
+    marginTop: 80,
+    textAlign: 'center',
+    fontSize: 14,
+    fontFamily: fontFamily?.primaryFont?.regular,
+  },
+  otpDigitsView: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginTop: 10,
+  },
+  horizontalCentralisedStyle: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
+  resendOTPTextStyle: {
+    marginTop: 10,
+    textAlign: 'center',
+    fontSize: 14,
+    fontFamily: fontFamily?.primaryFont?.regular,
+  },
 });
 
 export default styles;

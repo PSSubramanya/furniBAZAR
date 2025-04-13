@@ -1,16 +1,6 @@
 import React from 'react';
 // import type {PropsWithChildren} from 'react';
-import {
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  ImageBackground,
-  Platform,
-  TouchableOpacity,
-} from 'react-native';
+import {ScrollView, Text, View, Image} from 'react-native';
 import FBAppHeaderText from '../../components/FBAppHeaderText/FBAppHeaderText';
 import imagePath from '../../constants/imagePath';
 import styles from './styles';

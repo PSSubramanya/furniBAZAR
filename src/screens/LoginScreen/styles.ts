@@ -26,7 +26,6 @@ const styles = StyleSheet?.create({
   },
   signinCardView: {
     backgroundColor: colors?.white,
-    // height: 300,
     marginHorizontal: 23,
     paddingBottom: 20,
     zIndex: 1,
@@ -100,6 +99,35 @@ const styles = StyleSheet?.create({
     fontSize: 16,
     fontFamily: fontFamily?.primaryFont?.regular,
     width: 265,
+  },
+  errorStyle: {
+    marginTop: 5,
+    marginLeft: 16,
+    fontFamily: fontFamily?.primaryFont?.regular,
+    color: colors?.errorColor1,
+  },
+  flexRowStyle: {
+    flexDirection: 'row',
+  },
+  countryCodeStyle: {
+    flexDirection: 'row',
+    height: 60,
+    width: 60,
+    marginTop: 10,
+    marginLeft: 15,
+    paddingHorizontal: 10,
+    borderWidth: 1,
+    borderColor: colors?.borderColor,
+    borderRadius: 5,
+  },
+  mobileAuthenticationInputView: {
+    flexDirection: 'row',
+    height: 60,
+    width: 240,
+    marginTop: 10,
+    marginHorizontal: 15,
+    paddingHorizontal: 10,
+    borderRadius: 5,
   },
 });
 

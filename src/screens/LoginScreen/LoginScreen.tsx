@@ -241,15 +241,7 @@ const LoginScreen = (props: any) => {
               </View>
             ) : null}
             {usernameError && !mobileAuthentication ? (
-              <Text
-                style={{
-                  marginTop: 5,
-                  marginLeft: 16,
-                  fontFamily: fontFamily?.primaryFont?.regular,
-                  color: colors?.errorColor1,
-                }}>
-                {usernameError}
-              </Text>
+              <Text style={styles?.errorStyle}>{usernameError}</Text>
             ) : null}
 
             {!mobileAuthentication ? (
@@ -299,34 +291,12 @@ const LoginScreen = (props: any) => {
               </View>
             ) : null}
             {passwordError && !mobileAuthentication ? (
-              <Text
-                style={{
-                  marginTop: 5,
-                  marginLeft: 16,
-                  fontFamily: fontFamily?.primaryFont?.regular,
-                  color: colors?.errorColor1,
-                }}>
-                {passwordError}
-              </Text>
+              <Text style={styles?.errorStyle}>{passwordError}</Text>
             ) : null}
 
             {mobileAuthentication ? (
-              <View
-                style={{
-                  flexDirection: 'row',
-                }}>
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    height: 60,
-                    width: 60,
-                    marginTop: 10,
-                    marginLeft: 15,
-                    paddingHorizontal: 10,
-                    borderWidth: 1,
-                    borderColor: colors?.borderColor,
-                    borderRadius: 5,
-                  }}>
+              <View style={styles?.flexRowStyle}>
+                <View style={styles?.countryCodeStyle}>
                   <TextInput
                     value={'+91'}
                     style={styles?.textInputStyle}
@@ -336,15 +306,7 @@ const LoginScreen = (props: any) => {
                 <View>
                   <View
                     style={[
-                      {
-                        flexDirection: 'row',
-                        height: 60,
-                        width: 240,
-                        marginTop: 10,
-                        marginHorizontal: 15,
-                        paddingHorizontal: 10,
-                        borderRadius: 5,
-                      },
+                      styles?.mobileAuthenticationInputView,
                       {
                         borderColor: borderColorDecider(
                           mobileNumberFocus,
@@ -379,15 +341,7 @@ const LoginScreen = (props: any) => {
                     />
                   </View>
                   {mobileNumberError ? (
-                    <Text
-                      style={{
-                        marginTop: 5,
-                        marginLeft: 16,
-                        fontFamily: fontFamily?.primaryFont?.regular,
-                        color: colors?.errorColor1,
-                      }}>
-                      {mobileNumberError}
-                    </Text>
+                    <Text style={styles?.errorStyle}>{mobileNumberError}</Text>
                   ) : null}
                 </View>
               </View>

@@ -126,7 +126,7 @@ const OtpScreen = (props: any) => {
     <View style={styles?.flexContainer}>
       <KeyboardAvoidingView behavior={'position'}>
         <View style={styles?.topContainer}>
-          <FBAppHeaderText iconSize={40} styleProp={{marginTop: 100}} />
+          <FBAppHeaderText iconSize={40} styleProp={styles?.headerText} />
           <Image
             source={imagePath?.otpIcon2}
             height={1}
@@ -137,21 +137,8 @@ const OtpScreen = (props: any) => {
             {strings?.otpScreenText}
           </Text>
         </View>
-        <Text
-          style={{
-            marginTop: 80,
-            textAlign: 'center',
-            fontSize: 14,
-            fontFamily: fontFamily?.primaryFont?.regular,
-          }}>
-          {strings?.otpTimerText}
-        </Text>
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'center',
-            marginTop: 10,
-          }}>
+        <Text style={styles?.otpTimerTextStyle}>{strings?.otpTimerText}</Text>
+        <View style={styles?.otpDigitsView}>
           <FBDigitInputField
             refValue={textInput1}
             digitValue={firstDigit}
@@ -182,26 +169,19 @@ const OtpScreen = (props: any) => {
             handInputFields={handInputFields}
           />
         </View>
-        <View style={{flexDirection: 'row', justifyContent: 'center'}}>
-          <Text
-            style={{
-              marginTop: 10,
-              textAlign: 'center',
-              fontSize: 14,
-              fontFamily: fontFamily?.primaryFont?.regular,
-              marginRight: 5,
-            }}>
+        <View style={styles?.horizontalCentralisedStyle}>
+          <Text style={styles?.resendOTPTextStyle}>
             {strings?.haventRecievedOtp}
           </Text>
           <TouchableOpacity onPress={() => {}} disabled={true}>
             <Text
-              style={{
-                marginTop: 10,
-                textAlign: 'center',
-                fontSize: 14,
-                fontFamily: fontFamily?.primaryFont?.regular,
-                color: colors?.greyColor,
-              }}>
+              style={[
+                styles?.resendOTPTextStyle,
+                {
+                  color: colors?.greyColor,
+                  marginLeft: 5,
+                },
+              ]}>
               {strings?.resendOtp}
             </Text>
           </TouchableOpacity>
