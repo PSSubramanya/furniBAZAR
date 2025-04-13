@@ -20,6 +20,7 @@ import colors from '../../constants/colors.ts';
 import fontFamily from '../../constants/fontFamily.ts';
 import {FBToastView} from '../../components/FBToastView/FBToastView.tsx';
 import useToastAnimation from '../../components/FBToastView/useToastAnimatons.ts';
+import FBDigitInputField from '../../components/FBDigitInputField/FBDigitInputField.tsx';
 
 const OtpScreen = (props: any) => {
   const {height} = Dimensions.get('window');
@@ -152,123 +153,34 @@ const OtpScreen = (props: any) => {
             justifyContent: 'center',
             marginTop: 10,
           }}>
-          <TextInput
-            value={firstDigit}
-            style={{
-              height: 80,
-              width: 60,
-              borderRadius: 5,
-              borderWidth: textInput1?.current?.isFocused() ? 2 : 1,
-              marginRight: 10,
-              textAlign: 'center',
-              fontSize: 20,
-              fontFamily: fontFamily?.primaryFont?.regular,
-              backgroundColor: textInput1?.current?.isFocused()
-                ? colors?.skyBlue
-                : colors?.lightSkyBlue,
-              borderColor: textInput1?.current?.isFocused()
-                ? colors?.secondaryColor
-                : colors?.black,
-            }}
-            ref={textInput1}
-            autoFocus={true}
-            returnKeyType="next"
-            onChangeText={val => {
-              handInputFields();
-              setFirstDigit(val);
-            }}
-            onKeyPress={ev => {
-              backPressEvent(ev);
-            }}
-            keyboardType="numeric"
-            maxLength={1}
+          <FBDigitInputField
+            refValue={textInput1}
+            digitValue={firstDigit}
+            setDigitValue={setFirstDigit}
+            backPressEvent={backPressEvent}
+            handInputFields={handInputFields}
+            autofocus={true}
           />
-          <TextInput
-            value={secondDigit}
-            style={{
-              height: 80,
-              width: 60,
-              borderRadius: 5,
-              borderWidth: textInput2?.current?.isFocused() ? 2 : 1,
-              marginRight: 10,
-              textAlign: 'center',
-              fontSize: 20,
-              fontFamily: fontFamily?.primaryFont?.regular,
-              backgroundColor: textInput2?.current?.isFocused()
-                ? colors?.skyBlue
-                : colors?.lightSkyBlue,
-              borderColor: textInput2?.current?.isFocused()
-                ? colors?.secondaryColor
-                : colors?.black,
-            }}
-            ref={textInput2}
-            onChangeText={val => {
-              handInputFields();
-              setSecondDigit(val);
-            }}
-            onKeyPress={ev => {
-              backPressEvent(ev);
-            }}
-            keyboardType="numeric"
-            maxLength={1}
+          <FBDigitInputField
+            refValue={textInput2}
+            digitValue={secondDigit}
+            setDigitValue={setSecondDigit}
+            backPressEvent={backPressEvent}
+            handInputFields={handInputFields}
           />
-          <TextInput
-            value={thirdDigit}
-            style={{
-              height: 80,
-              width: 60,
-              borderRadius: 5,
-              borderWidth: textInput3?.current?.isFocused() ? 2 : 1,
-              marginRight: 10,
-              textAlign: 'center',
-              fontSize: 20,
-              fontFamily: fontFamily?.primaryFont?.regular,
-              backgroundColor: textInput3?.current?.isFocused()
-                ? colors?.skyBlue
-                : colors?.lightSkyBlue,
-              borderColor: textInput3?.current?.isFocused()
-                ? colors?.secondaryColor
-                : colors?.black,
-            }}
-            ref={textInput3}
-            onChangeText={val => {
-              handInputFields();
-              setThirdDigit(val);
-            }}
-            onKeyPress={ev => {
-              backPressEvent(ev);
-            }}
-            keyboardType="numeric"
-            maxLength={1}
+          <FBDigitInputField
+            refValue={textInput3}
+            digitValue={thirdDigit}
+            setDigitValue={setThirdDigit}
+            backPressEvent={backPressEvent}
+            handInputFields={handInputFields}
           />
-          <TextInput
-            value={fourthDigit}
-            style={{
-              height: 80,
-              width: 60,
-              borderRadius: 5,
-              borderWidth: textInput4?.current?.isFocused() ? 2 : 1,
-              marginRight: 10,
-              textAlign: 'center',
-              fontSize: 20,
-              fontFamily: fontFamily?.primaryFont?.regular,
-              backgroundColor: textInput4?.current?.isFocused()
-                ? colors?.skyBlue
-                : colors?.lightSkyBlue,
-              borderColor: textInput4?.current?.isFocused()
-                ? colors?.secondaryColor
-                : colors?.black,
-            }}
-            ref={textInput4}
-            onChangeText={val => {
-              handInputFields();
-              setFourthDigit(val);
-            }}
-            onKeyPress={ev => {
-              backPressEvent(ev);
-            }}
-            keyboardType="numeric"
-            maxLength={1}
+          <FBDigitInputField
+            refValue={textInput4}
+            digitValue={fourthDigit}
+            setDigitValue={setFourthDigit}
+            backPressEvent={backPressEvent}
+            handInputFields={handInputFields}
           />
         </View>
         <View style={{flexDirection: 'row', justifyContent: 'center'}}>
@@ -322,7 +234,6 @@ const OtpScreen = (props: any) => {
           </Text>
         </View>
       </TouchableOpacity>
-      {/* ADD Toast here */}
       <FBToastView
         fadeAnim={fadeAnim}
         animatedValue={animatedValue}
@@ -336,7 +247,7 @@ const OtpScreen = (props: any) => {
 };
 export default OtpScreen;
 /**
- * OTP Digit Component
+ * OTP Digit Component - Done
  * types and interfaces
  * testcases
  * backend
