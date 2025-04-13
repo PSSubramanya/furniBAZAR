@@ -15,6 +15,7 @@ import FBAppHeaderText from '../../components/FBAppHeaderText/FBAppHeaderText';
 import imagePath from '../../constants/imagePath';
 import styles from './styles';
 import strings from '../../constants/strings';
+import FBButton from '../../components/FBButton/FBButton';
 
 const LandingScreen = (props: any): React.JSX.Element => {
   const {navigation} = props;
@@ -36,16 +37,14 @@ const LandingScreen = (props: any): React.JSX.Element => {
         <View style={styles?.posterTextView}>
           <Text style={styles?.posterText}>{strings?.tagLine}</Text>
         </View>
-        <TouchableOpacity
+        <FBButton
           onPress={() => {
             navigation?.navigate('LoginScreen');
-          }}>
-          <View style={styles?.navigationButtonView}>
-            <Text style={styles?.navigationButtonTextStyle}>
-              {strings?.letsStart}
-            </Text>
-          </View>
-        </TouchableOpacity>
+          }}
+          buttonType={'round'}
+          buttonText={strings?.letsStart}
+          customStyle={styles?.navigationButtonView}
+        />
       </ScrollView>
     </View>
   );

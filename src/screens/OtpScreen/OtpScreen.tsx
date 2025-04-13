@@ -21,6 +21,7 @@ import fontFamily from '../../constants/fontFamily.ts';
 import {FBToastView} from '../../components/FBToastView/FBToastView.tsx';
 import useToastAnimation from '../../components/FBToastView/useToastAnimatons.ts';
 import FBDigitInputField from '../../components/FBDigitInputField/FBDigitInputField.tsx';
+import FBButton from '../../components/FBButton/FBButton.tsx';
 
 const OtpScreen = (props: any) => {
   const {height} = Dimensions.get('window');
@@ -117,10 +118,8 @@ const OtpScreen = (props: any) => {
   };
 
   const showToast = () => {
-    // if (usernameError || passwordError || mobileNumberError) {
     fadeIn();
     startDecayAnimation();
-    // }
   };
 
   return (
@@ -208,32 +207,17 @@ const OtpScreen = (props: any) => {
           </TouchableOpacity>
         </View>
       </KeyboardAvoidingView>
-      <TouchableOpacity
+      <FBButton
         onPress={() => {
           otpVerify();
         }}
-        disabled={!enableButton}>
-        <View
-          style={{
-            backgroundColor: colors?.black,
-            height: 60,
-            alignItems: 'center',
-            justifyContent: 'center',
-            marginTop: 20,
-            // marginHorizontal: 20, // make custom component for the buttons in general
-            marginHorizontal: 50,
-            borderRadius: 5,
-            opacity: enableButton ? 1 : 0.1,
-          }}>
-          <Text
-            style={{
-              color: colors?.white,
-              fontFamily: fontFamily?.primaryFont?.regular,
-            }}>
-            VERIFY
-          </Text>
-        </View>
-      </TouchableOpacity>
+        enableButton={!enableButton}
+        buttonText={'VERIFY'}
+        customStyle={{
+          marginHorizontal: 50,
+          opacity: enableButton ? 1 : 0.1,
+        }}
+      />
       <FBToastView
         fadeAnim={fadeAnim}
         animatedValue={animatedValue}

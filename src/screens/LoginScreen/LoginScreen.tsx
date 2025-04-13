@@ -25,6 +25,7 @@ import {
 import strings from '../../constants/strings';
 import {FBToastView} from '../../components/FBToastView/FBToastView';
 import useToastAnimation from '../../components/FBToastView/useToastAnimatons';
+import FBButton from '../../components/FBButton/FBButton';
 
 const LoginScreen = (props: any) => {
   const {navigation} = props;
@@ -384,31 +385,17 @@ const LoginScreen = (props: any) => {
           </View>
         </View>
       </KeyboardAvoidingView>
-      <TouchableOpacity
+      <FBButton
         onPress={() => {
           setShowToastView(true);
           setOnConfirm(true);
         }}
-        disabled={showToastView}>
-        <View
-          style={{
-            backgroundColor: colors?.black,
-            height: 60,
-            alignItems: 'center',
-            justifyContent: 'center',
-            marginTop: 10,
-            marginHorizontal: 20,
-            borderRadius: 5,
-          }}>
-          <Text
-            style={{
-              color: colors?.white,
-              fontFamily: fontFamily?.primaryFont?.regular,
-            }}>
-            {strings?.continue}
-          </Text>
-        </View>
-      </TouchableOpacity>
+        buttonText={strings?.continue}
+        customStyle={{
+          marginHorizontal: 20,
+        }}
+        enableButton={showToastView}
+      />
       <FBToastView
         fadeAnim={fadeAnim}
         animatedValue={animatedValue}
