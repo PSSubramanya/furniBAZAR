@@ -8,8 +8,7 @@ import {
   View,
 } from 'react-native';
 import imagePath from '../../constants/imagePath';
-import colors from '../../constants/colors';
-import fontFamily from '../../constants/fontFamily';
+import styles from './styles';
 
 const FBToastView = (props: any) => {
   const {
@@ -38,54 +37,31 @@ const FBToastView = (props: any) => {
 
   return (
     <Animated.View
-      style={{
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        minHeight: 100,
-        minWidth: 350,
-        paddingLeft: 10,
-        paddingTop: 10,
-        borderRadius: 5,
-        zIndex: 1,
-        position: 'absolute',
-        left: 20,
-        backgroundColor: colors?.darkGrey,
-        opacity: fadeAnim,
-        transform: [{translateY: animatedValue}],
-      }}>
-      <View style={{flexDirection: 'row'}}>
-        <View style={{marginRight: 5}}>
+      style={[
+        styles?.toastMainContainerStyle,
+        {
+          opacity: fadeAnim,
+          transform: [{translateY: animatedValue}],
+        },
+      ]}>
+      <View style={styles?.flexRowStyle}>
+        <View style={styles?.toastIconTypeStyle}>
           <Image
             source={iconValue}
             height={1}
             width={1}
-            style={{height: 25, width: 25}}
+            style={styles?.iconStyle}
           />
         </View>
         <Image
           source={imagePath?.shiningStarIcon}
           height={1}
           width={1}
-          style={{height: 25, width: 25}}
+          style={styles?.iconStyle}
         />
-        <View style={{marginLeft: 0}}>
-          <Text
-            style={{
-              fontFamily: fontFamily?.primaryFont?.semiBold,
-              color: colors?.white,
-              fontSize: 16,
-            }}>
-            {headerText}
-          </Text>
-          <Text
-            style={{
-              fontFamily: fontFamily?.primaryFont?.regular,
-              color: colors?.white,
-              marginTop: 5,
-              maxWidth: 260,
-            }}>
-            {descriptionText}
-          </Text>
+        <View style={styles?.toastTextView}>
+          <Text style={styles?.headerStyle}>{headerText}</Text>
+          <Text style={styles?.descriptionStyle}>{descriptionText}</Text>
         </View>
       </View>
       <TouchableOpacity
@@ -99,11 +75,7 @@ const FBToastView = (props: any) => {
           source={imagePath?.closeIconWhite}
           height={1}
           width={1}
-          style={{
-            height: 16,
-            width: 16,
-            marginRight: 10,
-          }}
+          style={styles?.closeIconStyle}
         />
       </TouchableOpacity>
     </Animated.View>

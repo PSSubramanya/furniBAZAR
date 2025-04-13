@@ -49,7 +49,7 @@ const OtpScreen = (props: any) => {
 
   const [enableButton, setEnableButton] = useState<boolean>(false);
 
-  const [otpType, setOtpType] = useState<string>('error');
+  const [otpType, setOtpType] = useState<string>(strings?.error);
   const [otpHeaderMessage, setOtpHeaderMessage] = useState<string>('');
   const [otpDescription, setOtpDescription] = useState<string>('');
 
@@ -77,13 +77,13 @@ const OtpScreen = (props: any) => {
   const otpVerify = () => {
     const otpValue = firstDigit + secondDigit + thirdDigit + fourthDigit;
     if (otpValue !== '1234') {
-      setOtpType('error');
-      setOtpHeaderMessage('Attempt again');
-      setOtpDescription('Wrong OTP entered. Please try again.');
+      setOtpType(strings?.error);
+      setOtpHeaderMessage(strings?.attemptAgain);
+      setOtpDescription(strings?.wrongOtpDescription);
     } else {
-      setOtpType('success');
-      setOtpHeaderMessage('Account verified');
-      setOtpDescription('Successfully logged in!');
+      setOtpType(strings?.success);
+      setOtpHeaderMessage(strings?.accountVerified);
+      setOtpDescription(strings?.successOtpDescription);
     }
   };
 
@@ -134,7 +134,7 @@ const OtpScreen = (props: any) => {
             style={styles?.illustrationImageStyle}
           />
           <Text style={styles?.signInInstructionsStyle}>
-            Enter the OTP that you have recieved
+            {strings?.otpScreenText}
           </Text>
         </View>
         <Text
@@ -144,7 +144,7 @@ const OtpScreen = (props: any) => {
             fontSize: 14,
             fontFamily: fontFamily?.primaryFont?.regular,
           }}>
-          This OTP is valid for 05:00 mins
+          {strings?.otpTimerText}
         </Text>
         <View
           style={{
@@ -191,7 +191,7 @@ const OtpScreen = (props: any) => {
               fontFamily: fontFamily?.primaryFont?.regular,
               marginRight: 5,
             }}>
-            Haven't recieved the OTP?
+            {strings?.haventRecievedOtp}
           </Text>
           <TouchableOpacity onPress={() => {}} disabled={true}>
             <Text
@@ -202,7 +202,7 @@ const OtpScreen = (props: any) => {
                 fontFamily: fontFamily?.primaryFont?.regular,
                 color: colors?.greyColor,
               }}>
-              Resend OTP
+              {strings?.resendOtp}
             </Text>
           </TouchableOpacity>
         </View>
@@ -212,7 +212,7 @@ const OtpScreen = (props: any) => {
           otpVerify();
         }}
         enableButton={!enableButton}
-        buttonText={'VERIFY'}
+        buttonText={strings?.verify}
         customStyle={{
           marginHorizontal: 50,
           opacity: enableButton ? 1 : 0.1,

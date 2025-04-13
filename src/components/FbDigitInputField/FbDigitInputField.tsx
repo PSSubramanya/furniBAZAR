@@ -2,6 +2,7 @@ import React from 'react';
 import {TextInput, View} from 'react-native';
 import fontFamily from '../../constants/fontFamily';
 import colors from '../../constants/colors';
+import styles from './styles';
 
 const FBDigitInputField = (props: any) => {
   const {
@@ -15,22 +16,18 @@ const FBDigitInputField = (props: any) => {
   return (
     <TextInput
       value={digitValue}
-      style={{
-        height: 80,
-        width: 60,
-        borderRadius: 5,
-        borderWidth: refValue?.current?.isFocused() ? 2 : 1,
-        marginRight: 10,
-        textAlign: 'center',
-        fontSize: 20,
-        fontFamily: fontFamily?.primaryFont?.regular,
-        backgroundColor: refValue?.current?.isFocused()
-          ? colors?.skyBlue
-          : colors?.lightSkyBlue,
-        borderColor: refValue?.current?.isFocused()
-          ? colors?.secondaryColor
-          : colors?.black,
-      }}
+      style={[
+        styles?.textInputStyle,
+        {
+          borderWidth: refValue?.current?.isFocused() ? 2 : 1,
+          backgroundColor: refValue?.current?.isFocused()
+            ? colors?.skyBlue
+            : colors?.lightSkyBlue,
+          borderColor: refValue?.current?.isFocused()
+            ? colors?.secondaryColor
+            : colors?.black,
+        },
+      ]}
       ref={refValue}
       autoFocus={autofocus}
       returnKeyType="next"

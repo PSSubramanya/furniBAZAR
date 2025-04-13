@@ -26,6 +26,7 @@ import strings from '../../constants/strings';
 import {FBToastView} from '../../components/FBToastView/FBToastView';
 import useToastAnimation from '../../components/FBToastView/useToastAnimatons';
 import FBButton from '../../components/FBButton/FBButton';
+import screenNames from '../../constants/screenNames';
 
 const LoginScreen = (props: any) => {
   const {navigation} = props;
@@ -46,8 +47,6 @@ const LoginScreen = (props: any) => {
 
   const [onConfirm, setOnConfirm] = useState<boolean>(false);
 
-  const [showToastView, setShowToastView] = useState<boolean>(false);
-
   const [mobileAuthentication, setMobileAuthentication] =
     useState<boolean>(false);
 
@@ -65,15 +64,19 @@ const LoginScreen = (props: any) => {
 
   useEffect(() => {
     if (onConfirm) {
-      if (!mobileAuthentication) {
-        handleUsernameInput();
-        handlePasswordInput();
-      } else {
-        handleMobileNumberInput();
-      }
+      showToast();
     }
-    showToast();
   }, [onConfirm]);
+
+  const onPressContinue = () => {
+    if (!mobileAuthentication) {
+      handleUsernameInput();
+      handlePasswordInput();
+    } else {
+      handleMobileNumberInput();
+    }
+    setOnConfirm(true);
+  };
 
   const handleUsernameInput = () => {
     setUserNameFocus(false);
@@ -81,7 +84,6 @@ const LoginScreen = (props: any) => {
     if (errorMessage?.length !== 0) {
       setUsernameError(errorMessage);
     }
-    setOnConfirm(false);
   };
   const handlePasswordInput = () => {
     setPasswordFocus(false);
@@ -89,7 +91,6 @@ const LoginScreen = (props: any) => {
     if (errorMessage?.length !== 0) {
       setPasswordError(errorMessage);
     }
-    setOnConfirm(false);
   };
   const handleMobileNumberInput = () => {
     setMobileNumberFocus(false);
@@ -97,7 +98,6 @@ const LoginScreen = (props: any) => {
     if (errorMessage?.length !== 0) {
       setMobileNumberError(errorMessage);
     }
-    setOnConfirm(false);
   };
 
   const borderColorDecider = (focus: boolean, errorMessage: string) => {
@@ -112,11 +112,14 @@ const LoginScreen = (props: any) => {
   };
 
   const showToast = () => {
-    if (usernameError || passwordError || mobileNumberError) {
+    if (
+      onConfirm &&
+      (usernameError !== '' || passwordError !== '' || mobileNumberError !== '')
+    ) {
       fadeIn();
       startDecayAnimation();
     } else {
-      navigation.navigate('OtpScreen');
+      navigation.navigate(screenNames?.OtpScreen);
     }
   };
 
@@ -137,7 +140,7 @@ const LoginScreen = (props: any) => {
         </View>
         <View>
           <View style={styles?.signinCardView}>
-            <TouchableOpacity onPress={() => {}} disabled={showToastView}>
+            <TouchableOpacity onPress={() => {}} disabled={onConfirm}>
               <View style={styles?.googleLoginButton}>
                 <Text style={styles?.googleLoginButtonText}>
                   {strings?.continueWithGoogle}
@@ -155,19 +158,19 @@ const LoginScreen = (props: any) => {
                 text={strings?.faceBook}
                 icon={imagePath?.faceBookIcon}
                 onPress={() => {}}
-                disabled={showToastView}
+                disabled={onConfirm}
               />
               <FBShortButton
                 text={strings?.twitter}
                 icon={imagePath?.twitterIcon}
                 onPress={() => {}}
-                disabled={showToastView}
+                disabled={onConfirm}
               />
               <FBShortButton
                 text={strings?.amazon}
                 icon={imagePath?.amazonIcon}
                 onPress={() => {}}
-                disabled={showToastView}
+                disabled={onConfirm}
               />
               <FBShortButton
                 text={
@@ -181,7 +184,7 @@ const LoginScreen = (props: any) => {
                 onPress={() => {
                   setMobileAuthentication(!mobileAuthentication);
                 }}
-                disabled={showToastView}
+                disabled={onConfirm}
               />
             </View>
             <View style={styles?.dividerView}>
@@ -218,7 +221,7 @@ const LoginScreen = (props: any) => {
                     setUsernameError('');
                   }}
                   onBlur={handleUsernameInput}
-                  editable={!showToastView}
+                  editable={!onConfirm}
                 />
                 <Image
                   source={imagePath?.usernameIcon}
@@ -266,7 +269,7 @@ const LoginScreen = (props: any) => {
                     setPasswordError('');
                   }}
                   onBlur={handlePasswordInput}
-                  editable={!showToastView}
+                  editable={!onConfirm}
                 />
                 <TouchableOpacity
                   style={{
@@ -356,7 +359,7 @@ const LoginScreen = (props: any) => {
                         setMobileNumberError('');
                       }}
                       onBlur={handleMobileNumberInput}
-                      editable={!showToastView}
+                      editable={!onConfirm}
                     />
                     <Image
                       source={imagePath?.mobileIcon}
@@ -387,24 +390,21 @@ const LoginScreen = (props: any) => {
       </KeyboardAvoidingView>
       <FBButton
         onPress={() => {
-          setShowToastView(true);
-          setOnConfirm(true);
+          onPressContinue();
         }}
         buttonText={strings?.continue}
         customStyle={{
           marginHorizontal: 20,
         }}
-        enableButton={showToastView}
+        enableButton={onConfirm}
       />
       <FBToastView
         fadeAnim={fadeAnim}
         animatedValue={animatedValue}
-        type={'error'}
-        headerText={'Error Notification'}
-        descriptionText={
-          'Please enter the credential details. If not create an account to proceed ahead.'
-        }
-        setShowToastView={setShowToastView}
+        type={strings?.error}
+        headerText={strings?.errorNotification}
+        descriptionText={strings?.loginScreenErrorDescription}
+        setShowToastView={setOnConfirm}
         toastDirectionFromTop={toastDirectionFromTop}
       />
     </View>
@@ -412,9 +412,12 @@ const LoginScreen = (props: any) => {
 };
 export default LoginScreen;
 /*
-OTP Screen
-OTP Messaging
-toast UI
-CUSTOM Toast Component Build
-test case for components, and all screens
+  OTP Screen
+  OTP Messaging
+ 
+  test case for components, and all screens
+  scaling of fonts horizontal and vertical
+  
+  screens styles
+  
 */

@@ -16,6 +16,7 @@ import imagePath from '../../constants/imagePath';
 import styles from './styles';
 import strings from '../../constants/strings';
 import FBButton from '../../components/FBButton/FBButton';
+import screenNames from '../../constants/screenNames';
 
 const LandingScreen = (props: any): React.JSX.Element => {
   const {navigation} = props;
@@ -39,7 +40,7 @@ const LandingScreen = (props: any): React.JSX.Element => {
         </View>
         <FBButton
           onPress={() => {
-            navigation?.navigate('LoginScreen');
+            navigation?.navigate(screenNames?.LoginScreen);
           }}
           buttonType={'round'}
           buttonText={strings?.letsStart}

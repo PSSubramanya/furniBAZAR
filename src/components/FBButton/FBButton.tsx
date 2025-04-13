@@ -2,6 +2,7 @@ import React from 'react';
 import {Text, TouchableOpacity, View} from 'react-native';
 import colors from '../../constants/colors';
 import fontFamily from '../../constants/fontFamily';
+import styles from './styles';
 
 const FBButton = (props: any) => {
   const {
@@ -13,18 +14,7 @@ const FBButton = (props: any) => {
   } = props;
   return (
     <TouchableOpacity onPress={onPress} disabled={enableButton}>
-      <View
-        style={[
-          {
-            backgroundColor: colors?.black,
-            height: 60,
-            alignItems: 'center',
-            justifyContent: 'center',
-            marginTop: 20,
-            borderRadius: 5,
-          },
-          customStyle,
-        ]}>
+      <View style={[styles?.buttonStyle, customStyle]}>
         <Text
           style={{
             color: colors?.white,
