@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect, useRef, useCallback} from 'react';
 import {
   View,
   Text,
@@ -22,6 +22,8 @@ import {FBToastView} from '../../components/FBToastView/FBToastView.tsx';
 import useToastAnimation from '../../components/FBToastView/useToastAnimatons.ts';
 import FBDigitInputField from '../../components/FBDigitInputField/FBDigitInputField.tsx';
 import FBButton from '../../components/FBButton/FBButton.tsx';
+import {useFocusEffect} from '@react-navigation/native';
+import {replaceStringFunction} from '../../utils/commonFunctions.ts';
 
 const OtpScreen = (props: any) => {
   const {height} = Dimensions.get('window');
@@ -55,6 +57,26 @@ const OtpScreen = (props: any) => {
 
   const [backspacePressed, setBackspacePressed] = useState<boolean>(false);
 
+  const [timerValue, setTimerValue] = useState<number>(120);
+
+  const [sendOTP, setSendOTP] = useState<boolean>(true);
+
+  /*
+  
+  Need to do OTP Timer
+  Need to do out of app still timer count thing
+  */
+
+  useEffect(() => {
+    if (sendOTP) {
+      otpTimer();
+    }
+  }, [sendOTP]);
+
+  useEffect(() => {
+    console.log('TIMERVALUE', timerValue);
+  }, [timerValue]);
+
   useEffect(() => {
     if (
       firstDigit?.length > 0 &&
@@ -85,6 +107,20 @@ const OtpScreen = (props: any) => {
       setOtpHeaderMessage(strings?.accountVerified);
       setOtpDescription(strings?.successOtpDescription);
     }
+  };
+
+  const otpTimer = () => {
+    setSendOTP(false);
+    let timer = timerValue;
+    const timeout = setInterval(() => {
+      if (timer > 0) {
+        timer = timer - 1;
+        setTimerValue(timer);
+      }
+    }, 1000);
+
+    // Optional: cleanup to avoid memory leaks
+    return () => clearInterval(timeout);
   };
 
   const backPressEvent = (
@@ -137,7 +173,11 @@ const OtpScreen = (props: any) => {
             {strings?.otpScreenText}
           </Text>
         </View>
-        <Text style={styles?.otpTimerTextStyle}>{strings?.otpTimerText}</Text>
+        <Text style={styles?.otpTimerTextStyle}>
+          {/* NOTE+TODO: NEED TO WORK ON THIS FUNCTION, learn regex first */}
+          {/* {replaceStringFunction(strings?.otpTimerText, [timerValue])} */}
+          {strings?.otpTimerText?.replace('{0}', timerValue?.toString())}
+        </Text>
         <View style={styles?.otpDigitsView}>
           <FBDigitInputField
             refValue={textInput1}
@@ -173,12 +213,17 @@ const OtpScreen = (props: any) => {
           <Text style={styles?.resendOTPTextStyle}>
             {strings?.haventRecievedOtp}
           </Text>
-          <TouchableOpacity onPress={() => {}} disabled={true}>
+          <TouchableOpacity
+            onPress={() => {
+              setTimerValue(120);
+              setSendOTP(true);
+            }}
+            disabled={timerValue === 0 ? false : true}>
             <Text
               style={[
                 styles?.resendOTPTextStyle,
                 {
-                  color: colors?.greyColor,
+                  color: timerValue === 0 ? colors?.black : colors?.greyColor,
                   marginLeft: 5,
                 },
               ]}>

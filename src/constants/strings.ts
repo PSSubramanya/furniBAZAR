@@ -19,7 +19,7 @@ const strings = {
   mobile: 'Mobile',
   orLoginWith: 'Or login with',
   otpScreenText: 'Enter the OTP that you have recieved',
-  otpTimerText: 'This OTP is valid for {0} mins',
+  otpTimerText: 'This OTP is valid for {0} seconds',
   password: 'Password',
   resendOtp: 'Resend OTP',
   success: 'success',
