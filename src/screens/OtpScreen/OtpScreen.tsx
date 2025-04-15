@@ -60,6 +60,7 @@ const OtpScreen = (props: any) => {
   const [timerValue, setTimerValue] = useState<number>(120);
 
   const [sendOTP, setSendOTP] = useState<boolean>(true);
+  const [generatedOTPValue, setGeneratedOTPValue] = useState<string>('');
 
   /*
   
@@ -70,6 +71,7 @@ const OtpScreen = (props: any) => {
   useEffect(() => {
     if (sendOTP) {
       otpTimer();
+      generateOTP();
     }
   }, [sendOTP]);
 
@@ -92,7 +94,7 @@ const OtpScreen = (props: any) => {
 
   const otpVerify = () => {
     const otpValue = firstDigit + secondDigit + thirdDigit + fourthDigit;
-    if (otpValue !== '1234') {
+    if (otpValue !== generatedOTPValue) {
       setOtpType(strings?.error);
       setOtpHeaderMessage(strings?.attemptAgain);
       setOtpDescription(strings?.wrongOtpDescription);
@@ -152,6 +154,12 @@ const OtpScreen = (props: any) => {
     fadeIn();
     startDecayAnimation();
   };
+
+  function generateOTP() {
+    const generatedOTP = Math.floor(1000 + Math.random() * 9000);
+    console.log('generatedOTP', generatedOTP);
+    setGeneratedOTPValue(generatedOTP?.toString());
+  }
 
   return (
     <View style={styles?.flexContainer}>
