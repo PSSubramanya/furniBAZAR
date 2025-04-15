@@ -90,12 +90,6 @@ const OtpScreen = (props: any) => {
     }
   }, [firstDigit, secondDigit, thirdDigit, fourthDigit]);
 
-  useEffect(() => {
-    if (otpHeaderMessage !== '') {
-      showToast();
-    }
-  }, [otpType]);
-
   const otpVerify = () => {
     const otpValue = firstDigit + secondDigit + thirdDigit + fourthDigit;
     if (otpValue !== '1234') {
@@ -107,6 +101,7 @@ const OtpScreen = (props: any) => {
       setOtpHeaderMessage(strings?.accountVerified);
       setOtpDescription(strings?.successOtpDescription);
     }
+    showToast();
   };
 
   const otpTimer = () => {
