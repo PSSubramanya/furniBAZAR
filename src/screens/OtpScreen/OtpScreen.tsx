@@ -155,10 +155,17 @@ const OtpScreen = (props: any) => {
     startDecayAnimation();
   };
 
+  // const sendOTPMessage = (otpNumber: string) => {
+  //   const mobileNumber = '7204958072';
+  //   const message = `The OTP is ${otpNumber}`;
+
+  // };
+
   function generateOTP() {
     const generatedOTP = Math.floor(1000 + Math.random() * 9000);
     console.log('generatedOTP', generatedOTP);
     setGeneratedOTPValue(generatedOTP?.toString());
+    // sendOTPMessage(generatedOTP?.toString());
   }
 
   return (
