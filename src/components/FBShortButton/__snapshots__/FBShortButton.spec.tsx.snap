@@ -1,3 +1,87 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`rendered FBShortButton Screen perfectly 1`] = `null`;
+
+exports[`rendering the FBAppHeaderText Component rendering FBShortButton Component 1`] = `
+<View
+  accessibilityState={
+    {
+      "busy": undefined,
+      "checked": undefined,
+      "disabled": false,
+      "expanded": undefined,
+      "selected": undefined,
+    }
+  }
+  accessibilityValue={
+    {
+      "max": undefined,
+      "min": undefined,
+      "now": undefined,
+      "text": undefined,
+    }
+  }
+  accessible={true}
+  collapsable={false}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    {
+      "opacity": 1,
+    }
+  }
+  testID="shortButton"
+>
+  <View
+    style={
+      {
+        "alignContent": "center",
+        "borderColor": "#8baeb3",
+        "borderRadius": 5,
+        "borderWidth": 1,
+        "height": 65,
+        "justifyContent": "center",
+        "marginTop": 10,
+        "width": 65,
+      }
+    }
+  >
+    <Image
+      height={1}
+      source={
+        {
+          "testUri": "../../../src/assets/images/icons/amazonIcon.png",
+        }
+      }
+      style={
+        {
+          "alignSelf": "center",
+          "height": 30,
+          "width": 30,
+        }
+      }
+      testID="shortButtonImage"
+      width={1}
+    />
+  </View>
+  <Text
+    style={
+      {
+        "fontFamily": "Jost-Regular",
+        "fontSize": 12,
+        "marginTop": 5,
+        "textAlign": "center",
+      }
+    }
+    testID="shortButtonText"
+  >
+    Test Button Text
+  </Text>
+</View>
+`;
