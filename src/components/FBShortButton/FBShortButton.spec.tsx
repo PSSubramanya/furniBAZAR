@@ -2,6 +2,7 @@ import React from 'react';
 import {render, fireEvent, waitFor} from '@testing-library/react-native';
 import FBShortButton from './FBShortButton';
 import imagePath from '../../constants/imagePath';
+import styles from './styles';
 import testID from '../../constants/testIdConstants';
 
 describe('rendering the FBAppHeaderText Component', () => {
@@ -36,11 +37,15 @@ describe('rendering the FBAppHeaderText Component', () => {
   });
 
   it('mocking rendering of button with icon alone', () => {
-    const {getByTestId} = render(
+    const {getByTestId, rerender} = render(
       <FBShortButton icon={imagePath?.amazonIcon} />,
     );
     const buttonWithIcon = getByTestId(testID?.shortButtonImage);
     expect(buttonWithIcon).toBeTruthy();
+
+    rerender(<FBShortButton icon={imagePath?.faceBookIcon} />);
+    const buttonWithIconRerendered = getByTestId(testID?.shortButtonImage);
+    expect(buttonWithIconRerendered).toBeTruthy();
   });
 
   it('mocking disability property of the button', () => {
@@ -65,6 +70,26 @@ describe('rendering the FBAppHeaderText Component', () => {
     await waitFor(() => {
       expect(onPressMock).toHaveBeenCalled();
     });
+  });
+
+  it('mocking the button rendering with styles', () => {
+    const buttonText = 'Test Button Text';
+    const {getByTestId} = render(
+      <FBShortButton
+        icon={imagePath?.amazonIcon}
+        text={buttonText}
+        onPress={() => {}}
+        disabled={false}
+      />,
+    );
+
+    const buttonView = getByTestId(testID?.shortButtonView);
+    const buttonIcons = getByTestId(testID?.shortButtonImage);
+    const buttonTextValue = getByTestId(testID?.shortButtonText);
+
+    expect(buttonView)?.toHaveStyle(styles?.shortbuttonView);
+    expect(buttonIcons)?.toHaveStyle(styles?.shortButtonImageStyle);
+    expect(buttonTextValue)?.toHaveStyle(styles?.shortButtonText);
   });
 
   it('rendering FBShortButton Component', () => {

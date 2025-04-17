@@ -1,5 +1,4 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
 import {render, fireEvent, waitFor} from '@testing-library/react-native';
 import FBAppHeaderText from './FBAppHeaderText';
 

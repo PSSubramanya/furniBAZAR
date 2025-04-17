@@ -10,7 +10,7 @@ const FBShortButton = (props: any) => {
       onPress={onPress}
       disabled={disabled}
       testID={testID?.shortButton}>
-      <View style={styles?.shortbuttonView}>
+      <View style={styles?.shortbuttonView} testID={testID?.shortButtonView}>
         <Image
           source={icon}
           height={1}

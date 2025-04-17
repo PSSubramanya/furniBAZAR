@@ -1,7 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`rendered FBShortButton Screen perfectly 1`] = `null`;
-
 exports[`rendering the FBAppHeaderText Component rendering FBShortButton Component 1`] = `
 <View
   accessibilityState={
@@ -51,6 +49,7 @@ exports[`rendering the FBAppHeaderText Component rendering FBShortButton Compone
         "width": 65,
       }
     }
+    testID="shortButtonView"
   >
     <Image
       height={1}
