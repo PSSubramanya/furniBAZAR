@@ -4,11 +4,14 @@ import fontFamily from '../../constants/fontFamily';
 import imagePath from '../../constants/imagePath';
 import styles from './styles';
 import strings from '../../constants/strings';
+import testID from '../../constants/testIdConstants';
 
 const FBAppHeaderText = (props: any) => {
   const {fontsize = 24, styleProp, fontColor = 'black', iconSize} = props;
   return (
-    <View style={[styles?.headingHeaderStyle, styleProp]}>
+    <View
+      style={[styles?.headingHeaderStyle, styleProp]}
+      testID={testID?.appHeader}>
       {iconSize && (
         <Image
           source={imagePath?.furnitureIcon}

@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`rendering the FBAppHeaderText Component rendering the component 1`] = `
+<View
+  style={
+    [
+      {
+        "alignItems": "center",
+        "flexDirection": "row",
+      },
+      undefined,
+    ]
+  }
+  testID="appHeader"
+>
+  <Text
+    style={
+      {
+        "color": "black",
+        "fontFamily": "Sigmar-Regular",
+        "fontSize": 24,
+      }
+    }
+  >
+    FurniBAZAR
+  </Text>
+</View>
+`;
