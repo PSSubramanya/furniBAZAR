@@ -3,6 +3,7 @@ import {Text, TouchableOpacity, View, ViewStyle} from 'react-native';
 import colors from '../../constants/colors';
 import fontFamily from '../../constants/fontFamily';
 import styles from './styles';
+import testID from '../../constants/testIdConstants';
 
 /* Need to understand more about how to write types */
 type ButtonTypes = 'normal' | 'round';
@@ -24,9 +25,15 @@ const FBButton = (props: ButtonProps) => {
     buttonType = 'normal',
   } = props;
   return (
-    <TouchableOpacity onPress={onPress} disabled={enableButton}>
-      <View style={[styles?.buttonStyle, customStyle]}>
+    <TouchableOpacity
+      onPress={onPress}
+      disabled={enableButton}
+      testID={testID?.buttonContainer}>
+      <View
+        style={[styles?.buttonStyle, customStyle]}
+        testID={testID?.buttonView}>
         <Text
+          testID={testID?.buttonText}
           style={{
             color: colors?.white,
             fontFamily:

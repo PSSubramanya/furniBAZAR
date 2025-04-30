@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`rendered FBButton Screen perfectly render the snapshot for FBButton 1`] = `
+<View
+  accessibilityState={
+    {
+      "busy": undefined,
+      "checked": undefined,
+      "disabled": true,
+      "expanded": undefined,
+      "selected": undefined,
+    }
+  }
+  accessibilityValue={
+    {
+      "max": undefined,
+      "min": undefined,
+      "now": undefined,
+      "text": undefined,
+    }
+  }
+  accessible={true}
+  collapsable={false}
+  focusable={false}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    {
+      "opacity": 1,
+    }
+  }
+  testID="buttonContainer"
+>
+  <View
+    style={
+      [
+        {
+          "alignItems": "center",
+          "backgroundColor": "#000000",
+          "borderRadius": 5,
+          "height": 60,
+          "justifyContent": "center",
+          "marginTop": 20,
+        },
+        {},
+      ]
+    }
+    testID="buttonView"
+  >
+    <Text
+      style={
+        {
+          "color": "#ffffff",
+          "fontFamily": "Jost-Regular",
+          "fontSize": 14,
+        }
+      }
+      testID="buttonText"
+    >
+      Button Text
+    </Text>
+  </View>
+</View>
+`;
