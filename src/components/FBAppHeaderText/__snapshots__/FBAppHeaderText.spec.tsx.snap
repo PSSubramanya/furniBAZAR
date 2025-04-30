@@ -8,17 +8,34 @@ exports[`rendering the FBAppHeaderText Component rendering the component 1`] = `
         "alignItems": "center",
         "flexDirection": "row",
       },
-      undefined,
+      {
+        "backgroundColor": "white",
+      },
     ]
   }
   testID="appHeader"
 >
+  <Image
+    height={1}
+    source={
+      {
+        "testUri": "../../../src/assets/images/icons/furnitureIcon.png",
+      }
+    }
+    style={
+      {
+        "height": 12,
+        "width": 12,
+      }
+    }
+    width={1}
+  />
   <Text
     style={
       {
         "color": "black",
         "fontFamily": "Sigmar-Regular",
-        "fontSize": 24,
+        "fontSize": 12,
       }
     }
   >
