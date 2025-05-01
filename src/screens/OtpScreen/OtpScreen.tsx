@@ -190,6 +190,7 @@ const OtpScreen = (props: any) => {
         </Text>
         <View style={styles?.otpDigitsView}>
           <FBDigitInputField
+            testID={'otp_digit_1'}
             refValue={textInput1}
             digitValue={firstDigit}
             setDigitValue={setFirstDigit}
@@ -198,6 +199,7 @@ const OtpScreen = (props: any) => {
             autofocus={true}
           />
           <FBDigitInputField
+            testID={'otp_digit_2'}
             refValue={textInput2}
             digitValue={secondDigit}
             setDigitValue={setSecondDigit}
@@ -205,6 +207,7 @@ const OtpScreen = (props: any) => {
             handInputFields={handInputFields}
           />
           <FBDigitInputField
+            testID={'otp_digit_3'}
             refValue={textInput3}
             digitValue={thirdDigit}
             setDigitValue={setThirdDigit}
@@ -212,6 +215,7 @@ const OtpScreen = (props: any) => {
             handInputFields={handInputFields}
           />
           <FBDigitInputField
+            testID={'otp_digit_4'}
             refValue={textInput4}
             digitValue={fourthDigit}
             setDigitValue={setFourthDigit}

@@ -1,8 +1,71 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
+import React, {RefObject} from 'react';
+import {render} from '@testing-library/react-native';
 import FBDigitInputField from './FBDigitInputField';
+import {
+  NativeSyntheticEvent,
+  TextInput,
+  TextInputKeyPressEventData,
+} from 'react-native';
 
-test('rendered FbDigitInputField Screen perfectly', () => {
-  const tree = renderer.create(<FBDigitInputField />).toJSON();
-  expect(tree).toMatchSnapshot();
+describe('render FBDigitInputField correctly', () => {
+  it('render the FBDigitInputField with mock functions', () => {
+    const mockFunction = jest.fn();
+    const mockFunctionWithParam = jest.fn(
+      (ev: NativeSyntheticEvent<TextInputKeyPressEventData>) => {
+        if (ev?.nativeEvent?.key === 'Backspace') {
+          console.log('Backspace Pressed');
+        } else {
+          console.log('Backspace Not Pressed');
+        }
+      },
+    );
+    const mockRef = {
+      current: {
+        focus: jest.fn(),
+        isFocused: jest.fn(),
+      },
+    } as unknown as RefObject<TextInput | null>;
+    const {getByTestId} = render(
+      <FBDigitInputField
+        digitValue={'digit_field_'}
+        setDigitValue={mockFunction}
+        refValue={mockRef}
+        backPressEvent={mockFunctionWithParam}
+        handInputFields={mockFunction}
+        autofocus={true}
+      />,
+    );
+    const otpDigit = getByTestId('digit_field');
+    expect(otpDigit)?.toBeDefined();
+  });
+
+  it('render the snapshot of the component FBDigitInputField', () => {
+    const mockFunction = jest.fn();
+    const mockFunctionWithParam = jest.fn(
+      (ev: NativeSyntheticEvent<TextInputKeyPressEventData>) => {
+        if (ev?.nativeEvent?.key === 'Backspace') {
+          console.log('Backspace Pressed');
+        } else {
+          console.log('Backspace Not Pressed');
+        }
+      },
+    );
+    const mockRef = {
+      current: {
+        focus: jest.fn(),
+        isFocused: jest.fn(),
+      },
+    } as unknown as RefObject<TextInput | null>;
+    const snapshot = render(
+      <FBDigitInputField
+        digitValue={'digit_field_'}
+        setDigitValue={mockFunction}
+        refValue={mockRef}
+        backPressEvent={mockFunctionWithParam}
+        handInputFields={mockFunction}
+        autofocus={true}
+      />,
+    ).toJSON();
+    expect(snapshot)?.toMatchSnapshot();
+  });
 });

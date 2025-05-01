@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render FBDigitInputField correctly render the snapshot of the component FBDigitInputField 1`] = `
+<TextInput
+  autoFocus={true}
+  keyboardType="numeric"
+  maxLength={1}
+  onChangeText={[Function]}
+  onKeyPress={[Function]}
+  returnKeyType="next"
+  style={
+    [
+      {
+        "borderRadius": 5,
+        "fontFamily": "Jost-Regular",
+        "fontSize": 20,
+        "height": 80,
+        "marginRight": 10,
+        "textAlign": "center",
+        "width": 60,
+      },
+      {
+        "backgroundColor": "#d2e3ff",
+        "borderColor": "#000000",
+        "borderWidth": 1,
+      },
+    ]
+  }
+  testID="digit_field"
+  value="digit_field_"
+/>
+`;

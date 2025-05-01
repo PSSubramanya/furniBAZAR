@@ -1,11 +1,27 @@
-import React from 'react';
-import {TextInput, View} from 'react-native';
-import fontFamily from '../../constants/fontFamily';
+import React, {Dispatch, RefObject, SetStateAction} from 'react';
+import {
+  NativeSyntheticEvent,
+  TextInput,
+  TextInputKeyPressEventData,
+} from 'react-native';
 import colors from '../../constants/colors';
 import styles from './styles';
 
-const FBDigitInputField = (props: any) => {
+interface FBDigitInputFieldProps {
+  digitValue: string;
+  setDigitValue: Dispatch<SetStateAction<string>>;
+  refValue: RefObject<TextInput | null>;
+  backPressEvent: (
+    ev: NativeSyntheticEvent<TextInputKeyPressEventData>,
+  ) => void;
+  handInputFields: () => void;
+  autofocus?: boolean;
+  testID?: string;
+}
+
+const FBDigitInputField = (props: FBDigitInputFieldProps) => {
   const {
+    testID,
     digitValue,
     setDigitValue,
     refValue,
@@ -15,6 +31,9 @@ const FBDigitInputField = (props: any) => {
   } = props;
   return (
     <TextInput
+      // testID={'digit_field_' + testID && testID}
+      // HOW do I mock the components that use this which internally has its testID?
+      testID={'digit_field'}
       value={digitValue}
       style={[
         styles?.textInputStyle,
