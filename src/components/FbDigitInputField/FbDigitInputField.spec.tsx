@@ -27,7 +27,7 @@ describe('render FBDigitInputField correctly', () => {
     } as unknown as RefObject<TextInput | null>;
     const {getByTestId} = render(
       <FBDigitInputField
-        digitValue={'digit_field_'}
+        digitValue={'0'}
         setDigitValue={mockFunction}
         refValue={mockRef}
         backPressEvent={mockFunctionWithParam}
@@ -58,7 +58,7 @@ describe('render FBDigitInputField correctly', () => {
     } as unknown as RefObject<TextInput | null>;
     const snapshot = render(
       <FBDigitInputField
-        digitValue={'digit_field_'}
+        digitValue={'0'}
         setDigitValue={mockFunction}
         refValue={mockRef}
         backPressEvent={mockFunctionWithParam}

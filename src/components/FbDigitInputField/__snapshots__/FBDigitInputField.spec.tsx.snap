@@ -27,6 +27,6 @@ exports[`render FBDigitInputField correctly render the snapshot of the component
     ]
   }
   testID="digit_field"
-  value="digit_field_"
+  value="0"
 />
 `;
