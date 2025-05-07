@@ -24,6 +24,7 @@ import FBDigitInputField from '../../components/FBDigitInputField/FBDigitInputFi
 import FBButton from '../../components/FBButton/FBButton.tsx';
 import {useFocusEffect} from '@react-navigation/native';
 import {replaceStringFunction} from '../../utils/commonFunctions.ts';
+import notifee, {AndroidColor} from '@notifee/react-native';
 
 const OtpScreen = (props: any) => {
   const {height} = Dimensions.get('window');
@@ -168,6 +169,31 @@ const OtpScreen = (props: any) => {
     // sendOTPMessage(generatedOTP?.toString());
   }
 
+  async function onDisplayNotification() {
+    // Request permissions (required for iOS)
+    await notifee.requestPermission();
+
+    // Create a channel (required for Android)
+    const channelId = await notifee.createChannel({
+      id: 'default',
+      name: 'Default Channel',
+    });
+
+    // Display a notification
+    await notifee.displayNotification({
+      title: 'Notification Title',
+      body: 'Main body content of the notification',
+      android: {
+        channelId,
+        smallIcon: 'name-of-a-small-icon', // optional, defaults to 'ic_launcher'.
+        // pressAction is needed if you want the notification to open the app when pressed
+        pressAction: {
+          id: 'default',
+        },
+      },
+    });
+  }
+
   return (
     <View style={styles?.flexContainer}>
       <KeyboardAvoidingView behavior={'position'}>
@@ -257,6 +283,18 @@ const OtpScreen = (props: any) => {
           opacity: enableButton ? 1 : 0.1,
         }}
       />
+
+      <FBButton
+        onPress={() => {
+          onDisplayNotification();
+        }}
+        enableButton={false}
+        buttonText={'TEST NOTIFICATION'}
+        customStyle={{
+          marginHorizontal: 50,
+        }}
+      />
+
       <FBToastView
         fadeAnim={fadeAnim}
         animatedValue={animatedValue}

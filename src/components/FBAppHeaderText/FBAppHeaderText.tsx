@@ -7,10 +7,10 @@ import strings from '../../constants/strings';
 import testID from '../../constants/testIdConstants';
 
 interface HeaderTextProps {
-  fontsize: number;
-  styleProp: ViewStyle;
-  fontColor: string;
-  iconSize: number;
+  fontsize?: number;
+  styleProp?: ViewStyle;
+  fontColor?: string;
+  iconSize?: number;
 }
 
 const FBAppHeaderText = (props: HeaderTextProps) => {

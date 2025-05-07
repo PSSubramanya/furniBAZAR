@@ -9,11 +9,11 @@ import testID from '../../constants/testIdConstants';
 type ButtonTypes = 'normal' | 'round';
 
 interface ButtonProps {
-  onPress: () => {};
+  onPress: () => void;
   enableButton: boolean;
   buttonText: string;
   customStyle: ViewStyle;
-  buttonType: ButtonTypes;
+  buttonType?: ButtonTypes;
 }
 
 const FBButton = (props: ButtonProps) => {
