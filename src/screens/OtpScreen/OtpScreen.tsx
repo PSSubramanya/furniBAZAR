@@ -17,14 +17,12 @@ import FBAppHeaderText from '../../components/FBAppHeaderText/FBAppHeaderText';
 import imagePath from '../../constants/imagePath.ts';
 import strings from '../../constants/strings.ts';
 import colors from '../../constants/colors.ts';
-import fontFamily from '../../constants/fontFamily.ts';
 import {FBToastView} from '../../components/FBToastView/FBToastView.tsx';
 import useToastAnimation from '../../components/FBToastView/useToastAnimatons.ts';
 import FBDigitInputField from '../../components/FBDigitInputField/FBDigitInputField.tsx';
 import FBButton from '../../components/FBButton/FBButton.tsx';
-import {useFocusEffect} from '@react-navigation/native';
 import {replaceStringFunction} from '../../utils/commonFunctions.ts';
-import notifee, {AndroidColor} from '@notifee/react-native';
+import {onDisplayNotification} from '../../utils/notification.ts';
 
 const OtpScreen = (props: any) => {
   const {height} = Dimensions.get('window');
@@ -92,6 +90,10 @@ const OtpScreen = (props: any) => {
       setEnableButton(false);
     }
   }, [firstDigit, secondDigit, thirdDigit, fourthDigit]);
+
+  useEffect(() => {
+    onDisplayNotification('The OTP recieved is:', generatedOTPValue);
+  }, [generatedOTPValue]);
 
   const otpVerify = () => {
     const otpValue = firstDigit + secondDigit + thirdDigit + fourthDigit;
@@ -167,31 +169,6 @@ const OtpScreen = (props: any) => {
     console.log('generatedOTP', generatedOTP);
     setGeneratedOTPValue(generatedOTP?.toString());
     // sendOTPMessage(generatedOTP?.toString());
-  }
-
-  async function onDisplayNotification() {
-    // Request permissions (required for iOS)
-    await notifee.requestPermission();
-
-    // Create a channel (required for Android)
-    const channelId = await notifee.createChannel({
-      id: 'default',
-      name: 'Default Channel',
-    });
-
-    // Display a notification
-    await notifee.displayNotification({
-      title: 'Notification Title',
-      body: 'Main body content of the notification',
-      android: {
-        channelId,
-        smallIcon: 'name-of-a-small-icon', // optional, defaults to 'ic_launcher'.
-        // pressAction is needed if you want the notification to open the app when pressed
-        pressAction: {
-          id: 'default',
-        },
-      },
-    });
   }
 
   return (
@@ -281,17 +258,6 @@ const OtpScreen = (props: any) => {
         customStyle={{
           marginHorizontal: 50,
           opacity: enableButton ? 1 : 0.1,
-        }}
-      />
-
-      <FBButton
-        onPress={() => {
-          onDisplayNotification();
-        }}
-        enableButton={false}
-        buttonText={'TEST NOTIFICATION'}
-        customStyle={{
-          marginHorizontal: 50,
         }}
       />
 
