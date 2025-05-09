@@ -3,8 +3,15 @@ import {View, Text, Image, TouchableOpacity} from 'react-native';
 import styles from './styles';
 import testID from '../../constants/testIdConstants';
 
-const FBShortButton = (props: any) => {
-  const {icon, text, onPress, disabled} = props;
+interface FBShortButtonProps {
+  icon: string;
+  text?: string;
+  onPress?: () => void;
+  disabled?: boolean;
+}
+
+const FBShortButton = (props: FBShortButtonProps) => {
+  const {icon, text, onPress, disabled = false} = props;
   return (
     <TouchableOpacity
       onPress={onPress}

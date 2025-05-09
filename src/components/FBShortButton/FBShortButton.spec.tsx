@@ -49,7 +49,9 @@ describe('rendering the FBAppHeaderText Component', () => {
   });
 
   it('mocking disability property of the button', () => {
-    const {getByTestId} = render(<FBShortButton disability={true} />);
+    const {getByTestId} = render(
+      <FBShortButton icon={imagePath?.faceBookIcon} disabled={true} />,
+    );
     const buttonDisabled = getByTestId(testID?.shortButton);
     expect(buttonDisabled)?.toBeTruthy();
   });

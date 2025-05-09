@@ -63,3 +63,9 @@ const FBDigitInputField = (props: FBDigitInputFieldProps) => {
   );
 };
 export default FBDigitInputField;
+/**
+ * NOTE:
+ * See how to mock the test id here which will take id from screens also.
+ * Do the same for other components in other screens also.
+ * Add interace and types for all components and functions and screens.
+ */

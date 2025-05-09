@@ -10,10 +10,10 @@ type ButtonTypes = 'normal' | 'round';
 
 interface ButtonProps {
   onPress: () => void;
-  enableButton: boolean;
   buttonText: string;
   customStyle: ViewStyle;
   buttonType?: ButtonTypes;
+  enableButton?: boolean;
 }
 
 const FBButton = (props: ButtonProps) => {
