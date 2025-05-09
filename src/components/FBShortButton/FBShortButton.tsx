@@ -2,13 +2,7 @@ import React from 'react';
 import {View, Text, Image, TouchableOpacity} from 'react-native';
 import styles from './styles';
 import testID from '../../constants/testIdConstants';
-
-interface FBShortButtonProps {
-  icon: string;
-  text?: string;
-  onPress?: () => void;
-  disabled?: boolean;
-}
+import {FBShortButtonProps} from './typesFile';
 
 const FBShortButton = (props: FBShortButtonProps) => {
   const {icon, text, onPress, disabled = false} = props;

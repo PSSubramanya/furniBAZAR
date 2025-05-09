@@ -1,23 +1,8 @@
-import React, {Dispatch, RefObject, SetStateAction} from 'react';
-import {
-  NativeSyntheticEvent,
-  TextInput,
-  TextInputKeyPressEventData,
-} from 'react-native';
+import React from 'react';
+import {TextInput} from 'react-native';
 import colors from '../../constants/colors';
 import styles from './styles';
-
-interface FBDigitInputFieldProps {
-  digitValue: string;
-  setDigitValue: Dispatch<SetStateAction<string>>;
-  refValue: RefObject<TextInput | null>;
-  backPressEvent: (
-    ev: NativeSyntheticEvent<TextInputKeyPressEventData>,
-  ) => void;
-  handInputFields: () => void;
-  autofocus?: boolean;
-  testID?: string;
-}
+import {FBDigitInputFieldProps} from './typesFile';
 
 const FBDigitInputField = (props: FBDigitInputFieldProps) => {
   const {

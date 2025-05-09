@@ -1,20 +1,10 @@
 import React from 'react';
-import {Text, TouchableOpacity, View, ViewStyle} from 'react-native';
+import {Text, TouchableOpacity, View} from 'react-native';
 import colors from '../../constants/colors';
 import fontFamily from '../../constants/fontFamily';
 import styles from './styles';
 import testID from '../../constants/testIdConstants';
-
-/* Need to understand more about how to write types */
-type ButtonTypes = 'normal' | 'round';
-
-interface ButtonProps {
-  onPress: () => void;
-  buttonText: string;
-  customStyle: ViewStyle;
-  buttonType?: ButtonTypes;
-  enableButton?: boolean;
-}
+import {ButtonProps} from './typesFile';
 
 const FBButton = (props: ButtonProps) => {
   const {

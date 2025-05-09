@@ -23,6 +23,7 @@ import FBDigitInputField from '../../components/FBDigitInputField/FBDigitInputFi
 import FBButton from '../../components/FBButton/FBButton.tsx';
 import {replaceStringFunction} from '../../utils/commonFunctions.ts';
 import {onDisplayNotification} from '../../utils/notification.ts';
+import {MessageType} from '../../components/FBToastView/typesFile.ts';
 
 const OtpScreen = (props: any) => {
   const {height} = Dimensions.get('window');
@@ -100,7 +101,7 @@ const OtpScreen = (props: any) => {
   }, [generatedOTPValue]);
 
   const setOTPData = (
-    errorType: string,
+    errorType: MessageType,
     errorHeader: string,
     errorDescription: string,
   ) => {
@@ -113,19 +114,19 @@ const OtpScreen = (props: any) => {
     const otpValue = firstDigit + secondDigit + thirdDigit + fourthDigit;
     if (otpValue !== generatedOTPValue) {
       setOTPData(
-        strings?.error,
+        MessageType?.Error,
         strings?.attemptAgain,
         strings?.wrongOtpDescription,
       );
     } else if (timerValue === 0) {
       setOTPData(
-        strings?.error,
+        MessageType?.Error,
         strings?.otpExpirationText,
         strings?.otpRegenerationtext,
       );
     } else {
       setOTPData(
-        strings?.success,
+        MessageType?.Success,
         strings?.accountVerified,
         strings?.successOtpDescription,
       );

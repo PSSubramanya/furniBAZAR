@@ -9,8 +9,9 @@ import {
 } from 'react-native';
 import imagePath from '../../constants/imagePath';
 import styles from './styles';
+import {MessageType, FBToastViewProps} from './typesFile';
 
-const FBToastView = (props: any) => {
+const FBToastView = (props: FBToastViewProps) => {
   const {
     fadeAnim,
     animatedValue,
@@ -24,11 +25,11 @@ const FBToastView = (props: any) => {
   const {height} = Dimensions.get('window');
 
   const selectIconType = () => {
-    if (type === 'success') {
+    if (type === MessageType?.Success) {
       return imagePath?.circleTickIcon;
-    } else if (type === 'error') {
+    } else if (type === MessageType?.Error) {
       return imagePath?.roundCloseIcon;
-    } else if (type === 'info') {
+    } else if (type === MessageType?.Info) {
       return imagePath?.infoIcon;
     }
     return imagePath?.warningIcon;

@@ -28,6 +28,7 @@ import useToastAnimation from '../../components/FBToastView/useToastAnimatons';
 import FBButton from '../../components/FBButton/FBButton';
 import screenNames from '../../constants/screenNames';
 import {useFocusEffect} from '@react-navigation/native';
+import {MessageType} from '../../components/FBToastView/typesFile';
 
 const LoginScreen = (props: any) => {
   const {navigation} = props;
@@ -361,7 +362,7 @@ const LoginScreen = (props: any) => {
       <FBToastView
         fadeAnim={fadeAnim}
         animatedValue={animatedValue}
-        type={strings?.error}
+        type={MessageType?.Error}
         headerText={strings?.errorNotification}
         descriptionText={strings?.loginScreenErrorDescription}
         setShowToastView={setOnConfirm}

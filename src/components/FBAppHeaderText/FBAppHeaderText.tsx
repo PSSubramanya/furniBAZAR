@@ -1,17 +1,11 @@
 import React from 'react';
-import {View, Text, Image, ViewStyle} from 'react-native';
+import {View, Text, Image} from 'react-native';
 import fontFamily from '../../constants/fontFamily';
 import imagePath from '../../constants/imagePath';
 import styles from './styles';
 import strings from '../../constants/strings';
 import testID from '../../constants/testIdConstants';
-
-interface HeaderTextProps {
-  iconSize: number;
-  fontsize?: number;
-  styleProp?: ViewStyle;
-  fontColor?: string;
-}
+import {HeaderTextProps} from './typesFile';
 
 const FBAppHeaderText = (props: HeaderTextProps) => {
   const {fontsize = 24, styleProp, fontColor = 'black', iconSize} = props;
