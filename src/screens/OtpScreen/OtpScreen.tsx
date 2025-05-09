@@ -92,7 +92,11 @@ const OtpScreen = (props: any) => {
   }, [firstDigit, secondDigit, thirdDigit, fourthDigit]);
 
   useEffect(() => {
-    onDisplayNotification('The OTP recieved is:', generatedOTPValue);
+    onDisplayNotification(
+      'FurniBAZAR',
+      'The OTP sent here needs to be entered for verification in the ap',
+      generatedOTPValue,
+    );
   }, [generatedOTPValue]);
 
   const otpVerify = () => {
@@ -101,6 +105,10 @@ const OtpScreen = (props: any) => {
       setOtpType(strings?.error);
       setOtpHeaderMessage(strings?.attemptAgain);
       setOtpDescription(strings?.wrongOtpDescription);
+    } else if (timerValue === 0) {
+      setOtpType(strings?.error);
+      setOtpHeaderMessage(strings?.otpExpirationText);
+      setOtpDescription(strings?.otpRegenerationtext);
     } else {
       setOtpType(strings?.success);
       setOtpHeaderMessage(strings?.accountVerified);
@@ -158,17 +166,10 @@ const OtpScreen = (props: any) => {
     startDecayAnimation();
   };
 
-  // const sendOTPMessage = (otpNumber: string) => {
-  //   const mobileNumber = '7204958072';
-  //   const message = `The OTP is ${otpNumber}`;
-
-  // };
-
   function generateOTP() {
     const generatedOTP = Math.floor(1000 + Math.random() * 9000);
     console.log('generatedOTP', generatedOTP);
     setGeneratedOTPValue(generatedOTP?.toString());
-    // sendOTPMessage(generatedOTP?.toString());
   }
 
   return (
