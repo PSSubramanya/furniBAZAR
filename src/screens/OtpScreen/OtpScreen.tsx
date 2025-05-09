@@ -99,20 +99,36 @@ const OtpScreen = (props: any) => {
     );
   }, [generatedOTPValue]);
 
+  const setOTPData = (
+    errorType: string,
+    errorHeader: string,
+    errorDescription: string,
+  ) => {
+    setOtpType(errorType);
+    setOtpHeaderMessage(errorHeader);
+    setOtpDescription(errorDescription);
+  };
+
   const otpVerify = () => {
     const otpValue = firstDigit + secondDigit + thirdDigit + fourthDigit;
     if (otpValue !== generatedOTPValue) {
-      setOtpType(strings?.error);
-      setOtpHeaderMessage(strings?.attemptAgain);
-      setOtpDescription(strings?.wrongOtpDescription);
+      setOTPData(
+        strings?.error,
+        strings?.attemptAgain,
+        strings?.wrongOtpDescription,
+      );
     } else if (timerValue === 0) {
-      setOtpType(strings?.error);
-      setOtpHeaderMessage(strings?.otpExpirationText);
-      setOtpDescription(strings?.otpRegenerationtext);
+      setOTPData(
+        strings?.error,
+        strings?.otpExpirationText,
+        strings?.otpRegenerationtext,
+      );
     } else {
-      setOtpType(strings?.success);
-      setOtpHeaderMessage(strings?.accountVerified);
-      setOtpDescription(strings?.successOtpDescription);
+      setOTPData(
+        strings?.success,
+        strings?.accountVerified,
+        strings?.successOtpDescription,
+      );
     }
     showToast();
   };
