@@ -152,28 +152,20 @@ const OtpScreen = (props: any) => {
     ev: NativeSyntheticEvent<TextInputKeyPressEventData>,
   ) => {
     if (ev?.nativeEvent?.key === 'Backspace') {
-      setBackspacePressed(true);
-    } else {
-      setBackspacePressed(false);
-    }
-  };
-
-  const handInputFields = () => {
-    if (!backspacePressed) {
-      if (textInput1?.current?.isFocused()) {
-        textInput2?.current?.focus();
-      } else if (textInput2?.current?.isFocused()) {
-        textInput3?.current?.focus();
-      } else if (textInput3?.current?.isFocused()) {
-        textInput4?.current?.focus();
-      }
-    } else {
       if (textInput2?.current?.isFocused()) {
         textInput1?.current?.focus();
       } else if (textInput3?.current?.isFocused()) {
         textInput2?.current?.focus();
       } else if (textInput4?.current?.isFocused()) {
         textInput3?.current?.focus();
+      }
+    } else {
+      if (textInput1?.current?.isFocused()) {
+        textInput2?.current?.focus();
+      } else if (textInput2?.current?.isFocused()) {
+        textInput3?.current?.focus();
+      } else if (textInput3?.current?.isFocused()) {
+        textInput4?.current?.focus();
       }
     }
   };
@@ -216,7 +208,6 @@ const OtpScreen = (props: any) => {
             digitValue={firstDigit}
             setDigitValue={setFirstDigit}
             backPressEvent={backPressEvent}
-            handInputFields={handInputFields}
             autofocus={true}
           />
           <FBDigitInputField
@@ -225,7 +216,6 @@ const OtpScreen = (props: any) => {
             digitValue={secondDigit}
             setDigitValue={setSecondDigit}
             backPressEvent={backPressEvent}
-            handInputFields={handInputFields}
           />
           <FBDigitInputField
             testID={'otp_digit_3'}
@@ -233,7 +223,6 @@ const OtpScreen = (props: any) => {
             digitValue={thirdDigit}
             setDigitValue={setThirdDigit}
             backPressEvent={backPressEvent}
-            handInputFields={handInputFields}
           />
           <FBDigitInputField
             testID={'otp_digit_4'}
@@ -241,7 +230,6 @@ const OtpScreen = (props: any) => {
             digitValue={fourthDigit}
             setDigitValue={setFourthDigit}
             backPressEvent={backPressEvent}
-            handInputFields={handInputFields}
           />
         </View>
         <View style={styles?.horizontalCentralisedStyle}>

@@ -11,7 +11,6 @@ const FBDigitInputField = (props: FBDigitInputFieldProps) => {
     setDigitValue,
     refValue,
     backPressEvent,
-    handInputFields,
     autofocus = false,
   } = props;
   return (
@@ -36,7 +35,6 @@ const FBDigitInputField = (props: FBDigitInputFieldProps) => {
       autoFocus={autofocus}
       returnKeyType="next"
       onChangeText={val => {
-        handInputFields();
         setDigitValue(val);
       }}
       onKeyPress={ev => {

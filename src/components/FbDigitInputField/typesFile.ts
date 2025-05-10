@@ -12,7 +12,6 @@ export interface FBDigitInputFieldProps {
   backPressEvent: (
     ev: NativeSyntheticEvent<TextInputKeyPressEventData>,
   ) => void;
-  handInputFields: () => void;
   autofocus?: boolean;
   testID?: string;
 }
