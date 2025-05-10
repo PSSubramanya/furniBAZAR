@@ -9,7 +9,7 @@ export interface FBDigitInputFieldProps {
   digitValue: string;
   setDigitValue: Dispatch<SetStateAction<string>>;
   refValue: RefObject<TextInput | null>;
-  backPressEvent: (
+  onKeyPressEvent: (
     ev: NativeSyntheticEvent<TextInputKeyPressEventData>,
   ) => void;
   autofocus?: boolean;

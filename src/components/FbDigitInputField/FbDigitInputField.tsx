@@ -10,7 +10,7 @@ const FBDigitInputField = (props: FBDigitInputFieldProps) => {
     digitValue,
     setDigitValue,
     refValue,
-    backPressEvent,
+    onKeyPressEvent,
     autofocus = false,
   } = props;
   return (
@@ -38,7 +38,7 @@ const FBDigitInputField = (props: FBDigitInputFieldProps) => {
         setDigitValue(val);
       }}
       onKeyPress={ev => {
-        backPressEvent(ev);
+        onKeyPressEvent(ev);
       }}
       keyboardType="numeric"
       maxLength={1}

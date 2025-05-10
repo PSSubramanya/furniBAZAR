@@ -148,7 +148,7 @@ const OtpScreen = (props: any) => {
     return () => clearInterval(timeout);
   };
 
-  const backPressEvent = (
+  const onKeyPressEvent = (
     ev: NativeSyntheticEvent<TextInputKeyPressEventData>,
   ) => {
     if (ev?.nativeEvent?.key === 'Backspace') {
@@ -207,7 +207,7 @@ const OtpScreen = (props: any) => {
             refValue={textInput1}
             digitValue={firstDigit}
             setDigitValue={setFirstDigit}
-            backPressEvent={backPressEvent}
+            onKeyPressEvent={onKeyPressEvent}
             autofocus={true}
           />
           <FBDigitInputField
@@ -215,21 +215,21 @@ const OtpScreen = (props: any) => {
             refValue={textInput2}
             digitValue={secondDigit}
             setDigitValue={setSecondDigit}
-            backPressEvent={backPressEvent}
+            onKeyPressEvent={onKeyPressEvent}
           />
           <FBDigitInputField
             testID={'otp_digit_3'}
             refValue={textInput3}
             digitValue={thirdDigit}
             setDigitValue={setThirdDigit}
-            backPressEvent={backPressEvent}
+            onKeyPressEvent={onKeyPressEvent}
           />
           <FBDigitInputField
             testID={'otp_digit_4'}
             refValue={textInput4}
             digitValue={fourthDigit}
             setDigitValue={setFourthDigit}
-            backPressEvent={backPressEvent}
+            onKeyPressEvent={onKeyPressEvent}
           />
         </View>
         <View style={styles?.horizontalCentralisedStyle}>
