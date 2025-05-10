@@ -8,6 +8,11 @@ import {
 } from 'react-native';
 
 describe('render FBDigitInputField correctly', () => {
+  let autofocus: boolean;
+  beforeEach(() => {
+    autofocus = true;
+  });
+
   it('render the FBDigitInputField with mock functions', () => {
     const mockFunction = jest.fn();
     const mockFunctionWithParam = jest.fn(
@@ -32,7 +37,7 @@ describe('render FBDigitInputField correctly', () => {
         refValue={mockRef}
         backPressEvent={mockFunctionWithParam}
         handInputFields={mockFunction}
-        autofocus={true}
+        autofocus={autofocus}
       />,
     );
     const otpDigit = getByTestId('digit_field');
@@ -63,7 +68,7 @@ describe('render FBDigitInputField correctly', () => {
         refValue={mockRef}
         backPressEvent={mockFunctionWithParam}
         handInputFields={mockFunction}
-        autofocus={true}
+        autofocus={autofocus}
       />,
     ).toJSON();
     expect(snapshot)?.toMatchSnapshot();
