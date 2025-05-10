@@ -85,4 +85,3 @@ describe('Rendering FBToastView Component', () => {
     expect(fbToastViewSnapshot)?.toMatchSnapshot();
   });
 });
-4;
