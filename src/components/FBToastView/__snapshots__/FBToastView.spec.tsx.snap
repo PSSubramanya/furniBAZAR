@@ -1,0 +1,166 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Rendering FBToastView Component Rendering Snapshot of FBToastView component 1`] = `
+<View
+  collapsable={false}
+  style={
+    [
+      {
+        "alignSelf": "center",
+        "backgroundColor": "#363636",
+        "borderRadius": 5,
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+        "minHeight": 100,
+        "paddingLeft": 10,
+        "paddingTop": 10,
+        "position": "absolute",
+        "width": "95%",
+        "zIndex": 1,
+      },
+      {
+        "opacity": undefined,
+        "transform": [
+          {
+            "translateY": undefined,
+          },
+        ],
+      },
+    ]
+  }
+>
+  <View
+    style={
+      {
+        "flexDirection": "row",
+      }
+    }
+  >
+    <View
+      style={
+        {
+          "marginRight": 5,
+        }
+      }
+    >
+      <Image
+        height={1}
+        source={
+          {
+            "testUri": "../../../src/assets/images/icons/roundCloseIcon.png",
+          }
+        }
+        style={
+          {
+            "height": 25,
+            "width": 25,
+          }
+        }
+        testID="toastIcon"
+        width={1}
+      />
+    </View>
+    <Image
+      height={1}
+      source={
+        {
+          "testUri": "../../../src/assets/images/icons/shiningStarIcon.png",
+        }
+      }
+      style={
+        {
+          "height": 25,
+          "width": 25,
+        }
+      }
+      width={1}
+    />
+    <View
+      style={
+        {
+          "marginLeft": 0,
+        }
+      }
+    >
+      <Text
+        style={
+          {
+            "color": "#ffffff",
+            "fontFamily": "Jost-SemiBold",
+            "fontSize": 16,
+          }
+        }
+        testID="toastTitle"
+      >
+        Header
+      </Text>
+      <Text
+        style={
+          {
+            "color": "#ffffff",
+            "fontFamily": "Jost-Regular",
+            "marginTop": 5,
+            "maxWidth": 260,
+          }
+        }
+        testID="toastDescription"
+      >
+        Description
+      </Text>
+    </View>
+  </View>
+  <View
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": undefined,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      {
+        "opacity": 1,
+      }
+    }
+    testID="toastCloseButtonPress"
+  >
+    <Image
+      height={1}
+      source={
+        {
+          "testUri": "../../../src/assets/images/icons/closeIconWhite.png",
+        }
+      }
+      style={
+        {
+          "height": 16,
+          "marginRight": 10,
+          "width": 16,
+        }
+      }
+      testID="toastCloseButton"
+      width={1}
+    />
+  </View>
+</View>
+`;

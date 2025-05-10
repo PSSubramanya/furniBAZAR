@@ -1,3 +1,6 @@
+import {Dispatch, SetStateAction} from 'react';
+import {Animated} from 'react-native';
+
 export enum MessageType {
   Success = 'success',
   Error = 'error',
@@ -5,11 +8,11 @@ export enum MessageType {
 }
 
 export interface FBToastViewProps {
-  fadeAnim: any;
-  animatedValue: any;
   type: MessageType;
   headerText: string;
   descriptionText: string;
-  setShowToastView: any;
-  toastDirectionFromTop: boolean;
+  setShowToastView: Dispatch<SetStateAction<boolean>>;
+  toastDirectionFromTop?: boolean;
+  fadeAnim?: Animated.Value;
+  animatedValue?: Animated.Value;
 }

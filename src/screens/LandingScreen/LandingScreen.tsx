@@ -43,6 +43,7 @@ const LandingScreen = (props: any): React.JSX.Element => {
 
 export default LandingScreen;
 /**
+ * NOTE:
  * TOPICS COVERED AND TO COVER GENERALLY AND SPECIALLY:
  * Types and interfaces
  * Google fonts

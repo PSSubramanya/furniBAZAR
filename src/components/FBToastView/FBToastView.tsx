@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import imagePath from '../../constants/imagePath';
 import styles from './styles';
+import testIdConstants from '../../constants/testIdConstants';
 import {MessageType, FBToastViewProps} from './typesFile';
 
 const FBToastView = (props: FBToastViewProps) => {
@@ -19,7 +20,7 @@ const FBToastView = (props: FBToastViewProps) => {
     headerText,
     descriptionText,
     setShowToastView,
-    toastDirectionFromTop,
+    toastDirectionFromTop = true,
   } = props;
 
   const {height} = Dimensions.get('window');
@@ -49,6 +50,7 @@ const FBToastView = (props: FBToastViewProps) => {
         <View style={styles?.toastIconTypeStyle}>
           <Image
             source={iconValue}
+            testID={testIdConstants?.toastIcon}
             height={1}
             width={1}
             style={styles?.iconStyle}
@@ -61,8 +63,16 @@ const FBToastView = (props: FBToastViewProps) => {
           style={styles?.iconStyle}
         />
         <View style={styles?.toastTextView}>
-          <Text style={styles?.headerStyle}>{headerText}</Text>
-          <Text style={styles?.descriptionStyle}>{descriptionText}</Text>
+          <Text
+            testID={testIdConstants?.toastTitle}
+            style={styles?.headerStyle}>
+            {headerText}
+          </Text>
+          <Text
+            testID={testIdConstants?.toastDescription}
+            style={styles?.descriptionStyle}>
+            {descriptionText}
+          </Text>
         </View>
       </View>
       <TouchableOpacity
@@ -71,9 +81,11 @@ const FBToastView = (props: FBToastViewProps) => {
           if (setShowToastView) {
             setShowToastView(false);
           }
-        }}>
+        }}
+        testID={testIdConstants?.toastCloseButtonPress}>
         <Image
           source={imagePath?.closeIconWhite}
+          testID={testIdConstants?.toastCloseButton}
           height={1}
           width={1}
           style={styles?.closeIconStyle}
