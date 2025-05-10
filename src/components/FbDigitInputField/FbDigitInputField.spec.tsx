@@ -36,7 +36,6 @@ describe('render FBDigitInputField correctly', () => {
         setDigitValue={mockFunction}
         refValue={mockRef}
         backPressEvent={mockFunctionWithParam}
-        handInputFields={mockFunction}
         autofocus={autofocus}
       />,
     );
@@ -67,7 +66,6 @@ describe('render FBDigitInputField correctly', () => {
         setDigitValue={mockFunction}
         refValue={mockRef}
         backPressEvent={mockFunctionWithParam}
-        handInputFields={mockFunction}
         autofocus={autofocus}
       />,
     ).toJSON();
