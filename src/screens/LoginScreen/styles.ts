@@ -89,6 +89,7 @@ const styles = StyleSheet?.create({
   },
   textInputViewStyle: {
     flexDirection: 'row',
+    justifyContent: 'space-between',
     height: 60,
     marginTop: 10,
     marginHorizontal: 15,

@@ -134,7 +134,9 @@ const LoginScreen = (props: any) => {
       fadeIn();
       startDecayAnimation();
     } else {
-      navigation.navigate(screenNames?.OtpScreen);
+      navigation.navigate(screenNames?.OtpScreen, {
+        authTypeMobile: mobileAuthentication,
+      });
     }
   };
 
@@ -274,7 +276,6 @@ const LoginScreen = (props: any) => {
                 />
                 <TouchableOpacity
                   style={{
-                    marginLeft: Platform?.OS === 'ios' ? 10 : 30,
                     justifyContent: 'center',
                   }}
                   onPress={() => {

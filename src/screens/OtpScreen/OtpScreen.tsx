@@ -26,6 +26,7 @@ import {onDisplayNotification} from '../../utils/notification.ts';
 import {MessageType} from '../../components/FBToastView/typesFile.ts';
 
 const OtpScreen = (props: any) => {
+  const authTypeMobile = props?.route?.params?.authTypeMobile;
   const {height} = Dimensions.get('window');
   const toastDirectionFromTop = true;
   const fadeAnim = useAnimatedValue(0);
@@ -93,11 +94,13 @@ const OtpScreen = (props: any) => {
   }, [firstDigit, secondDigit, thirdDigit, fourthDigit]);
 
   useEffect(() => {
-    onDisplayNotification(
-      'FurniBAZAR',
-      'The OTP sent here needs to be entered for verification in the ap',
-      generatedOTPValue,
-    );
+    if (authTypeMobile) {
+      onDisplayNotification(
+        'FurniBAZAR',
+        'The OTP sent here needs to be entered for verification in the ap',
+        generatedOTPValue,
+      );
+    }
   }, [generatedOTPValue]);
 
   const setOTPData = (
