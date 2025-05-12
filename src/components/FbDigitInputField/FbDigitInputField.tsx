@@ -52,7 +52,5 @@ export default FBDigitInputField;
  * Do the same for other components in other screens also.
  * Add interace and types for all components and functions and screens.
  * Need to write test cases for screens also next
- * OTP TEXT Input fields need to be better.
- * The ShortButton -> useRef position moving ahead and backpress scenarios
  * Implement Native Module for sending SMS and then integrate it to RN via Native Bridging
  */
