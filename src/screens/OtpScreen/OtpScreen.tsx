@@ -11,6 +11,9 @@ import {
   Animated,
   Dimensions,
   useAnimatedValue,
+  NativeModules,
+  PermissionsAndroid,
+  Platform,
 } from 'react-native';
 import styles from './styles.ts';
 import FBAppHeaderText from '../../components/FBAppHeaderText/FBAppHeaderText';
@@ -26,7 +29,8 @@ import {onDisplayNotification} from '../../utils/notification.ts';
 import {MessageType} from '../../components/FBToastView/typesFile.ts';
 
 const OtpScreen = (props: any) => {
-  const authTypeMobile = props?.route?.params?.authTypeMobile;
+  const {SmsModule} = NativeModules;
+  const {authTypeMobile, mobileNumber} = props?.route?.params;
   const {height} = Dimensions.get('window');
   const toastDirectionFromTop = true;
   const fadeAnim = useAnimatedValue(0);
@@ -100,8 +104,38 @@ const OtpScreen = (props: any) => {
         'The OTP sent here needs to be entered for verification in the ap',
         generatedOTPValue,
       );
+      sendSms(
+        mobileNumber,
+        `The OTP sent from FurniBAZAR app is: ${generatedOTPValue}`,
+      );
     }
   }, [generatedOTPValue]);
+
+  const sendSms = async (phoneNumber: string, message: string) => {
+    if (Platform.OS === 'android') {
+      const granted = await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.SEND_SMS,
+        {
+          title: 'SMS Permission',
+          message: 'This app needs permission to send SMS messages.',
+          buttonNeutral: 'Ask Me Later',
+          buttonNegative: 'Cancel',
+          buttonPositive: 'OK',
+        },
+      );
+
+      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+        try {
+          const result = await SmsModule.sendSms(phoneNumber, message);
+          console.log(result);
+        } catch (e) {
+          console.error('SMS failed', e);
+        }
+      } else {
+        console.warn('SMS permission denied');
+      }
+    }
+  };
 
   const setOTPData = (
     errorType: MessageType,
@@ -195,9 +229,18 @@ const OtpScreen = (props: any) => {
             width={1}
             style={styles?.illustrationImageStyle}
           />
-          <Text style={styles?.signInInstructionsStyle}>
-            {strings?.otpScreenText}
-          </Text>
+
+          <View style={styles?.flexRowStyle}>
+            <Text style={styles?.signInInstructionsStyle}>
+              {mobileNumber ? strings?.otpScreenText2 : strings?.otpScreenText}
+            </Text>
+
+            {mobileNumber && (
+              <Text style={styles?.signInInstructionsStyle2}>
+                {` ${mobileNumber}`}
+              </Text>
+            )}
+          </View>
         </View>
         <Text style={styles?.otpTimerTextStyle}>
           {/* NOTE+TODO: NEED TO WORK ON THIS FUNCTION, learn regex first */}
@@ -283,6 +326,7 @@ const OtpScreen = (props: any) => {
 };
 export default OtpScreen;
 /**
+ * NOTE:
  * OTP Digit Component - Done
  * types and interfaces
  * testcases
@@ -295,4 +339,8 @@ export default OtpScreen;
  * All type buttons component
  * Better usage of functions for toast messages
  * timer for otp
+ * Try implementing notification (Push notification) something like true caller
+ * Geolocation
+ * Send SMS and Email
+ * Payment gate integration
  */

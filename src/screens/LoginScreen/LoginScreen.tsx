@@ -134,9 +134,16 @@ const LoginScreen = (props: any) => {
       fadeIn();
       startDecayAnimation();
     } else {
-      navigation.navigate(screenNames?.OtpScreen, {
-        authTypeMobile: mobileAuthentication,
-      });
+      if (mobileAuthentication) {
+        navigation.navigate(screenNames?.OtpScreen, {
+          authTypeMobile: mobileAuthentication,
+          mobileNumber: mobileNumber,
+        });
+      } else {
+        navigation.navigate(screenNames?.OtpScreen, {
+          authTypeMobile: mobileAuthentication,
+        });
+      }
     }
   };
 
@@ -322,7 +329,7 @@ const LoginScreen = (props: any) => {
                       onChangeText={(val: string) => {
                         setMobileNumber(val);
                       }}
-                      placeholder={strings?.password}
+                      placeholder={strings?.mobileNumber}
                       placeholderTextColor={colors?.borderColor}
                       style={styles?.textInputStyle}
                       keyboardType={'numeric'}

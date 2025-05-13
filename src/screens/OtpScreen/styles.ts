@@ -23,6 +23,10 @@ const styles = StyleSheet?.create({
     alignSelf: 'center',
     fontFamily: fontFamily?.primaryFont?.regular,
   },
+  signInInstructionsStyle2: {
+    alignSelf: 'center',
+    fontFamily: fontFamily?.primaryFont?.semiBold,
+  },
   headerText: {
     marginTop: 100,
   },
@@ -40,6 +44,9 @@ const styles = StyleSheet?.create({
   horizontalCentralisedStyle: {
     flexDirection: 'row',
     justifyContent: 'center',
+  },
+  flexRowStyle: {
+    flexDirection: 'row',
   },
   resendOTPTextStyle: {
     marginTop: 10,

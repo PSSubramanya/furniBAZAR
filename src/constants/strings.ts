@@ -17,10 +17,12 @@ const strings = {
   loginScreenErrorDescription:
     'Please enter the credential details. If not create an account to proceed ahead.',
   mobile: 'Mobile',
+  mobileNumber: 'Mobile Number',
   orLoginWith: 'Or login with',
   otpExpirationText: 'The OTP has expired',
   otpRegenerationtext: 'Please resend the OTP for verification',
   otpScreenText: 'Enter the OTP that you have recieved',
+  otpScreenText2: 'OTP is sent to',
   otpTimerText: 'This OTP is valid for {0} seconds',
   password: 'Password',
   resendOtp: 'Resend OTP',
