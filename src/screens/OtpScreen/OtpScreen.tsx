@@ -29,7 +29,7 @@ import {onDisplayNotification} from '../../utils/notification.ts';
 import {MessageType} from '../../components/FBToastView/typesFile.ts';
 
 const OtpScreen = (props: any) => {
-  const {SmsModule} = NativeModules;
+  const {SmsModule, OtpModule} = NativeModules;
   const {authTypeMobile, mobileNumber} = props?.route?.params;
   const {height} = Dimensions.get('window');
   const toastDirectionFromTop = true;
@@ -304,6 +304,8 @@ const OtpScreen = (props: any) => {
       <FBButton
         onPress={() => {
           otpVerify();
+          /** NOTE: Make a proper Custom Notification */
+          // OtpModule.showOtp('123456');
         }}
         enableButton={!enableButton}
         buttonText={strings?.verify}

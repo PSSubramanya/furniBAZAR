@@ -2,13 +2,10 @@ package com.furnitureapp
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
-import android.app.PendingIntent
 import android.content.Context
-import android.content.Intent
 import android.os.Build
 import android.widget.RemoteViews
 import androidx.core.app.NotificationCompat
-import com.furnitureapp.R
 
 class OtpNotification(private val context: Context) {
 
@@ -29,7 +26,7 @@ class OtpNotification(private val context: Context) {
         customLayout.setTextViewText(R.id.otpText, otp)
 
         val notification = NotificationCompat.Builder(context, channelId)
-            .setSmallIcon(R.drawable.ic_otp)
+            .setSmallIcon(R.drawable.ic_copy_icon)
             .setStyle(NotificationCompat.DecoratedCustomViewStyle())
             .setCustomContentView(customLayout)
             .setCustomBigContentView(customLayout)

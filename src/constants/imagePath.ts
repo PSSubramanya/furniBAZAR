@@ -8,6 +8,7 @@ const imagePath = {
   // Icons
   amazonIcon: require('../assets/images/icons/amazonIcon.png'),
   circleTickIcon: require('../assets/images/icons/circleTickIcon.png'),
+  copyIcon: require('../assets/images/icons/copyIcon.png'),
   closeIconBlack: require('../assets/images/icons/closeIconBlack.png'),
   closeIconWhite: require('../assets/images/icons/closeIconWhite.png'),
   faceBookIcon: require('../assets/images/icons/faceBookIcon.png'),
