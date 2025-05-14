@@ -53,5 +53,6 @@ export default FBDigitInputField;
  * Add interace and types for all components and functions and screens.
  * Need to write test cases for screens also next
  * Implement Native Module for sending SMS and then integrate it to RN via Native Bridging
+ * Native sms sending on ios side
  * Learn how Native module is working
  */

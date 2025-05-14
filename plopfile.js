@@ -18,19 +18,24 @@ module.exports = plop => {
         // Add a new file
         type: 'add',
         // Path for the new file
-        path: 'src/components/{{pascalCase name}}/{{pascalCase name}}.tsx',
+        path: 'src/components/{{name}}/{{name}}.tsx',
         // Handlebars template used to generate content of new file
         templateFile: 'plop-templates/Component.tsx.hbs',
       },
       {
         type: 'add',
-        path: 'src/components/{{pascalCase name}}/styles.ts',
+        path: 'src/components/{{name}}/styles.ts',
         templateFile: 'plop-templates/Style.ts.hbs',
       },
       {
         type: 'add',
-        path: 'src/components/{{pascalCase name}}/{{pascalCase name}}.spec.tsx',
+        path: 'src/components/{{name}}/{{name}}.spec.tsx',
         templateFile: 'plop-templates/Test.spec.tsx.hbs',
+      },
+      {
+        type: 'add',
+        path: 'src/components/{{name}}/typesFile.ts',
+        templateFile: 'plop-templates/TypesFile.ts.hbs',
       },
     ],
   });

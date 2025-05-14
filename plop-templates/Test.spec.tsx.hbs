@@ -1,9 +1,18 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
-import {{pascalCase name}} from './{{pascalCase name}}';
+import {render} from '@testing-library/react-native';
+import {{name}} from './{{name}}';
+import {
+  NativeSyntheticEvent,
+  TextInput,
+  TextInputKeyPressEventData,
+} from 'react-native';
 
 
-test('rendered {{pascalCase name}} Screen perfectly', () => {
-  const tree = renderer.create(<{{pascalCase name}} />).toJSON();
-  expect(tree).toMatchSnapshot();
-});
+describe("render {{name}} correctly", () => {
+  it('render the snapshot of the component {{name}}', () => {
+    const snapshot = render(
+      <{{name}}/>,
+    ).toJSON();
+    expect(snapshot)?.toMatchSnapshot();
+  });
+})
