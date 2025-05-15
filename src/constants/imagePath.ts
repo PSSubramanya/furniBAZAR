@@ -7,6 +7,7 @@ const imagePath = {
 
   // Icons
   amazonIcon: require('../assets/images/icons/amazonIcon.png'),
+  bagIcon: require('../assets/images/icons/bagIcon.png'),
   circleTickIcon: require('../assets/images/icons/circleTickIcon.png'),
   copyIcon: require('../assets/images/icons/copyIcon.png'),
   closeIconBlack: require('../assets/images/icons/closeIconBlack.png'),
@@ -20,6 +21,11 @@ const imagePath = {
   infoIcon: require('../assets/images/icons/infoIcon.png'),
   leftChevronIcon: require('../assets/images/icons/leftChevronIcon.png'),
   lockIcon: require('../assets/images/icons/lock.png'),
+  menuIcon: require('../assets/images/icons/menuIcon.png'),
+  menuIcon2: require('../assets/images/icons/menuIcon2.png'),
+  menuIcon3: require('../assets/images/icons/menuIcon3.png'),
+  menuIcon4: require('../assets/images/icons/menuIcon4.png'),
+  menuIcon5: require('../assets/images/icons/menuIcon5.png'),
   mobileIcon: require('../assets/images/icons/mobileIcon.png'),
   otpIcon: require('../assets/images/icons/otp.png'),
   otpIcon2: require('../assets/images/icons/otpIcon2.png'),

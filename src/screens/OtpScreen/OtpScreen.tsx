@@ -30,6 +30,7 @@ import {MessageType} from '../../components/FBToastView/typesFile.ts';
 
 const OtpScreen = (props: any) => {
   const {SmsModule, OtpModule} = NativeModules;
+  const {navigation} = props;
   const {authTypeMobile, mobileNumber} = props?.route?.params;
   const {height} = Dimensions.get('window');
   const toastDirectionFromTop = true;
@@ -303,9 +304,10 @@ const OtpScreen = (props: any) => {
       </KeyboardAvoidingView>
       <FBButton
         onPress={() => {
-          otpVerify();
+          // otpVerify();
           /** NOTE: Make a proper Custom Notification */
           // OtpModule.showOtp('123456');
+          navigation.navigate('HomeScreen');
         }}
         enableButton={!enableButton}
         buttonText={strings?.verify}
@@ -345,4 +347,11 @@ export default OtpScreen;
  * Geolocation
  * Send SMS and Email
  * Payment gate integration
+ */
+
+/**
+ * NOTE 2:
+ * Build Signup screen
+ * Build Home screen with bottomtab and drawer - https://dribbble.com/shots/11836225-Furniture-App-By-Orix
+ * Login/Signup via google, fb, tiwtter etc.
  */
