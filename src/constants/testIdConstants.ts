@@ -1,5 +1,9 @@
 const testID = {
   appHeader: 'appHeader',
+  bottomTabIconNonSelected: 'bottomTabIconNonSelected',
+  bottomTabIconOnPress: 'bottomTabIconOnPress',
+  bottomTabIconSelected: 'bottomTabIconSelected',
+  bottomTabIconText: 'bottomTabIconText',
   buttonContainer: 'buttonContainer',
   buttonView: 'buttonView',
   buttonText: 'buttonText',

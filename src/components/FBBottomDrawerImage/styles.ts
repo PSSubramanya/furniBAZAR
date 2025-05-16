@@ -21,6 +21,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 12,
     fontFamily: fontFamily?.primaryFont?.medium,
+    // textTransform: 'uppercase',
   },
 });
 
