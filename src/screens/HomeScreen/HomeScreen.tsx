@@ -1,14 +1,54 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, Text, Image, SafeAreaView, TouchableOpacity} from 'react-native';
 import FBAppHeaderText from '../../components/FBAppHeaderText/FBAppHeaderText';
 import styles from './styles';
 import imagePath from '../../constants/imagePath';
 import colors from '../../constants/colors';
+import FBBottomDrawerImage from '../../components/FBBottomDrawerImage/FBBottomDrawerImage';
 
 interface HomeScreenProps {}
 
 const HomeScreen = (props: any) => {
   const {navigation} = props;
+  const [selectTab1, setSelectTab1] = useState(false);
+  const [selectTab2, setSelectTab2] = useState(false);
+  const [selectTab3, setSelectTab3] = useState(true);
+  const [selectTab4, setSelectTab4] = useState(false);
+  const [selectTab5, setSelectTab5] = useState(false);
+  const [selectedTabNumber, setSelectedTabNumber] = useState(3);
+
+  useEffect(() => {
+    selectBottomTab();
+  }, [selectedTabNumber]);
+
+  const selectBottomTab = () => {
+    if (selectedTabNumber === 1) {
+      setSelectTab1(true);
+    } else {
+      setSelectTab1(false);
+    }
+    if (selectedTabNumber === 2) {
+      setSelectTab2(true);
+    } else {
+      setSelectTab2(false);
+    }
+    if (selectedTabNumber === 3) {
+      setSelectTab3(true);
+    } else {
+      setSelectTab3(false);
+    }
+    if (selectedTabNumber === 4) {
+      setSelectTab4(true);
+    } else {
+      setSelectTab4(false);
+    }
+    if (selectedTabNumber === 5) {
+      setSelectTab5(true);
+    } else {
+      setSelectTab5(false);
+    }
+  };
+
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
       <View
@@ -53,9 +93,8 @@ const HomeScreen = (props: any) => {
 
         <View
           style={{
-            // backgroundColor: colors?.darkBlueGrey,
-            height: 100,
-            marginBottom: -40,
+            height: 60,
+            marginBottom: -20,
             backgroundColor: colors?.white,
             borderTopWidth: 0.5,
             borderColor: colors?.greyColor,
@@ -70,57 +109,52 @@ const HomeScreen = (props: any) => {
               flexDirection: 'row',
               alignItems: 'center',
               justifyContent: 'space-between',
-              marginTop: 20,
-              paddingLeft: 20,
+              marginTop: 10,
+              marginHorizontal: 20,
             }}>
-            <Image
-              source={imagePath?.homeIcon}
-              height={30}
-              width={30}
-              style={{
-                height: 30,
-                width: 30,
-                marginRight: 20,
+            <FBBottomDrawerImage
+              selected={selectTab1}
+              icon={imagePath?.homeIcon}
+              selectedIcon={imagePath?.homeFilledIcon}
+              text={'Home'}
+              onPress={() => {
+                setSelectedTabNumber(1);
               }}
             />
-            <Image
-              source={imagePath?.favouriteIcon}
-              height={30}
-              width={30}
-              style={{
-                height: 30,
-                width: 30,
-                marginRight: 20,
+            <FBBottomDrawerImage
+              selected={selectTab2}
+              icon={imagePath?.favouriteIcon}
+              selectedIcon={imagePath?.favouriteFilledIcon}
+              text={'Fav'}
+              onPress={() => {
+                setSelectedTabNumber(2);
               }}
             />
-            <Image
-              source={imagePath?.ordersIcon}
-              height={30}
-              width={30}
-              style={{
-                height: 30,
-                width: 30,
-                marginRight: 20,
+            <FBBottomDrawerImage
+              selected={selectTab3}
+              icon={imagePath?.ordersIcon}
+              selectedIcon={imagePath?.orderFilledIcon}
+              text={'Orders'}
+              onPress={() => {
+                setSelectedTabNumber(3);
               }}
             />
-            <Image
-              source={imagePath?.settingsIcon}
-              height={30}
-              width={30}
-              style={{
-                height: 30,
-                width: 30,
-                marginRight: 20,
+            <FBBottomDrawerImage
+              selected={selectTab4}
+              icon={imagePath?.settingsIcon}
+              selectedIcon={imagePath?.settingsFilledIcon}
+              text={'Settings'}
+              onPress={() => {
+                setSelectedTabNumber(4);
               }}
             />
-            <Image
-              source={imagePath?.profileIcon}
-              height={30}
-              width={30}
-              style={{
-                height: 30,
-                width: 30,
-                marginRight: 20,
+            <FBBottomDrawerImage
+              selected={selectTab5}
+              icon={imagePath?.profileIcon}
+              selectedIcon={imagePath?.profileFilledIcon}
+              text={'Profile'}
+              onPress={() => {
+                setSelectedTabNumber(5);
               }}
             />
           </View>

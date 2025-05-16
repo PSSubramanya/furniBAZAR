@@ -7,6 +7,8 @@ const colors = {
   borderColor: '#8baeb3',
   darkGrey: '#363636',
   darkBlueGrey: '#3a3f48',
+  darkBluegrey2: '#475164',
+  darkBluegrey3: '#4b5b78',
   errorColor1: '#d9131c',
   errorColor2: '#ed0c17',
   greyColor: '#b8b8b8',
