@@ -40,7 +40,7 @@ const imagePath = {
   otpIcon2: require('../assets/images/icons/otpIcon2.png'),
   ordersIcon: require('../assets/images/icons/ordersIcon.png'),
   orderFilledIcon: require('../assets/images/icons/orderFilledIcon.png'),
-  receptIcon: require('../assets/images/icons/receptIcon.png'),
+  receiptIcon: require('../assets/images/icons/receiptIcon.png'),
   rightChevronIcon: require('../assets/images/icons/rightChevronIcon.png'),
   roundCloseIcon: require('../assets/images/icons/roundCloseIcon.png'),
   roundCloseIconFilled: require('../assets/images/icons/roundCloseIconFilled.png'),

@@ -53,10 +53,6 @@ const HomeScreen = (props: any) => {
 
         <View
           style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            // height: 60,
             // backgroundColor: colors?.darkBlueGrey,
             height: 100,
             marginBottom: -40,
@@ -68,7 +64,67 @@ const HomeScreen = (props: any) => {
             shadowOpacity: 0.2,
             shadowRadius: 10,
             elevation: 10,
-          }}></View>
+          }}>
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              marginTop: 20,
+              paddingLeft: 20,
+            }}>
+            <Image
+              source={imagePath?.homeIcon}
+              height={30}
+              width={30}
+              style={{
+                height: 30,
+                width: 30,
+                marginRight: 20,
+              }}
+            />
+            <Image
+              source={imagePath?.favouriteIcon}
+              height={30}
+              width={30}
+              style={{
+                height: 30,
+                width: 30,
+                marginRight: 20,
+              }}
+            />
+            <Image
+              source={imagePath?.ordersIcon}
+              height={30}
+              width={30}
+              style={{
+                height: 30,
+                width: 30,
+                marginRight: 20,
+              }}
+            />
+            <Image
+              source={imagePath?.settingsIcon}
+              height={30}
+              width={30}
+              style={{
+                height: 30,
+                width: 30,
+                marginRight: 20,
+              }}
+            />
+            <Image
+              source={imagePath?.profileIcon}
+              height={30}
+              width={30}
+              style={{
+                height: 30,
+                width: 30,
+                marginRight: 20,
+              }}
+            />
+          </View>
+        </View>
       </View>
     </SafeAreaView>
   );
