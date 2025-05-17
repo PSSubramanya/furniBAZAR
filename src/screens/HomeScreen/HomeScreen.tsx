@@ -56,6 +56,7 @@ const HomeScreen = (props: any) => {
           flex: 1,
           justifyContent: 'space-between',
         }}>
+        {/* Header */}
         <View
           style={{
             flexDirection: 'row',
@@ -91,6 +92,7 @@ const HomeScreen = (props: any) => {
           </TouchableOpacity>
         </View>
 
+        {/* Bottom Drawer */}
         <View
           style={{
             height: 60,
@@ -164,11 +166,3 @@ const HomeScreen = (props: any) => {
   );
 };
 export default HomeScreen;
-
-/*
-    Home
-    Favourite
-    Booking/Orders
-    Settings
-    Profile
-*/

@@ -12,6 +12,8 @@ const styles = StyleSheet.create({
     height: 50,
     width: 50,
     borderRadius: 25,
+    borderWidth: 2,
+    borderColor: 'rgba(255,255,255,1)',
     marginTop: -50,
     backgroundColor: colors?.darkBlueGrey,
     alignItems: 'center',
