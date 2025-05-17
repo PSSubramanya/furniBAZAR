@@ -1,5 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, Image, SafeAreaView, TouchableOpacity} from 'react-native';
+import {
+  View,
+  Text,
+  ScrollView,
+  Image,
+  SafeAreaView,
+  TouchableOpacity,
+} from 'react-native';
 import FBAppHeaderText from '../../components/FBAppHeaderText/FBAppHeaderText';
 import styles from './styles';
 import imagePath from '../../constants/imagePath';
@@ -91,6 +98,8 @@ const HomeScreen = (props: any) => {
             />
           </TouchableOpacity>
         </View>
+
+        <ScrollView>{/* <Text>Hi</Text> */}</ScrollView>
 
         {/* Bottom Drawer */}
         <View

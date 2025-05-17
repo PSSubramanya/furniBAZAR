@@ -6,6 +6,11 @@ import LoginScreen from '../screens/LoginScreen/LoginScreen';
 import OtpScreen from '../screens/OtpScreen/OtpScreen';
 import SignupScreen from '../screens/SignupScreen/SignupScreen';
 import HomeScreen from '../screens/HomeScreen/HomeScreen';
+import HomeScreenContent from '../screens/HomeScreenContent/HomeScreenContent';
+import FavouriteScreen from '../screens/FavouriteScreen/FavouriteScreen';
+import OrdersScreen from '../screens/OrdersScreen/OrdersScreen';
+import SettingsScreen from '../screens/SettingsScreen/SettingsScreen';
+import ProfileScreen from '../screens/ProfileScreen/ProfileScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -21,6 +26,11 @@ const StackNavigator = () => {
         <Stack.Screen name="OtpScreen" component={OtpScreen} />
         <Stack.Screen name="SignupScreen" component={SignupScreen} />
         <Stack.Screen name="HomeScreen" component={HomeScreen} />
+        <Stack.Screen name="HomeScreenContent" component={HomeScreenContent} />
+        <Stack.Screen name="FavouriteScreen" component={FavouriteScreen} />
+        <Stack.Screen name="OrderScreen" component={OrdersScreen} />
+        <Stack.Screen name="SettingsScreen" component={SettingsScreen} />
+        <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
