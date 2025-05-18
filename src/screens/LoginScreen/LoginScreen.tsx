@@ -38,12 +38,6 @@ const LoginScreen = (props: any) => {
   const animatedValue = useRef(
     new Animated.Value(toastDirectionFromTop ? -height : height),
   ).current;
-  const {fadeIn, startDecayAnimation} = useToastAnimation(
-    fadeAnim,
-    animatedValue,
-    height,
-    toastDirectionFromTop,
-  );
 
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
@@ -63,6 +57,14 @@ const LoginScreen = (props: any) => {
   const [usernameError, setUsernameError] = useState<string>('');
   const [passwordError, setPasswordError] = useState<string>('');
   const [mobileNumberError, setMobileNumberError] = useState<string>('');
+
+  const {fadeIn, startDecayAnimation} = useToastAnimation(
+    fadeAnim,
+    animatedValue,
+    height,
+    toastDirectionFromTop,
+    onConfirm,
+  );
 
   useEffect(() => {
     if (onConfirm) {

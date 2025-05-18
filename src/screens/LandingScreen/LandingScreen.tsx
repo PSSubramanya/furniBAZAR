@@ -1,6 +1,14 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 // import type {PropsWithChildren} from 'react';
-import {ScrollView, Text, View, Image} from 'react-native';
+import {
+  ScrollView,
+  Text,
+  View,
+  Image,
+  PermissionsAndroid,
+  Platform,
+  Alert,
+} from 'react-native';
 import FBAppHeaderText from '../../components/FBAppHeaderText/FBAppHeaderText';
 import imagePath from '../../constants/imagePath';
 import styles from './styles';
@@ -10,6 +18,40 @@ import screenNames from '../../constants/screenNames';
 
 const LandingScreen = (props: any): React.JSX.Element => {
   const {navigation} = props;
+
+  useEffect(() => {
+    handleSendSms();
+  }, []);
+
+  async function requestSmsPermission() {
+    if (Platform.OS === 'android') {
+      try {
+        const granted = await PermissionsAndroid.request(
+          PermissionsAndroid.PERMISSIONS.SEND_SMS,
+          {
+            title: 'SMS Permission',
+            message: 'This app needs access to send SMS messages.',
+            buttonNeutral: 'Ask Me Later',
+            buttonNegative: 'Cancel',
+            buttonPositive: 'OK',
+          },
+        );
+        return granted === PermissionsAndroid.RESULTS.GRANTED;
+      } catch (err) {
+        console.warn(err);
+        return false;
+      }
+    }
+    return true;
+  }
+
+  const handleSendSms = async () => {
+    const hasPermission = await requestSmsPermission();
+    if (!hasPermission) {
+      Alert.alert('Permission denied', 'Cannot send SMS without permission.');
+      return;
+    }
+  };
 
   return (
     <View style={styles?.mainContainer}>

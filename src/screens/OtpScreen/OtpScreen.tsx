@@ -38,12 +38,6 @@ const OtpScreen = (props: any) => {
   const animatedValue = useRef(
     new Animated.Value(toastDirectionFromTop ? -height : height),
   ).current;
-  const {fadeIn, startDecayAnimation} = useToastAnimation(
-    fadeAnim,
-    animatedValue,
-    height,
-    toastDirectionFromTop,
-  );
 
   const textInput1 = useRef<TextInput>(null);
   const textInput2 = useRef<TextInput>(null);
@@ -57,7 +51,7 @@ const OtpScreen = (props: any) => {
 
   const [enableButton, setEnableButton] = useState<boolean>(false);
 
-  const [otpType, setOtpType] = useState<string>(strings?.error);
+  const [otpType, setOtpType] = useState<MessageType>(MessageType?.Error);
   const [otpHeaderMessage, setOtpHeaderMessage] = useState<string>('');
   const [otpDescription, setOtpDescription] = useState<string>('');
 
@@ -67,6 +61,16 @@ const OtpScreen = (props: any) => {
 
   const [sendOTP, setSendOTP] = useState<boolean>(true);
   const [generatedOTPValue, setGeneratedOTPValue] = useState<string>('');
+
+  const [onConfirm, setOnConfirm] = useState<boolean>(false);
+
+  const {fadeIn, startDecayAnimation} = useToastAnimation(
+    fadeAnim,
+    animatedValue,
+    height,
+    toastDirectionFromTop,
+    onConfirm,
+  );
 
   /*
   
@@ -170,6 +174,7 @@ const OtpScreen = (props: any) => {
       );
       navigation.navigate('HomeScreen');
     }
+    setOnConfirm(true);
     showToast();
   };
 
@@ -325,6 +330,7 @@ const OtpScreen = (props: any) => {
         headerText={otpHeaderMessage}
         descriptionText={otpDescription}
         toastDirectionFromTop={toastDirectionFromTop}
+        setShowToastView={setOnConfirm}
       />
     </View>
   );
