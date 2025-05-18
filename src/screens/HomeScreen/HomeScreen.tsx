@@ -12,6 +12,11 @@ import styles from './styles';
 import imagePath from '../../constants/imagePath';
 import colors from '../../constants/colors';
 import FBBottomDrawerImage from '../../components/FBBottomDrawerImage/FBBottomDrawerImage';
+import HomeScreenContent from '../HomeScreenContent/HomeScreenContent';
+import FavouriteScreen from '../FavouriteScreen/FavouriteScreen';
+import OrdersScreen from '../OrdersScreen/OrdersScreen';
+import SettingsScreen from '../SettingsScreen/SettingsScreen';
+import ProfileScreen from '../ProfileScreen/ProfileScreen';
 
 interface HomeScreenProps {}
 
@@ -99,7 +104,13 @@ const HomeScreen = (props: any) => {
           </TouchableOpacity>
         </View>
 
-        <ScrollView>{/* <Text>Hi</Text> */}</ScrollView>
+        <ScrollView>
+          {selectTab1 && <HomeScreenContent />}
+          {selectTab2 && <FavouriteScreen />}
+          {selectTab3 && <OrdersScreen />}
+          {selectTab4 && <SettingsScreen />}
+          {selectTab5 && <ProfileScreen />}
+        </ScrollView>
 
         {/* Bottom Drawer */}
         <View

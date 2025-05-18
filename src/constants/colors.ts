@@ -12,6 +12,7 @@ const colors = {
   errorColor1: '#d9131c',
   errorColor2: '#ed0c17',
   greyColor: '#b8b8b8',
+  greyColorLight: '#ededed',
   lightSkyBlue: '#d2e3ff',
   primaryColor: '#43939e',
   secondaryColor: '#1382d9',

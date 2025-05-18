@@ -168,6 +168,7 @@ const OtpScreen = (props: any) => {
         strings?.accountVerified,
         strings?.successOtpDescription,
       );
+      navigation.navigate('HomeScreen');
     }
     showToast();
   };
@@ -304,10 +305,10 @@ const OtpScreen = (props: any) => {
       </KeyboardAvoidingView>
       <FBButton
         onPress={() => {
-          // otpVerify();
+          otpVerify();
           /** NOTE: Make a proper Custom Notification */
           // OtpModule.showOtp('123456');
-          navigation.navigate('HomeScreen');
+          // navigation.navigate('HomeScreen');
         }}
         enableButton={!enableButton}
         buttonText={strings?.verify}
