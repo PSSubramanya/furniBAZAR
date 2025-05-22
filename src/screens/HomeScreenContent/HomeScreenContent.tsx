@@ -160,6 +160,9 @@ const HomeScreenContent = (props: any) => {
   const [savedProductsList, setSavedProductsList] = useState<
     ProductListProps[]
   >([]);
+  const [addedToCartItems, setAddedToCartItems] = useState<ProductListProps[]>(
+    [],
+  );
   /* NOTE:
       1.) Maintain this data in redux so it can be used in other screens. 
       2.) Also use that data and store it in backend via nodeJS

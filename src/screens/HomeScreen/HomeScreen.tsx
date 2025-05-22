@@ -22,12 +22,14 @@ interface HomeScreenProps {}
 
 const HomeScreen = (props: any) => {
   const {navigation} = props;
-  const [selectTab1, setSelectTab1] = useState(false);
+  const [selectTab1, setSelectTab1] = useState(true);
   const [selectTab2, setSelectTab2] = useState(false);
-  const [selectTab3, setSelectTab3] = useState(true);
+  const [selectTab3, setSelectTab3] = useState(false);
   const [selectTab4, setSelectTab4] = useState(false);
   const [selectTab5, setSelectTab5] = useState(false);
   const [selectedTabNumber, setSelectedTabNumber] = useState(3);
+
+  const addedToCartItems = [{}]; //NOTE: This value should come from Redux(From HomeScreenContent) which is also stored in backend for different screens
 
   useEffect(() => {
     selectBottomTab();
@@ -101,6 +103,13 @@ const HomeScreen = (props: any) => {
                 marginRight: 20,
               }}
             />
+            {addedToCartItems?.length > 0 && (
+              <View style={styles?.addedCartItemsContainer}>
+                <Text style={styles?.addedCartItems}>
+                  {addedToCartItems?.length}
+                </Text>
+              </View>
+            )}
           </TouchableOpacity>
         </View>
 

@@ -16,6 +16,7 @@ const colors = {
   greyColorLight: '#ededed',
   greyColorLight2: '#f4f4f4',
   lightSkyBlue: '#d2e3ff',
+  lightVermillion: '#fd694c',
   primaryColor: '#43939e',
   secondaryColor: '#1382d9',
   skyBlue: '#97befd',
