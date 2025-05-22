@@ -21,11 +21,12 @@ const StackNavigator = () => {
         screenOptions={{
           headerShown: false,
         }}>
+        <Stack.Screen name="HomeScreen" component={HomeScreen} />
         <Stack.Screen name="Landing" component={LandingScreen} />
         <Stack.Screen name="LoginScreen" component={LoginScreen} />
         <Stack.Screen name="OtpScreen" component={OtpScreen} />
         <Stack.Screen name="SignupScreen" component={SignupScreen} />
-        <Stack.Screen name="HomeScreen" component={HomeScreen} />
+        {/* <Stack.Screen name="HomeScreen" component={HomeScreen} /> */}
         <Stack.Screen name="HomeScreenContent" component={HomeScreenContent} />
         <Stack.Screen name="FavouriteScreen" component={FavouriteScreen} />
         <Stack.Screen name="OrderScreen" component={OrdersScreen} />

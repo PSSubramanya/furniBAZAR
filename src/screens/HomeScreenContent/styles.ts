@@ -22,7 +22,7 @@ export const styles = StyleSheet.create({
     backgroundColor: colors?.white,
   },
   selectedViewColor: {
-    backgroundColor: colors?.darkBlueGrey,
+    backgroundColor: colors?.darkBluegrey4,
   },
   categoryFilterView: {
     marginTop: 20,
@@ -54,6 +54,51 @@ export const styles = StyleSheet.create({
   nonSelectedFilterStyle: {
     backgroundColor: colors?.white,
   },
+  productNameStyle: {
+    fontFamily: fontFamily?.primaryFont?.medium,
+    marginLeft: 16,
+    marginTop: 10,
+    width: 60,
+    height: 45,
+  },
+  companyNameStyle: {
+    fontFamily: fontFamily?.primaryFont?.medium,
+    color: colors?.greyColor,
+    marginLeft: 16,
+    width: 80,
+    height: 50,
+    paddingTop: 5,
+  },
+  priceStyle: {
+    fontFamily: fontFamily?.primaryFont?.medium,
+    marginLeft: 16,
+    marginTop: 3,
+  },
+  ratingStyle: {
+    fontFamily: fontFamily?.primaryFont?.semiBold,
+    marginRight: 16,
+  },
+  productImageStyle: {
+    height: 140,
+    width: 150,
+  },
+  starIcon: {
+    height: 20,
+    width: 20,
+  },
+  addIcon: {
+    height: 30,
+    width: 30,
+  },
+  addContainer: {
+    height: 40,
+    width: 40,
+    borderRadius: 50,
+    backgroundColor: colors?.darkBluegrey4,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 30,
+  },
 });
 
 export const themeStyle = ({
@@ -61,7 +106,7 @@ export const themeStyle = ({
 }: ThemeStyleProps): HomeScreenContentStyleProps => {
   return {
     filterIconViewStyle: {
-      backgroundColor: filterSelect ? colors?.darkBlueGrey : colors?.white,
+      backgroundColor: filterSelect ? colors?.darkBluegrey4 : colors?.white,
     },
   };
 };

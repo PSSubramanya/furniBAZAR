@@ -14,6 +14,7 @@ const testID = {
   shortButtonView: 'shortButtonView',
   shortButtonText: 'shortButtonText',
   shortButtonImage: 'shortButtonImage',
+  starIcon: 'starIcon',
   toastCloseButton: 'toastCloseButton',
   toastCloseButtonPress: 'toastCloseButtonPress',
   toastDescription: 'toastDescription',

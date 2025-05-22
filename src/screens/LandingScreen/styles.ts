@@ -28,7 +28,7 @@ const styles = StyleSheet?.create({
     fontFamily: fontFamily?.primaryFont?.medium,
   },
   navigationButtonView: {
-    backgroundColor: colors?.black,
+    backgroundColor: colors?.darkBluegrey4,
     width: 100,
     height: 50,
     alignItems: 'center',

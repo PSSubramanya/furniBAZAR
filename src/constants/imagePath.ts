@@ -1,11 +1,25 @@
 const imagePath = {
   landingScreenBackground: require('../assets/images/landingBackgroundImage.jpeg'),
 
+  //Category Images
+  armChair1: require('../assets/images/categories/armChair/armChairIcon1.png'),
+  armChair2: require('../assets/images/categories/armChair/armChairIcon2.png'),
+  armChair3: require('../assets/images/categories/armChair/armChairIcon3.png'),
+  armChair4: require('../assets/images/categories/armChair/armChairIcon4.png'),
+  armChair5: require('../assets/images/categories/armChair/armChairIcon5.png'),
+  armChair6: require('../assets/images/categories/armChair/armChairIcon6.png'),
+  armChair7: require('../assets/images/categories/armChair/armChairIcon7.png'),
+  armChair8: require('../assets/images/categories/armChair/armChairIcon8.png'),
+  armChair9: require('../assets/images/categories/armChair/armChairIcon9.png'),
+  armChair10: require('../assets/images/categories/armChair/armChairIcon10.png'),
+  armChair11: require('../assets/images/categories/armChair/armChairIcon11.png'),
+
   // Images
   furnitureImages1: require('../assets/images/furnitureImages1.png'),
   furnitureImages2: require('../assets/images/furnitureImages2.png'),
 
   // Icons
+  addIcon: require('../assets/images/icons/addIcon.png'),
   amazonIcon: require('../assets/images/icons/amazonIcon.png'),
   armChairIcon: require('../assets/images/icons/armChairIcon.png'),
   armChairIconColored: require('../assets/images/icons/armChairIconColored.png'),
@@ -63,6 +77,7 @@ const imagePath = {
   sofaIconColored: require('../assets/images/icons/sofaIconColored.png'),
   squareCloseIcon: require('../assets/images/icons/squareCloseIcon.png'),
   squareCloseIconFilled: require('../assets/images/icons/squareCloseIconFilled.png'),
+  starIcon: require('../assets/images/icons/starIcon.png'),
   tableLampIcon: require('../assets/images/icons/tableLampIcon.png'),
   tableLampIconColored: require('../assets/images/icons/tableLampIconColored.png'),
   twitterIcon: require('../assets/images/icons/twitterIcon.png'),
