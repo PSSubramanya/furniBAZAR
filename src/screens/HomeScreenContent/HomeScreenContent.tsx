@@ -12,23 +12,10 @@ import {styles, themeStyle} from './styles';
 import imagePath from '../../constants/imagePath';
 import testID from '../../constants/testIdConstants';
 import colors from '../../constants/colors';
+import {ProductListProps} from './typesFile';
 
 const HomeScreenContent = (props: any) => {
   const {navigation} = props;
-  const [selectedCategroyIndex, setSelectedCategroyIndex] = useState<number>(0);
-  const [categorySearchText, setCategorySearchText] = useState<string>('');
-  const [filterSelect, setFilterSelect] = useState<boolean>(false);
-  const styleValues = themeStyle({filterSelect});
-
-  const translateY = useRef(new Animated.Value(0)).current;
-
-  useEffect(() => {
-    Animated.timing(translateY, {
-      toValue: filterSelect ? 8 : 0, // Moves down when selected
-      duration: 300,
-      useNativeDriver: true,
-    }).start();
-  }, [filterSelect]);
 
   const furnitureCategories = [
     {
@@ -166,11 +153,70 @@ const HomeScreenContent = (props: any) => {
     },
   ];
 
+  const [selectedCategroyIndex, setSelectedCategroyIndex] = useState<number>(0);
+  const [categorySearchText, setCategorySearchText] = useState<string>('');
+  const [filterSelect, setFilterSelect] = useState<boolean>(false);
+  const [productsList, setProductsList] = useState<ProductListProps[]>([]);
+  const [savedProductsList, setSavedProductsList] = useState<
+    ProductListProps[]
+  >([]);
+  /* NOTE:
+      1.) Maintain this data in redux so it can be used in other screens. 
+      2.) Also use that data and store it in backend via nodeJS
+  */
+  const styleValues = themeStyle({filterSelect});
+
+  const translateY = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    if (selectedCategroyIndex === 0) {
+      setProductsList(armChairsList);
+    } else if (selectedCategroyIndex === 1) {
+      setProductsList([]);
+    } else if (selectedCategroyIndex === 2) {
+      setProductsList([]);
+    } else if (selectedCategroyIndex === 3) {
+      setProductsList([]);
+    } else if (selectedCategroyIndex === 4) {
+      setProductsList([]);
+    } else if (selectedCategroyIndex === 5) {
+      setProductsList([]);
+    } else if (selectedCategroyIndex === 6) {
+      setProductsList([]);
+    }
+  }, [selectedCategroyIndex]);
+
+  useEffect(() => {
+    Animated.timing(translateY, {
+      toValue: filterSelect ? 8 : 0, // Moves down when selected
+      duration: 300,
+      useNativeDriver: true,
+    }).start();
+  }, [filterSelect]);
+
   const categoryIconStyle = (index: number) => {
     return index === selectedCategroyIndex
       ? styles?.selectedViewColor
       : styles?.nonSelectedViewColor;
   };
+
+  const addToFavouriteList = (selectedItem: ProductListProps) => {
+    if (
+      JSON.stringify(savedProductsList)?.includes(JSON.stringify(selectedItem))
+    ) {
+      const temporaryList: ProductListProps[] = [...savedProductsList];
+      const indexOfItem = savedProductsList?.indexOf(selectedItem);
+      temporaryList.splice(indexOfItem, 1);
+      setSavedProductsList(temporaryList);
+    } else {
+      const temporaryList: ProductListProps[] = [
+        ...savedProductsList,
+        selectedItem,
+      ];
+      setSavedProductsList(temporaryList);
+    }
+  };
+
   return (
     <View>
       <View
@@ -274,7 +320,7 @@ const HomeScreenContent = (props: any) => {
       )}
 
       <FlatList
-        data={armChairsList}
+        data={productsList}
         horizontal={true}
         showsHorizontalScrollIndicator={false}
         keyExtractor={item => item?.id}
@@ -286,7 +332,7 @@ const HomeScreenContent = (props: any) => {
                 marginLeft: 20,
                 backgroundColor: colors?.white,
                 width: 180,
-                paddingTop: 20,
+                paddingTop: 10,
                 paddingBottom: 10,
                 shadowColor: colors?.greyColor,
                 shadowOffset: {height: 2, width: 2},
@@ -294,6 +340,29 @@ const HomeScreenContent = (props: any) => {
                 shadowRadius: 4,
                 borderRadius: 10,
               }}>
+              <TouchableOpacity
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'flex-end',
+                  marginRight: 5,
+                }}
+                onPress={() => {
+                  addToFavouriteList(item);
+                }}>
+                <Image
+                  source={
+                    JSON.stringify(savedProductsList)?.includes(
+                      JSON.stringify(item),
+                    )
+                      ? imagePath?.saveIconFilled
+                      : imagePath?.saveIcon
+                  }
+                  height={30}
+                  width={30}
+                  style={styles?.saveIcon}
+                  testID={testID?.saveIcon}
+                />
+              </TouchableOpacity>
               <View
                 style={{
                   width: 150,

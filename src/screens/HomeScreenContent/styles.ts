@@ -99,6 +99,10 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 30,
   },
+  saveIcon: {
+    height: 20,
+    width: 20,
+  },
 });
 
 export const themeStyle = ({

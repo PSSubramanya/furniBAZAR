@@ -68,6 +68,8 @@ const imagePath = {
   rightChevronIcon: require('../assets/images/icons/rightChevronIcon.png'),
   roundCloseIcon: require('../assets/images/icons/roundCloseIcon.png'),
   roundCloseIconFilled: require('../assets/images/icons/roundCloseIconFilled.png'),
+  saveIcon: require('../assets/images/icons/saveIcon.png'),
+  saveIconFilled: require('../assets/images/icons/saveIconFilled.png'),
   searchIcon: require('../assets/images/icons/searchIcon.png'),
   settingsIcon: require('../assets/images/icons/settingsIcon.png'),
   settingsFilledIcon: require('../assets/images/icons/settingsFilledIcon.png'),

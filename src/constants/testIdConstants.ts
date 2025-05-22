@@ -9,6 +9,7 @@ const testID = {
   buttonText: 'buttonText',
   categoryIcon: 'categoryIcon',
   filterIcon: 'filterIcon',
+  saveIcon: 'saveIcon',
   searchIcon: 'searchIcon',
   shortButton: 'shortButton',
   shortButtonView: 'shortButtonView',

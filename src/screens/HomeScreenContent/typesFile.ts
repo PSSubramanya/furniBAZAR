@@ -6,3 +6,12 @@ export interface ThemeStyleProps {
 export interface HomeScreenContentStyleProps {
   filterIconViewStyle: ViewStyle;
 }
+
+export interface ProductListProps {
+  id: string;
+  name: string;
+  image: string;
+  companyName: string;
+  rating: string;
+  price: string;
+}
