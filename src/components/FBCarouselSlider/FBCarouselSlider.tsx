@@ -1,0 +1,136 @@
+import React, {useState, useRef} from 'react';
+import {
+  Image,
+  Text,
+  View,
+  FlatList,
+  NativeSyntheticEvent,
+  NativeScrollEvent,
+} from 'react-native';
+import colors from '../../constants/colors';
+import fontFamily from '../../constants/fontFamily';
+import imagePath from '../../constants/imagePath';
+import styles from './styles';
+import testID from '../../constants/testIdConstants';
+import {FBCarouselSliderProps} from './typesFile';
+import FBPagination from '../FBPagination/FBPagination';
+
+const FBCarouselSlider = (props: FBCarouselSliderProps) => {
+  const {carouselOfferData} = props;
+  const carousalRef = useRef<FlatList>(null);
+  const [carousalIndex, setCarousalIndex] = useState(0);
+
+  const setScrollIndex = (
+    eventVal: NativeSyntheticEvent<NativeScrollEvent>,
+  ) => {
+    const offsetX = eventVal.nativeEvent.contentOffset.x;
+    const index = Math.round(offsetX / 360);
+    setCarousalIndex(index);
+  };
+  return (
+    <View>
+      <FlatList
+        data={carouselOfferData}
+        ref={carousalRef}
+        horizontal={true}
+        pagingEnabled={true}
+        showsHorizontalScrollIndicator={false}
+        onScroll={event => {
+          setScrollIndex(event);
+        }}
+        keyExtractor={item => item?.id}
+        renderItem={({item, index}) => {
+          return (
+            <View
+              style={{
+                width: 360,
+                height: 200,
+                backgroundColor: colors?.appBackgroundColor,
+                alignSelf: 'center',
+                marginTop: 20,
+                borderRadius: 15,
+                marginHorizontal: 16,
+              }}>
+              <Text
+                style={{
+                  textAlign: 'right',
+                  fontFamily: fontFamily?.primaryFont?.bold,
+                  fontSize: 24,
+                  zIndex: 1,
+                  paddingHorizontal: 8,
+                  marginTop: 10,
+                }}>
+                {item?.header}
+              </Text>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  marginRight: 10,
+                }}>
+                <Image
+                  source={item?.coverImage}
+                  height={100}
+                  width={100}
+                  style={{
+                    height: 180,
+                    width: 180,
+                    marginTop: -5,
+                  }}
+                  resizeMode="contain"
+                />
+                <View>
+                  <Text
+                    style={{
+                      width: 150,
+                      height: 60,
+                      textAlign: 'right',
+                      fontFamily: fontFamily?.primaryFont?.regular,
+                      fontSize: 12,
+                      zIndex: 1,
+                      paddingHorizontal: 8,
+                    }}>
+                    {item?.description}
+                  </Text>
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      marginLeft: 20,
+                      borderRadius: 10,
+                      backgroundColor: colors?.darkBluegrey4,
+                      paddingVertical: 10,
+                    }}>
+                    <Image
+                      source={imagePath?.tagIcon}
+                      height={30}
+                      width={30}
+                      style={styles?.tagIcon}
+                      testID={testID?.tagIcon}
+                    />
+                    <Text
+                      style={{
+                        textAlign: 'right',
+                        fontFamily: fontFamily?.primaryFont?.bold,
+                        fontSize: 28,
+                        color: colors?.white,
+                        alignSelf: 'center',
+                        paddingHorizontal: 8,
+                      }}>
+                      {item?.discount}
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+          );
+        }}
+      />
+
+      <FBPagination
+        carousalIndex={carousalIndex}
+        carouselOfferData={carouselOfferData}
+      />
+    </View>
+  );
+};
+export default FBCarouselSlider;

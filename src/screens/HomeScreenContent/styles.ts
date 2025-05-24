@@ -2,7 +2,6 @@ import {StyleSheet, TextStyle} from 'react-native'; // eslint-disable-next-line 
 import colors from '../../constants/colors';
 import fontFamily from '../../constants/fontFamily';
 import {HomeScreenContentStyleProps, ThemeStyleProps} from './typesFile';
-// import
 
 export const styles = StyleSheet.create({
   bottomBarIcon: {

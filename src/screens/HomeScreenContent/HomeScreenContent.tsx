@@ -14,6 +14,7 @@ import testID from '../../constants/testIdConstants';
 import colors from '../../constants/colors';
 import {ProductListProps} from './typesFile';
 import fontFamily from '../../constants/fontFamily';
+import FBCarouselSlider from '../../components/FBCarouselSlider/FBCarouselSlider';
 
 const HomeScreenContent = (props: any) => {
   const {navigation} = props;
@@ -60,6 +61,30 @@ const HomeScreenContent = (props: any) => {
       name: 'Wardrobe',
       image: imagePath?.wardrobeIcon,
       selectedImage: imagePath?.wardrobeIconColored,
+    },
+  ];
+
+  const carouselOfferData = [
+    {
+      id: '0',
+      header: "Today's IKEA special !",
+      description: 'Get discount on every order. Valid only for today',
+      discount: '25%',
+      coverImage: imagePath?.furnitureImages2,
+    },
+    {
+      id: '1',
+      header: 'NEELKAMAL Sunday !',
+      description: 'A flat discount on every order for this month.',
+      discount: '16%',
+      coverImage: imagePath?.lightStandImage1,
+    },
+    {
+      id: '2',
+      header: 'Godrej Maha Sale !',
+      description: 'Discount sale on wardrobes this festival.',
+      discount: '20%',
+      coverImage: imagePath?.wardrobeImage,
     },
   ];
 
@@ -221,151 +246,6 @@ const HomeScreenContent = (props: any) => {
     }
   };
 
-  const carouselSection = () => {
-    return (
-      <View
-        style={{
-          width: 360,
-          height: 200,
-          backgroundColor: colors?.appBackgroundColor,
-          alignSelf: 'center',
-          marginTop: 20,
-          borderRadius: 15,
-        }}>
-        <Text
-          style={{
-            textAlign: 'right',
-            fontFamily: fontFamily?.primaryFont?.bold,
-            fontSize: 24,
-            zIndex: 1,
-            paddingHorizontal: 8,
-            marginTop: 10,
-          }}>
-          Today's IKEA special !
-        </Text>
-        <View style={{flexDirection: 'row'}}>
-          <Image
-            source={imagePath?.furnitureImages2}
-            height={100}
-            width={100}
-            style={{
-              height: 200,
-              width: 200,
-              marginTop: -30,
-            }}
-          />
-          <View>
-            <Text
-              style={{
-                width: 150,
-                height: 60,
-                textAlign: 'right',
-                fontFamily: fontFamily?.primaryFont?.regular,
-                fontSize: 12,
-                zIndex: 1,
-                paddingHorizontal: 8,
-              }}>
-              Get discount on every order. Valid only for today
-            </Text>
-            <View
-              style={{
-                flexDirection: 'row',
-                marginLeft: 20,
-                borderRadius: 10,
-                backgroundColor: colors?.darkBluegrey4,
-                paddingVertical: 10,
-              }}>
-              <Image
-                source={imagePath?.tagIcon}
-                height={30}
-                width={30}
-                style={styles?.tagIcon}
-                testID={testID?.tagIcon}
-              />
-              <Text
-                style={{
-                  textAlign: 'right',
-                  fontFamily: fontFamily?.primaryFont?.bold,
-                  fontSize: 28,
-                  color: colors?.white,
-                  alignSelf: 'center',
-                  paddingHorizontal: 8,
-                }}>
-                25%
-              </Text>
-            </View>
-          </View>
-        </View>
-      </View>
-    );
-  };
-
-  const paginationSection = () => {
-    return (
-      <View
-        style={{
-          height: 10,
-          marginTop: 10,
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}>
-        <View
-          style={{
-            backgroundColor: colors?.darkBluegrey4,
-            height: 5,
-            width: 5,
-            marginRight: 5,
-            borderRadius: 10,
-          }}></View>
-        {/* <View
-      style={{
-        backgroundColor: colors?.darkBluegrey4,
-        height: 5,
-        width: 5,
-        marginRight: 5,
-        borderRadius: 10,
-      }}></View> */}
-        <View
-          style={{
-            backgroundColor: colors?.darkBluegrey4,
-            height: 16,
-            marginRight: 5,
-            borderRadius: 10,
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}>
-          <Text
-            style={{
-              color: colors?.white,
-              fontSize: 8,
-              paddingLeft: 5,
-              paddingRight: 5,
-              fontFamily: fontFamily?.primaryFont?.bold,
-            }}>
-            2 of 4
-          </Text>
-        </View>
-        <View
-          style={{
-            backgroundColor: colors?.darkBluegrey4,
-            height: 5,
-            width: 5,
-            marginRight: 5,
-            borderRadius: 10,
-          }}></View>
-        <View
-          style={{
-            backgroundColor: colors?.darkBluegrey4,
-            height: 5,
-            width: 5,
-            marginRight: 5,
-            borderRadius: 10,
-          }}></View>
-      </View>
-    );
-  };
-
   return (
     <View>
       <View
@@ -443,8 +323,7 @@ const HomeScreenContent = (props: any) => {
         </TouchableOpacity>
       </View>
 
-      {carouselSection()}
-      {paginationSection()}
+      <FBCarouselSlider carouselOfferData={carouselOfferData} />
 
       {filterSelect && (
         <Animated.View

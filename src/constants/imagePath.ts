@@ -17,6 +17,8 @@ const imagePath = {
   // Images
   furnitureImages1: require('../assets/images/furnitureImages1.png'),
   furnitureImages2: require('../assets/images/furnitureImages2.png'),
+  lightStandImage1: require('../assets/images/lightStandImage1.png'),
+  wardrobeImage: require('../assets/images/wardrobeImage.png'),
 
   // Icons
   addIcon: require('../assets/images/icons/addIcon.png'),
