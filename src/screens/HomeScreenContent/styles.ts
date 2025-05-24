@@ -25,7 +25,7 @@ export const styles = StyleSheet.create({
     backgroundColor: colors?.darkBluegrey4,
   },
   categoryFilterView: {
-    marginTop: 20,
+    marginTop: 10,
   },
   searchIcon: {
     height: 20,
@@ -36,18 +36,31 @@ export const styles = StyleSheet.create({
     fontFamily: fontFamily?.primaryFont?.regular,
     fontSize: 16,
     marginLeft: 16,
-    width: 255,
+    width: 240,
   },
   filterIcon: {
     height: 30,
     width: 30,
     alignSelf: 'center',
   },
+  categoryFilterIcon: {
+    height: 20,
+    width: 20,
+    alignSelf: 'center',
+  },
   selectedFilterStyle: {
     height: 50,
     width: 50,
     borderRadius: 5,
-    marginHorizontal: 15,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  categoryFilterIconContainer: {
+    height: 30,
+    width: 30,
+    borderRadius: 5,
+    marginRight: 5,
+    marginTop: 10,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -102,6 +115,10 @@ export const styles = StyleSheet.create({
   saveIcon: {
     height: 20,
     width: 20,
+  },
+  tagIcon: {
+    height: 50,
+    width: 50,
   },
 });
 

@@ -13,6 +13,7 @@ import imagePath from '../../constants/imagePath';
 import testID from '../../constants/testIdConstants';
 import colors from '../../constants/colors';
 import {ProductListProps} from './typesFile';
+import fontFamily from '../../constants/fontFamily';
 
 const HomeScreenContent = (props: any) => {
   const {navigation} = props;
@@ -69,7 +70,7 @@ const HomeScreenContent = (props: any) => {
       image: imagePath?.armChair1,
       companyName: 'MONICA FORSTER',
       rating: '4.6',
-      price: '₹16,240.00',
+      price: '16,240.00',
     },
     {
       id: '1',
@@ -77,7 +78,7 @@ const HomeScreenContent = (props: any) => {
       image: imagePath?.armChair2,
       companyName: 'ANDERSSEN VOLL',
       rating: '4.2',
-      price: '₹4,240.00',
+      price: '4,240.00',
     },
     {
       id: '2',
@@ -85,7 +86,7 @@ const HomeScreenContent = (props: any) => {
       image: imagePath?.armChair3,
       companyName: 'ANDERSSEN VOLL',
       rating: '4.8',
-      price: '₹20,240.00',
+      price: '20,240.00',
     },
     {
       id: '3',
@@ -93,7 +94,7 @@ const HomeScreenContent = (props: any) => {
       image: imagePath?.armChair4,
       companyName: 'ANDERSSEN VOLL',
       rating: '4.8',
-      price: '₹20,240.00',
+      price: '20,240.00',
     },
     {
       id: '4',
@@ -101,7 +102,7 @@ const HomeScreenContent = (props: any) => {
       image: imagePath?.armChair5,
       companyName: 'IKEA',
       rating: '4.6',
-      price: '₹33,240.00',
+      price: '33,240.00',
     },
     {
       id: '5',
@@ -109,7 +110,7 @@ const HomeScreenContent = (props: any) => {
       image: imagePath?.armChair6,
       companyName: 'GODREJ',
       rating: '4.0',
-      price: '₹8,240.00',
+      price: '8,240.00',
     },
     {
       id: '6',
@@ -117,7 +118,7 @@ const HomeScreenContent = (props: any) => {
       image: imagePath?.armChair7,
       companyName: 'ANDERSSEN VOLL',
       rating: '4.2',
-      price: '₹13,240.00',
+      price: '13,240.00',
     },
     {
       id: '7',
@@ -125,7 +126,7 @@ const HomeScreenContent = (props: any) => {
       image: imagePath?.armChair8,
       companyName: 'IKEA',
       rating: '4.0',
-      price: '₹6,240.00',
+      price: '6,240.00',
     },
     {
       id: '8',
@@ -133,7 +134,7 @@ const HomeScreenContent = (props: any) => {
       image: imagePath?.armChair9,
       companyName: 'NILKAMAL',
       rating: '4.8',
-      price: '₹20,240.00',
+      price: '20,240.00',
     },
     {
       id: '9',
@@ -141,7 +142,7 @@ const HomeScreenContent = (props: any) => {
       image: imagePath?.armChair10,
       companyName: 'NILKAMAL',
       rating: '4.9',
-      price: '₹22,240.00',
+      price: '22,240.00',
     },
     {
       id: '10',
@@ -149,7 +150,7 @@ const HomeScreenContent = (props: any) => {
       image: imagePath?.armChair11,
       companyName: 'NILKAMAL',
       rating: '4.8',
-      price: '₹20,240.00',
+      price: '20,240.00',
     },
   ];
 
@@ -220,6 +221,151 @@ const HomeScreenContent = (props: any) => {
     }
   };
 
+  const carouselSection = () => {
+    return (
+      <View
+        style={{
+          width: 360,
+          height: 200,
+          backgroundColor: colors?.appBackgroundColor,
+          alignSelf: 'center',
+          marginTop: 20,
+          borderRadius: 15,
+        }}>
+        <Text
+          style={{
+            textAlign: 'right',
+            fontFamily: fontFamily?.primaryFont?.bold,
+            fontSize: 24,
+            zIndex: 1,
+            paddingHorizontal: 8,
+            marginTop: 10,
+          }}>
+          Today's IKEA special !
+        </Text>
+        <View style={{flexDirection: 'row'}}>
+          <Image
+            source={imagePath?.furnitureImages2}
+            height={100}
+            width={100}
+            style={{
+              height: 200,
+              width: 200,
+              marginTop: -30,
+            }}
+          />
+          <View>
+            <Text
+              style={{
+                width: 150,
+                height: 60,
+                textAlign: 'right',
+                fontFamily: fontFamily?.primaryFont?.regular,
+                fontSize: 12,
+                zIndex: 1,
+                paddingHorizontal: 8,
+              }}>
+              Get discount on every order. Valid only for today
+            </Text>
+            <View
+              style={{
+                flexDirection: 'row',
+                marginLeft: 20,
+                borderRadius: 10,
+                backgroundColor: colors?.darkBluegrey4,
+                paddingVertical: 10,
+              }}>
+              <Image
+                source={imagePath?.tagIcon}
+                height={30}
+                width={30}
+                style={styles?.tagIcon}
+                testID={testID?.tagIcon}
+              />
+              <Text
+                style={{
+                  textAlign: 'right',
+                  fontFamily: fontFamily?.primaryFont?.bold,
+                  fontSize: 28,
+                  color: colors?.white,
+                  alignSelf: 'center',
+                  paddingHorizontal: 8,
+                }}>
+                25%
+              </Text>
+            </View>
+          </View>
+        </View>
+      </View>
+    );
+  };
+
+  const paginationSection = () => {
+    return (
+      <View
+        style={{
+          height: 10,
+          marginTop: 10,
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}>
+        <View
+          style={{
+            backgroundColor: colors?.darkBluegrey4,
+            height: 5,
+            width: 5,
+            marginRight: 5,
+            borderRadius: 10,
+          }}></View>
+        {/* <View
+      style={{
+        backgroundColor: colors?.darkBluegrey4,
+        height: 5,
+        width: 5,
+        marginRight: 5,
+        borderRadius: 10,
+      }}></View> */}
+        <View
+          style={{
+            backgroundColor: colors?.darkBluegrey4,
+            height: 16,
+            marginRight: 5,
+            borderRadius: 10,
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
+          <Text
+            style={{
+              color: colors?.white,
+              fontSize: 8,
+              paddingLeft: 5,
+              paddingRight: 5,
+              fontFamily: fontFamily?.primaryFont?.bold,
+            }}>
+            2 of 4
+          </Text>
+        </View>
+        <View
+          style={{
+            backgroundColor: colors?.darkBluegrey4,
+            height: 5,
+            width: 5,
+            marginRight: 5,
+            borderRadius: 10,
+          }}></View>
+        <View
+          style={{
+            backgroundColor: colors?.darkBluegrey4,
+            height: 5,
+            width: 5,
+            marginRight: 5,
+            borderRadius: 10,
+          }}></View>
+      </View>
+    );
+  };
+
   return (
     <View>
       <View
@@ -268,6 +414,7 @@ const HomeScreenContent = (props: any) => {
           <View
             style={[
               styles?.selectedFilterStyle,
+              {marginLeft: 0},
               styleValues?.filterIconViewStyle,
             ]}>
             <Image
@@ -283,7 +430,22 @@ const HomeScreenContent = (props: any) => {
             />
           </View>
         </TouchableOpacity>
+        <TouchableOpacity onPress={() => {}}>
+          <View style={[styles?.categoryFilterIconContainer]}>
+            <Image
+              source={imagePath?.categoryIcon}
+              height={30}
+              width={30}
+              style={styles?.categoryFilterIcon}
+              testID={testID?.productFilterIcon}
+            />
+          </View>
+        </TouchableOpacity>
       </View>
+
+      {carouselSection()}
+      {paginationSection()}
+
       {filterSelect && (
         <Animated.View
           style={[styles?.categoryFilterView, {transform: [{translateY}]}]}>
@@ -322,12 +484,34 @@ const HomeScreenContent = (props: any) => {
         </Animated.View>
       )}
 
+      <View
+        style={{
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          marginTop: 30,
+          marginHorizontal: 18,
+        }}>
+        <Text
+          style={{fontFamily: fontFamily?.primaryFont?.semiBold, fontSize: 16}}>
+          POPULAR
+        </Text>
+        <TouchableOpacity onPress={() => {}}>
+          <Text
+            style={{
+              fontFamily: fontFamily?.primaryFont?.medium,
+              fontSize: 16,
+            }}>
+            View All
+          </Text>
+        </TouchableOpacity>
+      </View>
+
       <FlatList
         data={productsList}
         horizontal={true}
         showsHorizontalScrollIndicator={false}
         keyExtractor={item => item?.id}
-        contentContainerStyle={{marginTop: 40, paddingBottom: 20}}
+        contentContainerStyle={{marginTop: 16, paddingBottom: 20}}
         renderItem={({item, index}) => {
           return (
             <View
@@ -393,7 +577,7 @@ const HomeScreenContent = (props: any) => {
                     ellipsizeMode="tail">
                     {item?.companyName}
                   </Text>
-                  <Text style={styles?.priceStyle}>{item?.price}</Text>
+                  <Text style={styles?.priceStyle}>₹{item?.price}</Text>
                 </View>
                 <View style={{alignItems: 'center'}}>
                   <View
@@ -434,3 +618,13 @@ const HomeScreenContent = (props: any) => {
   );
 };
 export default HomeScreenContent;
+
+/**
+ * Story book implementation
+ * Popular item cards make it expand on click of down chevron (Have animation effect)
+ * View all takes to another page/ products page (Similar to search results page) with grid view
+ * advertisment view with pagination
+ * add to cart functionality add
+ * filter will have more options to filter to options here also, like price, company, rating etc.
+ * This filter with extra filters should be in search and products page also
+ */
