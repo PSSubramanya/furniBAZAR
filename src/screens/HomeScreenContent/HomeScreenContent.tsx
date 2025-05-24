@@ -500,9 +500,7 @@ export default HomeScreenContent;
 
 /**
  * Story book implementation
- * Popular item cards make it expand on click of down chevron (Have animation effect)
  * View all takes to another page/ products page (Similar to search results page) with grid view
- * advertisment view with pagination
  * add to cart functionality add
  * filter will have more options to filter to options here also, like price, company, rating etc.
  * This filter with extra filters should be in search and products page also
