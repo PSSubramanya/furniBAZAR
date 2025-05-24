@@ -15,6 +15,7 @@ import colors from '../../constants/colors';
 import {ProductListProps} from './typesFile';
 import fontFamily from '../../constants/fontFamily';
 import FBCarouselSlider from '../../components/FBCarouselSlider/FBCarouselSlider';
+import FBFilterModal from '../../components/FBFilterModal/FBFilterModal';
 
 const HomeScreenContent = (props: any) => {
   const {navigation} = props;
@@ -189,6 +190,7 @@ const HomeScreenContent = (props: any) => {
   const [addedToCartItems, setAddedToCartItems] = useState<ProductListProps[]>(
     [],
   );
+  const [modalVisible, setModalVisible] = useState(false);
   /* NOTE:
       1.) Maintain this data in redux so it can be used in other screens. 
       2.) Also use that data and store it in backend via nodeJS
@@ -310,7 +312,10 @@ const HomeScreenContent = (props: any) => {
             />
           </View>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => {}}>
+        <TouchableOpacity
+          onPress={() => {
+            setModalVisible(true);
+          }}>
           <View style={[styles?.categoryFilterIconContainer]}>
             <Image
               source={imagePath?.categoryIcon}
@@ -492,6 +497,11 @@ const HomeScreenContent = (props: any) => {
             </View>
           );
         }}
+      />
+
+      <FBFilterModal
+        modalVisible={modalVisible}
+        setModalVisible={setModalVisible}
       />
     </View>
   );

@@ -12,6 +12,8 @@ const colors = {
   darkBluegrey4: '#4d4867',
   errorColor1: '#d9131c',
   errorColor2: '#ed0c17',
+  greyishBlue: '#baced1',
+  greyishBlue2: '#e2eeef',
   greyColor: '#b8b8b8',
   greyColorLight: '#ededed',
   greyColorLight2: '#f4f4f4',
