@@ -1,19 +1,28 @@
-# The command to get the coverage of test files
+```bash
+# Clone the repo
+git clone https://github.com/PSSubramanya/furniBAZAR.git
 
-1. npx jest --coverage
+# Install dependencies
+npm install
+
+# Run on Android
+npx react-native run-android
+
+# Run on iOS
+npx react-native run-ios
+
+# The command to get the coverage of test files
+npx jest --coverage
 
 # The command to check testcases of a particular file
-
-2. npm test FBDigitInputField.spec.tsx
+npm test FBDigitInputField.spec.tsx
 
 # The command to run the app on ios devices
-
-3. npx react-native run-ios
+npx react-native run-ios
 
 # The command to run the app on android devices
-
-4. npx react-native run-android
+npx react-native run-android
 
 # The command to generate custom components and screens
-
-5. npm run generate
+npm run generate
+```
