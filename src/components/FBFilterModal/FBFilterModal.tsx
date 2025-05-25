@@ -28,14 +28,7 @@ const FBFilterModal = (props: any) => {
   const [companyNameSearch, setCompanyNameSearch] = useState('');
   const [isFocused, setIsFocused] = useState(false);
   const [searchedCompanies, setSearchedCompanies] = useState<string[]>([]);
-  /* add searched products by destructurising on click of search Button */
-
   const [selectedRate, setSelectedRate] = useState<string>('5.0');
-
-  useEffect(() => {
-    const companiesName = ['Nilkamal', 'Godrej', 'IKEA'];
-    setSearchedCompanies(companiesName);
-  }, []);
 
   return (
     <Modal
@@ -161,7 +154,15 @@ const FBFilterModal = (props: any) => {
                 marginTop: 10,
               }}>
               <TouchableOpacity
-                onPress={() => {}}
+                onPress={() => {
+                  if (!searchedCompanies?.includes(companyNameSearch)) {
+                    const searchedCompanyNamesArray = [
+                      ...searchedCompanies,
+                      companyNameSearch,
+                    ];
+                    setSearchedCompanies(searchedCompanyNamesArray);
+                  }
+                }}
                 style={{
                   justifyContent: 'center',
                   alignSelf: 'center',
@@ -225,7 +226,11 @@ const FBFilterModal = (props: any) => {
                       {val}
                     </Text>
                     <TouchableOpacity
-                      onPress={() => {}}
+                      onPress={() => {
+                        const tempArray = [...searchedCompanies];
+                        tempArray.splice(ind, 1);
+                        setSearchedCompanies(tempArray);
+                      }}
                       style={{alignSelf: 'center'}}>
                       <Image
                         source={imagePath?.closeIconBlack}
