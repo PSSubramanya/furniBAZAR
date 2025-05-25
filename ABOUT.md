@@ -1,4 +1,4 @@
-# 🚀 FurnitureApp
+# 🛋️ FurnitureApp
 
 A sleek React Native app to browse and manage modern furniture collections.  
 Built with love using React Native, TypeScript, and modern UI components.
@@ -12,22 +12,29 @@ Built with love using React Native, TypeScript, and modern UI components.
 ## ✨ Features
 
 - 🔍 Browse premium furniture collections
+- ❤️ Add to favorites
+- 🔔 Push notifications
+
+---
+## ✨ Upcoming Features
+
 - 🛒 Add to favorites and cart
 - 📦 View detailed product info
-- 🔔 Push notifications
 - 🌙 Dark mode support
 
 ---
 
 ## 🛠 Tech Stack
 
-| Technology                                                                                   | Description                     |
-| -------------------------------------------------------------------------------------------- | ------------------------------- |
-| <img src="https://img.icons8.com/color/48/react-native.png" width="24"/>                     | React Native                    |
-| <img src="https://img.icons8.com/color/48/typescript.png" width="24"/>                       | TypeScript                      |
-| <img src="https://img.icons8.com/fluency/48/000000/visual-studio-code-2019.png" width="24"/> | VS Code                         |
-| <img src="https://img.icons8.com/color/48/android-studio--v2.png" width="24"/>               | Android Studio                  |
-| <img src="https://img.icons8.com/ios-filled/50/firebase.png" width="24"/>                    | Firebase (Auth & Notifications) |
+| Technology                                                                                                      | Description                     |
+| --------------------------------------------------------------------------------------------------------------  | ------------------------------- |
+| <img src="https://img.icons8.com/color/48/react-native.png" width="24"/>                                        | React Native                    |
+| <img src="https://img.icons8.com/color/48/typescript.png" width="24"/>                                          | TypeScript                      |
+| <img src="https://img.icons8.com/fluency/48/000000/visual-studio-code-2019.png" width="24"/>                    | VS Code                         |
+| <img src="https://img.icons8.com/?size=96&id=1LAX3PYMg2iA&format=png" width="24"/>                              | Android Studio                  |
+| <img src="https://developer.apple.com/assets/elements/icons/xcode-12/xcode-12-96x96_2x.png" width="24"/>        | XCode                           |
+| <img src="https://img.icons8.com/?size=96&id=13717&format=png" width="24"/>                                     | Notifee (Notifications)         |
+| <img src="https://cdn4.iconfinder.com/data/icons/google-i-o-2016/512/google_firebase-2-1024.png" width="24"/>   | Firebase (Authentication)       |
 
 ---
 
@@ -35,7 +42,7 @@ Built with love using React Native, TypeScript, and modern UI components.
 
 | Home Screen                            | Product Detail                             |
 | -------------------------------------- | ------------------------------------------ |
-| ![Home](./assets/screenshots/home.png) | ![Detail](./assets/screenshots/detail.png) |
+| ![Home](../assets/images/appScreenshot/FilterModal.png) | ![Detail](../assets/images/appScreenshot/FilterModal.png) |
 
 ---
 
@@ -43,7 +50,7 @@ Built with love using React Native, TypeScript, and modern UI components.
 
 ```bash
 # Clone the repo
-git clone https://github.com/yourusername/furnitureapp.git
+git clone https://github.com/PSSubramanya/furniBAZAR.git
 
 # Install dependencies
 npm install
