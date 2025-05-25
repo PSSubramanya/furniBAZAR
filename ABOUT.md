@@ -40,10 +40,26 @@ Built with love using React Native, TypeScript, and modern UI components.
 
 ## 📲 Screenshots
 
-| Home Screen                            | Product Detail                             |
-| -------------------------------------- | ------------------------------------------ |
-| ![Home](./assets/images/appScreenshot/FilterModal.png) | ![Detail](./assets/images/appScreenshot/FilterModal.png) |
-
+<table>
+  <tr>
+    <th>Landing Screen</th>
+    <th>Login Detail</th>
+    <th>Login Detail 2</th>
+    <th>OTP Screen</th>
+    <th>OTP Error Screen</th>
+    <th>Home Screen</th>
+    <th>Filter Modal</th>
+  </tr>
+  <tr>
+    <td><img src="./src/assets/images/appScreenshot/LandingScreen.png" width="100"/></td>
+    <td><img src="./src/assets/images/appScreenshot/LoginScreen.png" width="100"/></td>
+    <td><img src="./src/assets/images/appScreenshot/LandingScreen.png" width="100"/></td>
+    <td><img src="./src/assets/images/appScreenshot/OTPScreen.png" width="100"/></td>
+    <td><img src="./src/assets/images/appScreenshot/OTPScreenError.png" width="100"/></td>
+    <td><img src="./src/assets/images/appScreenshot/HomeScreen.png" width="100"/></td>
+    <td><img src="./src/assets/images/appScreenshot/FilterModal.png" width="100"/></td>
+  </tr>
+</table>
 ---
 
 ## 🚀 Getting Started
