@@ -6,6 +6,7 @@ import {
   FlatList,
   NativeSyntheticEvent,
   NativeScrollEvent,
+  Dimensions,
 } from 'react-native';
 import colors from '../../constants/colors';
 import fontFamily from '../../constants/fontFamily';
@@ -21,11 +22,14 @@ const FBCarouselSlider = (props: FBCarouselSliderProps) => {
   const [carousalIndex, setCarousalIndex] = useState(0);
   const [scrollAttempts, setScrollAttempts] = useState(0);
 
+  const {width} = Dimensions.get('window');
+
   const setScrollIndex = (
     eventVal: NativeSyntheticEvent<NativeScrollEvent>,
   ) => {
     const offsetX = eventVal.nativeEvent.contentOffset.x;
-    const index = Math.round(offsetX / 360);
+    const index = Math.round((offsetX / width) * 0.92);
+    // const index = Math.round(offsetX / 360);
     setCarousalIndex(index);
   };
 
@@ -70,7 +74,7 @@ const FBCarouselSlider = (props: FBCarouselSliderProps) => {
           return (
             <View
               style={{
-                width: 360,
+                width: width * 0.92, //410, //360,
                 height: 200,
                 backgroundColor: colors?.appBackgroundColor,
                 alignSelf: 'center',

@@ -14,6 +14,7 @@ import colors from '../../constants/colors';
 import fontFamily from '../../constants/fontFamily';
 import imagePath from '../../constants/imagePath';
 import testID from '../../constants/testIdConstants';
+import FBSlider from '../FBSlider/FBSlider';
 
 const FBFilterModal = (props: any) => {
   const {
@@ -93,6 +94,7 @@ const FBFilterModal = (props: any) => {
           borderRadius: 10,
           backgroundColor: modalColor,
           justifyContent: 'space-between',
+          paddingHorizontal: 5,
         }}>
         <ScrollView key={'index'}>
           <View>
@@ -470,46 +472,14 @@ const FBFilterModal = (props: any) => {
               style={{
                 flexDirection: 'row',
                 justifyContent: 'center',
+                marginTop: 20,
               }}>
               <View>
-                <ScrollView
-                  style={{
-                    height: 20,
-                    marginTop: 15,
-                    zIndex: 1,
-                  }}
-                  scrollEnabled={true}
-                  horizontal={true}
-                  onScroll={ev => {
-                    setScrollIndex(ev);
-                  }}
-                  onMomentumScrollEnd={handleScrollEnd}
-                  scrollEventThrottle={30} // Smooth performance
-                  showsHorizontalScrollIndicator={false}>
-                  <View
-                    style={{
-                      backgroundColor: colors?.darkBluegrey4,
-                      height: 20,
-                      width: 20,
-                      borderRadius: 10,
-                      marginLeft: 5 + sliderValue,
-                    }}
-                  />
-                </ScrollView>
-                <View
-                  style={{
-                    height: 3,
-                    backgroundColor: colors?.borderColor,
-                    marginHorizontal: 10,
-                    marginTop: -10,
-                    width: 360,
-                  }}
-                />
+                <FBSlider />
                 <View
                   style={{
                     flexDirection: 'row',
-                    // backgroundColor: 'orange',
-                    marginTop: 20,
+                    marginTop: 5,
                     height: 40,
                   }}>
                   <Text
@@ -517,7 +487,7 @@ const FBFilterModal = (props: any) => {
                       fontFamily: fontFamily?.primaryFont?.semiBold,
                       fontSize: 12,
                       position: 'absolute',
-                      left: 5,
+                      //   left: 5,
                     }}>
                     2k
                   </Text>
@@ -526,7 +496,7 @@ const FBFilterModal = (props: any) => {
                       fontFamily: fontFamily?.primaryFont?.semiBold,
                       fontSize: 12,
                       position: 'absolute',
-                      left: 77, //65
+                      left: 72, //65
                     }}>
                     5k
                   </Text>
@@ -535,7 +505,7 @@ const FBFilterModal = (props: any) => {
                       fontFamily: fontFamily?.primaryFont?.semiBold,
                       fontSize: 12,
                       position: 'absolute',
-                      left: 149, //137, //125,
+                      left: 144, //137, //125,
                     }}>
                     10k
                   </Text>
@@ -544,7 +514,7 @@ const FBFilterModal = (props: any) => {
                       fontFamily: fontFamily?.primaryFont?.semiBold,
                       fontSize: 12,
                       position: 'absolute',
-                      left: 221, //185,
+                      left: 216, //185,
                     }}>
                     20k
                   </Text>
@@ -553,7 +523,7 @@ const FBFilterModal = (props: any) => {
                       fontFamily: fontFamily?.primaryFont?.semiBold,
                       fontSize: 12,
                       position: 'absolute',
-                      left: 293, //245,
+                      left: 290, //245,
                     }}>
                     50k
                   </Text>
