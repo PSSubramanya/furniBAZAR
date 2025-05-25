@@ -42,7 +42,7 @@ Built with love using React Native, TypeScript, and modern UI components.
 
 | Home Screen                            | Product Detail                             |
 | -------------------------------------- | ------------------------------------------ |
-| ![Home](../assets/images/appScreenshot/FilterModal.png) | ![Detail](../assets/images/appScreenshot/FilterModal.png) |
+| ![Home](./assets/images/appScreenshot/FilterModal.png) | ![Detail](./assets/images/appScreenshot/FilterModal.png) |
 
 ---
 
