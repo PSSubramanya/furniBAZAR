@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef, useCallback} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import {
   View,
   Text,
@@ -6,8 +6,6 @@ import {
   ScrollView,
   Image,
   TextInput,
-  NativeSyntheticEvent,
-  NativeScrollEvent,
 } from 'react-native';
 import Modal from 'react-native-modal';
 import colors from '../../constants/colors';
@@ -26,15 +24,6 @@ const FBFilterModal = (props: any) => {
     selectedProductName,
   } = props;
 
-  const priceRanges = [
-    {value: '2000', rangeValue: '2k'},
-    {value: '5000', rangeValue: '5k'},
-    {value: '10000', rangeValue: '10k'},
-    {value: '20000', rangeValue: '20k'},
-    {value: '50000', rangeValue: '50k'},
-    {value: '100000', rangeValue: '100k'},
-  ];
-
   const serchRef = useRef<TextInput>(null);
   const [companyNameSearch, setCompanyNameSearch] = useState('');
   const [isFocused, setIsFocused] = useState(false);
@@ -43,41 +32,10 @@ const FBFilterModal = (props: any) => {
 
   const [selectedRate, setSelectedRate] = useState<string>('5.0');
 
-  const [sliderValue, setSliderValue] = useState<number>(0);
-  const [scrollLock, setScrollLock] = useState(false);
-  const slideWidth = 72; //60;
-
   useEffect(() => {
     const companiesName = ['Nilkamal', 'Godrej', 'IKEA'];
     setSearchedCompanies(companiesName);
   }, []);
-
-  useEffect(() => {
-    console.log('sliderValue', sliderValue);
-  }, [sliderValue]);
-
-  const setScrollIndex = useCallback(
-    (eventVal: NativeSyntheticEvent<NativeScrollEvent>) => {
-      const offsetX = eventVal.nativeEvent.contentOffset.x;
-
-      if (!scrollLock) {
-        setScrollLock(true); // Lock scroll update until momentum ends
-        const direction = offsetX > 0 ? 'left' : 'right';
-
-        if (direction === 'right') {
-          setSliderValue(sliderValue + slideWidth);
-        } else if (direction === 'left') {
-          setSliderValue(sliderValue - slideWidth);
-        }
-      }
-    },
-    [scrollLock, sliderValue],
-  );
-
-  // Unlock after scroll ends
-  const handleScrollEnd = () => {
-    setScrollLock(false);
-  };
 
   return (
     <Modal

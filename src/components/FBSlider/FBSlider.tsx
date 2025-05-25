@@ -17,17 +17,14 @@ const FBSlider = () => {
       onPanResponderMove: (_, gestureState) => {
         const newX = Math.max(
           0,
-          Math.min(
-            lastPosition + gestureState.dx,
-            sliderWidth - thumbSize - 20,
-          ),
+          Math.min(lastPosition + gestureState.dx, sliderWidth - thumbSize - 5),
         );
         translateX.setValue(newX);
       },
       onPanResponderRelease: (_, gestureState) => {
         lastPosition = Math.max(
           0,
-          Math.min(lastPosition + gestureState.dx, sliderWidth - thumbSize),
+          Math.min(lastPosition + gestureState.dx, sliderWidth - thumbSize - 5),
         );
       },
     }),
