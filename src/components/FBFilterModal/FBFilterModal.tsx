@@ -318,7 +318,9 @@ const FBFilterModal = (props: any) => {
                     height: selectedRate === '1.0' ? 50 : 30,
                     borderRadius: selectedRate === '1.0' ? 10 : 0,
                     backgroundColor:
-                      selectedRate === '1.0' ? colors?.darkBluegrey4 : 'none',
+                      selectedRate === '1.0'
+                        ? colors?.darkBluegrey4
+                        : colors?.greyColorLight2,
                   }}>
                   <Text
                     style={{
@@ -347,7 +349,9 @@ const FBFilterModal = (props: any) => {
                     borderColor: colors?.greyishBlue,
                     borderRadius: selectedRate === '2.0' ? 10 : 0,
                     backgroundColor:
-                      selectedRate === '2.0' ? colors?.darkBluegrey4 : 'none',
+                      selectedRate === '2.0'
+                        ? colors?.darkBluegrey4
+                        : colors?.greyColorLight2,
                   }}>
                   <Text
                     style={{
@@ -376,7 +380,9 @@ const FBFilterModal = (props: any) => {
                     borderColor: colors?.greyishBlue,
                     borderRadius: selectedRate === '3.0' ? 10 : 0,
                     backgroundColor:
-                      selectedRate === '3.0' ? colors?.darkBluegrey4 : 'none',
+                      selectedRate === '3.0'
+                        ? colors?.darkBluegrey4
+                        : colors?.greyColorLight2,
                   }}>
                   <Text
                     style={{
@@ -405,7 +411,9 @@ const FBFilterModal = (props: any) => {
                     borderColor: colors?.greyishBlue,
                     borderRadius: selectedRate === '4.0' ? 10 : 0,
                     backgroundColor:
-                      selectedRate === '4.0' ? colors?.darkBluegrey4 : 'none',
+                      selectedRate === '4.0'
+                        ? colors?.darkBluegrey4
+                        : colors?.greyColorLight2,
                   }}>
                   <Text
                     style={{
@@ -433,7 +441,9 @@ const FBFilterModal = (props: any) => {
                     borderColor: colors?.greyishBlue,
                     borderRadius: selectedRate === '5.0' ? 10 : 0,
                     backgroundColor:
-                      selectedRate === '5.0' ? colors?.darkBluegrey4 : 'none',
+                      selectedRate === '5.0'
+                        ? colors?.darkBluegrey4
+                        : colors?.greyColorLight2,
                   }}>
                   <Text
                     style={{
