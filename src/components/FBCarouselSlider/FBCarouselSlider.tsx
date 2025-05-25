@@ -19,6 +19,7 @@ const FBCarouselSlider = (props: FBCarouselSliderProps) => {
   const {carouselOfferData} = props;
   const carousalRef = useRef<FlatList>(null);
   const [carousalIndex, setCarousalIndex] = useState(0);
+  const [scrollAttempts, setScrollAttempts] = useState(0);
 
   const setScrollIndex = (
     eventVal: NativeSyntheticEvent<NativeScrollEvent>,
@@ -27,6 +28,31 @@ const FBCarouselSlider = (props: FBCarouselSliderProps) => {
     const index = Math.round(offsetX / 360);
     setCarousalIndex(index);
   };
+
+  const handleLoopingScroll = (
+    event: NativeSyntheticEvent<NativeScrollEvent>,
+  ) => {
+    /*
+   NOTE:  Method to find current index of scroll
+    Math.floor(
+      event.nativeEvent.contentOffset.x /event.nativeEvent.layoutMeasurement.width,
+    );
+    */
+
+    let tempAttemptValue;
+    if (carousalIndex === 0) {
+      tempAttemptValue = 0;
+      setScrollAttempts(tempAttemptValue);
+    } else {
+      tempAttemptValue = scrollAttempts + 1;
+      setScrollAttempts(tempAttemptValue);
+    }
+
+    if (tempAttemptValue > carouselOfferData.length - 1) {
+      carousalRef.current?.scrollToIndex({index: 0, animated: true});
+    }
+  };
+
   return (
     <View>
       <FlatList
@@ -38,6 +64,7 @@ const FBCarouselSlider = (props: FBCarouselSliderProps) => {
         onScroll={event => {
           setScrollIndex(event);
         }}
+        onMomentumScrollEnd={handleLoopingScroll}
         keyExtractor={item => item?.id}
         renderItem={({item, index}) => {
           return (
