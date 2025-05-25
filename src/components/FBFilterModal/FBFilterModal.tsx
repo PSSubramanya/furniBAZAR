@@ -445,7 +445,6 @@ const FBFilterModal = (props: any) => {
                       fontFamily: fontFamily?.primaryFont?.semiBold,
                       fontSize: 12,
                       position: 'absolute',
-                      //   left: 5,
                     }}>
                     2k
                   </Text>
@@ -454,7 +453,7 @@ const FBFilterModal = (props: any) => {
                       fontFamily: fontFamily?.primaryFont?.semiBold,
                       fontSize: 12,
                       position: 'absolute',
-                      left: 72, //65
+                      left: 65,
                     }}>
                     5k
                   </Text>
@@ -463,7 +462,7 @@ const FBFilterModal = (props: any) => {
                       fontFamily: fontFamily?.primaryFont?.semiBold,
                       fontSize: 12,
                       position: 'absolute',
-                      left: 144, //137, //125,
+                      left: 130,
                     }}>
                     10k
                   </Text>
@@ -472,7 +471,7 @@ const FBFilterModal = (props: any) => {
                       fontFamily: fontFamily?.primaryFont?.semiBold,
                       fontSize: 12,
                       position: 'absolute',
-                      left: 216, //185,
+                      left: 195,
                     }}>
                     20k
                   </Text>
@@ -481,7 +480,7 @@ const FBFilterModal = (props: any) => {
                       fontFamily: fontFamily?.primaryFont?.semiBold,
                       fontSize: 12,
                       position: 'absolute',
-                      left: 290, //245,
+                      left: 260,
                     }}>
                     50k
                   </Text>
@@ -490,7 +489,7 @@ const FBFilterModal = (props: any) => {
                       fontFamily: fontFamily?.primaryFont?.semiBold,
                       fontSize: 12,
                       position: 'absolute',
-                      left: 350, //365, //305,
+                      left: 325,
                     }}>
                     100k
                   </Text>
