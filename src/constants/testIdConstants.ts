@@ -9,6 +9,7 @@ const testID = {
   buttonText: 'buttonText',
   categoryIcon: 'categoryIcon',
   filterIcon: 'filterIcon',
+  filteredCategoryIcon: 'filteredCategoryIcon',
   productFilterIcon: 'productFilterIcon',
   saveIcon: 'saveIcon',
   searchIcon: 'searchIcon',

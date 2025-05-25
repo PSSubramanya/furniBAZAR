@@ -28,7 +28,8 @@ const FBPagination = (props: FBPaginationProps) => {
                   borderRadius: 10,
                   alignItems: 'center',
                   justifyContent: 'center',
-                }}>
+                }}
+                key={ind}>
                 <Text
                   style={{
                     color: colors?.white,
@@ -49,6 +50,7 @@ const FBPagination = (props: FBPaginationProps) => {
                   marginRight: 5,
                   borderRadius: 10,
                 }}
+                key={ind}
               />
             )}
           </>

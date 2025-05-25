@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect, useRef, useCallback} from 'react';
 import {
   View,
   Text,
@@ -6,6 +6,8 @@ import {
   ScrollView,
   Image,
   TextInput,
+  NativeSyntheticEvent,
+  NativeScrollEvent,
 } from 'react-native';
 import Modal from 'react-native-modal';
 import colors from '../../constants/colors';
@@ -20,6 +22,25 @@ const FBFilterModal = (props: any) => {
     modalHeightPercentage = '90%',
     modalColor = colors?.white,
   } = props;
+
+  //   const priceRanges = [
+  //     {range: '2k - 5k', lowerRange: 2000, higherRange: 5000},
+  //     {range: '5k - 10k', lowerRange: 5000, higherRange: 10000},
+  //     {range: '10k - 20k', lowerRange: 10000, higherRange: 20000},
+  //     {range: '20k - 50k', lowerRange: 20000, higherRange: 50000},
+  //     {range: '50k - 100k', lowerRange: 50000, higherRange: 100000},
+  //     {range: '100k - 200k', lowerRange: 100000, higherRange: 200000},
+  //   ];
+
+  const priceRanges = [
+    {value: '2000', rangeValue: '2k'},
+    {value: '5000', rangeValue: '5k'},
+    {value: '10000', rangeValue: '10k'},
+    {value: '20000', rangeValue: '20k'},
+    {value: '50000', rangeValue: '50k'},
+    {value: '100000', rangeValue: '100k'},
+  ];
+
   const serchRef = useRef<TextInput>(null);
   const [companyNameSearch, setCompanyNameSearch] = useState('');
   const [isFocused, setIsFocused] = useState(false);
@@ -28,10 +49,42 @@ const FBFilterModal = (props: any) => {
 
   const [selectedRate, setSelectedRate] = useState<string>('5.0');
 
+  const [sliderValue, setSliderValue] = useState<number>(0);
+  const [scrollLock, setScrollLock] = useState(false);
+  const slideWidth = 72; //60;
+
   useEffect(() => {
     const companiesName = ['Nilkamal', 'Godrej', 'IKEA'];
     setSearchedCompanies(companiesName);
   }, []);
+
+  useEffect(() => {
+    console.log('sliderValue', sliderValue);
+  }, [sliderValue]);
+
+  const setScrollIndex = useCallback(
+    (eventVal: NativeSyntheticEvent<NativeScrollEvent>) => {
+      const offsetX = eventVal.nativeEvent.contentOffset.x;
+
+      if (!scrollLock) {
+        setScrollLock(true); // Lock scroll update until momentum ends
+        const direction = offsetX > 0 ? 'left' : 'right';
+
+        if (direction === 'right') {
+          setSliderValue(sliderValue + slideWidth);
+        } else if (direction === 'left') {
+          setSliderValue(sliderValue - slideWidth);
+        }
+      }
+    },
+    [scrollLock, sliderValue],
+  );
+
+  // Unlock after scroll ends
+  const handleScrollEnd = () => {
+    setScrollLock(false);
+  };
+
   return (
     <Modal
       isVisible={modalVisible}
@@ -48,7 +101,7 @@ const FBFilterModal = (props: any) => {
           backgroundColor: modalColor,
           justifyContent: 'space-between',
         }}>
-        <ScrollView>
+        <ScrollView key={'index'}>
           <View>
             <View
               style={{
@@ -84,6 +137,53 @@ const FBFilterModal = (props: any) => {
                   </Text>
                 </TouchableOpacity>
               </View>
+            </View>
+            <Text
+              style={{
+                marginTop: 10,
+                marginLeft: 12,
+                fontFamily: fontFamily?.primaryFont?.regular,
+              }}>
+              Selected Category
+            </Text>
+            <View
+              style={{
+                flexDirection: 'row',
+                marginVertical: 10,
+                alignItems: 'center',
+              }}>
+              <View
+                style={{
+                  marginLeft: 10,
+                  backgroundColor: colors?.darkBluegrey4,
+                  height: 40,
+                  width: 40,
+                  borderRadius: 6,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}>
+                <Image
+                  source={imagePath?.armChairIconColored}
+                  height={30}
+                  width={30}
+                  style={{
+                    height: 30,
+                    width: 30,
+                    alignSelf: 'center',
+                  }}
+                  testID={testID?.filteredCategoryIcon}
+                />
+              </View>
+              <Text
+                style={{
+                  flex: 1,
+                  marginLeft: 12,
+                  fontFamily: fontFamily?.primaryFont?.semiBold,
+                  fontSize: 16,
+                  textTransform: 'uppercase',
+                }}>
+                Arm Chair
+              </Text>
             </View>
             <Text
               style={{
@@ -353,6 +453,119 @@ const FBFilterModal = (props: any) => {
                 </View>
               </TouchableOpacity>
             </View>
+
+            <Text
+              style={{
+                marginTop: 40,
+                marginLeft: 12,
+                fontFamily: fontFamily?.primaryFont?.regular,
+              }}>
+              Price range
+            </Text>
+
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'center',
+              }}>
+              <View>
+                <ScrollView
+                  style={{
+                    height: 20,
+                    marginTop: 15,
+                    zIndex: 1,
+                  }}
+                  scrollEnabled={true}
+                  horizontal={true}
+                  onScroll={ev => {
+                    setScrollIndex(ev);
+                  }}
+                  onMomentumScrollEnd={handleScrollEnd}
+                  scrollEventThrottle={30} // Smooth performance
+                  showsHorizontalScrollIndicator={false}>
+                  <View
+                    style={{
+                      backgroundColor: colors?.darkBluegrey4,
+                      height: 20,
+                      width: 20,
+                      borderRadius: 10,
+                      marginLeft: 5 + sliderValue,
+                    }}
+                  />
+                </ScrollView>
+                <View
+                  style={{
+                    height: 3,
+                    backgroundColor: colors?.borderColor,
+                    marginHorizontal: 10,
+                    marginTop: -10,
+                    width: 360,
+                  }}
+                />
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    // backgroundColor: 'orange',
+                    marginTop: 20,
+                    height: 40,
+                  }}>
+                  <Text
+                    style={{
+                      fontFamily: fontFamily?.primaryFont?.semiBold,
+                      fontSize: 12,
+                      position: 'absolute',
+                      left: 5,
+                    }}>
+                    2k
+                  </Text>
+                  <Text
+                    style={{
+                      fontFamily: fontFamily?.primaryFont?.semiBold,
+                      fontSize: 12,
+                      position: 'absolute',
+                      left: 77, //65
+                    }}>
+                    5k
+                  </Text>
+                  <Text
+                    style={{
+                      fontFamily: fontFamily?.primaryFont?.semiBold,
+                      fontSize: 12,
+                      position: 'absolute',
+                      left: 149, //137, //125,
+                    }}>
+                    10k
+                  </Text>
+                  <Text
+                    style={{
+                      fontFamily: fontFamily?.primaryFont?.semiBold,
+                      fontSize: 12,
+                      position: 'absolute',
+                      left: 221, //185,
+                    }}>
+                    20k
+                  </Text>
+                  <Text
+                    style={{
+                      fontFamily: fontFamily?.primaryFont?.semiBold,
+                      fontSize: 12,
+                      position: 'absolute',
+                      left: 293, //245,
+                    }}>
+                    50k
+                  </Text>
+                  <Text
+                    style={{
+                      fontFamily: fontFamily?.primaryFont?.semiBold,
+                      fontSize: 12,
+                      position: 'absolute',
+                      left: 350, //365, //305,
+                    }}>
+                    100k
+                  </Text>
+                </View>
+              </View>
+            </View>
           </View>
         </ScrollView>
 
@@ -416,5 +629,4 @@ const FBFilterModal = (props: any) => {
   );
 };
 export default FBFilterModal;
-// price - 5 selectable radio button,
 // type of products - auto filled from home screen etc.
