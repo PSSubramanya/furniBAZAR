@@ -29,23 +29,48 @@ const FBCarouselSlider = (props: FBCarouselSliderProps) => {
   ) => {
     const offsetX = eventVal.nativeEvent.contentOffset.x;
     const index = Math.round((offsetX / width) * 0.92);
+    // const index = Math.round(offsetX / 360);
     setCarousalIndex(index);
   };
 
   useEffect(() => {
-    let tempAttemptValue;
-    if (carousalIndex === 0) {
-      tempAttemptValue = 0;
-      setScrollAttempts(tempAttemptValue);
-    } else {
-      tempAttemptValue = scrollAttempts + 1;
-      setScrollAttempts(tempAttemptValue);
-    }
+    // let tempAttemptValue;
+    // if (carousalIndex === 0) {
+    //   tempAttemptValue = 0;
+    //   setScrollAttempts(tempAttemptValue);
+    // } else {
+    //   tempAttemptValue = scrollAttempts + 1;
+    //   setScrollAttempts(tempAttemptValue);
+    // }
   }, [carousalIndex]);
+
+  useEffect(() => {
+    console.log(
+      'Scroll index logs 2: ',
+      scrollAttempts,
+      carouselOfferData.length,
+    );
+
+    // if (scrollAttempts > carouselOfferData.length - 1) {
+    //   carousalRef.current?.scrollToIndex({index: 0, animated: true});
+    // }
+  }, [scrollAttempts]);
 
   const handleLoopingScroll = (
     event: NativeSyntheticEvent<NativeScrollEvent>,
   ) => {
+    /*
+   NOTE:  Method to find current index of scroll
+    const indexVal=Math.floor(
+      event.nativeEvent.contentOffset.x /event.nativeEvent.layoutMeasurement.width,
+    );
+    */
+
+    const indexVal = Math.ceil(
+      event.nativeEvent.contentOffset.x /
+        event.nativeEvent.layoutMeasurement.width,
+    );
+
     let tempAttemptValue;
     if (carousalIndex === 0) {
       tempAttemptValue = 0;
@@ -54,6 +79,21 @@ const FBCarouselSlider = (props: FBCarouselSliderProps) => {
       tempAttemptValue = scrollAttempts + 1;
       setScrollAttempts(tempAttemptValue);
     }
+
+    console.log(
+      'Scroll index logs: ',
+      tempAttemptValue,
+      carouselOfferData?.length,
+      indexVal,
+      carouselOfferData.length,
+    );
+    // if (tempAttemptValue > carouselOfferData.length - 1) {
+    //   carousalRef.current?.scrollToIndex({index: 0, animated: true});
+    // }
+
+    // if (indexVal > carouselOfferData.length) {
+    //   carousalRef.current?.scrollToIndex({index: 0, animated: true});
+    // }
   };
 
   return (
@@ -68,17 +108,23 @@ const FBCarouselSlider = (props: FBCarouselSliderProps) => {
           setScrollIndex(event);
         }}
         onMomentumScrollEnd={handleLoopingScroll}
+        // onMomentumScrollEnd={setScrollIndex}
+        // onEndReached={() => {
+        //   carousalRef.current?.scrollToIndex({index: 0, animated: true});
+        // }}
         onScrollEndDrag={() => {
-          if (scrollAttempts > carouselOfferData.length) {
+          console.log('scrollAttempts', scrollAttempts);
+          if (scrollAttempts > carouselOfferData.length - 1) {
             carousalRef.current?.scrollToIndex({index: 0, animated: true});
           }
         }}
+        // setScrollIndex
         keyExtractor={item => item?.id}
         renderItem={({item, index}) => {
           return (
             <View
               style={{
-                width: width * 0.92,
+                width: width * 0.92, //410, //360,
                 height: 200,
                 backgroundColor: colors?.appBackgroundColor,
                 alignSelf: 'center',
