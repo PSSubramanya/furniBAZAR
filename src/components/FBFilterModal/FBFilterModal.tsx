@@ -21,16 +21,9 @@ const FBFilterModal = (props: any) => {
     setModalVisible,
     modalHeightPercentage = '90%',
     modalColor = colors?.white,
+    selectedProductIcon,
+    selectedProductName,
   } = props;
-
-  //   const priceRanges = [
-  //     {range: '2k - 5k', lowerRange: 2000, higherRange: 5000},
-  //     {range: '5k - 10k', lowerRange: 5000, higherRange: 10000},
-  //     {range: '10k - 20k', lowerRange: 10000, higherRange: 20000},
-  //     {range: '20k - 50k', lowerRange: 20000, higherRange: 50000},
-  //     {range: '50k - 100k', lowerRange: 50000, higherRange: 100000},
-  //     {range: '100k - 200k', lowerRange: 100000, higherRange: 200000},
-  //   ];
 
   const priceRanges = [
     {value: '2000', rangeValue: '2k'},
@@ -163,7 +156,7 @@ const FBFilterModal = (props: any) => {
                   justifyContent: 'center',
                 }}>
                 <Image
-                  source={imagePath?.armChairIconColored}
+                  source={selectedProductIcon}
                   height={30}
                   width={30}
                   style={{
@@ -182,7 +175,7 @@ const FBFilterModal = (props: any) => {
                   fontSize: 16,
                   textTransform: 'uppercase',
                 }}>
-                Arm Chair
+                {selectedProductName}
               </Text>
             </View>
             <Text
@@ -322,7 +315,7 @@ const FBFilterModal = (props: any) => {
                     borderRightWidth: 1.5,
                     borderColor: colors?.greyishBlue,
                     width: selectedRate === '1.0' ? 80 : 60,
-                    height: selectedRate === '1.0' ? 50 : 40,
+                    height: selectedRate === '1.0' ? 50 : 30,
                     borderRadius: selectedRate === '1.0' ? 10 : 0,
                     backgroundColor:
                       selectedRate === '1.0' ? colors?.darkBluegrey4 : 'none',
@@ -350,7 +343,7 @@ const FBFilterModal = (props: any) => {
                     justifyContent: 'center',
                     borderRightWidth: 1.5,
                     width: selectedRate === '2.0' ? 80 : 60,
-                    height: selectedRate === '2.0' ? 50 : 40,
+                    height: selectedRate === '2.0' ? 50 : 30,
                     borderColor: colors?.greyishBlue,
                     borderRadius: selectedRate === '2.0' ? 10 : 0,
                     backgroundColor:
@@ -379,7 +372,7 @@ const FBFilterModal = (props: any) => {
                     justifyContent: 'center',
                     borderRightWidth: 1.5,
                     width: selectedRate === '3.0' ? 80 : 60,
-                    height: selectedRate === '3.0' ? 50 : 40,
+                    height: selectedRate === '3.0' ? 50 : 30,
                     borderColor: colors?.greyishBlue,
                     borderRadius: selectedRate === '3.0' ? 10 : 0,
                     backgroundColor:
@@ -408,7 +401,7 @@ const FBFilterModal = (props: any) => {
                     justifyContent: 'center',
                     borderRightWidth: 1.5,
                     width: selectedRate === '4.0' ? 80 : 60,
-                    height: selectedRate === '4.0' ? 50 : 40,
+                    height: selectedRate === '4.0' ? 50 : 30,
                     borderColor: colors?.greyishBlue,
                     borderRadius: selectedRate === '4.0' ? 10 : 0,
                     backgroundColor:
@@ -436,7 +429,7 @@ const FBFilterModal = (props: any) => {
                     alignItems: 'center',
                     justifyContent: 'center',
                     width: selectedRate === '5.0' ? 80 : 60,
-                    height: selectedRate === '5.0' ? 50 : 40,
+                    height: selectedRate === '5.0' ? 50 : 30,
                     borderColor: colors?.greyishBlue,
                     borderRadius: selectedRate === '5.0' ? 10 : 0,
                     backgroundColor:
@@ -619,7 +612,7 @@ const FBFilterModal = (props: any) => {
                   fontFamily: fontFamily?.primaryFont?.semiBold,
                   fontSize: 16,
                 }}>
-                SAVE
+                APPLY
               </Text>
             </View>
           </TouchableOpacity>

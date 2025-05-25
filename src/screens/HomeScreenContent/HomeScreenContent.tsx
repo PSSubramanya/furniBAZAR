@@ -17,6 +17,13 @@ import fontFamily from '../../constants/fontFamily';
 import FBCarouselSlider from '../../components/FBCarouselSlider/FBCarouselSlider';
 import FBFilterModal from '../../components/FBFilterModal/FBFilterModal';
 
+interface HomeScreenContentProps {
+  id: string;
+  name: string;
+  image: string;
+  selectedImage: string;
+}
+
 const HomeScreenContent = (props: any) => {
   const {navigation} = props;
 
@@ -181,6 +188,8 @@ const HomeScreenContent = (props: any) => {
   ];
 
   const [selectedCategroyIndex, setSelectedCategroyIndex] = useState<number>(0);
+  const [selectedCategroyData, setSelectedCategroyData] =
+    useState<HomeScreenContentProps>(furnitureCategories[0]);
   const [categorySearchText, setCategorySearchText] = useState<string>('');
   const [filterSelect, setFilterSelect] = useState<boolean>(false);
   const [productsList, setProductsList] = useState<ProductListProps[]>([]);
@@ -343,6 +352,7 @@ const HomeScreenContent = (props: any) => {
                 <TouchableOpacity
                   onPress={() => {
                     setSelectedCategroyIndex(index);
+                    setSelectedCategroyData(item);
                   }}>
                   <View
                     style={[
@@ -351,7 +361,8 @@ const HomeScreenContent = (props: any) => {
                     ]}>
                     <Image
                       source={
-                        index === selectedCategroyIndex
+                        JSON?.stringify(item) ===
+                        JSON?.stringify(selectedCategroyData)
                           ? item?.selectedImage
                           : item?.image
                       }
@@ -502,6 +513,8 @@ const HomeScreenContent = (props: any) => {
       <FBFilterModal
         modalVisible={modalVisible}
         setModalVisible={setModalVisible}
+        selectedProductIcon={selectedCategroyData?.selectedImage}
+        selectedProductName={selectedCategroyData?.name}
       />
     </View>
   );
