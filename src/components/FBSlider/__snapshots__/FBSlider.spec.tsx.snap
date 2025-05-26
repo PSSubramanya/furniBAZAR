@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render FBSlider correctly render the snapshot of the component FBSlider 1`] = `
+<View
+  style={
+    {
+      "flexDirection": "row",
+      "justifyContent": "center",
+      "marginBottom": 10,
+    }
+  }
+>
+  <View
+    style={
+      {
+        "backgroundColor": "#8baeb3",
+        "borderRadius": 20,
+        "height": 3,
+        "justifyContent": "center",
+        "paddingHorizontal": 10,
+        "width": 720,
+      }
+    }
+  >
+    <View
+      collapsable={false}
+      onMoveShouldSetResponder={[Function]}
+      onMoveShouldSetResponderCapture={[Function]}
+      onResponderEnd={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderReject={[Function]}
+      onResponderRelease={[Function]}
+      onResponderStart={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      onStartShouldSetResponderCapture={[Function]}
+      style={
+        {
+          "backgroundColor": "#4d4867",
+          "borderRadius": 10,
+          "height": 20,
+          "left": 0,
+          "position": "absolute",
+          "width": 20,
+        }
+      }
+    />
+  </View>
+</View>
+`;
