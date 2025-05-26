@@ -16,6 +16,11 @@ import {ProductListProps} from './typesFile';
 import fontFamily from '../../constants/fontFamily';
 import FBCarouselSlider from '../../components/FBCarouselSlider/FBCarouselSlider';
 import FBFilterModal from '../../components/FBFilterModal/FBFilterModal';
+import {
+  furnitureCategories,
+  carouselOfferData,
+  armChairsList,
+} from '../../utils/mockData';
 
 interface HomeScreenContentProps {
   id: string;
@@ -26,166 +31,6 @@ interface HomeScreenContentProps {
 
 const HomeScreenContent = (props: any) => {
   const {navigation} = props;
-
-  const furnitureCategories = [
-    {
-      id: '0',
-      name: 'Arm Chair',
-      image: imagePath?.armChairIcon,
-      selectedImage: imagePath?.armChairIconColored,
-    },
-    {
-      id: '1',
-      name: 'Table Light',
-      image: imagePath?.tableLampIcon,
-      selectedImage: imagePath?.tableLampIconColored,
-    },
-    {
-      id: '2',
-      name: 'Sofa',
-      image: imagePath?.sofaIcon,
-      selectedImage: imagePath?.sofaIconColored,
-    },
-    {
-      id: '3',
-      name: 'Dressing Table',
-      image: imagePath?.dressingTableIcon,
-      selectedImage: imagePath?.dressingTableIconColored,
-    },
-    {
-      id: '4',
-      name: 'Bed',
-      image: imagePath?.bedIcon,
-      selectedImage: imagePath?.bedIconColored,
-    },
-    {
-      id: '5',
-      name: 'Bedside Table',
-      image: imagePath?.bedsideTable,
-      selectedImage: imagePath?.bedsideTableColored,
-    },
-    {
-      id: '6',
-      name: 'Wardrobe',
-      image: imagePath?.wardrobeIcon,
-      selectedImage: imagePath?.wardrobeIconColored,
-    },
-  ];
-
-  const carouselOfferData = [
-    {
-      id: '0',
-      header: "Today's IKEA special !",
-      description: 'Get discount on every order. Valid only for today',
-      discount: '25%',
-      coverImage: imagePath?.furnitureImages2,
-    },
-    {
-      id: '1',
-      header: 'NEELKAMAL Sunday !',
-      description: 'A flat discount on every order for this month.',
-      discount: '16%',
-      coverImage: imagePath?.lightStandImage1,
-    },
-    {
-      id: '2',
-      header: 'Godrej Maha Sale !',
-      description: 'Discount sale on wardrobes this festival.',
-      discount: '20%',
-      coverImage: imagePath?.wardrobeImage,
-    },
-  ];
-
-  const armChairsList = [
-    {
-      id: '0',
-      name: 'Yellow Ox Chair',
-      image: imagePath?.armChair1,
-      companyName: 'MONICA FORSTER',
-      rating: '4.6',
-      price: '16,240.00',
-    },
-    {
-      id: '1',
-      name: 'Cream Sofa',
-      image: imagePath?.armChair2,
-      companyName: 'ANDERSSEN VOLL',
-      rating: '4.2',
-      price: '4,240.00',
-    },
-    {
-      id: '2',
-      name: 'Red Throne',
-      image: imagePath?.armChair3,
-      companyName: 'ANDERSSEN VOLL',
-      rating: '4.8',
-      price: '20,240.00',
-    },
-    {
-      id: '3',
-      name: 'Leather Brown Sofa',
-      image: imagePath?.armChair4,
-      companyName: 'ANDERSSEN VOLL',
-      rating: '4.8',
-      price: '20,240.00',
-    },
-    {
-      id: '4',
-      name: 'Leather Sofa',
-      image: imagePath?.armChair5,
-      companyName: 'IKEA',
-      rating: '4.6',
-      price: '33,240.00',
-    },
-    {
-      id: '5',
-      name: 'Dark Chocoloate Sofa',
-      image: imagePath?.armChair6,
-      companyName: 'GODREJ',
-      rating: '4.0',
-      price: '8,240.00',
-    },
-    {
-      id: '6',
-      name: 'Wider Sofa',
-      image: imagePath?.armChair7,
-      companyName: 'ANDERSSEN VOLL',
-      rating: '4.2',
-      price: '13,240.00',
-    },
-    {
-      id: '7',
-      name: 'Lounge Chair',
-      image: imagePath?.armChair8,
-      companyName: 'IKEA',
-      rating: '4.0',
-      price: '6,240.00',
-    },
-    {
-      id: '8',
-      name: 'Savanna Easy Chair',
-      image: imagePath?.armChair9,
-      companyName: 'NILKAMAL',
-      rating: '4.8',
-      price: '20,240.00',
-    },
-    {
-      id: '9',
-      name: 'Savanna Easy Blue Chair',
-      image: imagePath?.armChair10,
-      companyName: 'NILKAMAL',
-      rating: '4.9',
-      price: '22,240.00',
-    },
-    {
-      id: '10',
-      name: 'Savanna Easy Grey Chair',
-      image: imagePath?.armChair11,
-      companyName: 'NILKAMAL',
-      rating: '4.8',
-      price: '20,240.00',
-    },
-  ];
 
   const [selectedCategroyIndex, setSelectedCategroyIndex] = useState<number>(0);
   const [selectedCategroyData, setSelectedCategroyData] =
