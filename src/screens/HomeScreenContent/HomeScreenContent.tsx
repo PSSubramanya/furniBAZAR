@@ -372,4 +372,6 @@ export default HomeScreenContent;
  * add to cart functionality add
  * filter will have more options to filter to options here also, like price, company, rating etc.
  * This filter with extra filters should be in search and products page also
+ * Modularise the entire project, screens and components into reusable functions and components
+ * Test cases for all components and screens
  */
