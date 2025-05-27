@@ -9,6 +9,7 @@ exports[`render FBSlider correctly render the snapshot of the component FBSlider
       "marginBottom": 10,
     }
   }
+  testID="sliderView"
 >
   <View
     style={
@@ -21,6 +22,7 @@ exports[`render FBSlider correctly render the snapshot of the component FBSlider
         "width": 720,
       }
     }
+    testID="sliderLine"
   >
     <View
       collapsable={false}
@@ -46,6 +48,7 @@ exports[`render FBSlider correctly render the snapshot of the component FBSlider
           "width": 20,
         }
       }
+      testID="sliderDot"
     />
   </View>
 </View>

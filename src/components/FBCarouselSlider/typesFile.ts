@@ -1,11 +1,12 @@
 import React, {Dispatch, RefObject, SetStateAction} from 'react';
+import {ImageSourcePropType} from 'react-native';
 
 export interface AdCarouselDataProps {
-  id: string;
+  id: number;
   header: string;
   description: string;
   discount: string;
-  coverImage: string;
+  coverImage: ImageSourcePropType;
 }
 
 export interface FBCarouselSliderProps {

@@ -1,4 +1,4 @@
-import {ViewStyle} from 'react-native';
+import {ImageSourcePropType, ViewStyle} from 'react-native';
 
 export interface ThemeStyleProps {
   filterSelect: boolean;
@@ -10,7 +10,7 @@ export interface HomeScreenContentStyleProps {
 export interface ProductListProps {
   id: string;
   name: string;
-  image: string;
+  image: ImageSourcePropType;
   companyName: string;
   rating: string;
   price: string;

@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render FBPagination correctly render the snapshot of the component FBPagination 1`] = `
+<View
+  style={
+    {
+      "alignItems": "center",
+      "flexDirection": "row",
+      "height": 10,
+      "justifyContent": "center",
+      "marginTop": 10,
+    }
+  }
+  testID="paginationView"
+>
+  <View
+    style={
+      {
+        "alignItems": "center",
+        "backgroundColor": "#4d4867",
+        "borderRadius": 10,
+        "height": 16,
+        "justifyContent": "center",
+        "marginRight": 5,
+      }
+    }
+    testID="selectedDot"
+  >
+    <Text
+      style={
+        {
+          "color": "#ffffff",
+          "fontFamily": "Jost-Bold",
+          "fontSize": 8,
+          "paddingLeft": 5,
+          "paddingRight": 5,
+        }
+      }
+      testID="selectedDotText"
+    >
+      1 of 1
+    </Text>
+  </View>
+</View>
+`;

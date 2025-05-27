@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   TextInput,
   Animated,
+  ImageSourcePropType,
 } from 'react-native';
 import {styles, themeStyle} from './styles';
 import imagePath from '../../constants/imagePath';
@@ -25,8 +26,8 @@ import {
 interface HomeScreenContentProps {
   id: string;
   name: string;
-  image: string;
-  selectedImage: string;
+  image: ImageSourcePropType;
+  selectedImage: ImageSourcePropType;
 }
 
 const HomeScreenContent = (props: any) => {
@@ -367,6 +368,7 @@ const HomeScreenContent = (props: any) => {
 export default HomeScreenContent;
 
 /**
+ * NOTE:
  * Story book implementation
  * View all takes to another page/ products page (Similar to search results page) with grid view
  * add to cart functionality add

@@ -47,21 +47,21 @@ export const furnitureCategories = [
 
 export const carouselOfferData = [
   {
-    id: '0',
+    id: 0,
     header: "Today's IKEA special !",
     description: 'Get discount on every order. Valid only for today',
     discount: '25%',
     coverImage: imagePath?.furnitureImages2,
   },
   {
-    id: '1',
+    id: 1,
     header: 'NEELKAMAL Sunday !',
     description: 'A flat discount on every order for this month.',
     discount: '16%',
     coverImage: imagePath?.lightStandImage1,
   },
   {
-    id: '2',
+    id: 2,
     header: 'Godrej Maha Sale !',
     description: 'Discount sale on wardrobes this festival.',
     discount: '20%',

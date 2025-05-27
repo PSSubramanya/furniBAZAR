@@ -13,8 +13,9 @@ import fontFamily from '../../constants/fontFamily';
 import imagePath from '../../constants/imagePath';
 import testID from '../../constants/testIdConstants';
 import FBSlider from '../FBSlider/FBSlider';
+import {FBFilterModalProps} from './typesFile';
 
-const FBFilterModal = (props: any) => {
+const FBFilterModal = (props: FBFilterModalProps) => {
   const {
     modalVisible,
     setModalVisible,
