@@ -8,6 +8,14 @@ const testID = {
   buttonView: 'buttonView',
   buttonText: 'buttonText',
   categoryIcon: 'categoryIcon',
+  carousalSlider: {
+    view: 'carousalSlider',
+    header: 'carousalSliderHeader',
+    image: 'carousalSliderImage',
+    description: 'carousalSliderDescription',
+    discountView: 'carousalSliderDiscountView',
+    discountValue: 'carousalSliderDiscountValue',
+  },
   filterIcon: 'filterIcon',
   filteredCategoryIcon: 'filteredCategoryIcon',
   pagination: {

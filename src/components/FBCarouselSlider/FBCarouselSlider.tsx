@@ -81,7 +81,8 @@ const FBCarouselSlider = (props: FBCarouselSliderProps) => {
                 marginTop: 20,
                 borderRadius: 15,
                 marginHorizontal: 16,
-              }}>
+              }}
+              testID={testID?.carousalSlider?.view + index}>
               <Text
                 style={{
                   textAlign: 'right',
@@ -90,7 +91,8 @@ const FBCarouselSlider = (props: FBCarouselSliderProps) => {
                   zIndex: 1,
                   paddingHorizontal: 8,
                   marginTop: 10,
-                }}>
+                }}
+                testID={testID?.carousalSlider?.header + index}>
                 {item?.header}
               </Text>
               <View
@@ -109,6 +111,7 @@ const FBCarouselSlider = (props: FBCarouselSliderProps) => {
                     marginTop: -5,
                   }}
                   resizeMode="contain"
+                  testID={testID?.carousalSlider?.image + index}
                 />
                 <View>
                   <Text
@@ -120,7 +123,8 @@ const FBCarouselSlider = (props: FBCarouselSliderProps) => {
                       fontSize: 12,
                       zIndex: 1,
                       paddingHorizontal: 8,
-                    }}>
+                    }}
+                    testID={testID?.carousalSlider?.description + index}>
                     {item?.description}
                   </Text>
                   <View
@@ -130,7 +134,8 @@ const FBCarouselSlider = (props: FBCarouselSliderProps) => {
                       borderRadius: 10,
                       backgroundColor: colors?.darkBluegrey4,
                       paddingVertical: 10,
-                    }}>
+                    }}
+                    testID={testID?.carousalSlider?.discountView + index}>
                     <Image
                       source={imagePath?.tagIcon}
                       height={30}
@@ -146,7 +151,8 @@ const FBCarouselSlider = (props: FBCarouselSliderProps) => {
                         color: colors?.white,
                         alignSelf: 'center',
                         paddingHorizontal: 8,
-                      }}>
+                      }}
+                      testID={testID?.carousalSlider?.discountValue + index}>
                       {item?.discount}
                     </Text>
                   </View>
