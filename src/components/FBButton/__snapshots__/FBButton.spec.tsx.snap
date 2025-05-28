@@ -41,7 +41,7 @@ exports[`rendered FBButton Screen perfectly render the snapshot for FBButton 1`]
       [
         {
           "alignItems": "center",
-          "backgroundColor": "#000000",
+          "backgroundColor": "#4d4867",
           "borderRadius": 5,
           "height": 60,
           "justifyContent": "center",

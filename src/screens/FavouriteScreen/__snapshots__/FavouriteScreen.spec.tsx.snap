@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render FavouriteScreen correctly render the snapshot of the component FavouriteScreen 1`] = `<View />`;
