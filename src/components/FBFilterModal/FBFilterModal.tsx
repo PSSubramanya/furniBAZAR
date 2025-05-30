@@ -34,6 +34,7 @@ const FBFilterModal = (props: FBFilterModalProps) => {
   return (
     <Modal
       isVisible={modalVisible}
+      testID={testID?.filterModalComponent}
       style={{
         width: '100%',
         marginLeft: 0,
@@ -47,7 +48,8 @@ const FBFilterModal = (props: FBFilterModalProps) => {
           backgroundColor: modalColor,
           justifyContent: 'space-between',
           paddingHorizontal: 5,
-        }}>
+        }}
+        testID={testID?.filterModal?.view}>
         <ScrollView key={'index'}>
           <View>
             <View
@@ -70,16 +72,20 @@ const FBFilterModal = (props: FBFilterModalProps) => {
                     textAlign: 'center',
                     fontFamily: fontFamily?.primaryFont?.semiBold,
                     fontSize: 24,
-                  }}>
+                  }}
+                  testID={testID?.filterModal?.text}>
                   FILTER
                 </Text>
-                <TouchableOpacity onPress={() => {}}>
+                <TouchableOpacity
+                  onPress={() => {}}
+                  testID={testID?.filterModal?.clearbutton}>
                   <Text
                     style={{
                       marginRight: 10,
                       fontFamily: fontFamily?.primaryFont?.regular,
                       fontSize: 16,
-                    }}>
+                    }}
+                    testID={testID?.filterModal?.cleartext}>
                     Clear
                   </Text>
                 </TouchableOpacity>
@@ -90,7 +96,8 @@ const FBFilterModal = (props: FBFilterModalProps) => {
                 marginTop: 10,
                 marginLeft: 12,
                 fontFamily: fontFamily?.primaryFont?.regular,
-              }}>
+              }}
+              testID={testID?.filterModal?.selectedCategoryText}>
               Selected Category
             </Text>
             <View
@@ -118,7 +125,7 @@ const FBFilterModal = (props: FBFilterModalProps) => {
                     width: 30,
                     alignSelf: 'center',
                   }}
-                  testID={testID?.filteredCategoryIcon}
+                  testID={testID?.filterModal?.filteredCategoryIcon}
                 />
               </View>
               <Text
@@ -128,7 +135,8 @@ const FBFilterModal = (props: FBFilterModalProps) => {
                   fontFamily: fontFamily?.primaryFont?.semiBold,
                   fontSize: 16,
                   textTransform: 'uppercase',
-                }}>
+                }}
+                testID={testID?.filterModal?.filteredCategoryText}>
                 {selectedProductName}
               </Text>
             </View>
@@ -137,7 +145,8 @@ const FBFilterModal = (props: FBFilterModalProps) => {
                 marginTop: 10,
                 marginLeft: 12,
                 fontFamily: fontFamily?.primaryFont?.regular,
-              }}>
+              }}
+              testID={testID?.filterModal?.companySearch}>
               Search Company
             </Text>
             <View
@@ -196,6 +205,7 @@ const FBFilterModal = (props: FBFilterModalProps) => {
                   marginLeft: 16,
                   width: 300,
                 }}
+                testID={testID?.filterModal?.companySearchInput}
               />
             </View>
 
@@ -205,7 +215,8 @@ const FBFilterModal = (props: FBFilterModalProps) => {
                 marginLeft: 12,
                 marginTop: 10,
                 flexDirection: 'row',
-              }}>
+              }}
+              testID={testID?.filterModal?.selectedCompaniesView}>
               {searchedCompanies?.map((val, ind) => {
                 return (
                   <View
@@ -218,12 +229,14 @@ const FBFilterModal = (props: FBFilterModalProps) => {
                       borderRadius: 3,
                       marginRight: 8,
                       marginBottom: 5,
-                    }}>
+                    }}
+                    testID={testID?.filterModal?.selectedCompanies + ind}>
                     <Text
                       style={{
                         color: colors?.darkBluegrey4,
                         fontFamily: fontFamily?.primaryFont?.regular,
-                      }}>
+                      }}
+                      testID={testID?.filterModal?.selectedCompanyNames + ind}>
                       {val}
                     </Text>
                     <TouchableOpacity
@@ -232,7 +245,8 @@ const FBFilterModal = (props: FBFilterModalProps) => {
                         tempArray.splice(ind, 1);
                         setSearchedCompanies(tempArray);
                       }}
-                      style={{alignSelf: 'center'}}>
+                      style={{alignSelf: 'center'}}
+                      testID={testID?.filterModal?.crossIconButton}>
                       <Image
                         source={imagePath?.closeIconBlack}
                         height={15}
@@ -242,7 +256,7 @@ const FBFilterModal = (props: FBFilterModalProps) => {
                           width: 15,
                           marginLeft: 5,
                         }}
-                        testID={testID?.searchIcon}
+                        testID={testID?.filterModal?.crossIcon}
                       />
                     </TouchableOpacity>
                   </View>
@@ -273,7 +287,8 @@ const FBFilterModal = (props: FBFilterModalProps) => {
                 }}
                 style={{
                   justifyContent: 'center',
-                }}>
+                }}
+                testID={testID?.filterModal?.rating1}>
                 <View
                   style={{
                     alignItems: 'center',
@@ -304,7 +319,8 @@ const FBFilterModal = (props: FBFilterModalProps) => {
                 }}
                 style={{
                   justifyContent: 'center',
-                }}>
+                }}
+                testID={testID?.filterModal?.rating2}>
                 <View
                   style={{
                     alignItems: 'center',
@@ -335,7 +351,8 @@ const FBFilterModal = (props: FBFilterModalProps) => {
                 }}
                 style={{
                   justifyContent: 'center',
-                }}>
+                }}
+                testID={testID?.filterModal?.rating3}>
                 <View
                   style={{
                     alignItems: 'center',
@@ -366,7 +383,8 @@ const FBFilterModal = (props: FBFilterModalProps) => {
                 }}
                 style={{
                   justifyContent: 'center',
-                }}>
+                }}
+                testID={testID?.filterModal?.rating4}>
                 <View
                   style={{
                     alignItems: 'center',
@@ -397,7 +415,8 @@ const FBFilterModal = (props: FBFilterModalProps) => {
                 }}
                 style={{
                   justifyContent: 'center',
-                }}>
+                }}
+                testID={testID?.filterModal?.rating5}>
                 <View
                   style={{
                     alignItems: 'center',
@@ -437,7 +456,8 @@ const FBFilterModal = (props: FBFilterModalProps) => {
                 flexDirection: 'row',
                 justifyContent: 'center',
                 marginTop: 20,
-              }}>
+              }}
+              testID={testID?.filterModal?.slider}>
               <View>
                 <FBSlider />
                 <View
@@ -513,7 +533,8 @@ const FBFilterModal = (props: FBFilterModalProps) => {
           <TouchableOpacity
             onPress={() => {
               setModalVisible(false);
-            }}>
+            }}
+            testID={testID?.filterModal?.close}>
             <View
               style={{
                 backgroundColor: colors?.white,
@@ -537,7 +558,9 @@ const FBFilterModal = (props: FBFilterModalProps) => {
               </Text>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => {}}>
+          <TouchableOpacity
+            onPress={() => {}}
+            testID={testID?.filterModal?.apply}>
             <View
               style={{
                 backgroundColor: colors?.darkBluegrey4,
@@ -565,4 +588,3 @@ const FBFilterModal = (props: FBFilterModalProps) => {
   );
 };
 export default FBFilterModal;
-// type of products - auto filled from home screen etc.
