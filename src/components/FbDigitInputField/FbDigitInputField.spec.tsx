@@ -1,5 +1,5 @@
 import React, {RefObject} from 'react';
-import {render} from '@testing-library/react-native';
+import {render, fireEvent} from '@testing-library/react-native';
 import FBDigitInputField from './FBDigitInputField';
 import {
   NativeSyntheticEvent,
@@ -40,6 +40,7 @@ describe('render FBDigitInputField correctly', () => {
       />,
     );
     const otpDigit = getByTestId('digit_field');
+    fireEvent(otpDigit, 'onChangeText', 'inputText');
     expect(otpDigit)?.toBeDefined();
   });
 
