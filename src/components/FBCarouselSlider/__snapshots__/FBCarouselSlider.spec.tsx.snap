@@ -33,6 +33,7 @@ exports[`render FBCarouselSlider correctly render the snapshot of the component 
     scrollEventThrottle={0.0001}
     showsHorizontalScrollIndicator={false}
     stickyHeaderIndices={[]}
+    testID="carousalSliderList"
     viewabilityConfigCallbackPairs={[]}
   >
     <View>

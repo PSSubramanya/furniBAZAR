@@ -60,6 +60,7 @@ const FBCarouselSlider = (props: FBCarouselSliderProps) => {
         horizontal={true}
         pagingEnabled={true}
         showsHorizontalScrollIndicator={false}
+        testID={testID?.carousalSlider?.list}
         onScroll={event => {
           setScrollIndex(event);
         }}

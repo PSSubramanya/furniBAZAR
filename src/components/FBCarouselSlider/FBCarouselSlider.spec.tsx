@@ -1,5 +1,5 @@
 import React from 'react';
-import {render} from '@testing-library/react-native';
+import {render, fireEvent} from '@testing-library/react-native';
 import FBCarouselSlider from './FBCarouselSlider';
 import imagePath from '../../constants/imagePath';
 import testID from '../../constants/testIdConstants';
@@ -25,6 +25,7 @@ const mockData = [
 ];
 
 describe('render FBCarouselSlider correctly', () => {
+  const mockFunction = jest.fn();
   it('mocking the FBCarouselSlider component', () => {
     const {getByTestId} = render(
       <FBCarouselSlider carouselOfferData={mockData} />,
@@ -56,6 +57,40 @@ describe('render FBCarouselSlider correctly', () => {
     expect(carousalSliderDiscountView)?.toBeTruthy();
     expect(carousalSliderTagIcon)?.toBeTruthy();
     expect(carousalSliderDiscountValue)?.toBeTruthy();
+  });
+
+  it('mocking the Flatlist and features of FBCarouselSlider component', () => {
+    const {getByTestId} = render(
+      <FBCarouselSlider carouselOfferData={mockData} />,
+    );
+
+    const carousalSliderData = getByTestId(testID?.carousalSlider?.list);
+
+    fireEvent.scroll(carousalSliderData, {
+      nativeEvent: {
+        contentOffset: {
+          x: 200,
+          y: 0,
+        },
+        contentSize: {
+          width: 800,
+          height: 600,
+        },
+        layoutMeasurement: {
+          width: 400,
+          height: 600,
+        },
+      },
+    });
+    fireEvent(carousalSliderData, 'onScrollEndDrag', {
+      nativeEvent: {
+        velocity: {
+          x: 1,
+          y: 0,
+        },
+      },
+    });
+    expect(carousalSliderData)?.toBeTruthy();
   });
 
   it('render the snapshot of the component FBCarouselSlider', () => {
