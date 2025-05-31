@@ -41,6 +41,7 @@ describe('render FBDigitInputField correctly', () => {
     );
     const otpDigit = getByTestId('digit_field');
     fireEvent(otpDigit, 'onChangeText', 'inputText');
+    fireEvent(otpDigit, 'onKeyPress', mockFunction);
     expect(otpDigit)?.toBeDefined();
   });
 
