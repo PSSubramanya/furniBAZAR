@@ -1,5 +1,5 @@
 import React from 'react';
-import {render} from '@testing-library/react-native';
+import {fireEvent, render} from '@testing-library/react-native';
 import FBFilterModal from './FBFilterModal';
 import imagePath from '../../constants/imagePath';
 import testID from '../../constants/testIdConstants';
@@ -23,6 +23,20 @@ describe('render FBFilterModal correctly', () => {
     );
     const modalViewStatus = getByTestId(testID?.filterModal?.view);
     expect(modalViewStatus)?.toBeTruthy();
+  });
+
+  it('mocking the search company function of FBFilterModal component', () => {
+    const {getByTestId} = render(
+      <FBFilterModal
+        modalVisible={true}
+        setModalVisible={mockFunction}
+        selectedProductIcon={imagePath?.armChairIcon}
+        selectedProductName={productName}
+      />,
+    );
+    const onSearchCompany = getByTestId(testID?.onPressSearchCompany);
+    fireEvent(onSearchCompany, 'onPress');
+    expect(onSearchCompany)?.toBeTruthy();
   });
 
   it('render the snapshot of the component FBFilterModal', () => {

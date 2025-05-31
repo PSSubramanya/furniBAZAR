@@ -43,6 +43,7 @@ const testID = {
     text: 'filterModalText',
     view: 'filterModalView',
   },
+  onPressSearchCompany: 'onPressSearchCompany',
   pagination: {
     nonSelectedDot: 'nonSelectedDot',
     selectedDot: 'selectedDot',

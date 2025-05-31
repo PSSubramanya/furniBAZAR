@@ -176,7 +176,8 @@ const FBFilterModal = (props: FBFilterModalProps) => {
                 style={{
                   justifyContent: 'center',
                   alignSelf: 'center',
-                }}>
+                }}
+                testID={testID?.onPressSearchCompany}>
                 <Image
                   source={imagePath?.searchIcon}
                   height={30}

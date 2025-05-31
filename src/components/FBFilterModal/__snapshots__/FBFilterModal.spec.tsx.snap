@@ -228,6 +228,7 @@ exports[`render FBFilterModal correctly render the snapshot of the component FBF
                 "opacity": 1,
               }
             }
+            testID="onPressSearchCompany"
           >
             <Image
               height={30}
