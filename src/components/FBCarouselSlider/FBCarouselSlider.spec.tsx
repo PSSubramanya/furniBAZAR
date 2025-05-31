@@ -90,6 +90,7 @@ describe('render FBCarouselSlider correctly', () => {
         },
       },
     });
+    fireEvent(carousalSliderData, 'onMomentumScrollEnd', {});
     expect(carousalSliderData)?.toBeTruthy();
   });
 
