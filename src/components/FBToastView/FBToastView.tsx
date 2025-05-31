@@ -32,8 +32,9 @@ const FBToastView = (props: FBToastViewProps) => {
       return imagePath?.roundCloseIcon;
     } else if (type === MessageType?.Info) {
       return imagePath?.infoIcon;
+    } else if (type === MessageType?.Warning) {
+      return imagePath?.warningIcon;
     }
-    return imagePath?.warningIcon;
   };
   const iconValue = selectIconType();
 

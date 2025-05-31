@@ -48,6 +48,19 @@ describe('Rendering FBToastView Component', () => {
     expect(toastIcon)?.toBeOnTheScreen();
   });
 
+  it('mocking toast icon for warning icon', () => {
+    const {getByTestId} = render(
+      <FBToastView
+        type={MessageType?.Warning}
+        headerText={headerText}
+        descriptionText={descriptionText}
+        setShowToastView={() => {}}
+      />,
+    );
+    const toastIcon = getByTestId(testIdConstants?.toastIcon);
+    expect(toastIcon)?.toBeOnTheScreen();
+  });
+
   it('mocking close icon', () => {
     const mockFunction = jest.fn();
     const animatedValue = new Animated.Value(0);
