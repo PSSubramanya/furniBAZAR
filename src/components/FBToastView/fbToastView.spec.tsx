@@ -9,10 +9,36 @@ describe('Rendering FBToastView Component', () => {
 
   const headerText = 'Header';
   const descriptionText = 'Description';
-  it('mocking toast icon', () => {
+  it('mocking toast icon for error icon', () => {
     const {getByTestId} = render(
       <FBToastView
         type={MessageType?.Error}
+        headerText={headerText}
+        descriptionText={descriptionText}
+        setShowToastView={() => {}}
+      />,
+    );
+    const toastIcon = getByTestId(testIdConstants?.toastIcon);
+    expect(toastIcon)?.toBeOnTheScreen();
+  });
+
+  it('mocking toast icon for success icon', () => {
+    const {getByTestId} = render(
+      <FBToastView
+        type={MessageType?.Success}
+        headerText={headerText}
+        descriptionText={descriptionText}
+        setShowToastView={() => {}}
+      />,
+    );
+    const toastIcon = getByTestId(testIdConstants?.toastIcon);
+    expect(toastIcon)?.toBeOnTheScreen();
+  });
+
+  it('mocking toast icon for info icon', () => {
+    const {getByTestId} = render(
+      <FBToastView
+        type={MessageType?.Info}
         headerText={headerText}
         descriptionText={descriptionText}
         setShowToastView={() => {}}
