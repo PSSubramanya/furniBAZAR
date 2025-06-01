@@ -1,5 +1,5 @@
 import React from 'react';
-import {fireEvent, render} from '@testing-library/react-native';
+import {fireEvent, render, waitFor} from '@testing-library/react-native';
 import FBFilterModal from './FBFilterModal';
 import imagePath from '../../constants/imagePath';
 import testID from '../../constants/testIdConstants';
@@ -83,6 +83,44 @@ describe('render FBFilterModal correctly', () => {
     expect(onSearchCompany)?.toBeTruthy();
   });
 
+  it('mocking the remove company from the list functionalty of FBFilterModal component', async () => {
+    const {getByTestId, findByTestId, queryByTestId} = render(
+      <FBFilterModal
+        modalVisible={true}
+        setModalVisible={mockFunction}
+        selectedProductIcon={imagePath?.armChairIcon}
+        selectedProductName={productName}
+      />,
+    );
+
+    // Simulate typing in the search input
+    const searchInput = getByTestId(testID?.filterModal?.companySearchInput);
+    fireEvent.changeText(searchInput, 'IKEA');
+
+    // Simulate pressing the search icon
+    const searchIcon = getByTestId(testID?.onPressSearchCompany);
+    fireEvent.press(searchIcon);
+
+    // Wait for the company to appear in the list
+    const selectedCompany = await findByTestId(
+      testID?.filterModal?.selectedCompanies + '0',
+    );
+    expect(selectedCompany).toBeTruthy(); // Ensure it appears
+
+    // Find and press the cross icon to remove the company
+    const onRemoveSearchedCompany = await findByTestId(
+      testID?.filterModal?.crossIconButton,
+    );
+    fireEvent.press(onRemoveSearchedCompany);
+
+    // Wait for state update and verify removal
+    await waitFor(() => {
+      expect(
+        queryByTestId(testID?.filterModal?.selectedCompanies + '0'),
+      ).toBeNull(); // Should be removed
+    });
+  });
+
   it('mocking the close Modal functionalty of FBFilterModal component', () => {
     const {getByTestId} = render(
       <FBFilterModal
@@ -92,9 +130,9 @@ describe('render FBFilterModal correctly', () => {
         selectedProductName={productName}
       />,
     );
-    const onRemoveSearchedCompany = getByTestId(testID?.filterModal?.close);
-    fireEvent(onRemoveSearchedCompany, 'onPress');
-    expect(onRemoveSearchedCompany)?.toBeTruthy();
+    const onCloseModal = getByTestId(testID?.filterModal?.close);
+    fireEvent(onCloseModal, 'onPress');
+    expect(onCloseModal)?.toBeTruthy();
   });
 
   it('render the snapshot of the component FBFilterModal', () => {
