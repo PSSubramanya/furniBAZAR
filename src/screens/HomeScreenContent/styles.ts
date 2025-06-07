@@ -94,6 +94,15 @@ export const styles = StyleSheet.create({
     height: 140,
     width: 150,
   },
+  emptyListStyle: {
+    height: 200,
+    width: 200,
+  },
+  emptyListTextStyle: {
+    fontSize: 16,
+    fontFamily: fontFamily?.primaryFont?.medium,
+    marginTop: -20,
+  },
   starIcon: {
     height: 20,
     width: 20,

@@ -14,6 +14,36 @@ const imagePath = {
   armChair10: require('../assets/images/categories/armChair/armChairIcon10.png'),
   armChair11: require('../assets/images/categories/armChair/armChairIcon11.png'),
 
+  light1: require('../assets/images/categories/lights/light1.png'),
+  light2: require('../assets/images/categories/lights/light2.png'),
+  light3: require('../assets/images/categories/lights/light3.png'),
+  light4: require('../assets/images/categories/lights/light4.png'),
+  light5: require('../assets/images/categories/lights/light5.png'),
+  light6: require('../assets/images/categories/lights/light6.png'),
+  light7: require('../assets/images/categories/lights/light7.png'),
+  light8: require('../assets/images/categories/lights/light8.png'),
+  light9: require('../assets/images/categories/lights/light9.png'),
+  light10: require('../assets/images/categories/lights/light10.png'),
+  light11: require('../assets/images/categories/lights/light11.png'),
+  light12: require('../assets/images/categories/lights/light12.png'),
+  light13: require('../assets/images/categories/lights/light13.png'),
+  light14: require('../assets/images/categories/lights/light14.png'),
+
+  sofa1: require('../assets/images/categories/sofas/sofa1.png'),
+  sofa2: require('../assets/images/categories/sofas/sofa2.png'),
+  sofa3: require('../assets/images/categories/sofas/sofa3.png'),
+  sofa4: require('../assets/images/categories/sofas/sofa4.png'),
+  sofa5: require('../assets/images/categories/sofas/sofa5.png'),
+  sofa6: require('../assets/images/categories/sofas/sofa6.png'),
+  sofa7: require('../assets/images/categories/sofas/sofa7.png'),
+  sofa8: require('../assets/images/categories/sofas/sofa8.png'),
+  sofa9: require('../assets/images/categories/sofas/sofa9.png'),
+  sofa10: require('../assets/images/categories/sofas/sofa10.png'),
+  sofa11: require('../assets/images/categories/sofas/sofa11.png'),
+  sofa12: require('../assets/images/categories/sofas/sofa12.png'),
+  sofa13: require('../assets/images/categories/sofas/sofa13.png'),
+  sofa14: require('../assets/images/categories/sofas/sofa14.png'),
+
   // Images
   furnitureImages1: require('../assets/images/furnitureImages1.png'),
   furnitureImages2: require('../assets/images/furnitureImages2.png'),
@@ -96,6 +126,10 @@ const imagePath = {
   // Illustrations
   illustrationIcon1: require('../assets/images/illustrations/illustration1.png'),
   illustrationIcon2: require('../assets/images/illustrations/illustration2.png'),
+  illustrationIcon3: require('../assets/images/illustrations/illustration3.png'),
+  illustrationIcon4: require('../assets/images/illustrations/illustration4.png'),
+  illustrationIcon5: require('../assets/images/illustrations/illustration5.png'),
+  illustrationIcon6: require('../assets/images/illustrations/illustration6.png'),
 };
 
 export default imagePath;

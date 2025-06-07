@@ -22,6 +22,7 @@ const colors = {
   primaryColor: '#43939e',
   secondaryColor: '#1382d9',
   skyBlue: '#97befd',
+  vermillion: '#f84202',
   white: '#ffffff',
 };
 

@@ -8,6 +8,9 @@ import {
   TextInput,
   Animated,
   ImageSourcePropType,
+  ScrollView,
+  NativeSyntheticEvent,
+  NativeScrollEvent,
 } from 'react-native';
 import {styles, themeStyle} from './styles';
 import imagePath from '../../constants/imagePath';
@@ -21,6 +24,8 @@ import {
   furnitureCategories,
   carouselOfferData,
   armChairsList,
+  tableLightLists,
+  sofasList,
 } from '../../utils/mockData';
 
 interface HomeScreenContentProps {
@@ -32,7 +37,7 @@ interface HomeScreenContentProps {
 
 const HomeScreenContent = (props: any) => {
   const {navigation} = props;
-
+  const imageRef = useRef(null);
   const [selectedCategroyIndex, setSelectedCategroyIndex] = useState<number>(0);
   const [selectedCategroyData, setSelectedCategroyData] =
     useState<HomeScreenContentProps>(furnitureCategories[0]);
@@ -45,6 +50,7 @@ const HomeScreenContent = (props: any) => {
   const [addedToCartItems, setAddedToCartItems] = useState<ProductListProps[]>(
     [],
   );
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [modalVisible, setModalVisible] = useState(false);
   /* NOTE:
       1.) Maintain this data in redux so it can be used in other screens. 
@@ -58,9 +64,9 @@ const HomeScreenContent = (props: any) => {
     if (selectedCategroyIndex === 0) {
       setProductsList(armChairsList);
     } else if (selectedCategroyIndex === 1) {
-      setProductsList([]);
+      setProductsList(tableLightLists);
     } else if (selectedCategroyIndex === 2) {
-      setProductsList([]);
+      setProductsList(sofasList);
     } else if (selectedCategroyIndex === 3) {
       setProductsList([]);
     } else if (selectedCategroyIndex === 4) {
@@ -101,6 +107,12 @@ const HomeScreenContent = (props: any) => {
       ];
       setSavedProductsList(temporaryList);
     }
+  };
+
+  const handleScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
+    const offsetX = event.nativeEvent.contentOffset.x;
+    const index = Math.round(offsetX / 180);
+    setCurrentIndex(index);
   };
 
   return (
@@ -247,114 +259,203 @@ const HomeScreenContent = (props: any) => {
         </TouchableOpacity>
       </View>
 
-      <FlatList
-        data={productsList}
-        horizontal={true}
-        showsHorizontalScrollIndicator={false}
-        keyExtractor={item => item?.id}
-        contentContainerStyle={{marginTop: 16, paddingBottom: 20}}
-        renderItem={({item, index}) => {
-          return (
-            <View
-              style={{
-                marginLeft: 20,
-                backgroundColor: colors?.white,
-                width: 180,
-                paddingTop: 10,
-                paddingBottom: 10,
-                shadowColor: colors?.greyColor,
-                shadowOffset: {height: 2, width: 2},
-                shadowOpacity: 0.4,
-                shadowRadius: 4,
-                borderRadius: 10,
-              }}>
-              <TouchableOpacity
-                style={{
-                  flexDirection: 'row',
-                  justifyContent: 'flex-end',
-                  marginRight: 5,
-                }}
-                onPress={() => {
-                  addToFavouriteList(item);
-                }}>
-                <Image
-                  source={
-                    JSON.stringify(savedProductsList)?.includes(
-                      JSON.stringify(item),
-                    )
-                      ? imagePath?.saveIconFilled
-                      : imagePath?.saveIcon
-                  }
-                  height={30}
-                  width={30}
-                  style={styles?.saveIcon}
-                  testID={testID?.saveIcon}
-                />
-              </TouchableOpacity>
+      {productsList?.length > 0 ? (
+        <FlatList
+          data={productsList}
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+          keyExtractor={item => item?.id}
+          contentContainerStyle={{marginTop: 16, paddingBottom: 20}}
+          renderItem={({item, index}) => {
+            return (
               <View
                 style={{
-                  width: 150,
-                  alignSelf: 'center',
+                  marginLeft: 20,
+                  backgroundColor: colors?.white,
+                  width: 180,
+                  paddingTop: 10,
+                  paddingBottom: 10,
+                  shadowColor: colors?.greyColor,
+                  shadowOffset: {height: 2, width: 2},
+                  shadowOpacity: 0.4,
+                  shadowRadius: 4,
+                  borderRadius: 10,
                 }}>
-                <Image
-                  source={item?.image}
-                  height={140}
-                  width={150}
-                  style={styles?.productImageStyle}
-                />
-              </View>
-              <View
-                style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-                <View>
-                  <Text
-                    style={styles?.productNameStyle}
-                    numberOfLines={2}
-                    ellipsizeMode="tail">
-                    {item?.name}
-                  </Text>
-                  <Text
-                    style={styles?.companyNameStyle}
-                    numberOfLines={2}
-                    ellipsizeMode="tail">
-                    {item?.companyName}
-                  </Text>
-                  <Text style={styles?.priceStyle}>₹{item?.price}</Text>
-                </View>
-                <View style={{alignItems: 'center'}}>
-                  <View
-                    style={{
-                      flexDirection: 'row',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      marginTop: 10,
-                    }}>
-                    <Image
-                      source={imagePath?.starIcon}
-                      height={30}
-                      width={30}
-                      style={styles?.starIcon}
-                      testID={testID?.starIcon}
-                    />
-                    <Text style={styles?.ratingStyle}>({item?.rating})</Text>
-                  </View>
+                <TouchableOpacity
+                  style={{
+                    flexDirection: 'row',
+                    justifyContent: 'flex-end',
+                    marginRight: 5,
+                  }}
+                  onPress={() => {
+                    addToFavouriteList(item);
+                  }}>
+                  <Image
+                    source={
+                      JSON.stringify(savedProductsList)?.includes(
+                        JSON.stringify(item),
+                      )
+                        ? imagePath?.saveIconFilled
+                        : imagePath?.saveIcon
+                    }
+                    height={30}
+                    width={30}
+                    style={styles?.saveIcon}
+                    testID={testID?.saveIcon}
+                  />
+                </TouchableOpacity>
+                <ScrollView
+                  horizontal={true}
+                  contentContainerStyle={{
+                    alignItems: 'center',
+                  }}
+                  ref={imageRef}
+                  pagingEnabled={true}
+                  onScroll={handleScroll}
+                  nestedScrollEnabled={true}>
+                  {item?.image &&
+                    item?.image?.map((val, ind) => {
+                      return (
+                        <View
+                          style={{
+                            width: 180,
+                            justifyContent: 'center',
+                            flexDirection: 'row',
+                          }}>
+                          <Image
+                            source={val}
+                            height={140}
+                            width={150}
+                            style={styles?.productImageStyle}
+                            resizeMode="contain"
+                          />
+                        </View>
+                      );
+                    })}
+                </ScrollView>
 
-                  <TouchableOpacity
-                    style={styles?.addContainer}
-                    onPress={() => {}}>
-                    <Image
-                      source={imagePath?.addIcon}
-                      height={30}
-                      width={30}
-                      style={styles?.addIcon}
-                      testID={testID?.searchIcon}
-                    />
-                  </TouchableOpacity>
+                <View
+                  style={{
+                    height: 10,
+                    marginTop: 10,
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                  testID={testID?.pagination?.view}>
+                  {item?.image &&
+                    item?.image?.length > 1 &&
+                    item?.image?.map((val, ind) => {
+                      return (
+                        <View
+                          style={{
+                            backgroundColor:
+                              currentIndex === ind
+                                ? colors?.vermillion
+                                : colors?.greyishBlue,
+                            height: 5,
+                            width: 5,
+                            marginRight: 5,
+                            borderRadius: 10,
+                          }}
+                          key={ind}
+                          testID={''}
+                        />
+                      );
+                    })}
+                </View>
+
+                {/* <FlatList
+                  data={item?.image}
+                  keyExtractor={item => item}
+                  horizontal={true}
+                  renderItem={({iten, index}) => {
+                    return (
+                      <View
+                        style={{
+                          backgroundColor: colors?.vermillion, //colors?.darkBluegrey4,
+                          height: 5,
+                          width: 5,
+                          marginRight: 5,
+                          borderRadius: 10,
+                        }}
+                        // key={ind}
+                        testID={''}
+                      />
+                    );
+                  }}
+                /> */}
+
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                  }}>
+                  <View>
+                    <Text
+                      style={styles?.productNameStyle}
+                      numberOfLines={2}
+                      ellipsizeMode="tail">
+                      {item?.name}
+                    </Text>
+                    <Text
+                      style={styles?.companyNameStyle}
+                      numberOfLines={2}
+                      ellipsizeMode="tail">
+                      {item?.companyName}
+                    </Text>
+                    <Text style={styles?.priceStyle}>₹{item?.price}</Text>
+                  </View>
+                  <View style={{alignItems: 'center'}}>
+                    <View
+                      style={{
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        marginTop: 10,
+                      }}>
+                      <Image
+                        source={imagePath?.starIcon}
+                        height={30}
+                        width={30}
+                        style={styles?.starIcon}
+                        testID={testID?.starIcon}
+                      />
+                      <Text style={styles?.ratingStyle}>({item?.rating})</Text>
+                    </View>
+
+                    <TouchableOpacity
+                      style={styles?.addContainer}
+                      onPress={() => {}}>
+                      <Image
+                        source={imagePath?.addIcon}
+                        height={30}
+                        width={30}
+                        style={styles?.addIcon}
+                        testID={testID?.searchIcon}
+                      />
+                    </TouchableOpacity>
+                  </View>
                 </View>
               </View>
-            </View>
-          );
-        }}
-      />
+            );
+          }}
+        />
+      ) : (
+        <View
+          style={{
+            alignItems: 'center',
+          }}>
+          <Image
+            source={imagePath?.illustrationIcon3}
+            height={200}
+            width={200}
+            style={styles?.emptyListStyle}
+            resizeMode="contain"
+          />
+          <Text style={styles?.emptyListTextStyle}>Not Found</Text>
+        </View>
+      )}
 
       <FBFilterModal
         modalVisible={modalVisible}
