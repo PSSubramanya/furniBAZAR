@@ -265,7 +265,11 @@ const HomeScreenContent = (props: any) => {
           horizontal={true}
           showsHorizontalScrollIndicator={false}
           keyExtractor={item => item?.id}
-          contentContainerStyle={{marginTop: 16, paddingBottom: 20}}
+          contentContainerStyle={{
+            marginTop: 16,
+            paddingBottom: 20,
+            paddingRight: 16,
+          }}
           renderItem={({item, index}) => {
             return (
               <View
