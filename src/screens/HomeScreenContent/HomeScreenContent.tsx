@@ -13,6 +13,8 @@ import {
   NativeScrollEvent,
 } from 'react-native';
 import {styles, themeStyle} from './styles';
+import {useDispatch, useSelector} from 'react-redux';
+import {addToCart} from '../../actions/homeActions';
 import imagePath from '../../constants/imagePath';
 import testID from '../../constants/testIdConstants';
 import colors from '../../constants/colors';
@@ -27,6 +29,7 @@ import {
   tableLightLists,
   sofasList,
 } from '../../utils/mockData';
+import {RootState} from '../../store';
 
 interface HomeScreenContentProps {
   id: string;
@@ -37,6 +40,11 @@ interface HomeScreenContentProps {
 
 const HomeScreenContent = (props: any) => {
   const {navigation} = props;
+  const dispatch = useDispatch();
+  const cartData = useSelector(
+    (state: RootState) => state.homeReducer?.cartData,
+  );
+
   const imageRef = useRef(null);
   const [selectedCategroyIndex, setSelectedCategroyIndex] = useState<number>(0);
   const [selectedCategroyData, setSelectedCategroyData] =
@@ -59,6 +67,15 @@ const HomeScreenContent = (props: any) => {
   const styleValues = themeStyle({filterSelect});
 
   const translateY = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    setAddedToCartItems([...cartData?.data]);
+  }, []);
+
+  useEffect(() => {
+    console.log('addedToCartItems', addedToCartItems);
+    // dispatch(addToCart(addedToCartItems));
+  }, [addedToCartItems]);
 
   useEffect(() => {
     if (selectedCategroyIndex === 0) {
@@ -369,27 +386,6 @@ const HomeScreenContent = (props: any) => {
                     })}
                 </View>
 
-                {/* <FlatList
-                  data={item?.image}
-                  keyExtractor={item => item}
-                  horizontal={true}
-                  renderItem={({iten, index}) => {
-                    return (
-                      <View
-                        style={{
-                          backgroundColor: colors?.vermillion, //colors?.darkBluegrey4,
-                          height: 5,
-                          width: 5,
-                          marginRight: 5,
-                          borderRadius: 10,
-                        }}
-                        // key={ind}
-                        testID={''}
-                      />
-                    );
-                  }}
-                /> */}
-
                 <View
                   style={{
                     flexDirection: 'row',
@@ -430,7 +426,17 @@ const HomeScreenContent = (props: any) => {
 
                     <TouchableOpacity
                       style={styles?.addContainer}
-                      onPress={() => {}}>
+                      onPress={() => {
+                        if (
+                          !JSON.stringify(addedToCartItems)?.includes(
+                            JSON.stringify(item),
+                          )
+                        ) {
+                          const fetchedCartData = [...addedToCartItems, item];
+                          setAddedToCartItems(fetchedCartData);
+                          dispatch(addToCart(fetchedCartData));
+                        }
+                      }}>
                       <Image
                         source={imagePath?.addIcon}
                         height={30}
