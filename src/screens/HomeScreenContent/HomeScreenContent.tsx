@@ -482,3 +482,12 @@ export default HomeScreenContent;
  * Modularise the entire project, screens and components into reusable functions and components
  * Test cases for all components and screens
  */
+
+/**
+ * Search screen
+ * View all screen
+ * On Click Product View Screen
+ * Add to cart functionality
+ * Saved product functionality and Screen
+ * REDUX
+ */
