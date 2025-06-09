@@ -11,6 +11,7 @@ import FavouriteScreen from '../screens/FavouriteScreen/FavouriteScreen';
 import OrdersScreen from '../screens/OrdersScreen/OrdersScreen';
 import SettingsScreen from '../screens/SettingsScreen/SettingsScreen';
 import ProfileScreen from '../screens/ProfileScreen/ProfileScreen';
+import CartProductsScreen from '../screens/CartProductsScreen/CartProductsScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -32,6 +33,10 @@ const StackNavigator = () => {
         <Stack.Screen name="OrderScreen" component={OrdersScreen} />
         <Stack.Screen name="SettingsScreen" component={SettingsScreen} />
         <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
+        <Stack.Screen
+          name="CartProductsScreen"
+          component={CartProductsScreen}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

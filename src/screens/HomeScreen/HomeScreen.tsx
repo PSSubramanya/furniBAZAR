@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import FBAppHeaderText from '../../components/FBAppHeaderText/FBAppHeaderText';
+import {useSelector} from 'react-redux';
 import styles from './styles';
 import imagePath from '../../constants/imagePath';
 import colors from '../../constants/colors';
@@ -17,11 +18,16 @@ import FavouriteScreen from '../FavouriteScreen/FavouriteScreen';
 import OrdersScreen from '../OrdersScreen/OrdersScreen';
 import SettingsScreen from '../SettingsScreen/SettingsScreen';
 import ProfileScreen from '../ProfileScreen/ProfileScreen';
+import {RootState} from '../../store';
 
 interface HomeScreenProps {}
 
 const HomeScreen = (props: any) => {
   const {navigation} = props;
+  const cartData = useSelector(
+    (state: RootState) => state?.homeReducer?.cartData,
+  );
+
   const [selectTab1, setSelectTab1] = useState(true);
   const [selectTab2, setSelectTab2] = useState(false);
   const [selectTab3, setSelectTab3] = useState(false);
@@ -29,7 +35,7 @@ const HomeScreen = (props: any) => {
   const [selectTab5, setSelectTab5] = useState(false);
   const [selectedTabNumber, setSelectedTabNumber] = useState(3);
 
-  const addedToCartItems = [{}]; //NOTE: This value should come from Redux(From HomeScreenContent) which is also stored in backend for different screens
+  const addedToCartItems = cartData?.data; //NOTE: This value should come from Redux(From HomeScreenContent) which is also stored in backend for different screens
 
   useEffect(() => {
     selectBottomTab();
@@ -92,7 +98,10 @@ const HomeScreen = (props: any) => {
             </TouchableOpacity>
             <FBAppHeaderText iconSize={24} fontsize={16} />
           </View>
-          <TouchableOpacity onPress={() => {}}>
+          <TouchableOpacity
+            onPress={() => {
+              navigation?.navigate('CartProductsScreen');
+            }}>
             <Image
               source={imagePath?.bagIcon}
               height={30}

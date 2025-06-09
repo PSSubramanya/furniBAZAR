@@ -68,6 +68,9 @@ const imagePath = {
   closeIconBlack: require('../assets/images/icons/closeIconBlack.png'),
   closeIconWhite: require('../assets/images/icons/closeIconWhite.png'),
   copyIcon: require('../assets/images/icons/copyIcon.png'),
+  checkCircle: require('../assets/images/icons/checkCircle.png'),
+  deleteIcon: require('../assets/images/icons/deleteIcon.png'),
+  deleteIconDark: require('../assets/images/icons/deleteIconDark.png'),
   dressingTableIcon: require('../assets/images/icons/dressingTableIcon.png'),
   dressingTableIconColored: require('../assets/images/icons/dressingTableIconColored.png'),
   faceBookIcon: require('../assets/images/icons/faceBookIcon.png'),
@@ -83,6 +86,7 @@ const imagePath = {
   hexagonCloseIconFilled: require('../assets/images/icons/hexagonCloseIconFilled.png'),
   hideIcon: require('../assets/images/icons/hideIcon.png'),
   infoIcon: require('../assets/images/icons/infoIcon.png'),
+  leftChevron: require('../assets/images/icons/leftChevron.png'),
   leftChevronIcon: require('../assets/images/icons/leftChevronIcon.png'),
   lockIcon: require('../assets/images/icons/lock.png'),
   menuIcon: require('../assets/images/icons/menuIcon.png'),
@@ -97,6 +101,7 @@ const imagePath = {
   otpIcon2: require('../assets/images/icons/otpIcon2.png'),
   ordersIcon: require('../assets/images/icons/ordersIcon.png'),
   orderFilledIcon: require('../assets/images/icons/orderFilledIcon.png'),
+  radioButton: require('../assets/images/icons/radioButton.png'),
   receiptIcon: require('../assets/images/icons/receiptIcon.png'),
   rightChevronIcon: require('../assets/images/icons/rightChevronIcon.png'),
   roundCloseIcon: require('../assets/images/icons/roundCloseIcon.png'),
@@ -130,6 +135,8 @@ const imagePath = {
   illustrationIcon4: require('../assets/images/illustrations/illustration4.png'),
   illustrationIcon5: require('../assets/images/illustrations/illustration5.png'),
   illustrationIcon6: require('../assets/images/illustrations/illustration6.png'),
+  illustrationIcon7: require('../assets/images/illustrations/illustration7.png'),
+  illustrationIcon8: require('../assets/images/illustrations/illustration8.png'),
 };
 
 export default imagePath;
