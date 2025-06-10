@@ -303,3 +303,7 @@ export const sofasList = [
     price: '31,640.00',
   },
 ];
+
+export const discountData = [];
+// ADD DISCOUNT DATA And Logic
+// Also write test cases for FBModalView

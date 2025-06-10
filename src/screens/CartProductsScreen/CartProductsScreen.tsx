@@ -1,19 +1,83 @@
-import React, {useState, useEffect} from 'react';
-import {View, FlatList, Text, Image, TouchableOpacity} from 'react-native';
+import React, {useState, useEffect, useRef} from 'react';
+import {
+  View,
+  FlatList,
+  Text,
+  Image,
+  TouchableOpacity,
+  TextInput,
+  Animated,
+  PanResponder,
+  Dimensions,
+} from 'react-native';
 import {useSelector} from 'react-redux';
 import {RootState} from '../../store';
 import styles from './styles';
 import imagePath from '../../constants/imagePath';
 import fontFamily from '../../constants/fontFamily';
 import colors from '../../constants/colors';
+import FBModalView from '../../components/FBModalView/FBModalView';
 
 const CartProductsScreen = (props: any) => {
   const {navigation} = props;
+
+  const {width} = Dimensions.get('window');
+  const SLIDER_WIDTH = width - 40;
+  const SLIDER_HEIGHT = 60;
+  const SLIDE_BUTTON_SIZE = 55;
+
   const fetchCartData = useSelector(
     (state: RootState) => state?.homeReducer?.cartData,
   );
 
+  const pan = useRef(new Animated.ValueXY()).current;
+  const [slideCompleted, setSlideCompleted] = useState(false);
   const [cartData, setCartData] = useState(fetchCartData?.data);
+  const [discountCode, setDiscountCode] = useState('');
+  const [subTotalPrice, setSubTotalPrice] = useState<number>(0);
+
+  useEffect(() => {
+    cartData?.map((val: any) => {
+      calculateSubTotalPrice(val?.price);
+    });
+  }, []);
+
+  const calculateSubTotalPrice = (val: string) => {
+    const tempPrice = Number(val.replace(',', ''));
+    setSubTotalPrice(prev => prev + tempPrice);
+  };
+
+  const panResponder = useRef(
+    PanResponder.create({
+      onStartShouldSetPanResponder: () => true,
+
+      onPanResponderMove: (_, gestureState) => {
+        if (
+          gestureState.dx >= 0 &&
+          gestureState.dx <= SLIDER_WIDTH - SLIDE_BUTTON_SIZE
+        ) {
+          pan.setValue({x: gestureState.dx, y: 0});
+        }
+      },
+
+      onPanResponderRelease: (_, gestureState) => {
+        if (gestureState.dx > SLIDER_WIDTH - SLIDE_BUTTON_SIZE - 10) {
+          setSlideCompleted(true);
+
+          Animated.timing(pan, {
+            toValue: {x: SLIDER_WIDTH - SLIDE_BUTTON_SIZE, y: 0},
+            duration: 200,
+            useNativeDriver: false,
+          }).start();
+        } else {
+          Animated.spring(pan, {
+            toValue: {x: 0, y: 0},
+            useNativeDriver: false,
+          }).start();
+        }
+      },
+    }),
+  ).current;
 
   return (
     <View style={{flex: 1}}>
@@ -213,11 +277,159 @@ const CartProductsScreen = (props: any) => {
           );
         }}
       />
+      {cartData?.length > 0 && (
+        <View
+          style={{
+            backgroundColor: colors?.white,
+            borderRadius: 20,
+            marginBottom: 45,
+          }}>
+          <View
+            style={{
+              backgroundColor: colors?.greyColorLight,
+              height: 50,
+              marginHorizontal: 20,
+              marginTop: 15,
+              borderRadius: 5,
+              justifyContent: 'space-between',
+              flexDirection: 'row',
+              alignItems: 'center',
+            }}>
+            <TextInput
+              placeholder="Apply Coupon Code"
+              placeholderTextColor={colors?.greyColor}
+              value={discountCode}
+              onChangeText={val => {
+                setDiscountCode(val);
+              }}
+              style={{
+                fontFamily: fontFamily?.primaryFont?.regular,
+                fontSize: 16,
+                width: 240,
+                marginLeft: 16,
+              }}
+            />
+            <TouchableOpacity>
+              <View
+                style={{
+                  backgroundColor: colors?.darkBluegrey4,
+                  height: 42,
+                  paddingHorizontal: 14,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  borderRadius: 5,
+                  marginRight: 6,
+                }}>
+                <Text
+                  style={{
+                    fontFamily: fontFamily?.primaryFont?.regular,
+                    color: colors?.white,
+                  }}>
+                  Apply
+                </Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              marginTop: 15,
+              marginHorizontal: 20,
+            }}>
+            <Text style={{fontFamily: fontFamily?.primaryFont?.light}}>
+              Sub Total:
+            </Text>
+            <Text style={{fontFamily: fontFamily?.primaryFont?.medium}}>
+              ₹ {subTotalPrice}
+            </Text>
+          </View>
+          {/* Need the Flatlist for Discounts applied */}
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              marginTop: 15,
+              marginHorizontal: 20,
+            }}>
+            <Text style={{fontFamily: fontFamily?.primaryFont?.light}}>
+              Discount:
+            </Text>
+            <Text style={{fontFamily: fontFamily?.primaryFont?.medium}}>
+              ₹ 165
+            </Text>
+          </View>
+          <View
+            style={{
+              borderWidth: 0.5,
+              borderStyle: 'dashed',
+              marginHorizontal: 16,
+              marginTop: 12,
+            }}
+          />
+          {/* Calculate the final Total price */}
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              marginTop: 15,
+              marginHorizontal: 20,
+            }}>
+            <Text style={{fontFamily: fontFamily?.primaryFont?.light}}>
+              Final Price:
+            </Text>
+            <Text style={{fontFamily: fontFamily?.primaryFont?.medium}}>
+              ₹ 47475
+            </Text>
+          </View>
+
+          {/* Stretchable Animated button inside a button needed */}
+
+          <View
+            style={{
+              backgroundColor: colors?.darkBluegrey4,
+              height: 55,
+              marginHorizontal: 16,
+              marginTop: 16,
+              alignItems: 'center',
+              justifyContent: 'center',
+              borderRadius: 5,
+              flexDirection: 'row',
+            }}>
+            <Animated.View
+              {...panResponder.panHandlers}
+              style={[
+                {
+                  height: 50,
+                  width: 50,
+                  backgroundColor: colors?.greyColorLight2,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  borderRadius: 10,
+                  position: 'absolute',
+                  marginLeft: 2,
+                  marginTop: 2,
+                },
+                pan.getLayout(),
+              ]}>
+              <Image
+                source={imagePath?.doubleArrowIcon}
+                height={30}
+                width={30}
+                style={{height: 30, width: 30}}
+              />
+            </Animated.View>
+            <Text
+              style={{
+                fontFamily: fontFamily?.primaryFont?.regular,
+                color: colors?.white,
+              }}>
+              CHECKOUT
+            </Text>
+          </View>
+        </View>
+      )}
     </View>
   );
 };
 export default CartProductsScreen;
-
-/**
- * Add Bottom Static Modal to calculate Price
- */
