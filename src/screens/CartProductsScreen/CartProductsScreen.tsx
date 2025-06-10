@@ -35,6 +35,19 @@ const CartProductsScreen = (props: any) => {
   const [cartData, setCartData] = useState(fetchCartData?.data);
   const [discountCode, setDiscountCode] = useState('');
   const [subTotalPrice, setSubTotalPrice] = useState<number>(0);
+  const [selectedItems, setSelectedItems] = useState<string[]>(['']); //NOTE: Original value is []
+
+  //NOTE: NEED To calculate total price based on the item selected * number of products in counter
+  //NOTE: For this we need to maintain a dictionary -> key-value pair to update the product and number of values of it.
+  //NOTE: Need a new redux action and reducer for this
+  //NOTE: Also discount needs to be calulated
+  //NOTE: By mapping from the disount mockdata checking if it includes the coupon that we have applied and then adding it
+  //NOTE: Add an info icon nextto discount to open a bottom Modal drawer to show what all discounts are added individually
+  //NOTE: On slide navigate to the next page
+  //NOTE: On delete of a product, 1st check if it is selected.
+  //NOTE: Make it unselected(Manually or via code) then update the store via redux action "cartData"->state?.homeReducer?.cartData
+  //NOTE: Modularise the code and also move styles to different file
+  //NOTE: Also add types wherever required and replace 'any' with it
 
   useEffect(() => {
     cartData?.map((val: any) => {
@@ -104,6 +117,16 @@ const CartProductsScreen = (props: any) => {
           My Cart
         </Text>
       </View>
+      <Text
+        style={{
+          fontFamily: fontFamily?.primaryFont?.regular,
+          fontSize: 14,
+          marginLeft: 16,
+          marginTop: 20,
+        }}>
+        {selectedItems?.length} {selectedItems?.length > 1 ? 'items' : 'item'}{' '}
+        selected
+      </Text>
       <FlatList
         data={cartData}
         contentContainerStyle={{marginTop: 20}}
@@ -132,7 +155,7 @@ const CartProductsScreen = (props: any) => {
                     <TouchableOpacity onPress={() => {}}>
                       <Image
                         source={
-                          index === 3
+                          index === 1
                             ? imagePath?.checkCircle
                             : imagePath?.radioButton
                         }
@@ -277,7 +300,7 @@ const CartProductsScreen = (props: any) => {
           );
         }}
       />
-      {cartData?.length > 0 && (
+      {selectedItems?.length > 0 && (
         <View
           style={{
             backgroundColor: colors?.white,
@@ -309,10 +332,15 @@ const CartProductsScreen = (props: any) => {
                 marginLeft: 16,
               }}
             />
-            <TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {}}
+              disabled={selectedItems?.length <= 0}>
               <View
                 style={{
-                  backgroundColor: colors?.darkBluegrey4,
+                  backgroundColor:
+                    selectedItems?.length <= 0
+                      ? colors?.greyColor
+                      : colors?.darkBluegrey4,
                   height: 42,
                   paddingHorizontal: 14,
                   alignItems: 'center',
@@ -384,7 +412,6 @@ const CartProductsScreen = (props: any) => {
           </View>
 
           {/* Stretchable Animated button inside a button needed */}
-
           <View
             style={{
               backgroundColor: colors?.darkBluegrey4,
@@ -433,3 +460,4 @@ const CartProductsScreen = (props: any) => {
   );
 };
 export default CartProductsScreen;
+// Also write test cases for FBModalView

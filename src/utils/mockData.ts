@@ -304,6 +304,25 @@ export const sofasList = [
   },
 ];
 
-export const discountData = [];
-// ADD DISCOUNT DATA And Logic
-// Also write test cases for FBModalView
+export const discountData = [
+  {
+    discountName: 'Monsoon Offer',
+    discountCoupons: 'ABCD36',
+    discountPrice: '10%',
+  },
+  {
+    discountName: 'Monsoon Offer',
+    discountCoupons: 'ABCD24',
+    discountPrice: '10%',
+  },
+  {
+    discountName: 'Monsoon Offer',
+    discountCoupons: 'SHAG41',
+    discountPrice: '10%',
+  },
+  {
+    discountName: 'Referral Offer',
+    discountCoupons: 'NEWBIE123456',
+    discountPrice: '50',
+  },
+];
