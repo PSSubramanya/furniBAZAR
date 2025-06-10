@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render FBModalView correctly render the snapshot of the component FBModalView 1`] = `
+<View
+  style={
+    {
+      "backgroundColor": "#ffffff",
+      "borderRadius": 10,
+      "height": "90%",
+      "paddingHorizontal": 5,
+    }
+  }
+  testID="modalView"
+>
+  <View />
+</View>
+`;

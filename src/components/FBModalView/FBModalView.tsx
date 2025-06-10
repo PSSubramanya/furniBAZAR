@@ -1,10 +1,11 @@
 import React from 'react';
 import {View} from 'react-native';
 import Modal from 'react-native-modal';
+import {FBModalViewProps} from './typesFile';
 import testID from '../../constants/testIdConstants';
 import colors from '../../constants/colors';
 
-const FBModalView = (props: any) => {
+const FBModalView = (props: FBModalViewProps) => {
   const {
     children,
     modalVisible = false,
