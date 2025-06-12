@@ -123,11 +123,11 @@ const HomeScreen = (props: any) => {
         </View>
 
         <ScrollView>
-          {selectTab1 && <HomeScreenContent />}
-          {selectTab2 && <FavouriteScreen />}
-          {selectTab3 && <OrdersScreen />}
-          {selectTab4 && <SettingsScreen />}
-          {selectTab5 && <ProfileScreen />}
+          {selectTab1 && <HomeScreenContent navigation={navigation} />}
+          {selectTab2 && <FavouriteScreen navigation={navigation} />}
+          {selectTab3 && <OrdersScreen navigation={navigation} />}
+          {selectTab4 && <SettingsScreen navigation={navigation} />}
+          {selectTab5 && <ProfileScreen navigation={navigation} />}
         </ScrollView>
 
         {/* Bottom Drawer */}

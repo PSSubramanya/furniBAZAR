@@ -35,7 +35,7 @@ const CartProductsScreen = (props: any) => {
   const [cartData, setCartData] = useState(fetchCartData?.data);
   const [discountCode, setDiscountCode] = useState('');
   const [subTotalPrice, setSubTotalPrice] = useState<number>(0);
-  const [selectedItems, setSelectedItems] = useState<string[]>(['']); //NOTE: Original value is []
+  const [selectedItems, setSelectedItems] = useState<string[]>([]); //NOTE: Original value is []
 
   //NOTE: NEED To calculate total price based on the item selected * number of products in counter
   //NOTE: For this we need to maintain a dictionary -> key-value pair to update the product and number of values of it.
@@ -117,16 +117,18 @@ const CartProductsScreen = (props: any) => {
           My Cart
         </Text>
       </View>
-      <Text
-        style={{
-          fontFamily: fontFamily?.primaryFont?.regular,
-          fontSize: 14,
-          marginLeft: 16,
-          marginTop: 20,
-        }}>
-        {selectedItems?.length} {selectedItems?.length > 1 ? 'items' : 'item'}{' '}
-        selected
-      </Text>
+      {selectedItems?.length > 0 && (
+        <Text
+          style={{
+            fontFamily: fontFamily?.primaryFont?.regular,
+            fontSize: 14,
+            marginLeft: 16,
+            marginTop: 20,
+          }}>
+          {selectedItems?.length} {selectedItems?.length > 1 ? 'items' : 'item'}{' '}
+          selected
+        </Text>
+      )}
       <FlatList
         data={cartData}
         contentContainerStyle={{marginTop: 20}}

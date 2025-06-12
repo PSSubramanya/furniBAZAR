@@ -5,6 +5,7 @@ import {
   Image,
   FlatList,
   TouchableOpacity,
+  Pressable,
   TextInput,
   Animated,
   ImageSourcePropType,
@@ -386,67 +387,76 @@ const HomeScreenContent = (props: any) => {
                     })}
                 </View>
 
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    justifyContent: 'space-between',
+                <Pressable
+                  onPress={() => {
+                    navigation?.navigate('ProductViewScreen', {
+                      productData: item,
+                    });
                   }}>
-                  <View>
-                    <Text
-                      style={styles?.productNameStyle}
-                      numberOfLines={2}
-                      ellipsizeMode="tail">
-                      {item?.name}
-                    </Text>
-                    <Text
-                      style={styles?.companyNameStyle}
-                      numberOfLines={2}
-                      ellipsizeMode="tail">
-                      {item?.companyName}
-                    </Text>
-                    <Text style={styles?.priceStyle}>₹{item?.price}</Text>
-                  </View>
-                  <View style={{alignItems: 'center'}}>
-                    <View
-                      style={{
-                        flexDirection: 'row',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        marginTop: 10,
-                      }}>
-                      <Image
-                        source={imagePath?.starIcon}
-                        height={30}
-                        width={30}
-                        style={styles?.starIcon}
-                        testID={testID?.starIcon}
-                      />
-                      <Text style={styles?.ratingStyle}>({item?.rating})</Text>
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      justifyContent: 'space-between',
+                    }}>
+                    <View>
+                      <Text
+                        style={styles?.productNameStyle}
+                        numberOfLines={2}
+                        ellipsizeMode="tail">
+                        {item?.name}
+                      </Text>
+                      <Text
+                        style={styles?.companyNameStyle}
+                        numberOfLines={2}
+                        ellipsizeMode="tail">
+                        {item?.companyName}
+                      </Text>
+                      <Text style={styles?.priceStyle}>₹{item?.price}</Text>
                     </View>
+                    <View style={{alignItems: 'center'}}>
+                      <View
+                        style={{
+                          flexDirection: 'row',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          marginTop: 10,
+                        }}>
+                        <Image
+                          source={imagePath?.starIcon}
+                          height={30}
+                          width={30}
+                          style={styles?.starIcon}
+                          testID={testID?.starIcon}
+                        />
+                        <Text style={styles?.ratingStyle}>
+                          ({item?.rating})
+                        </Text>
+                      </View>
 
-                    <TouchableOpacity
-                      style={styles?.addContainer}
-                      onPress={() => {
-                        if (
-                          !JSON.stringify(addedToCartItems)?.includes(
-                            JSON.stringify(item),
-                          )
-                        ) {
-                          const fetchedCartData = [...addedToCartItems, item];
-                          setAddedToCartItems(fetchedCartData);
-                          dispatch(addToCart(fetchedCartData));
-                        }
-                      }}>
-                      <Image
-                        source={imagePath?.addIcon}
-                        height={30}
-                        width={30}
-                        style={styles?.addIcon}
-                        testID={testID?.searchIcon}
-                      />
-                    </TouchableOpacity>
+                      <TouchableOpacity
+                        style={styles?.addContainer}
+                        onPress={() => {
+                          if (
+                            !JSON.stringify(addedToCartItems)?.includes(
+                              JSON.stringify(item),
+                            )
+                          ) {
+                            const fetchedCartData = [...addedToCartItems, item];
+                            setAddedToCartItems(fetchedCartData);
+                            dispatch(addToCart(fetchedCartData));
+                          }
+                        }}>
+                        <Image
+                          source={imagePath?.addIcon}
+                          height={30}
+                          width={30}
+                          style={styles?.addIcon}
+                          testID={testID?.searchIcon}
+                        />
+                      </TouchableOpacity>
+                    </View>
                   </View>
-                </View>
+                </Pressable>
               </View>
             );
           }}

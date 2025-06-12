@@ -73,10 +73,75 @@ export const armChairsList = [
   {
     id: '0',
     name: 'Yellow Ox Chair',
+    description:
+      'This Yellow Ox Chair is a bold and sculptural statement piece that combines comfort with striking aesthetics. Inspired by the strength and presence of an ox, this chair features a distinctive high-back design with curved armrests that evoke the shape of ox horns. Its vibrant yellow upholstery adds a modern and energetic touch, making it a standout addition to any space. Crafted with premium materials, the chair boasts a sturdy frame, plush cushioning, and a sleek finish that enhances both durability and style. Whether placed in a living room, office, or lounge area, the Yellow Ox Chair offers exceptional support and ergonomic comfort, making it perfect for relaxation or conversation. ',
     image: [imagePath?.armChair1],
     companyName: 'MONICA FORSTER',
     rating: '4.6',
-    price: '16,240.00',
+    price: '16,240',
+    commentsData: [
+      {
+        starCount: 5,
+        comments: [
+          {
+            username: 'Revanth',
+            profileIcon: '',
+            comment:
+              'Fantastic couch to relax on. I absolutely love this and I recommend it to my friends also.',
+          },
+          {
+            username: 'Rahul',
+            profileIcon: '',
+            comment: 'Great gamer couch',
+          },
+          {
+            username: 'Adithya',
+            profileIcon: '',
+            comment: 'This is a solid budget friendly comfy couch.',
+          },
+        ],
+      },
+      {
+        starCount: 4,
+        comments: [
+          {
+            username: 'Ajay',
+            profileIcon: '',
+            comment: 'Comfy seated armchair. A bit costly, yet worth it.',
+          },
+          {
+            username: 'Rohan',
+            profileIcon: '',
+            comment:
+              'I was a bit confused with the selection, but in the end this was worth it.',
+          },
+        ],
+      },
+      {
+        starCount: 3,
+        comments: [
+          {
+            username: 'Prajwal',
+            profileIcon: '',
+            comment: 'Nice couch',
+          },
+        ],
+      },
+      {
+        starCount: 2,
+        comments: [],
+      },
+      {
+        starCount: 1,
+        comments: [
+          {
+            username: 'Subbu',
+            profileIcon: '',
+            comment: 'I expected better from this company.',
+          },
+        ],
+      },
+    ],
   },
   {
     id: '1',
@@ -84,7 +149,7 @@ export const armChairsList = [
     image: [imagePath?.armChair2],
     companyName: 'ANDERSSEN VOLL',
     rating: '4.2',
-    price: '4,240.00',
+    price: '4,240',
   },
   {
     id: '2',
@@ -92,7 +157,7 @@ export const armChairsList = [
     image: [imagePath?.armChair3],
     companyName: 'ANDERSSEN VOLL',
     rating: '4.8',
-    price: '20,240.00',
+    price: '20,240',
   },
   {
     id: '3',
@@ -100,7 +165,7 @@ export const armChairsList = [
     image: [imagePath?.armChair4],
     companyName: 'ANDERSSEN VOLL',
     rating: '4.8',
-    price: '20,240.00',
+    price: '20,240',
   },
   {
     id: '4',
@@ -108,7 +173,7 @@ export const armChairsList = [
     image: [imagePath?.armChair5],
     companyName: 'IKEA',
     rating: '4.6',
-    price: '33,240.00',
+    price: '33,240',
   },
   {
     id: '5',
@@ -116,7 +181,7 @@ export const armChairsList = [
     image: [imagePath?.armChair6],
     companyName: 'GODREJ',
     rating: '4.0',
-    price: '8,240.00',
+    price: '8,240',
   },
   {
     id: '6',
@@ -124,7 +189,7 @@ export const armChairsList = [
     image: [imagePath?.armChair7],
     companyName: 'ANDERSSEN VOLL',
     rating: '4.2',
-    price: '13,240.00',
+    price: '13,240',
   },
   {
     id: '7',
@@ -132,7 +197,7 @@ export const armChairsList = [
     image: [imagePath?.armChair8],
     companyName: 'IKEA',
     rating: '4.0',
-    price: '6,240.00',
+    price: '6,240',
   },
   {
     id: '8',
@@ -142,31 +207,229 @@ export const armChairsList = [
       {
         id: '8_1',
         name: 'Savanna Easy Dusk Chair',
+        description:
+          'This Savanna Easy Chair comes in dusk color and it is a bold and sculptural statement piece that combines comfort with striking aesthetics. It stands out as an addition to any space. Crafted with premium materials, the chair boasts a sturdy frame, plush cushioning, and a sleek finish that enhances both durability and style, whether placed in a living room, office, or lounge area.',
         image: [imagePath?.armChair9],
         companyName: 'NILKAMAL',
         rating: '4.8',
-        price: '20,240.00',
+        price: '20,240',
+        color: '#DDD5AE',
+        commentsData: [
+          {
+            starCount: 5,
+            comments: [
+              {
+                username: 'Revanth',
+                profileIcon: '',
+                comment:
+                  'Fantastic couch to relax on. I absolutely love this and I recommend it to my friends also.',
+              },
+              {
+                username: 'Rahul',
+                profileIcon: '',
+                comment: 'Great gamer couch',
+              },
+              {
+                username: 'Adithya',
+                profileIcon: '',
+                comment: 'This is a solid budget friendly comfy couch.',
+              },
+            ],
+          },
+          {
+            starCount: 4,
+            comments: [
+              {
+                username: 'Ajay',
+                profileIcon: '',
+                comment: 'Comfy seated armchair. A bit costly, yet worth it.',
+              },
+              {
+                username: 'Rohan',
+                profileIcon: '',
+                comment:
+                  'I was a bit confused with the selection, but in the end this was worth it.',
+              },
+            ],
+          },
+          {
+            starCount: 3,
+            comments: [
+              {
+                username: 'Prajwal',
+                profileIcon: '',
+                comment: 'Nice couch',
+              },
+            ],
+          },
+          {
+            starCount: 2,
+            comments: [],
+          },
+          {
+            starCount: 1,
+            comments: [
+              {
+                username: 'Subbu',
+                profileIcon: '',
+                comment: 'I expected better from this company.',
+              },
+            ],
+          },
+        ],
       },
       {
         id: '8_2',
         name: 'Savanna Easy Blue Chair',
+        description:
+          'This Savanna Easy Chair comes in navy blue color and it is a bold and sculptural statement piece that combines comfort with striking aesthetics. It stands out as an addition to any space. Crafted with premium materials, the chair boasts a sturdy frame, plush cushioning, and a sleek finish that enhances both durability and style, whether placed in a living room, office, or lounge area.',
         image: [imagePath?.armChair10],
         companyName: 'NILKAMAL',
         rating: '4.9',
-        price: '22,240.00',
+        price: '22,240',
+        color: '#5077CA',
+        commentsData: [
+          {
+            starCount: 5,
+            comments: [
+              {
+                username: 'Revanth',
+                profileIcon: '',
+                comment:
+                  'Fantastic couch to relax on. I absolutely love this and I recommend it to my friends also.',
+              },
+              {
+                username: 'Rahul',
+                profileIcon: '',
+                comment: 'Great gamer couch',
+              },
+              {
+                username: 'Adithya',
+                profileIcon: '',
+                comment: 'This is a solid budget friendly comfy couch.',
+              },
+            ],
+          },
+          {
+            starCount: 4,
+            comments: [
+              {
+                username: 'Ajay',
+                profileIcon: '',
+                comment: 'Comfy seated armchair. A bit costly, yet worth it.',
+              },
+              {
+                username: 'Rohan',
+                profileIcon: '',
+                comment:
+                  'I was a bit confused with the selection, but in the end this was worth it.',
+              },
+            ],
+          },
+          {
+            starCount: 3,
+            comments: [
+              {
+                username: 'Prajwal',
+                profileIcon: '',
+                comment: 'Nice couch',
+              },
+            ],
+          },
+          {
+            starCount: 2,
+            comments: [],
+          },
+          {
+            starCount: 1,
+            comments: [
+              {
+                username: 'Subbu',
+                profileIcon: '',
+                comment: 'I expected better from this company.',
+              },
+            ],
+          },
+        ],
       },
       {
         id: '8_3',
         name: 'Savanna Easy Grey Chair',
+        description:
+          'This Savanna Easy Chair comes in grey color and it is a bold and sculptural statement piece that combines comfort with striking aesthetics. It stands out as an addition to any space. Crafted with premium materials, the chair boasts a sturdy frame, plush cushioning, and a sleek finish that enhances both durability and style, whether placed in a living room, office, or lounge area.',
         image: [imagePath?.armChair11],
         companyName: 'NILKAMAL',
         rating: '4.8',
-        price: '20,240.00',
+        price: '20,240',
+        color: '#CECDD1',
+        commentsData: [
+          {
+            starCount: 5,
+            comments: [
+              {
+                username: 'Revanth',
+                profileIcon: '',
+                comment:
+                  'Fantastic couch to relax on. I absolutely love this and I recommend it to my friends also.',
+              },
+              {
+                username: 'Rahul',
+                profileIcon: '',
+                comment: 'Great gamer couch',
+              },
+              {
+                username: 'Adithya',
+                profileIcon: '',
+                comment: 'This is a solid budget friendly comfy couch.',
+              },
+            ],
+          },
+          {
+            starCount: 4,
+            comments: [
+              {
+                username: 'Ajay',
+                profileIcon: '',
+                comment: 'Comfy seated armchair. A bit costly, yet worth it.',
+              },
+              {
+                username: 'Rohan',
+                profileIcon: '',
+                comment:
+                  'I was a bit confused with the selection, but in the end this was worth it.',
+              },
+            ],
+          },
+          {
+            starCount: 3,
+            comments: [
+              {
+                username: 'Prajwal',
+                profileIcon: '',
+                comment: 'Nice couch',
+              },
+            ],
+          },
+          {
+            starCount: 2,
+            comments: [],
+          },
+          {
+            starCount: 1,
+            comments: [
+              {
+                username: 'Subbu',
+                profileIcon: '',
+                comment: 'I expected better from this company.',
+              },
+            ],
+          },
+        ],
       },
     ],
     companyName: 'NILKAMAL',
     rating: '4.8',
-    price: '20,240.00',
+    price: '20,240',
   },
 ];
 
@@ -177,7 +440,7 @@ export const tableLightLists = [
     image: [imagePath?.light1],
     companyName: 'MONICA FORSTER',
     rating: '4.6',
-    price: '1,240.00',
+    price: '1,240',
   },
   {
     id: '1',
@@ -185,7 +448,7 @@ export const tableLightLists = [
     image: [imagePath?.light2],
     companyName: 'IKEA',
     rating: '4.8',
-    price: '2,199.00',
+    price: '2,199',
   },
   {
     id: '2',
@@ -193,7 +456,7 @@ export const tableLightLists = [
     image: [imagePath?.light3],
     companyName: 'IKEA',
     rating: '4.2',
-    price: '1,699.00',
+    price: '1,699',
   },
   {
     id: '3',
@@ -201,7 +464,7 @@ export const tableLightLists = [
     image: [imagePath?.light4],
     companyName: 'IKEA',
     rating: '4.1',
-    price: '1,499.00',
+    price: '1,499',
   },
   {
     id: '4',
@@ -209,7 +472,7 @@ export const tableLightLists = [
     image: [imagePath?.light5],
     companyName: 'IKEA',
     rating: '4.1',
-    price: '2,500.00',
+    price: '2,500',
   },
   {
     id: '5',
@@ -217,7 +480,7 @@ export const tableLightLists = [
     image: [imagePath?.light8],
     companyName: 'Godrej',
     rating: '4.1',
-    price: '2,100.00',
+    price: '2,100',
   },
   {
     id: '6',
@@ -225,7 +488,7 @@ export const tableLightLists = [
     image: [imagePath?.light9],
     companyName: 'Godrej',
     rating: '3.6',
-    price: '800.00',
+    price: '800',
   },
   {
     id: '7',
@@ -233,7 +496,7 @@ export const tableLightLists = [
     image: [imagePath?.light11],
     companyName: 'Godrej',
     rating: '4.0',
-    price: '1,200.00',
+    price: '1,200',
   },
   {
     id: '8',
@@ -241,7 +504,7 @@ export const tableLightLists = [
     image: [imagePath?.light13],
     companyName: 'IKEA',
     rating: '4.0',
-    price: '2,000.00',
+    price: '2,000',
   },
   {
     id: '9',
@@ -249,7 +512,7 @@ export const tableLightLists = [
     image: [imagePath?.light14],
     companyName: 'IKEA',
     rating: '4.1',
-    price: '2,300.00',
+    price: '2,300',
   },
 ];
 
@@ -260,7 +523,7 @@ export const sofasList = [
     image: [imagePath?.sofa1],
     companyName: 'MONICA FORSTER',
     rating: '4.6',
-    price: '26,240.00',
+    price: '26,240',
   },
   {
     id: '1',
@@ -268,7 +531,7 @@ export const sofasList = [
     image: [imagePath?.sofa2],
     companyName: 'MONICA FORSTER',
     rating: '4.4',
-    price: '16,000.00',
+    price: '16,000',
   },
   {
     id: '2',
@@ -276,7 +539,7 @@ export const sofasList = [
     image: [imagePath?.sofa5, imagePath?.sofa6],
     companyName: 'MONICA FORSTER',
     rating: '4.6',
-    price: '18,200.00',
+    price: '18,200',
   },
   {
     id: '3',
@@ -284,7 +547,7 @@ export const sofasList = [
     image: [imagePath?.sofa7],
     companyName: 'MONICA FORSTER',
     rating: '4.5',
-    price: '25,000.00',
+    price: '25,000',
   },
   {
     id: '4',
@@ -292,7 +555,7 @@ export const sofasList = [
     image: [imagePath?.sofa9],
     companyName: 'MONICA FORSTER',
     rating: '4.2',
-    price: '8,640.00',
+    price: '8,640',
   },
   {
     id: '5',
@@ -300,7 +563,7 @@ export const sofasList = [
     image: [imagePath?.sofa10],
     companyName: 'MONICA FORSTER',
     rating: '4.8',
-    price: '31,640.00',
+    price: '31,640',
   },
 ];
 
