@@ -21,6 +21,7 @@ const ProductViewScreen = (props: any) => {
   const {navigation, route} = props;
   const {params} = route;
   const {productData} = params;
+  const ratingCarLength = 300;
 
   const [productDetails, setProductDetails] = useState<ProductListProps>();
   const [productVarietyDetails, setProductVarietyDetails] = useState<
@@ -30,7 +31,7 @@ const ProductViewScreen = (props: any) => {
   const [commentsArray, setCommentsArray] = useState<
     CommentsDataProps[] | undefined
   >([]);
-  const [commentsDictionary, setCommentsDictionary] = useState([{}]);
+  const [totalComments, setTotalComments] = useState(0);
   const [ratingValue, setRatingValue] = useState<number | undefined>(0);
 
   useEffect(() => {
@@ -65,6 +66,8 @@ const ProductViewScreen = (props: any) => {
         obj?.comments?.map((data: any) => data?.comment),
       );
 
+      setTotalComments(flattenedComments?.length);
+
       console.log('flattenedComments', flattenedComments?.length);
 
       /** Use this to build the rating bar ui via percentage calculation */
@@ -81,6 +84,10 @@ const ProductViewScreen = (props: any) => {
     } else {
       return imagePath?.starIcon;
     }
+  };
+
+  const getStarRatingBarLength = (numberOfComments: number | undefined) => {
+    return ratingCarLength * (numberOfComments / totalComments);
   };
 
   return (
@@ -372,7 +379,9 @@ const ProductViewScreen = (props: any) => {
             <View
               style={{
                 borderWidth: 3,
-                width: 250,
+                width: getStarRatingBarLength(
+                  commentsArray?.[0]?.comments?.length,
+                ),
                 height: 1,
                 marginLeft: 5,
                 marginTop: 2,
@@ -407,7 +416,9 @@ const ProductViewScreen = (props: any) => {
             <View
               style={{
                 borderWidth: 3,
-                width: 35,
+                width: getStarRatingBarLength(
+                  commentsArray?.[1]?.comments?.length,
+                ),
                 height: 1,
                 marginLeft: 5,
                 marginTop: 2,
@@ -442,7 +453,9 @@ const ProductViewScreen = (props: any) => {
             <View
               style={{
                 borderWidth: 3,
-                width: 20,
+                width: getStarRatingBarLength(
+                  commentsArray?.[2]?.comments?.length,
+                ),
                 height: 1,
                 marginLeft: 5,
                 marginTop: 2,
@@ -477,7 +490,9 @@ const ProductViewScreen = (props: any) => {
             <View
               style={{
                 borderWidth: 3,
-                width: 0,
+                width: getStarRatingBarLength(
+                  commentsArray?.[3]?.comments?.length,
+                ),
                 height: 1,
                 marginLeft: 5,
                 marginTop: 2,
@@ -512,7 +527,9 @@ const ProductViewScreen = (props: any) => {
             <View
               style={{
                 borderWidth: 3,
-                width: 20,
+                width: getStarRatingBarLength(
+                  commentsArray?.[4]?.comments?.length,
+                ),
                 height: 1,
                 marginLeft: 5,
                 marginTop: 2,
