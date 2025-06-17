@@ -144,60 +144,56 @@ export const armChairsList = [
     ],
   },
   {
-    id: '1',
-    name: 'Cream Sofa',
-    image: [imagePath?.armChair2],
-    companyName: 'ANDERSSEN VOLL',
-    rating: '4.2',
-    price: '4,240',
-  },
-  {
     id: '2',
-    name: 'Red Throne',
+    name: 'Red Velvette Throne',
+    description:
+      'The Red Velvette Throne is a regal armchair that commands attention with its deep crimson velvet upholstery and ornate silhouette. Featuring a high back, crystal-tufted cushioning, and hand-carved detailing—often finished in gold leaf—it blends royal elegance with luxurious comfort. Perfect as a statement piece in a living room, studio, or event space, it offers both visual drama and plush seating fit for modern royalty',
     image: [imagePath?.armChair3],
     companyName: 'ANDERSSEN VOLL',
     rating: '4.8',
     price: '20,240',
-  },
-  {
-    id: '3',
-    name: 'Leather Brown Sofa',
-    image: [imagePath?.armChair4],
-    companyName: 'ANDERSSEN VOLL',
-    rating: '4.8',
-    price: '20,240',
-  },
-  {
-    id: '4',
-    name: 'Leather Sofa',
-    image: [imagePath?.armChair5],
-    companyName: 'IKEA',
-    rating: '4.6',
-    price: '33,240',
-  },
-  {
-    id: '5',
-    name: 'Dark Chocoloate Sofa',
-    image: [imagePath?.armChair6],
-    companyName: 'GODREJ',
-    rating: '4.0',
-    price: '8,240',
-  },
-  {
-    id: '6',
-    name: 'Wider Sofa',
-    image: [imagePath?.armChair7],
-    companyName: 'ANDERSSEN VOLL',
-    rating: '4.2',
-    price: '13,240',
-  },
-  {
-    id: '7',
-    name: 'Lounge Chair',
-    image: [imagePath?.armChair8],
-    companyName: 'IKEA',
-    rating: '4.0',
-    price: '6,240',
+    commentsData: [
+      {
+        starCount: 5,
+        comments: [
+          {
+            username: 'Sasuke',
+            profileIcon: '',
+            comment:
+              'Fantastic couch to relax on. I absolutely love this and I recommend it to my friends also.',
+          },
+        ],
+      },
+      {
+        starCount: 4,
+        comments: [
+          {
+            username: 'Rohan',
+            profileIcon: '',
+            comment:
+              'I was a bit confused with the selection, but in the end this was worth it.',
+          },
+        ],
+      },
+      {
+        starCount: 3,
+        comments: [
+          {
+            username: 'Prajwal',
+            profileIcon: '',
+            comment: 'Nice couch',
+          },
+        ],
+      },
+      {
+        starCount: 2,
+        comments: [],
+      },
+      {
+        starCount: 1,
+        comments: [],
+      },
+    ],
   },
   {
     id: '8',
@@ -437,82 +433,130 @@ export const tableLightLists = [
   {
     id: '0',
     name: 'Mini Table Light',
+    description:
+      'The Mini Table Light is a compact and stylish lighting solution designed for small spaces and cozy corners. With its sleek form and soft glow, it’s perfect for bedside tables, desks, or decorative shelves. Despite its size, it offers focused illumination ideal for reading, working, or adding a warm accent to your room. Lightweight and portable, it blends functionality with charm—making it a versatile addition to any modern or minimalist setup',
     image: [imagePath?.light1],
     companyName: 'MONICA FORSTER',
     rating: '4.6',
     price: '1,240',
+    commentsData: [
+      {
+        starCount: 5,
+        comments: [],
+      },
+      {
+        starCount: 4,
+        comments: [],
+      },
+      {
+        starCount: 3,
+        comments: [],
+      },
+      {
+        starCount: 2,
+        comments: [],
+      },
+      {
+        starCount: 1,
+        comments: [],
+      },
+    ],
   },
   {
     id: '1',
     name: 'White Table Light',
+    description:
+      'The White Table Light is a minimalist and elegant lighting piece designed to blend seamlessly into any décor. With its clean lines and soft white finish, it casts a warm, ambient glow—perfect for reading, working, or creating a cozy atmosphere. Compact yet stylish, it’s ideal for bedside tables, desks, or accent corners where subtle sophistication is key.',
     image: [imagePath?.light2],
     companyName: 'IKEA',
     rating: '4.8',
     price: '2,199',
+    commentsData: [
+      {
+        starCount: 5,
+        comments: [],
+      },
+      {
+        starCount: 4,
+        comments: [],
+      },
+      {
+        starCount: 3,
+        comments: [],
+      },
+      {
+        starCount: 2,
+        comments: [],
+      },
+      {
+        starCount: 1,
+        comments: [],
+      },
+    ],
   },
   {
     id: '2',
     name: 'Cord Light',
+    description:
+      'The Cord Light is a minimalist table lamp that celebrates simplicity and raw design. Featuring an exposed bulb suspended from a sleek, fabric-wrapped cord, it offers a modern industrial vibe with a warm, ambient glow. Perfect for creative workspaces, bedside tables, or cozy reading nooks, this light adds character without clutter—proof that elegance can come from the essentials.',
     image: [imagePath?.light3],
     companyName: 'IKEA',
     rating: '4.2',
     price: '1,699',
-  },
-  {
-    id: '3',
-    name: 'White Curved Light',
-    image: [imagePath?.light4],
-    companyName: 'IKEA',
-    rating: '4.1',
-    price: '1,499',
-  },
-  {
-    id: '4',
-    name: 'Stand Light',
-    image: [imagePath?.light5],
-    companyName: 'IKEA',
-    rating: '4.1',
-    price: '2,500',
-  },
-  {
-    id: '5',
-    name: 'Long Neck Light',
-    image: [imagePath?.light8],
-    companyName: 'Godrej',
-    rating: '4.1',
-    price: '2,100',
-  },
-  {
-    id: '6',
-    name: 'Table Light',
-    image: [imagePath?.light9],
-    companyName: 'Godrej',
-    rating: '3.6',
-    price: '800',
-  },
-  {
-    id: '7',
-    name: 'Long Neck Table Light',
-    image: [imagePath?.light11],
-    companyName: 'Godrej',
-    rating: '4.0',
-    price: '1,200',
-  },
-  {
-    id: '8',
-    name: 'Pinky Light',
-    image: [imagePath?.light13],
-    companyName: 'IKEA',
-    rating: '4.0',
-    price: '2,000',
+    commentsData: [
+      {
+        starCount: 5,
+        comments: [],
+      },
+      {
+        starCount: 4,
+        comments: [],
+      },
+      {
+        starCount: 3,
+        comments: [],
+      },
+      {
+        starCount: 2,
+        comments: [],
+      },
+      {
+        starCount: 1,
+        comments: [],
+      },
+    ],
   },
   {
     id: '9',
     name: 'Baby Light',
+    description:
+      'The Baby Light is a gentle, child-friendly table lamp designed to soothe and comfort little ones. With its soft glow, playful shape, and often silicone or BPA-free materials, it’s perfect for nurseries, bedside tables, or nighttime feedings. Many models feature tap controls, dimmable settings, and rechargeable batteries—making them both safe and convenient for parents and magical for kids.',
     image: [imagePath?.light14],
     companyName: 'IKEA',
     rating: '4.1',
     price: '2,300',
+    commentsData: [
+      {
+        starCount: 5,
+        comments: [],
+      },
+      {
+        starCount: 4,
+        comments: [],
+      },
+      {
+        starCount: 3,
+        comments: [],
+      },
+      {
+        starCount: 2,
+        comments: [],
+      },
+      {
+        starCount: 1,
+        comments: [],
+      },
+    ],
   },
 ];
 
@@ -520,50 +564,162 @@ export const sofasList = [
   {
     id: '0',
     name: 'Grey Double Seater',
+    description:
+      'The Grey Double Seater is a sleek and versatile sofa designed for modern living. Upholstered in soft grey fabric, it offers a neutral tone that complements any décor—from minimalist to cozy chic. With its compact two-seater design, it’s perfect for apartments, reading nooks, or as an accent piece in larger rooms. Plush cushions and a supportive frame ensure comfort without compromising on style, making it an ideal blend of form and function.',
     image: [imagePath?.sofa1],
     companyName: 'MONICA FORSTER',
     rating: '4.6',
     price: '26,240',
+    commentsData: [
+      {
+        starCount: 5,
+        comments: [],
+      },
+      {
+        starCount: 4,
+        comments: [],
+      },
+      {
+        starCount: 3,
+        comments: [],
+      },
+      {
+        starCount: 2,
+        comments: [],
+      },
+      {
+        starCount: 1,
+        comments: [],
+      },
+    ],
   },
   {
     id: '1',
     name: 'Brown Single Couch',
+    description:
+      'The Brown Single Couch is a cozy and compact seating solution that blends warmth with timeless style. Upholstered in rich brown fabric or leather, it offers a grounded, earthy tone that complements both modern and traditional interiors. With its supportive cushioning and sleek silhouette, it’s perfect for solo lounging in living rooms, reading corners, or office nooks—bringing comfort and character to any space.',
     image: [imagePath?.sofa2],
     companyName: 'MONICA FORSTER',
     rating: '4.4',
     price: '16,000',
+    commentsData: [
+      {
+        starCount: 5,
+        comments: [],
+      },
+      {
+        starCount: 4,
+        comments: [],
+      },
+      {
+        starCount: 3,
+        comments: [],
+      },
+      {
+        starCount: 2,
+        comments: [],
+      },
+      {
+        starCount: 1,
+        comments: [],
+      },
+    ],
   },
   {
     id: '2',
     name: 'Recliner Swinging Couch',
+    description:
+      'The Recliner Swinging Couch is the ultimate fusion of comfort and motion—designed for those who love to lounge and gently sway. With a reclining backrest and a smooth swinging base, it offers a unique relaxation experience that soothes both body and mind. Upholstered in plush fabric or leather, and supported by a sturdy frame, this couch is perfect for cozy evenings, reading sessions, or simply unwinding in style. It’s where the serenity of a swing meets the indulgence of a recliner.',
     image: [imagePath?.sofa5, imagePath?.sofa6],
     companyName: 'MONICA FORSTER',
     rating: '4.6',
     price: '18,200',
+    commentsData: [
+      {
+        starCount: 5,
+        comments: [],
+      },
+      {
+        starCount: 4,
+        comments: [],
+      },
+      {
+        starCount: 3,
+        comments: [],
+      },
+      {
+        starCount: 2,
+        comments: [],
+      },
+      {
+        starCount: 1,
+        comments: [],
+      },
+    ],
   },
   {
     id: '3',
     name: 'Mega Sofa',
+    description:
+      'The Mega Sofa is a bold, sculptural piece that blends minimalist design with luxurious comfort. Featuring a slender steel frame and generously overstuffed cushions, it offers a striking silhouette inspired by the softness of freshly baked loaves. Ideal for modern interiors, this sofa delivers both visual impact and deep relaxation—making it a standout in living rooms, lounges, or creative spaces',
     image: [imagePath?.sofa7],
     companyName: 'MONICA FORSTER',
     rating: '4.5',
     price: '25,000',
-  },
-  {
-    id: '4',
-    name: 'Kingstyle Sofa',
-    image: [imagePath?.sofa9],
-    companyName: 'MONICA FORSTER',
-    rating: '4.2',
-    price: '8,640',
+    commentsData: [
+      {
+        starCount: 5,
+        comments: [],
+      },
+      {
+        starCount: 4,
+        comments: [],
+      },
+      {
+        starCount: 3,
+        comments: [],
+      },
+      {
+        starCount: 2,
+        comments: [],
+      },
+      {
+        starCount: 1,
+        comments: [],
+      },
+    ],
   },
   {
     id: '5',
     name: 'Gamer Couch',
+    description:
+      'The Gamer Couch is a performance-driven sofa designed for immersive play and all-day comfort. With features like reclining seats, adjustable headrests, built-in cup holders, and USB charging ports, it transforms any gaming setup into a command center. Upholstered in durable materials like faux leather or breathable fabric, it offers ergonomic support and a sleek, modern look—perfect for solo marathons or co-op showdowns.',
     image: [imagePath?.sofa10],
     companyName: 'MONICA FORSTER',
     rating: '4.8',
     price: '31,640',
+    commentsData: [
+      {
+        starCount: 5,
+        comments: [],
+      },
+      {
+        starCount: 4,
+        comments: [],
+      },
+      {
+        starCount: 3,
+        comments: [],
+      },
+      {
+        starCount: 2,
+        comments: [],
+      },
+      {
+        starCount: 1,
+        comments: [],
+      },
+    ],
   },
 ];
 
