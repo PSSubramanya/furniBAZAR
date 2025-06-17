@@ -31,6 +31,7 @@ const ProductViewScreen = (props: any) => {
     CommentsDataProps[] | undefined
   >([]);
   const [commentsDictionary, setCommentsDictionary] = useState([{}]);
+  const [ratingValue, setRatingValue] = useState<number | undefined>(0);
 
   useEffect(() => {
     const varietyData = productData?.varieties;
@@ -38,6 +39,17 @@ const ProductViewScreen = (props: any) => {
     setProductVarietyDetails(varietyData);
     setSelectedVariant(varietyData?.[1]);
   }, []);
+
+  useEffect(() => {
+    const rating =
+      productVarietyDetails?.length > 0
+        ? selectedVariant?.rating
+        : productDetails?.rating;
+
+    if (rating !== undefined) {
+      setRatingValue(Number(rating));
+    }
+  }, [selectedVariant, productDetails]);
 
   useEffect(() => {
     const commentsArrayData =
@@ -58,6 +70,18 @@ const ProductViewScreen = (props: any) => {
       /** Use this to build the rating bar ui via percentage calculation */
     }
   }, [commentsArray]);
+
+  const starIconDecider = (val: number) => {
+    if (val > ratingValue) {
+      if (ratingValue > val - 1) {
+        return imagePath?.halfStarIcon;
+      } else {
+        return imagePath?.emptyStarIcon;
+      }
+    } else {
+      return imagePath?.starIcon;
+    }
+  };
 
   return (
     <View
@@ -228,6 +252,31 @@ const ProductViewScreen = (props: any) => {
             <Text></Text>
           </View>
         )}
+
+        {/* DESCRIPTION SECTION: */}
+        <Text
+          style={{
+            fontFamily: fontFamily?.primaryFont?.medium,
+            fontSize: 16,
+            color: colors.black,
+            marginLeft: 24,
+            marginTop: 16,
+          }}>
+          Description:
+        </Text>
+        <Text
+          style={{
+            fontFamily: fontFamily?.primaryFont?.regular,
+            fontSize: 14,
+            color: colors.black,
+            marginHorizontal: 24,
+            marginTop: 10,
+          }}>
+          {productVarietyDetails?.length > 0
+            ? selectedVariant?.description
+            : productDetails?.description}
+        </Text>
+
         {/* RATING SECTION: */}
         <View style={{flexDirection: 'row'}}>
           <Text
@@ -248,35 +297,35 @@ const ProductViewScreen = (props: any) => {
               marginLeft: 16,
             }}>
             <Image
-              source={imagePath?.starIcon}
+              source={starIconDecider(1)}
               height={30}
               width={30}
               style={{height: 20, width: 20}}
               // testID={testID?.starIcon}
             />
             <Image
-              source={imagePath?.starIcon}
+              source={starIconDecider(2)}
               height={30}
               width={30}
               style={{height: 20, width: 20}}
               // testID={testID?.starIcon}
             />
             <Image
-              source={imagePath?.starIcon}
+              source={starIconDecider(3)}
               height={30}
               width={30}
               style={{height: 20, width: 20}}
               // testID={testID?.starIcon}
             />
             <Image
-              source={imagePath?.halfStarIcon}
+              source={starIconDecider(4)}
               height={30}
               width={30}
               style={{height: 20, width: 20}}
               // testID={testID?.starIcon}
             />
             <Image
-              source={imagePath?.emptyStarIcon}
+              source={starIconDecider(5)}
               height={30}
               width={30}
               style={{height: 20, width: 20}}
@@ -473,30 +522,6 @@ const ProductViewScreen = (props: any) => {
             />
           </View>
         </View>
-
-        {/* DESCRIPTION SECTION: */}
-        <Text
-          style={{
-            fontFamily: fontFamily?.primaryFont?.medium,
-            fontSize: 16,
-            color: colors.black,
-            marginLeft: 24,
-            marginTop: 16,
-          }}>
-          Description:
-        </Text>
-        <Text
-          style={{
-            fontFamily: fontFamily?.primaryFont?.regular,
-            fontSize: 14,
-            color: colors.black,
-            marginHorizontal: 24,
-            marginTop: 10,
-          }}>
-          {productVarietyDetails?.length > 0
-            ? selectedVariant?.description
-            : productDetails?.description}
-        </Text>
       </ScrollView>
     </View>
   );

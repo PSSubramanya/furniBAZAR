@@ -77,7 +77,7 @@ export const armChairsList = [
       'This Yellow Ox Chair is a bold and sculptural statement piece that combines comfort with striking aesthetics. Inspired by the strength and presence of an ox, this chair features a distinctive high-back design with curved armrests that evoke the shape of ox horns. Its vibrant yellow upholstery adds a modern and energetic touch, making it a standout addition to any space. Crafted with premium materials, the chair boasts a sturdy frame, plush cushioning, and a sleek finish that enhances both durability and style. Whether placed in a living room, office, or lounge area, the Yellow Ox Chair offers exceptional support and ergonomic comfort, making it perfect for relaxation or conversation. ',
     image: [imagePath?.armChair1],
     companyName: 'MONICA FORSTER',
-    rating: '4.6',
+    rating: '2.6',
     price: '16,240',
     commentsData: [
       {
@@ -150,7 +150,7 @@ export const armChairsList = [
       'The Red Velvette Throne is a regal armchair that commands attention with its deep crimson velvet upholstery and ornate silhouette. Featuring a high back, crystal-tufted cushioning, and hand-carved detailing—often finished in gold leaf—it blends royal elegance with luxurious comfort. Perfect as a statement piece in a living room, studio, or event space, it offers both visual drama and plush seating fit for modern royalty',
     image: [imagePath?.armChair3],
     companyName: 'ANDERSSEN VOLL',
-    rating: '4.8',
+    rating: '3.8',
     price: '20,240',
     commentsData: [
       {
