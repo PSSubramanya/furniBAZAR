@@ -18,6 +18,14 @@ export interface CommentsDataProps {
   comments: CommentsProps[];
 }
 
+export interface RatingDataProp {
+  '5Star': number;
+  '4Star': number;
+  '3Star': number;
+  '2Star': number;
+  '1Star': number;
+}
+
 export interface VarietyDataProps {
   id: string;
   name: string;
@@ -28,6 +36,7 @@ export interface VarietyDataProps {
   price: string;
   color?: string;
   commentsData?: CommentsDataProps[];
+  ratingData: RatingDataProp;
 }
 
 export interface ProductListProps {
@@ -40,4 +49,5 @@ export interface ProductListProps {
   price: string;
   commentsData?: CommentsDataProps[];
   varieties?: VarietyDataProps[];
+  ratingData: RatingDataProp;
 }

@@ -15,6 +15,7 @@ import colors from '../../constants/colors';
 import {
   CommentsDataProps,
   ProductListProps,
+  RatingDataProp,
   VarietyDataProps,
 } from '../HomeScreenContent/typesFile';
 const ProductViewScreen = (props: any) => {
@@ -33,6 +34,7 @@ const ProductViewScreen = (props: any) => {
   >([]);
   const [totalComments, setTotalComments] = useState(0);
   const [ratingValue, setRatingValue] = useState<number | undefined>(0);
+  const [ratingStatistics, setRatingStatistics] = useState<RatingDataProp>();
 
   useEffect(() => {
     const varietyData = productData?.varieties;
@@ -47,9 +49,16 @@ const ProductViewScreen = (props: any) => {
         ? selectedVariant?.rating
         : productDetails?.rating;
 
+    const ratingStats =
+      productVarietyDetails?.length > 0
+        ? selectedVariant?.ratingData
+        : productDetails?.ratingData;
+
     if (rating !== undefined) {
       setRatingValue(Number(rating));
     }
+
+    setRatingStatistics(ratingStats);
   }, [selectedVariant, productDetails]);
 
   useEffect(() => {
@@ -87,7 +96,13 @@ const ProductViewScreen = (props: any) => {
   };
 
   const getStarRatingBarLength = (numberOfComments: number | undefined) => {
-    return ratingCarLength * (numberOfComments / totalComments);
+    const totalRatingCount =
+      ratingStatistics?.['5Star'] +
+      ratingStatistics?.['4Star'] +
+      ratingStatistics?.['3Star'] +
+      ratingStatistics?.['2Star'] +
+      ratingStatistics?.['1Star'];
+    return ratingCarLength * (numberOfComments / totalRatingCount);
   };
 
   return (
@@ -379,9 +394,7 @@ const ProductViewScreen = (props: any) => {
             <View
               style={{
                 borderWidth: 3,
-                width: getStarRatingBarLength(
-                  commentsArray?.[0]?.comments?.length,
-                ),
+                width: getStarRatingBarLength(ratingStatistics?.['5Star']),
                 height: 1,
                 marginLeft: 5,
                 marginTop: 2,
@@ -416,9 +429,7 @@ const ProductViewScreen = (props: any) => {
             <View
               style={{
                 borderWidth: 3,
-                width: getStarRatingBarLength(
-                  commentsArray?.[1]?.comments?.length,
-                ),
+                width: getStarRatingBarLength(ratingStatistics?.['4Star']),
                 height: 1,
                 marginLeft: 5,
                 marginTop: 2,
@@ -453,9 +464,7 @@ const ProductViewScreen = (props: any) => {
             <View
               style={{
                 borderWidth: 3,
-                width: getStarRatingBarLength(
-                  commentsArray?.[2]?.comments?.length,
-                ),
+                width: getStarRatingBarLength(ratingStatistics?.['3Star']),
                 height: 1,
                 marginLeft: 5,
                 marginTop: 2,
@@ -490,9 +499,7 @@ const ProductViewScreen = (props: any) => {
             <View
               style={{
                 borderWidth: 3,
-                width: getStarRatingBarLength(
-                  commentsArray?.[3]?.comments?.length,
-                ),
+                width: getStarRatingBarLength(ratingStatistics?.['2Star']),
                 height: 1,
                 marginLeft: 5,
                 marginTop: 2,
@@ -527,9 +534,7 @@ const ProductViewScreen = (props: any) => {
             <View
               style={{
                 borderWidth: 3,
-                width: getStarRatingBarLength(
-                  commentsArray?.[4]?.comments?.length,
-                ),
+                width: getStarRatingBarLength(ratingStatistics?.['1Star']),
                 height: 1,
                 marginLeft: 5,
                 marginTop: 2,

@@ -79,6 +79,13 @@ export const armChairsList = [
     companyName: 'MONICA FORSTER',
     rating: '2.6',
     price: '16,240',
+    ratingData: {
+      '5Star': 16,
+      '4Star': 9,
+      '3Star': 3,
+      '2Star': 1,
+      '1Star': 4,
+    },
     commentsData: [
       {
         starCount: 5,
@@ -152,6 +159,13 @@ export const armChairsList = [
     companyName: 'ANDERSSEN VOLL',
     rating: '3.8',
     price: '20,240',
+    ratingData: {
+      '5Star': 6,
+      '4Star': 9,
+      '3Star': 13,
+      '2Star': 10,
+      '1Star': 4,
+    },
     commentsData: [
       {
         starCount: 5,
@@ -210,6 +224,13 @@ export const armChairsList = [
         rating: '4.8',
         price: '20,240',
         color: '#DDD5AE',
+        ratingData: {
+          '5Star': 26,
+          '4Star': 90,
+          '3Star': 13,
+          '2Star': 6,
+          '1Star': 2,
+        },
         commentsData: [
           {
             starCount: 5,
@@ -284,6 +305,13 @@ export const armChairsList = [
         rating: '4.9',
         price: '22,240',
         color: '#5077CA',
+        ratingData: {
+          '5Star': 160,
+          '4Star': 99,
+          '3Star': 35,
+          '2Star': 50,
+          '1Star': 42,
+        },
         commentsData: [
           {
             starCount: 5,
@@ -358,6 +386,13 @@ export const armChairsList = [
         rating: '4.8',
         price: '20,240',
         color: '#CECDD1',
+        ratingData: {
+          '5Star': 34,
+          '4Star': 19,
+          '3Star': 3,
+          '2Star': 1,
+          '1Star': 4,
+        },
         commentsData: [
           {
             starCount: 5,
@@ -439,6 +474,13 @@ export const tableLightLists = [
     companyName: 'MONICA FORSTER',
     rating: '4.6',
     price: '1,240',
+    ratingData: {
+      '5Star': 6,
+      '4Star': 29,
+      '3Star': 31,
+      '2Star': 12,
+      '1Star': 4,
+    },
     commentsData: [
       {
         starCount: 5,
@@ -471,6 +513,13 @@ export const tableLightLists = [
     companyName: 'IKEA',
     rating: '4.8',
     price: '2,199',
+    ratingData: {
+      '5Star': 16,
+      '4Star': 9,
+      '3Star': 3,
+      '2Star': 1,
+      '1Star': 4,
+    },
     commentsData: [
       {
         starCount: 5,
@@ -503,6 +552,13 @@ export const tableLightLists = [
     companyName: 'IKEA',
     rating: '4.2',
     price: '1,699',
+    ratingData: {
+      '5Star': 28,
+      '4Star': 16,
+      '3Star': 32,
+      '2Star': 11,
+      '1Star': 32,
+    },
     commentsData: [
       {
         starCount: 5,
@@ -535,6 +591,13 @@ export const tableLightLists = [
     companyName: 'IKEA',
     rating: '4.1',
     price: '2,300',
+    ratingData: {
+      '5Star': 8,
+      '4Star': 9,
+      '3Star': 10,
+      '2Star': 11,
+      '1Star': 12,
+    },
     commentsData: [
       {
         starCount: 5,
@@ -570,6 +633,13 @@ export const sofasList = [
     companyName: 'MONICA FORSTER',
     rating: '4.6',
     price: '26,240',
+    ratingData: {
+      '5Star': 5,
+      '4Star': 45,
+      '3Star': 32,
+      '2Star': 16,
+      '1Star': 48,
+    },
     commentsData: [
       {
         starCount: 5,
@@ -602,6 +672,13 @@ export const sofasList = [
     companyName: 'MONICA FORSTER',
     rating: '4.4',
     price: '16,000',
+    ratingData: {
+      '5Star': 1,
+      '4Star': 2,
+      '3Star': 3,
+      '2Star': 4,
+      '1Star': 5,
+    },
     commentsData: [
       {
         starCount: 5,
@@ -634,6 +711,13 @@ export const sofasList = [
     companyName: 'MONICA FORSTER',
     rating: '4.6',
     price: '18,200',
+    ratingData: {
+      '5Star': 11,
+      '4Star': 12,
+      '3Star': 13,
+      '2Star': 14,
+      '1Star': 15,
+    },
     commentsData: [
       {
         starCount: 5,
@@ -666,6 +750,13 @@ export const sofasList = [
     companyName: 'MONICA FORSTER',
     rating: '4.5',
     price: '25,000',
+    ratingData: {
+      '5Star': 21,
+      '4Star': 22,
+      '3Star': 23,
+      '2Star': 24,
+      '1Star': 25,
+    },
     commentsData: [
       {
         starCount: 5,
@@ -698,6 +789,13 @@ export const sofasList = [
     companyName: 'MONICA FORSTER',
     rating: '4.8',
     price: '31,640',
+    ratingData: {
+      '5Star': 200,
+      '4Star': 95,
+      '3Star': 32,
+      '2Star': 1,
+      '1Star': 2,
+    },
     commentsData: [
       {
         starCount: 5,
