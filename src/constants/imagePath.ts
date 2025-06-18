@@ -79,6 +79,7 @@ const imagePath = {
   favouriteIcon: require('../assets/images/icons/favouriteIcon.png'),
   favouriteFilledIcon: require('../assets/images/icons/favouriteFilledIcon.png'),
   filterIcon: require('../assets/images/icons/filterIcon.png'),
+  filterIcon2: require('../assets/images/icons/filterIcon2.png'),
   filterIconColored: require('../assets/images/icons/filterIconColored.png'),
   furnitureIcon: require('../assets/images/icons/furnitureIcon.png'),
   googleIcon: require('../assets/images/icons/googleIcon.png'),

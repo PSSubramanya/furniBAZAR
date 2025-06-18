@@ -300,7 +300,7 @@ const ProductViewScreen = (props: any) => {
         </Text>
 
         {/* RATING SECTION: */}
-        <View style={{flexDirection: 'row'}}>
+        <View style={{flexDirection: 'row', marginTop: 20}}>
           <Text
             style={{
               fontFamily: fontFamily?.primaryFont?.medium,
@@ -543,6 +543,72 @@ const ProductViewScreen = (props: any) => {
               }}
             />
           </View>
+        </View>
+
+        {/* REVIEW SECTION: */}
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            marginTop: 20,
+          }}>
+          <Text
+            style={{
+              fontFamily: fontFamily?.primaryFont?.medium,
+              fontSize: 16,
+              color: colors.black,
+              marginLeft: 24,
+              marginTop: 16,
+            }}>
+            Reviews:
+          </Text>
+          <TouchableOpacity>
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'center',
+                height: 40,
+                marginRight: 10,
+                borderRadius: 5,
+                borderWidth: 1,
+                marginTop: 6,
+              }}>
+              <Text
+                style={{
+                  fontFamily: fontFamily?.primaryFont?.medium,
+                  fontSize: 16,
+                  color: colors.black,
+                  marginHorizontal: 5,
+                }}>
+                5 Star
+              </Text>
+            </View>
+          </TouchableOpacity>
+        </View>
+        {/* Need to add comments section here with 3 comments and filter and a view all section in a new page with filter */}
+        <View>
+          <Text
+            style={{
+              fontFamily: fontFamily?.primaryFont?.bold,
+              fontSize: 14,
+              color: colors.black,
+              marginHorizontal: 24,
+              marginTop: 10,
+              textTransform: 'uppercase',
+            }}>
+            {commentsArray?.[0]?.comments?.[0]?.username}
+          </Text>
+          <Text
+            style={{
+              fontFamily: fontFamily?.primaryFont?.regular,
+              fontSize: 14,
+              color: colors.black,
+              marginHorizontal: 24,
+              marginTop: 10,
+            }}>
+            {commentsArray?.[0]?.comments?.[0]?.comment}
+          </Text>
         </View>
       </ScrollView>
     </View>
