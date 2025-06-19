@@ -15,7 +15,7 @@ import {
 } from 'react-native';
 import {styles, themeStyle} from './styles';
 import {useDispatch, useSelector} from 'react-redux';
-import {addToCart} from '../../actions/homeActions';
+import {addToCart, addToFavourite} from '../../actions/homeActions';
 import imagePath from '../../constants/imagePath';
 import testID from '../../constants/testIdConstants';
 import colors from '../../constants/colors';
@@ -45,6 +45,9 @@ const HomeScreenContent = (props: any) => {
   const cartData = useSelector(
     (state: RootState) => state.homeReducer?.cartData,
   );
+  const favouriteProductData = useSelector(
+    (state: RootState) => state?.homeReducer?.favouriteProductData,
+  );
 
   const imageRef = useRef(null);
   const [selectedCategroyIndex, setSelectedCategroyIndex] = useState<number>(0);
@@ -71,6 +74,7 @@ const HomeScreenContent = (props: any) => {
 
   useEffect(() => {
     setAddedToCartItems([...cartData?.data]);
+    setSavedProductsList(favouriteProductData?.data);
   }, []);
 
   useEffect(() => {
@@ -103,6 +107,10 @@ const HomeScreenContent = (props: any) => {
       useNativeDriver: true,
     }).start();
   }, [filterSelect]);
+
+  useEffect(() => {
+    dispatch(addToFavourite(savedProductsList));
+  }, [savedProductsList]);
 
   const categoryIconStyle = (index: number) => {
     return index === selectedCategroyIndex

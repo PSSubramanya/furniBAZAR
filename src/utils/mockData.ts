@@ -213,6 +213,7 @@ export const armChairsList = [
     id: '8',
     name: 'Savanna Easy Chair',
     image: [imagePath?.armChair9],
+    companyName: 'NILKAMAL',
     varieties: [
       {
         id: '8_1',
