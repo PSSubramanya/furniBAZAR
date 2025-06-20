@@ -217,8 +217,8 @@ const ProductViewScreen = (props: any) => {
       <View
         style={{
           flexDirection: 'row',
-          marginTop: 50,
-          marginLeft: 15,
+          marginTop: 10,
+          marginLeft: 5,
           alignItems: 'center',
         }}>
         <TouchableOpacity

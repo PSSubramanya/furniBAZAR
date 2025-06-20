@@ -97,8 +97,8 @@ const CartProductsScreen = (props: any) => {
       <View
         style={{
           flexDirection: 'row',
-          marginTop: 40,
-          marginLeft: 15,
+          marginTop: 10,
+          marginLeft: 5,
           alignItems: 'center',
         }}>
         <TouchableOpacity
@@ -154,10 +154,28 @@ const CartProductsScreen = (props: any) => {
                       marginLeft: 20,
                       alignItems: 'center',
                     }}>
-                    <TouchableOpacity onPress={() => {}}>
+                    <TouchableOpacity
+                      onPress={() => {
+                        let temporaryItems = [];
+                        if (
+                          JSON.stringify(selectedItems)?.includes(
+                            JSON.stringify(item),
+                          )
+                        ) {
+                          temporaryItems = [...selectedItems];
+                          const indexOfItem = selectedItems?.indexOf(item);
+                          temporaryItems.splice(indexOfItem, 1);
+                          setSelectedItems(temporaryItems);
+                        } else {
+                          const temporaryItems = [...selectedItems, item];
+                          setSelectedItems(temporaryItems);
+                        }
+                      }}>
                       <Image
                         source={
-                          index === 1
+                          JSON.stringify(selectedItems)?.includes(
+                            JSON.stringify(item),
+                          )
                             ? imagePath?.checkCircle
                             : imagePath?.radioButton
                         }
