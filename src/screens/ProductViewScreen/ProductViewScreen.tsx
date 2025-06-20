@@ -7,17 +7,23 @@ import {
   TouchableOpacity,
   Pressable,
   ScrollView,
+  NativeSyntheticEvent,
+  NativeScrollEvent,
+  ImageSourcePropType,
 } from 'react-native';
 import styles from './styles';
 import fontFamily from '../../constants/fontFamily';
 import imagePath from '../../constants/imagePath';
 import colors from '../../constants/colors';
+import {FAQItems, colorsForCommentNames} from '../../utils/mockData';
 import {
   CommentsDataProps,
   ProductListProps,
   RatingDataProp,
   VarietyDataProps,
 } from '../HomeScreenContent/typesFile';
+import FBPagination from '../../components/FBPagination/FBPagination';
+
 const ProductViewScreen = (props: any) => {
   const {navigation, route} = props;
   const {params} = route;
@@ -29,12 +35,18 @@ const ProductViewScreen = (props: any) => {
     VarietyDataProps[]
   >([]);
   const [selectedVariant, setSelectedVariant] = useState<VarietyDataProps>();
+  const [carousalIndex, setCarousalIndex] = useState(0);
   const [commentsArray, setCommentsArray] = useState<
     CommentsDataProps[] | undefined
   >([]);
   const [totalComments, setTotalComments] = useState(0);
+  const [selectedCommentsRatingIndex, setSelectedCommentsRatingIndex] =
+    useState(4);
   const [ratingValue, setRatingValue] = useState<number | undefined>(0);
   const [ratingStatistics, setRatingStatistics] = useState<RatingDataProp>();
+  const [displayableImagesData, setDisplayableImagesData] = useState<
+    ImageSourcePropType | undefined
+  >([]);
 
   useEffect(() => {
     const varietyData = productData?.varieties;
@@ -54,11 +66,17 @@ const ProductViewScreen = (props: any) => {
         ? selectedVariant?.ratingData
         : productDetails?.ratingData;
 
+    const displayableImages =
+      productVarietyDetails?.length > 0
+        ? selectedVariant?.image
+        : productDetails?.image;
+
     if (rating !== undefined) {
       setRatingValue(Number(rating));
     }
 
     setRatingStatistics(ratingStats);
+    setDisplayableImagesData(displayableImages);
   }, [selectedVariant, productDetails]);
 
   useEffect(() => {
@@ -78,10 +96,32 @@ const ProductViewScreen = (props: any) => {
       setTotalComments(flattenedComments?.length);
 
       console.log('flattenedComments', flattenedComments?.length);
-
-      /** Use this to build the rating bar ui via percentage calculation */
     }
   }, [commentsArray]);
+
+  const setScrollIndex = (
+    eventVal: NativeSyntheticEvent<NativeScrollEvent>,
+  ) => {
+    const offsetX = eventVal.nativeEvent.contentOffset.x;
+    const index = Math.round(offsetX / 300);
+    setCarousalIndex(index);
+  };
+
+  /** Use useCallback to make this change the colors for the product change and not on star change */
+  const getRandomColorForCommentNames = () => {
+    let randomNumber = Math.floor(Math.random() * 12);
+    let randomColor = colorsForCommentNames?.[randomNumber];
+    return colors?.[randomColor];
+  };
+
+  const generateTwoLettersForCommentImage = (name: string) => {
+    let nameArray = name?.split(' ');
+    if (nameArray?.length > 1) {
+      return name?.[0] + name?.[1];
+    } else {
+      return name?.[0];
+    }
+  };
 
   const starIconDecider = (val: number) => {
     if (val > ratingValue) {
@@ -95,6 +135,37 @@ const ProductViewScreen = (props: any) => {
     }
   };
 
+  const renderRatingFilterView = (starCount: number) => {
+    return (
+      <TouchableOpacity
+        onPress={() => {
+          setSelectedCommentsRatingIndex(starCount - 1);
+        }}>
+        <View
+          style={{
+            alignItems: 'center',
+            justifyContent: 'center',
+            height: 40,
+            paddingHorizontal: 5,
+            marginRight: 10,
+            borderRadius: 5,
+            borderWidth: 1,
+            marginTop: 6,
+          }}>
+          <Text
+            style={{
+              fontFamily: fontFamily?.primaryFont?.medium,
+              fontSize: 16,
+              color: colors.black,
+              marginHorizontal: 5,
+            }}>
+            {starCount}
+          </Text>
+        </View>
+      </TouchableOpacity>
+    );
+  };
+
   const getStarRatingBarLength = (numberOfComments: number | undefined) => {
     const totalRatingCount =
       ratingStatistics?.['5Star'] +
@@ -103,6 +174,38 @@ const ProductViewScreen = (props: any) => {
       ratingStatistics?.['2Star'] +
       ratingStatistics?.['1Star'];
     return ratingCarLength * (numberOfComments / totalRatingCount);
+  };
+
+  const renderFAQSection = (icon: Image, text: string) => {
+    return (
+      <TouchableOpacity onPress={() => {}}>
+        <View
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            marginTop: 5,
+            marginLeft: 22,
+            width: 150,
+          }}>
+          <Image
+            source={icon}
+            height={30}
+            width={30}
+            style={{height: 16, width: 16}}
+            // testID={testID?.starIcon}abcd
+          />
+          <Text
+            style={{
+              fontFamily: fontFamily?.primaryFont?.regular,
+              fontSize: 12,
+              color: colors.navyBlueColor,
+              marginLeft: 6,
+            }}>
+            {text}
+          </Text>
+        </View>
+      </TouchableOpacity>
+    );
   };
 
   return (
@@ -143,13 +246,12 @@ const ProductViewScreen = (props: any) => {
             alignItems: 'center',
           }}>
           <FlatList
-            data={
-              productVarietyDetails?.length > 0
-                ? selectedVariant?.image
-                : productDetails?.image
-            }
+            data={displayableImagesData}
             keyExtractor={item => item}
             horizontal={true}
+            onScroll={event => {
+              setScrollIndex(event);
+            }}
             pagingEnabled={true}
             showsHorizontalScrollIndicator={false}
             renderItem={({item, index}) => {
@@ -193,7 +295,15 @@ const ProductViewScreen = (props: any) => {
             marginTop: -200,
             alignSelf: 'center',
           }}>
-          <View style={{flexDirection: 'row', marginTop: 200}}>
+          <View style={{marginTop: 190}}>
+            {displayableImagesData?.length > 1 && (
+              <FBPagination
+                carousalIndex={carousalIndex}
+                carouselOfferData={displayableImagesData}
+              />
+            )}
+          </View>
+          <View style={{flexDirection: 'row', paddingTop: 10}}>
             <Text
               style={{
                 fontFamily: fontFamily?.primaryFont?.semiBold,
@@ -545,6 +655,30 @@ const ProductViewScreen = (props: any) => {
           </View>
         </View>
 
+        {/* SHOPPING ADVANTAGES SECTION: */}
+
+        <Text
+          style={{
+            fontFamily: fontFamily?.primaryFont?.medium,
+            fontSize: 16,
+            color: colors.black,
+            marginLeft: 24,
+            marginTop: 16,
+            marginBottom: 6,
+          }}>
+          Shopping FAQs:
+        </Text>
+        <FlatList
+          data={FAQItems}
+          numColumns={2}
+          keyExtractor={item => item?.name}
+          renderItem={({item, index}) => {
+            return <>{renderFAQSection(item?.icon, item?.name)}</>;
+          }}
+        />
+
+        {/* PRODUCT GALLERY IMAGES SECTION: */}
+
         {/* REVIEW SECTION: */}
         <View
           style={{
@@ -562,56 +696,173 @@ const ProductViewScreen = (props: any) => {
             }}>
             Reviews:
           </Text>
-          <TouchableOpacity>
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'center',
-                height: 40,
-                marginRight: 10,
-                borderRadius: 5,
-                borderWidth: 1,
-                marginTop: 6,
-              }}>
-              <Text
+          <View style={{flexDirection: 'row'}}>
+            {/* HERE */}
+            {renderRatingFilterView(1)}
+            {renderRatingFilterView(2)}
+            {renderRatingFilterView(3)}
+            {renderRatingFilterView(4)}
+            {renderRatingFilterView(5)}
+            <TouchableOpacity>
+              <View
                 style={{
-                  fontFamily: fontFamily?.primaryFont?.medium,
-                  fontSize: 16,
-                  color: colors.black,
-                  marginHorizontal: 5,
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  height: 40,
+                  marginRight: 10,
+                  borderRadius: 5,
+                  borderWidth: 1,
+                  marginTop: 6,
                 }}>
-                5 Star
-              </Text>
-            </View>
-          </TouchableOpacity>
+                <Text
+                  style={{
+                    fontFamily: fontFamily?.primaryFont?.medium,
+                    fontSize: 16,
+                    color: colors.black,
+                    marginHorizontal: 5,
+                  }}>
+                  {selectedCommentsRatingIndex + 1} Star
+                </Text>
+              </View>
+            </TouchableOpacity>
+          </View>
         </View>
         {/* Need to add comments section here with 3 comments and filter and a view all section in a new page with filter */}
-        <View>
-          <Text
+        {totalComments === 0 && (
+          <View
             style={{
-              fontFamily: fontFamily?.primaryFont?.bold,
-              fontSize: 14,
-              color: colors.black,
-              marginHorizontal: 24,
-              marginTop: 10,
-              textTransform: 'uppercase',
-            }}>
-            {commentsArray?.[0]?.comments?.[0]?.username}
-          </Text>
-          <Text
-            style={{
-              fontFamily: fontFamily?.primaryFont?.regular,
-              fontSize: 14,
-              color: colors.black,
-              marginHorizontal: 24,
+              alignItems: 'center',
               marginTop: 10,
             }}>
-            {commentsArray?.[0]?.comments?.[0]?.comment}
-          </Text>
-        </View>
+            <Image
+              source={imagePath?.illustrationIcon5}
+              height={200}
+              width={200}
+              style={{height: 200, width: 200}}
+              resizeMode="contain"
+            />
+            <Text
+              style={{
+                fontFamily: fontFamily?.primaryFont?.medium,
+                fontSize: 16,
+              }}>
+              No reviews added for this product yet
+            </Text>
+          </View>
+        )}
+
+        {commentsArray?.[selectedCommentsRatingIndex]?.comments?.map(
+          (val, ind) => {
+            return (
+              <View
+                style={{
+                  flexDirection: 'row',
+                  marginTop: 20,
+                  alignItems: 'center',
+                  marginLeft: 16,
+                  marginRight: 50,
+                }}>
+                {val?.profileIcon ? (
+                  <Image
+                    source={val?.profileIcon}
+                    height={30}
+                    width={30}
+                    style={{
+                      height: 50,
+                      width: 50,
+                      borderRadius: 25,
+                      marginTop: 10,
+                      borderWidth: 2,
+                      borderColor: colors?.darkBluegrey4,
+                    }}
+                    // testID={testID?.starIcon}
+                  />
+                ) : (
+                  <View
+                    style={{
+                      backgroundColor: getRandomColorForCommentNames(),
+                      height: 50,
+                      width: 50,
+                      marginTop: 10,
+                      borderRadius: 25,
+                      borderWidth: 2,
+                      borderColor: colors?.darkBluegrey4,
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}>
+                    <Text
+                      style={{
+                        fontFamily: fontFamily?.primaryFont?.bold,
+                        fontSize: 14,
+                        color: colors.black,
+                        textTransform: 'uppercase',
+                      }}>
+                      {generateTwoLettersForCommentImage(val?.username)}
+                    </Text>
+                  </View>
+                )}
+
+                <View style={{marginLeft: 16, marginRight: 24}}>
+                  <Text
+                    style={{
+                      fontFamily: fontFamily?.primaryFont?.bold,
+                      fontSize: 14,
+                      color: colors.black,
+                      marginTop: 14,
+                      textTransform: 'uppercase',
+                    }}>
+                    {val?.username}
+                  </Text>
+                  <Text
+                    style={{
+                      fontFamily: fontFamily?.primaryFont?.regular,
+                      fontSize: 14,
+                      color: colors.black,
+                      marginTop: 2,
+                    }}>
+                    {val?.comment}
+                  </Text>
+                </View>
+              </View>
+            );
+          },
+        )}
+        {totalComments !== 0 &&
+          commentsArray?.[selectedCommentsRatingIndex]?.comments?.length ===
+            0 && (
+            <View
+              style={{
+                alignItems: 'center',
+                marginTop: 10,
+              }}>
+              <Image
+                source={imagePath?.illustrationIcon5}
+                height={200}
+                width={200}
+                style={{height: 200, width: 200}}
+                resizeMode="contain"
+              />
+              <Text
+                style={{
+                  fontFamily: fontFamily?.primaryFont?.regular,
+                  fontSize: 16,
+                }}>
+                No comment for {selectedCommentsRatingIndex + 1} star rating
+              </Text>
+            </View>
+          )}
       </ScrollView>
     </View>
   );
 };
 export default ProductViewScreen;
+
+// pagination
+// share and like icons
+// FAQ section
+// comments section filter - animated
+// comments profile image and name first 2 letters logic
+// Bottom drawer for price calculation display
+// Date and rating in comments
+// Add share product link in mockData and share on media feature

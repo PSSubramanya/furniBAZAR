@@ -9,8 +9,10 @@ export interface HomeScreenContentStyleProps {
 
 export interface CommentsProps {
   username: string;
-  profileIcon: string;
   comment: string;
+  rating: number;
+  date: string;
+  profileIcon?: string;
 }
 
 export interface CommentsDataProps {

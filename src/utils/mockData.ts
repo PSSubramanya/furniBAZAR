@@ -88,23 +88,26 @@ export const armChairsList = [
     },
     commentsData: [
       {
-        starCount: 5,
+        starCount: 1,
         comments: [
           {
-            username: 'Revanth',
+            username: 'Subbu',
             profileIcon: '',
-            comment:
-              'Fantastic couch to relax on. I absolutely love this and I recommend it to my friends also.',
+            comment: 'I expected better from this company.',
           },
+        ],
+      },
+      {
+        starCount: 2,
+        comments: [],
+      },
+      {
+        starCount: 3,
+        comments: [
           {
-            username: 'Rahul',
+            username: 'Prajwal',
             profileIcon: '',
-            comment: 'Great gamer couch',
-          },
-          {
-            username: 'Adithya',
-            profileIcon: '',
-            comment: 'This is a solid budget friendly comfy couch.',
+            comment: 'Nice couch',
           },
         ],
       },
@@ -125,26 +128,29 @@ export const armChairsList = [
         ],
       },
       {
-        starCount: 3,
+        starCount: 5,
         comments: [
           {
-            username: 'Prajwal',
-            profileIcon: '',
-            comment: 'Nice couch',
+            username: 'Revanth',
+            profileIcon: imagePath?.profileImage1,
+            comment:
+              'Fantastic couch to relax on. I absolutely love this and I recommend it to my friends also.',
+            rating: 4.6,
+            date: '16/1/2025',
           },
-        ],
-      },
-      {
-        starCount: 2,
-        comments: [],
-      },
-      {
-        starCount: 1,
-        comments: [
           {
-            username: 'Subbu',
-            profileIcon: '',
-            comment: 'I expected better from this company.',
+            username: 'Rahul',
+            profileIcon: imagePath?.profileImage2,
+            comment: 'Great gamer couch',
+            rating: 4.8,
+            date: '22/1/2025',
+          },
+          {
+            username: 'Adithya',
+            profileIcon: imagePath?.profileImage3,
+            comment: 'This is a solid budget friendly comfy couch.',
+            rating: 4.4,
+            date: '12/2/2025',
           },
         ],
       },
@@ -168,13 +174,20 @@ export const armChairsList = [
     },
     commentsData: [
       {
-        starCount: 5,
+        starCount: 1,
+        comments: [],
+      },
+      {
+        starCount: 2,
+        comments: [],
+      },
+      {
+        starCount: 3,
         comments: [
           {
-            username: 'Sasuke',
+            username: 'Prajwal',
             profileIcon: '',
-            comment:
-              'Fantastic couch to relax on. I absolutely love this and I recommend it to my friends also.',
+            comment: 'Nice couch',
           },
         ],
       },
@@ -190,22 +203,15 @@ export const armChairsList = [
         ],
       },
       {
-        starCount: 3,
+        starCount: 5,
         comments: [
           {
-            username: 'Prajwal',
+            username: 'Sasuke',
             profileIcon: '',
-            comment: 'Nice couch',
+            comment:
+              'Fantastic couch to relax on. I absolutely love this and I recommend it to my friends also.',
           },
         ],
-      },
-      {
-        starCount: 2,
-        comments: [],
-      },
-      {
-        starCount: 1,
-        comments: [],
       },
     ],
   },
@@ -234,23 +240,26 @@ export const armChairsList = [
         },
         commentsData: [
           {
-            starCount: 5,
+            starCount: 1,
             comments: [
               {
-                username: 'Revanth',
+                username: 'Subbu',
                 profileIcon: '',
-                comment:
-                  'Fantastic couch to relax on. I absolutely love this and I recommend it to my friends also.',
+                comment: 'I expected better from this company.',
               },
+            ],
+          },
+          {
+            starCount: 2,
+            comments: [],
+          },
+          {
+            starCount: 3,
+            comments: [
               {
-                username: 'Rahul',
+                username: 'Prajwal',
                 profileIcon: '',
-                comment: 'Great gamer couch',
-              },
-              {
-                username: 'Adithya',
-                profileIcon: '',
-                comment: 'This is a solid budget friendly comfy couch.',
+                comment: 'Nice couch',
               },
             ],
           },
@@ -271,26 +280,23 @@ export const armChairsList = [
             ],
           },
           {
-            starCount: 3,
+            starCount: 5,
             comments: [
               {
-                username: 'Prajwal',
+                username: 'Revanth',
                 profileIcon: '',
-                comment: 'Nice couch',
+                comment:
+                  'Fantastic couch to relax on. I absolutely love this and I recommend it to my friends also.',
               },
-            ],
-          },
-          {
-            starCount: 2,
-            comments: [],
-          },
-          {
-            starCount: 1,
-            comments: [
               {
-                username: 'Subbu',
+                username: 'Rahul',
                 profileIcon: '',
-                comment: 'I expected better from this company.',
+                comment: 'Great gamer couch',
+              },
+              {
+                username: 'Adithya',
+                profileIcon: '',
+                comment: 'This is a solid budget friendly comfy couch.',
               },
             ],
           },
@@ -315,23 +321,26 @@ export const armChairsList = [
         },
         commentsData: [
           {
-            starCount: 5,
+            starCount: 1,
             comments: [
               {
-                username: 'Revanth',
+                username: 'Subbu',
                 profileIcon: '',
-                comment:
-                  'Fantastic couch to relax on. I absolutely love this and I recommend it to my friends also.',
+                comment: 'I expected better from this company.',
               },
+            ],
+          },
+          {
+            starCount: 2,
+            comments: [],
+          },
+          {
+            starCount: 3,
+            comments: [
               {
-                username: 'Rahul',
+                username: 'Prajwal',
                 profileIcon: '',
-                comment: 'Great gamer couch',
-              },
-              {
-                username: 'Adithya',
-                profileIcon: '',
-                comment: 'This is a solid budget friendly comfy couch.',
+                comment: 'Nice couch',
               },
             ],
           },
@@ -352,26 +361,29 @@ export const armChairsList = [
             ],
           },
           {
-            starCount: 3,
+            starCount: 5,
             comments: [
               {
-                username: 'Prajwal',
-                profileIcon: '',
-                comment: 'Nice couch',
+                username: 'Revanth',
+                profileIcon: imagePath?.profileImage1,
+                comment:
+                  'Fantastic couch to relax on. I absolutely love this and I recommend it to my friends also.',
+                rating: 4.8,
+                date: '12/1/2025',
               },
-            ],
-          },
-          {
-            starCount: 2,
-            comments: [],
-          },
-          {
-            starCount: 1,
-            comments: [
               {
-                username: 'Subbu',
-                profileIcon: '',
-                comment: 'I expected better from this company.',
+                username: 'Rahul',
+                profileIcon: imagePath?.profileImage3,
+                comment: 'Great gamer couch',
+                rating: 4.2,
+                date: '22/1/2025',
+              },
+              {
+                username: 'Adithya',
+                profileIcon: imagePath?.profileImage2,
+                comment: 'This is a solid budget friendly comfy couch.',
+                rating: 4.9,
+                date: '2/1/2025',
               },
             ],
           },
@@ -396,23 +408,26 @@ export const armChairsList = [
         },
         commentsData: [
           {
-            starCount: 5,
+            starCount: 1,
             comments: [
               {
-                username: 'Revanth',
+                username: 'Subbu',
                 profileIcon: '',
-                comment:
-                  'Fantastic couch to relax on. I absolutely love this and I recommend it to my friends also.',
+                comment: 'I expected better from this company.',
               },
+            ],
+          },
+          {
+            starCount: 2,
+            comments: [],
+          },
+          {
+            starCount: 3,
+            comments: [
               {
-                username: 'Rahul',
+                username: 'Prajwal',
                 profileIcon: '',
-                comment: 'Great gamer couch',
-              },
-              {
-                username: 'Adithya',
-                profileIcon: '',
-                comment: 'This is a solid budget friendly comfy couch.',
+                comment: 'Nice couch',
               },
             ],
           },
@@ -433,26 +448,23 @@ export const armChairsList = [
             ],
           },
           {
-            starCount: 3,
+            starCount: 5,
             comments: [
               {
-                username: 'Prajwal',
+                username: 'Revanth',
                 profileIcon: '',
-                comment: 'Nice couch',
+                comment:
+                  'Fantastic couch to relax on. I absolutely love this and I recommend it to my friends also.',
               },
-            ],
-          },
-          {
-            starCount: 2,
-            comments: [],
-          },
-          {
-            starCount: 1,
-            comments: [
               {
-                username: 'Subbu',
+                username: 'Rahul',
                 profileIcon: '',
-                comment: 'I expected better from this company.',
+                comment: 'Great gamer couch',
+              },
+              {
+                username: 'Adithya',
+                profileIcon: '',
+                comment: 'This is a solid budget friendly comfy couch.',
               },
             ],
           },
@@ -484,15 +496,7 @@ export const tableLightLists = [
     },
     commentsData: [
       {
-        starCount: 5,
-        comments: [],
-      },
-      {
-        starCount: 4,
-        comments: [],
-      },
-      {
-        starCount: 3,
+        starCount: 1,
         comments: [],
       },
       {
@@ -500,7 +504,15 @@ export const tableLightLists = [
         comments: [],
       },
       {
-        starCount: 1,
+        starCount: 3,
+        comments: [],
+      },
+      {
+        starCount: 4,
+        comments: [],
+      },
+      {
+        starCount: 5,
         comments: [],
       },
     ],
@@ -523,15 +535,7 @@ export const tableLightLists = [
     },
     commentsData: [
       {
-        starCount: 5,
-        comments: [],
-      },
-      {
-        starCount: 4,
-        comments: [],
-      },
-      {
-        starCount: 3,
+        starCount: 1,
         comments: [],
       },
       {
@@ -539,7 +543,15 @@ export const tableLightLists = [
         comments: [],
       },
       {
-        starCount: 1,
+        starCount: 3,
+        comments: [],
+      },
+      {
+        starCount: 4,
+        comments: [],
+      },
+      {
+        starCount: 5,
         comments: [],
       },
     ],
@@ -562,15 +574,7 @@ export const tableLightLists = [
     },
     commentsData: [
       {
-        starCount: 5,
-        comments: [],
-      },
-      {
-        starCount: 4,
-        comments: [],
-      },
-      {
-        starCount: 3,
+        starCount: 1,
         comments: [],
       },
       {
@@ -578,7 +582,15 @@ export const tableLightLists = [
         comments: [],
       },
       {
-        starCount: 1,
+        starCount: 3,
+        comments: [],
+      },
+      {
+        starCount: 4,
+        comments: [],
+      },
+      {
+        starCount: 5,
         comments: [],
       },
     ],
@@ -601,15 +613,7 @@ export const tableLightLists = [
     },
     commentsData: [
       {
-        starCount: 5,
-        comments: [],
-      },
-      {
-        starCount: 4,
-        comments: [],
-      },
-      {
-        starCount: 3,
+        starCount: 1,
         comments: [],
       },
       {
@@ -617,7 +621,15 @@ export const tableLightLists = [
         comments: [],
       },
       {
-        starCount: 1,
+        starCount: 3,
+        comments: [],
+      },
+      {
+        starCount: 4,
+        comments: [],
+      },
+      {
+        starCount: 5,
         comments: [],
       },
     ],
@@ -643,15 +655,7 @@ export const sofasList = [
     },
     commentsData: [
       {
-        starCount: 5,
-        comments: [],
-      },
-      {
-        starCount: 4,
-        comments: [],
-      },
-      {
-        starCount: 3,
+        starCount: 1,
         comments: [],
       },
       {
@@ -659,7 +663,15 @@ export const sofasList = [
         comments: [],
       },
       {
-        starCount: 1,
+        starCount: 3,
+        comments: [],
+      },
+      {
+        starCount: 4,
+        comments: [],
+      },
+      {
+        starCount: 5,
         comments: [],
       },
     ],
@@ -682,15 +694,7 @@ export const sofasList = [
     },
     commentsData: [
       {
-        starCount: 5,
-        comments: [],
-      },
-      {
-        starCount: 4,
-        comments: [],
-      },
-      {
-        starCount: 3,
+        starCount: 1,
         comments: [],
       },
       {
@@ -698,7 +702,15 @@ export const sofasList = [
         comments: [],
       },
       {
-        starCount: 1,
+        starCount: 3,
+        comments: [],
+      },
+      {
+        starCount: 4,
+        comments: [],
+      },
+      {
+        starCount: 5,
         comments: [],
       },
     ],
@@ -721,15 +733,7 @@ export const sofasList = [
     },
     commentsData: [
       {
-        starCount: 5,
-        comments: [],
-      },
-      {
-        starCount: 4,
-        comments: [],
-      },
-      {
-        starCount: 3,
+        starCount: 1,
         comments: [],
       },
       {
@@ -737,7 +741,15 @@ export const sofasList = [
         comments: [],
       },
       {
-        starCount: 1,
+        starCount: 3,
+        comments: [],
+      },
+      {
+        starCount: 4,
+        comments: [],
+      },
+      {
+        starCount: 5,
         comments: [],
       },
     ],
@@ -760,15 +772,7 @@ export const sofasList = [
     },
     commentsData: [
       {
-        starCount: 5,
-        comments: [],
-      },
-      {
-        starCount: 4,
-        comments: [],
-      },
-      {
-        starCount: 3,
+        starCount: 1,
         comments: [],
       },
       {
@@ -776,7 +780,15 @@ export const sofasList = [
         comments: [],
       },
       {
-        starCount: 1,
+        starCount: 3,
+        comments: [],
+      },
+      {
+        starCount: 4,
+        comments: [],
+      },
+      {
+        starCount: 5,
         comments: [],
       },
     ],
@@ -799,15 +811,7 @@ export const sofasList = [
     },
     commentsData: [
       {
-        starCount: 5,
-        comments: [],
-      },
-      {
-        starCount: 4,
-        comments: [],
-      },
-      {
-        starCount: 3,
+        starCount: 1,
         comments: [],
       },
       {
@@ -815,7 +819,15 @@ export const sofasList = [
         comments: [],
       },
       {
-        starCount: 1,
+        starCount: 3,
+        comments: [],
+      },
+      {
+        starCount: 4,
+        comments: [],
+      },
+      {
+        starCount: 5,
         comments: [],
       },
     ],
@@ -843,4 +855,54 @@ export const discountData = [
     discountCoupons: 'NEWBIE123456',
     discountPrice: '50',
   },
+];
+
+export const FAQItems = [
+  {
+    icon: imagePath?.freeDeliveryIcon,
+    name: 'Free Delivery',
+  },
+  {
+    icon: imagePath?.cashIcon,
+    name: 'Cash on Delivery',
+  },
+  {
+    icon: imagePath?.securePackageIcon,
+    name: 'Safe Packaging',
+  },
+  {
+    icon: imagePath?.topBrandIcon,
+    name: 'Top Brand',
+  },
+  {
+    icon: imagePath?.oneDayDeliveryIcon,
+    name: 'Speed Delivery',
+  },
+  {
+    icon: imagePath?.packageShippingTrackerIcon,
+    name: 'Tracking Package',
+  },
+  {
+    icon: imagePath?.secureIcon,
+    name: 'Secure Transactions',
+  },
+  {
+    icon: imagePath?.returnPolicyIcon,
+    name: '7 Day Return Policy',
+  },
+];
+
+export const colorsForCommentNames = [
+  'lightPink',
+  'lightBlue',
+  'lightGreen',
+  'lightYellow',
+  'lightGray',
+  'lightPurple',
+  'lightSkyBlue',
+  'lightVermillion',
+  'navyBlueColor',
+  'primaryColor',
+  'secondaryColor',
+  'skyBlue',
 ];
