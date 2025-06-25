@@ -71,6 +71,7 @@ const imagePath = {
   checkCircle: require('../assets/images/icons/checkCircle.png'),
   deleteIcon: require('../assets/images/icons/deleteIcon.png'),
   deleteIconDark: require('../assets/images/icons/deleteIconDark.png'),
+  discountStarIcon: require('../assets/images/icons/discountStarIcon.png'),
   doubleArrowIcon: require('../assets/images/icons/doubleArrowIcon.png'),
   dressingTableIcon: require('../assets/images/icons/dressingTableIcon.png'),
   dressingTableIconColored: require('../assets/images/icons/dressingTableIconColored.png'),

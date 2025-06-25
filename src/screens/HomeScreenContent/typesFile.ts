@@ -36,9 +36,11 @@ export interface VarietyDataProps {
   companyName: string;
   rating: string;
   price: string;
+  ratingData: RatingDataProp;
   color?: string;
   commentsData?: CommentsDataProps[];
-  ratingData: RatingDataProp;
+  discount?: string;
+  specialText?: string;
 }
 
 export interface ProductListProps {
@@ -49,7 +51,9 @@ export interface ProductListProps {
   companyName: string;
   rating: string;
   price: string;
+  ratingData: RatingDataProp;
   commentsData?: CommentsDataProps[];
   varieties?: VarietyDataProps[];
-  ratingData: RatingDataProp;
+  discount?: string;
+  specialText?: string;
 }

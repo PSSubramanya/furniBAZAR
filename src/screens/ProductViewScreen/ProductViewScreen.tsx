@@ -23,12 +23,18 @@ import {
   VarietyDataProps,
 } from '../HomeScreenContent/typesFile';
 import FBPagination from '../../components/FBPagination/FBPagination';
+import {useSelector} from 'react-redux';
+import {RootState} from '../../store';
 
 const ProductViewScreen = (props: any) => {
   const {navigation, route} = props;
   const {params} = route;
   const {productData} = params;
   const ratingCarLength = 300;
+
+  const favouriteProductData = useSelector(
+    (state: RootState) => state?.homeReducer?.favouriteProductData,
+  );
 
   const [productDetails, setProductDetails] = useState<ProductListProps>();
   const [productVarietyDetails, setProductVarietyDetails] = useState<
@@ -43,16 +49,24 @@ const ProductViewScreen = (props: any) => {
   const [selectedCommentsRatingIndex, setSelectedCommentsRatingIndex] =
     useState(4);
   const [ratingValue, setRatingValue] = useState<number | undefined>(0);
+  const [discount, setDiscount] = useState<string | undefined>('');
+  const [specialTextValue, setSpecialTextValue] = useState<string | undefined>(
+    '',
+  );
   const [ratingStatistics, setRatingStatistics] = useState<RatingDataProp>();
   const [displayableImagesData, setDisplayableImagesData] = useState<
     ImageSourcePropType | undefined
   >([]);
+  const [favouriteProducts, setFavouriteProducts] = useState([]);
+  const [showStarFilter, setShowStarFilter] = useState(false);
 
   useEffect(() => {
     const varietyData = productData?.varieties;
+    const favData = favouriteProductData?.data;
     setProductDetails(productData); //Before fixing this check other cases
     setProductVarietyDetails(varietyData);
     setSelectedVariant(varietyData?.[1]);
+    setFavouriteProducts(favData);
   }, []);
 
   useEffect(() => {
@@ -71,9 +85,24 @@ const ProductViewScreen = (props: any) => {
         ? selectedVariant?.image
         : productDetails?.image;
 
+    const discountData =
+      productVarietyDetails?.length > 0
+        ? selectedVariant?.discount
+        : productDetails?.discount;
+
+    const specialText =
+      productVarietyDetails?.length > 0
+        ? selectedVariant?.specialText
+        : productDetails?.specialText;
+
+    console.log('discountData: ', discountData);
+
     if (rating !== undefined) {
       setRatingValue(Number(rating));
     }
+
+    setDiscount(discountData);
+    setSpecialTextValue(specialText);
 
     setRatingStatistics(ratingStats);
     setDisplayableImagesData(displayableImages);
@@ -140,6 +169,7 @@ const ProductViewScreen = (props: any) => {
       <TouchableOpacity
         onPress={() => {
           setSelectedCommentsRatingIndex(starCount - 1);
+          setShowStarFilter(!showStarFilter);
         }}>
         <View
           style={{
@@ -242,7 +272,7 @@ const ProductViewScreen = (props: any) => {
         <View
           style={{
             marginTop: 30,
-            zIndex: 1,
+            zIndex: 3,
             alignItems: 'center',
           }}>
           <FlatList
@@ -256,27 +286,103 @@ const ProductViewScreen = (props: any) => {
             showsHorizontalScrollIndicator={false}
             renderItem={({item, index}) => {
               return (
-                <View
-                  style={{
-                    width: 300, // width: 380, -> need this much for smooth sliding
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    borderRadius: 20,
-                    backgroundColor: colors?.greyishBlue2, //greyColorLight2, greyColorLight3
-                    marginHorizontal: 45,
-                  }}>
-                  <Image
-                    source={item}
-                    height={250}
-                    width={250}
+                <View>
+                  {discount !== undefined && (
+                    <Image
+                      source={imagePath?.discountStarIcon}
+                      height={60}
+                      width={60}
+                      style={{
+                        height: 55,
+                        width: 55,
+                        position: 'absolute',
+                        zIndex: 1,
+                        left: 25,
+                      }}
+                    />
+                  )}
+                  {discount && (
+                    <View
+                      style={{
+                        position: 'absolute',
+                        zIndex: 1,
+                      }}>
+                      <Text
+                        style={{
+                          textAlign: 'center',
+                          fontFamily: fontFamily?.primaryFont?.semiBold,
+                          fontSize: 12,
+                          left: 37,
+                          top: 13,
+                          width: 34,
+                        }}>
+                        {discount}%
+                      </Text>
+                      <Text
+                        style={{
+                          textAlign: 'center',
+                          fontFamily: fontFamily?.primaryFont?.semiBold,
+                          fontSize: 12,
+                          left: 35,
+                          top: 10,
+                          width: 34,
+                        }}>
+                        off
+                      </Text>
+                    </View>
+                  )}
+                  <View
                     style={{
-                      height: 260,
-                      width: 260,
-                      zIndex: 1,
-                    }}
-                    resizeMode="contain"
-                    // testID={testID?.saveIcon}
-                  />
+                      width: 300, // width: 380, -> need this much for smooth sliding
+                      // justifyContent: 'center',
+                      // alignItems: 'center',
+                      borderRadius: 20,
+                      backgroundColor: colors?.greyishBlue2, //greyColorLight2, greyColorLight3
+                      marginHorizontal: 45,
+                      marginTop: 5,
+                    }}>
+                    <TouchableOpacity
+                      style={{
+                        flex: 1,
+                        zIndex: 2,
+                        flexDirection: 'row',
+                        justifyContent: 'flex-end',
+                      }}
+                      onPress={() => {}}>
+                      <Image
+                        source={
+                          JSON.stringify(favouriteProducts)?.includes(
+                            JSON.stringify(productData),
+                          )
+                            ? imagePath?.saveIconFilled
+                            : imagePath?.saveIcon
+                        }
+                        height={40}
+                        width={40}
+                        style={{
+                          height: 30,
+                          width: 30,
+                          position: 'absolute',
+                          marginRight: 10,
+                          marginTop: 5,
+                        }}
+                        // testID={testID?.saveIcon}
+                      />
+                    </TouchableOpacity>
+                    <Image
+                      source={item}
+                      height={250}
+                      width={250}
+                      style={{
+                        height: 260,
+                        width: 260,
+                        zIndex: 1,
+                        alignSelf: 'center',
+                      }}
+                      resizeMode="contain"
+                      // testID={testID?.saveIcon}
+                    />
+                  </View>
                 </View>
               );
             }}
@@ -381,7 +487,34 @@ const ProductViewScreen = (props: any) => {
                 );
               }}
             />
-            <Text></Text>
+          </View>
+        )}
+
+        {specialTextValue !== undefined && (
+          <View
+            style={{
+              backgroundColor:
+                specialTextValue === 'NOW IN STOCK'
+                  ? colors?.greenSpecialMessageColor
+                  : colors?.scarletRed1,
+              marginTop: 10,
+              minWidth: 100,
+              maxWidth: 130,
+              height: 22,
+              marginLeft: 20,
+              borderRadius: 5,
+              justifyContent: 'center',
+            }}>
+            <Text
+              style={{
+                fontFamily: fontFamily?.primaryFont?.medium,
+                fontSize: 12,
+                color: colors.white,
+                textAlign: 'center',
+                paddingHorizontal: 5,
+              }}>
+              {specialTextValue}
+            </Text>
           </View>
         )}
 
@@ -392,7 +525,7 @@ const ProductViewScreen = (props: any) => {
             fontSize: 16,
             color: colors.black,
             marginLeft: 24,
-            marginTop: 16,
+            marginTop: 10,
           }}>
           Description:
         </Text>
@@ -698,12 +831,19 @@ const ProductViewScreen = (props: any) => {
           </Text>
           <View style={{flexDirection: 'row'}}>
             {/* HERE */}
-            {renderRatingFilterView(1)}
-            {renderRatingFilterView(2)}
-            {renderRatingFilterView(3)}
-            {renderRatingFilterView(4)}
-            {renderRatingFilterView(5)}
-            <TouchableOpacity>
+            {showStarFilter && (
+              <>
+                {renderRatingFilterView(1)}
+                {renderRatingFilterView(2)}
+                {renderRatingFilterView(3)}
+                {renderRatingFilterView(4)}
+                {renderRatingFilterView(5)}
+              </>
+            )}
+            <TouchableOpacity
+              onPress={() => {
+                setShowStarFilter(!showStarFilter);
+              }}>
               <View
                 style={{
                   flexDirection: 'row',
@@ -804,16 +944,35 @@ const ProductViewScreen = (props: any) => {
                 )}
 
                 <View style={{marginLeft: 16, marginRight: 24}}>
-                  <Text
+                  <View
                     style={{
-                      fontFamily: fontFamily?.primaryFont?.bold,
-                      fontSize: 14,
-                      color: colors.black,
-                      marginTop: 14,
-                      textTransform: 'uppercase',
+                      flexDirection: 'row',
+                      justifyContent: 'space-between',
+                      width: 285,
                     }}>
-                    {val?.username}
-                  </Text>
+                    <Text
+                      style={{
+                        fontFamily: fontFamily?.primaryFont?.bold,
+                        fontSize: 14,
+                        color: colors.black,
+                        marginTop: 14,
+                        textTransform: 'uppercase',
+                      }}>
+                      {val?.username}
+                    </Text>
+                    {val?.date && (
+                      <Text
+                        style={{
+                          fontFamily: fontFamily?.primaryFont?.medium,
+                          fontSize: 12,
+                          color: colors.darkBluegrey4,
+                          marginTop: 14,
+                          textTransform: 'uppercase',
+                        }}>
+                        {val?.date}
+                      </Text>
+                    )}
+                  </View>
                   <Text
                     style={{
                       fontFamily: fontFamily?.primaryFont?.regular,
@@ -858,11 +1017,13 @@ const ProductViewScreen = (props: any) => {
 };
 export default ProductViewScreen;
 
-// pagination
+// pagination - DONE
+// comments profile image and name first 2 letters logic - DONE
+// Limited edition, In Stock, Discount data - DONE
+// Date in comments - DONE
+
 // share and like icons
 // FAQ section
 // comments section filter - animated
-// comments profile image and name first 2 letters logic
 // Bottom drawer for price calculation display
-// Date and rating in comments
 // Add share product link in mockData and share on media feature
