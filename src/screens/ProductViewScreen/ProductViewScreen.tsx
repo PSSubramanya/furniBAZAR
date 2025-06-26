@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef, useCallback} from 'react';
 import {
   View,
   Image,
@@ -10,6 +10,8 @@ import {
   NativeSyntheticEvent,
   NativeScrollEvent,
   ImageSourcePropType,
+  Animated,
+  Linking,
 } from 'react-native';
 import styles from './styles';
 import fontFamily from '../../constants/fontFamily';
@@ -32,6 +34,8 @@ const ProductViewScreen = (props: any) => {
   const {productData} = params;
   const ratingCarLength = 300;
 
+  const translateX = useRef(new Animated.Value(0)).current;
+
   const favouriteProductData = useSelector(
     (state: RootState) => state?.homeReducer?.favouriteProductData,
   );
@@ -50,6 +54,7 @@ const ProductViewScreen = (props: any) => {
     useState(4);
   const [ratingValue, setRatingValue] = useState<number | undefined>(0);
   const [discount, setDiscount] = useState<string | undefined>('');
+  const [productPriceValue, setProductPriceValue] = useState<string>('');
   const [specialTextValue, setSpecialTextValue] = useState<string | undefined>(
     '',
   );
@@ -59,14 +64,18 @@ const ProductViewScreen = (props: any) => {
   >([]);
   const [favouriteProducts, setFavouriteProducts] = useState([]);
   const [showStarFilter, setShowStarFilter] = useState(false);
+  const [quantityOfProduct, setQuantityOfProduct] = useState<number>(0);
+  const [linkUrl, setLinkUrl] = useState<string>(' ');
 
   useEffect(() => {
     const varietyData = productData?.varieties;
     const favData = favouriteProductData?.data;
+    const linkUrlValue = productData?.shareLink;
     setProductDetails(productData); //Before fixing this check other cases
     setProductVarietyDetails(varietyData);
     setSelectedVariant(varietyData?.[1]);
     setFavouriteProducts(favData);
+    setLinkUrl(linkUrlValue);
   }, []);
 
   useEffect(() => {
@@ -95,14 +104,22 @@ const ProductViewScreen = (props: any) => {
         ? selectedVariant?.specialText
         : productDetails?.specialText;
 
-    console.log('discountData: ', discountData);
+    const productPrice =
+      productVarietyDetails?.length > 0
+        ? selectedVariant?.price
+        : productDetails?.price;
 
     if (rating !== undefined) {
       setRatingValue(Number(rating));
     }
 
+    if (productPrice !== undefined) {
+      setRatingValue(Number(rating));
+    }
+
     setDiscount(discountData);
     setSpecialTextValue(specialText);
+    setProductPriceValue(productPrice);
 
     setRatingStatistics(ratingStats);
     setDisplayableImagesData(displayableImages);
@@ -127,6 +144,38 @@ const ProductViewScreen = (props: any) => {
       console.log('flattenedComments', flattenedComments?.length);
     }
   }, [commentsArray]);
+
+  useEffect(() => {
+    Animated.timing(translateX, {
+      toValue: showStarFilter ? -10 : 0,
+      duration: 300,
+      useNativeDriver: true,
+    }).start();
+  }, [showStarFilter]);
+
+  useEffect(() => {
+    console.log(
+      'productPrice',
+      productPriceValue,
+      typeof productPriceValue,
+      quantityOfProduct,
+      typeof quantityOfProduct,
+      Number(productPriceValue?.replace(',', '')) * quantityOfProduct,
+    );
+  }, [quantityOfProduct]);
+
+  const handlePress = useCallback(async () => {
+    const supported = await Linking.canOpenURL(linkUrl);
+
+    if (supported) {
+      // Opening the link with some app, if the URL scheme is "http" the web link should be opened
+      // by some browser in the mobile
+      await Linking.openURL(linkUrl);
+    }
+    // else {
+    //   Alert.alert(`Don't know how to open this URL: ${url}`);
+    // }
+  }, [linkUrl]);
 
   const setScrollIndex = (
     eventVal: NativeSyntheticEvent<NativeScrollEvent>,
@@ -250,22 +299,40 @@ const ProductViewScreen = (props: any) => {
           marginTop: 10,
           marginLeft: 5,
           alignItems: 'center',
+          justifyContent: 'space-between',
         }}>
+        <View
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+          }}>
+          <TouchableOpacity
+            onPress={() => {
+              navigation?.goBack();
+            }}>
+            <Image
+              source={imagePath?.leftChevron}
+              height={30}
+              width={30}
+              style={{height: 30, width: 30}}
+            />
+          </TouchableOpacity>
+          <Text
+            style={{fontFamily: fontFamily?.primaryFont?.medium, fontSize: 18}}>
+            Product Details
+          </Text>
+        </View>
         <TouchableOpacity
           onPress={() => {
-            navigation?.goBack();
+            handlePress();
           }}>
           <Image
-            source={imagePath?.leftChevron}
+            source={imagePath?.shareIcon}
             height={30}
             width={30}
-            style={{height: 30, width: 30}}
+            style={{height: 25, width: 25, marginRight: 16}}
           />
         </TouchableOpacity>
-        <Text
-          style={{fontFamily: fontFamily?.primaryFont?.medium, fontSize: 18}}>
-          Product Details
-        </Text>
       </View>
 
       <ScrollView>
@@ -440,10 +507,7 @@ const ProductViewScreen = (props: any) => {
                   textAlign: 'center',
                   paddingHorizontal: 10,
                 }}>
-                ₹{' '}
-                {productVarietyDetails?.length > 0
-                  ? selectedVariant?.price
-                  : productDetails?.price}
+                ₹ {productPriceValue}
               </Text>
             </View>
           </View>
@@ -832,13 +896,14 @@ const ProductViewScreen = (props: any) => {
           <View style={{flexDirection: 'row'}}>
             {/* HERE */}
             {showStarFilter && (
-              <>
+              <Animated.View
+                style={{flexDirection: 'row', transform: [{translateX}]}}>
                 {renderRatingFilterView(1)}
                 {renderRatingFilterView(2)}
                 {renderRatingFilterView(3)}
                 {renderRatingFilterView(4)}
                 {renderRatingFilterView(5)}
-              </>
+              </Animated.View>
             )}
             <TouchableOpacity
               onPress={() => {
@@ -868,6 +933,7 @@ const ProductViewScreen = (props: any) => {
             </TouchableOpacity>
           </View>
         </View>
+
         {/* Need to add comments section here with 3 comments and filter and a view all section in a new page with filter */}
         {totalComments === 0 && (
           <View
@@ -987,6 +1053,7 @@ const ProductViewScreen = (props: any) => {
             );
           },
         )}
+
         {totalComments !== 0 &&
           commentsArray?.[selectedCommentsRatingIndex]?.comments?.length ===
             0 && (
@@ -1012,6 +1079,127 @@ const ProductViewScreen = (props: any) => {
             </View>
           )}
       </ScrollView>
+      <View
+        style={{
+          backgroundColor: colors?.white,
+          height: 150,
+          borderRadius: 20,
+          paddingBottom: 16,
+          shadowColor: colors?.black,
+          shadowOffset: {width: -1, height: -1},
+          shadowOpacity: 0.2,
+          shadowRadius: 10,
+          elevation: 10,
+        }}>
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            marginTop: 16,
+          }}>
+          <View
+            style={{
+              flexDirection: 'row',
+              borderWidth: 0.5,
+              borderRadius: 5,
+              width: 105,
+              marginLeft: 16,
+              marginBottom: 20,
+            }}>
+            <TouchableOpacity
+              onPress={() => {
+                if (quantityOfProduct > 0) {
+                  setQuantityOfProduct(prev => prev - 1);
+                }
+              }}>
+              <View
+                style={{
+                  height: 35,
+                  width: 35,
+                  borderRadius: 3,
+                }}>
+                <Text
+                  style={{
+                    fontFamily: fontFamily?.primaryFont?.regular,
+                    color: colors?.darkBluegrey4,
+                    fontSize: 20,
+                    textAlign: 'center',
+                  }}>
+                  --
+                </Text>
+              </View>
+            </TouchableOpacity>
+            <Text
+              style={{
+                alignSelf: 'center',
+                marginHorizontal: 10,
+                fontFamily: fontFamily?.primaryFont?.medium,
+                fontSize: 16,
+                color: colors?.darkBluegrey4,
+              }}>
+              {quantityOfProduct}
+            </Text>
+            <TouchableOpacity
+              onPress={() => {
+                setQuantityOfProduct(prev => prev + 1);
+              }}>
+              <View
+                style={{
+                  height: 35,
+                  width: 35,
+                  borderRadius: 3,
+                }}>
+                <Text
+                  style={{
+                    fontFamily: fontFamily?.primaryFont?.regular,
+                    color: colors?.darkBluegrey4,
+                    fontSize: 20,
+                    textAlign: 'center',
+                  }}>
+                  +
+                </Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+          <Text
+            style={{
+              fontFamily: fontFamily?.primaryFont?.regular,
+              color: colors?.darkBluegrey4,
+              fontSize: 14,
+              marginRight: 20,
+              marginTop: 8,
+            }}>
+            Total Price:
+            <Text
+              style={{
+                fontFamily: fontFamily?.primaryFont?.semiBold,
+              }}>
+              {' '}
+              ₹{Number(productPriceValue?.replace(',', '')) * quantityOfProduct}
+            </Text>
+          </Text>
+        </View>
+        <TouchableOpacity onPress={() => {}}>
+          <View
+            style={{
+              backgroundColor: colors?.darkBluegrey4,
+              height: 55,
+              marginHorizontal: 16,
+              alignItems: 'center',
+              justifyContent: 'center',
+              borderRadius: 5,
+              flexDirection: 'row',
+            }}>
+            <Text
+              style={{
+                fontFamily: fontFamily?.primaryFont?.semiBold,
+                color: colors?.appBackgroundColor,
+              }}>
+              BUY NOW
+            </Text>
+          </View>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -1021,9 +1209,9 @@ export default ProductViewScreen;
 // comments profile image and name first 2 letters logic - DONE
 // Limited edition, In Stock, Discount data - DONE
 // Date in comments - DONE
+// Bottom drawer for price calculation display - DONE
+// comments section filter - animated - DONE
+// share and like icons - DONE
 
-// share and like icons
 // FAQ section
-// comments section filter - animated
-// Bottom drawer for price calculation display
 // Add share product link in mockData and share on media feature

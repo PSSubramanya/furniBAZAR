@@ -49,6 +49,7 @@ export interface ProductListProps {
   description: string;
   image: ImageSourcePropType;
   companyName: string;
+  shareLink: string;
   rating: string;
   price: string;
   ratingData: RatingDataProp;

@@ -122,6 +122,7 @@ const imagePath = {
   securePackageIcon: require('../assets/images/icons/securePackageIcon.png'),
   settingsIcon: require('../assets/images/icons/settingsIcon.png'),
   settingsFilledIcon: require('../assets/images/icons/settingsFilledIcon.png'),
+  shareIcon: require('../assets/images/icons/shareIcon.png'),
   shiningStarIcon: require('../assets/images/icons/shiningStarIcon.png'),
   showIcon: require('../assets/images/icons/showIcon.png'),
   sofaIcon: require('../assets/images/icons/sofaIcon.png'),

@@ -76,6 +76,8 @@ export const armChairsList = [
     description:
       'This Yellow Ox Chair is a bold and sculptural statement piece that combines comfort with striking aesthetics. Inspired by the strength and presence of an ox, this chair features a distinctive high-back design with curved armrests that evoke the shape of ox horns. Its vibrant yellow upholstery adds a modern and energetic touch, making it a standout addition to any space. Crafted with premium materials, the chair boasts a sturdy frame, plush cushioning, and a sleek finish that enhances both durability and style. Whether placed in a living room, office, or lounge area, the Yellow Ox Chair offers exceptional support and ergonomic comfort, making it perfect for relaxation or conversation. ',
     image: [imagePath?.armChair1],
+    shareLink:
+      'https://www.amazon.in/Shiva-Puana-Vol-Bibek-Debroy/dp/0143459716/ref=pd_lpo_d_sccl_2/259-6994745-0097911?pd_rd_w=lFcxg&content-id=amzn1.sym.e0c8139c-1aa1-443c-af8a-145a0481f27c&pf_rd_p=e0c8139c-1aa1-443c-af8a-145a0481f27c&pf_rd_r=W6V2B783B6Y1WFGZFKWD&pd_rd_wg=FByTN&pd_rd_r=47d2ef6e-2df8-41da-b4da-dd1c23876aba&pd_rd_i=0143459716&psc=1',
     companyName: 'MONICA FORSTER',
     rating: '2.6',
     price: '16,240',
@@ -163,6 +165,8 @@ export const armChairsList = [
     description:
       'The Red Velvette Throne is a regal armchair that commands attention with its deep crimson velvet upholstery and ornate silhouette. Featuring a high back, crystal-tufted cushioning, and hand-carved detailing—often finished in gold leaf—it blends royal elegance with luxurious comfort. Perfect as a statement piece in a living room, studio, or event space, it offers both visual drama and plush seating fit for modern royalty',
     image: [imagePath?.armChair3],
+    shareLink:
+      'https://www.amazon.in/Siva-Purana-English-Translation-Volumes/dp/8120838181',
     companyName: 'ANDERSSEN VOLL',
     rating: '3.8',
     price: '20,240',
@@ -222,6 +226,8 @@ export const armChairsList = [
     name: 'Savanna Easy Chair',
     image: [imagePath?.armChair9],
     companyName: 'NILKAMAL',
+    shareLink:
+      'https://www.amazon.in/Shiva-Puana-Vol-Bibek-Debroy/dp/0143459708/ref=pd_lpo_d_sccl_1/259-6994745-0097911?pd_rd_w=lFcxg&content-id=amzn1.sym.e0c8139c-1aa1-443c-af8a-145a0481f27c&pf_rd_p=e0c8139c-1aa1-443c-af8a-145a0481f27c&pf_rd_r=W6V2B783B6Y1WFGZFKWD&pd_rd_wg=FByTN&pd_rd_r=47d2ef6e-2df8-41da-b4da-dd1c23876aba&pd_rd_i=0143459708&psc=1',
     varieties: [
       {
         id: '8_1',
@@ -486,6 +492,8 @@ export const tableLightLists = [
     description:
       'The Mini Table Light is a compact and stylish lighting solution designed for small spaces and cozy corners. With its sleek form and soft glow, it’s perfect for bedside tables, desks, or decorative shelves. Despite its size, it offers focused illumination ideal for reading, working, or adding a warm accent to your room. Lightweight and portable, it blends functionality with charm—making it a versatile addition to any modern or minimalist setup',
     image: [imagePath?.light1],
+    shareLink:
+      'https://www.amazon.in/Siva-Purana-English-Translation-Volumes/dp/8120838181',
     companyName: 'MONICA FORSTER',
     rating: '4.6',
     price: '1,240',
@@ -525,6 +533,8 @@ export const tableLightLists = [
     description:
       'The White Table Light is a minimalist and elegant lighting piece designed to blend seamlessly into any décor. With its clean lines and soft white finish, it casts a warm, ambient glow—perfect for reading, working, or creating a cozy atmosphere. Compact yet stylish, it’s ideal for bedside tables, desks, or accent corners where subtle sophistication is key.',
     image: [imagePath?.light2],
+    shareLink:
+      'https://www.amazon.in/Shiva-Puana-Vol-Bibek-Debroy/dp/0143459708/ref=pd_lpo_d_sccl_1/259-6994745-0097911?pd_rd_w=lFcxg&content-id=amzn1.sym.e0c8139c-1aa1-443c-af8a-145a0481f27c&pf_rd_p=e0c8139c-1aa1-443c-af8a-145a0481f27c&pf_rd_r=W6V2B783B6Y1WFGZFKWD&pd_rd_wg=FByTN&pd_rd_r=47d2ef6e-2df8-41da-b4da-dd1c23876aba&pd_rd_i=0143459708&psc=1',
     companyName: 'IKEA',
     rating: '4.8',
     price: '2,199',
@@ -564,6 +574,8 @@ export const tableLightLists = [
     description:
       'The Cord Light is a minimalist table lamp that celebrates simplicity and raw design. Featuring an exposed bulb suspended from a sleek, fabric-wrapped cord, it offers a modern industrial vibe with a warm, ambient glow. Perfect for creative workspaces, bedside tables, or cozy reading nooks, this light adds character without clutter—proof that elegance can come from the essentials.',
     image: [imagePath?.light3],
+    shareLink:
+      'https://www.amazon.in/Shiva-Puana-Vol-Bibek-Debroy/dp/0143459716/ref=pd_lpo_d_sccl_2/259-6994745-0097911?pd_rd_w=lFcxg&content-id=amzn1.sym.e0c8139c-1aa1-443c-af8a-145a0481f27c&pf_rd_p=e0c8139c-1aa1-443c-af8a-145a0481f27c&pf_rd_r=W6V2B783B6Y1WFGZFKWD&pd_rd_wg=FByTN&pd_rd_r=47d2ef6e-2df8-41da-b4da-dd1c23876aba&pd_rd_i=0143459716&psc=1',
     companyName: 'IKEA',
     rating: '4.2',
     price: '1,699',
@@ -603,6 +615,8 @@ export const tableLightLists = [
     description:
       'The Baby Light is a gentle, child-friendly table lamp designed to soothe and comfort little ones. With its soft glow, playful shape, and often silicone or BPA-free materials, it’s perfect for nurseries, bedside tables, or nighttime feedings. Many models feature tap controls, dimmable settings, and rechargeable batteries—making them both safe and convenient for parents and magical for kids.',
     image: [imagePath?.light14],
+    shareLink:
+      'https://www.amazon.in/Shiva-Puana-Vol-Bibek-Debroy/dp/0143459708/ref=pd_lpo_d_sccl_1/259-6994745-0097911?pd_rd_w=lFcxg&content-id=amzn1.sym.e0c8139c-1aa1-443c-af8a-145a0481f27c&pf_rd_p=e0c8139c-1aa1-443c-af8a-145a0481f27c&pf_rd_r=W6V2B783B6Y1WFGZFKWD&pd_rd_wg=FByTN&pd_rd_r=47d2ef6e-2df8-41da-b4da-dd1c23876aba&pd_rd_i=0143459708&psc=1',
     companyName: 'IKEA',
     rating: '4.1',
     price: '2,300',
@@ -645,6 +659,8 @@ export const sofasList = [
     description:
       'The Grey Double Seater is a sleek and versatile sofa designed for modern living. Upholstered in soft grey fabric, it offers a neutral tone that complements any décor—from minimalist to cozy chic. With its compact two-seater design, it’s perfect for apartments, reading nooks, or as an accent piece in larger rooms. Plush cushions and a supportive frame ensure comfort without compromising on style, making it an ideal blend of form and function.',
     image: [imagePath?.sofa1],
+    shareLink:
+      'https://www.amazon.in/Siva-Purana-English-Translation-Volumes/dp/8120838181',
     companyName: 'MONICA FORSTER',
     rating: '4.6',
     price: '26,240',
@@ -685,6 +701,8 @@ export const sofasList = [
     description:
       'The Brown Single Couch is a cozy and compact seating solution that blends warmth with timeless style. Upholstered in rich brown fabric or leather, it offers a grounded, earthy tone that complements both modern and traditional interiors. With its supportive cushioning and sleek silhouette, it’s perfect for solo lounging in living rooms, reading corners, or office nooks—bringing comfort and character to any space.',
     image: [imagePath?.sofa2],
+    shareLink:
+      'https://www.amazon.in/Siva-Purana-English-Translation-Volumes/dp/8120838181',
     companyName: 'MONICA FORSTER',
     rating: '4.4',
     price: '16,000',
@@ -724,6 +742,8 @@ export const sofasList = [
     description:
       'The Recliner Swinging Couch is the ultimate fusion of comfort and motion—designed for those who love to lounge and gently sway. With a reclining backrest and a smooth swinging base, it offers a unique relaxation experience that soothes both body and mind. Upholstered in plush fabric or leather, and supported by a sturdy frame, this couch is perfect for cozy evenings, reading sessions, or simply unwinding in style. It’s where the serenity of a swing meets the indulgence of a recliner.',
     image: [imagePath?.sofa5, imagePath?.sofa6],
+    shareLink:
+      'https://www.amazon.in/Shiva-Puana-Vol-Bibek-Debroy/dp/0143459708/ref=pd_lpo_d_sccl_1/259-6994745-0097911?pd_rd_w=lFcxg&content-id=amzn1.sym.e0c8139c-1aa1-443c-af8a-145a0481f27c&pf_rd_p=e0c8139c-1aa1-443c-af8a-145a0481f27c&pf_rd_r=W6V2B783B6Y1WFGZFKWD&pd_rd_wg=FByTN&pd_rd_r=47d2ef6e-2df8-41da-b4da-dd1c23876aba&pd_rd_i=0143459708&psc=1',
     companyName: 'MONICA FORSTER',
     discount: '10',
     rating: '4.6',
@@ -764,6 +784,8 @@ export const sofasList = [
     description:
       'The Mega Sofa is a bold, sculptural piece that blends minimalist design with luxurious comfort. Featuring a slender steel frame and generously overstuffed cushions, it offers a striking silhouette inspired by the softness of freshly baked loaves. Ideal for modern interiors, this sofa delivers both visual impact and deep relaxation—making it a standout in living rooms, lounges, or creative spaces',
     image: [imagePath?.sofa7],
+    shareLink:
+      'https://www.amazon.in/Shiva-Puana-Vol-Bibek-Debroy/dp/0143459716/ref=pd_lpo_d_sccl_2/259-6994745-0097911?pd_rd_w=lFcxg&content-id=amzn1.sym.e0c8139c-1aa1-443c-af8a-145a0481f27c&pf_rd_p=e0c8139c-1aa1-443c-af8a-145a0481f27c&pf_rd_r=W6V2B783B6Y1WFGZFKWD&pd_rd_wg=FByTN&pd_rd_r=47d2ef6e-2df8-41da-b4da-dd1c23876aba&pd_rd_i=0143459716&psc=1',
     companyName: 'MONICA FORSTER',
     rating: '4.5',
     price: '25,000',
@@ -803,6 +825,8 @@ export const sofasList = [
     description:
       'The Gamer Couch is a performance-driven sofa designed for immersive play and all-day comfort. With features like reclining seats, adjustable headrests, built-in cup holders, and USB charging ports, it transforms any gaming setup into a command center. Upholstered in durable materials like faux leather or breathable fabric, it offers ergonomic support and a sleek, modern look—perfect for solo marathons or co-op showdowns.',
     image: [imagePath?.sofa10],
+    shareLink:
+      'https://www.amazon.in/Green-Soul-Multi-Functional-Integrated-Retractable/dp/B0DV5KVDNL/ref=sr_1_1?crid=FM8UGC6W1KNY&dib=eyJ2IjoiMSJ9.Z7D6NeEUMH7j3C2j28H53gKdVOM8W1GaqfFN6k5-OX8sVnRa5JYwQJVqey-IBoNmaJ4GXfz4W-3rpWgd_upK2mwRQDep1Kr5onrIqrAVQDuzCfEgRR9jdze_i-4yvFEA5Y1FiGykv4G283OzhmbNduz8Rdak1-aKI5CQK_PQsWqMuC1Nof6j0i9hWIt4ECjz1om6ChKmR5vqF4S-5cll_oMplp2b5apsYp36v2WNNSY.A_CZECYQjJHurKIWpwCRxK3ezEKLbOuPZG0Tb10etEg&dib_tag=se&keywords=gamer%2Barmchair&qid=1750960872&s=books&sprefix=gamer%2Barmchair%2Cstripbooks%2C250&sr=1-1&th=1',
     companyName: 'MONICA FORSTER',
     discount: '30',
     specialText: 'LIMITED EDITION',
