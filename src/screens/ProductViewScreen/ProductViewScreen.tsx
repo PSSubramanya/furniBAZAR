@@ -27,6 +27,10 @@ import {
 import FBPagination from '../../components/FBPagination/FBPagination';
 import {useSelector} from 'react-redux';
 import {RootState} from '../../store';
+import {
+  generateTwoLettersForCommentImage,
+  getRandomColorForCommentNames,
+} from '../../utils/commonFunctions';
 
 const ProductViewScreen = (props: any) => {
   const {navigation, route} = props;
@@ -183,22 +187,6 @@ const ProductViewScreen = (props: any) => {
     const offsetX = eventVal.nativeEvent.contentOffset.x;
     const index = Math.round(offsetX / 300);
     setCarousalIndex(index);
-  };
-
-  /** Use useCallback to make this change the colors for the product change and not on star change */
-  const getRandomColorForCommentNames = () => {
-    let randomNumber = Math.floor(Math.random() * 12);
-    let randomColor = colorsForCommentNames?.[randomNumber];
-    return colors?.[randomColor];
-  };
-
-  const generateTwoLettersForCommentImage = (name: string) => {
-    let nameArray = name?.split(' ');
-    if (nameArray?.length > 1) {
-      return name?.[0] + name?.[1];
-    } else {
-      return name?.[0];
-    }
   };
 
   const starIconDecider = (val: number) => {
@@ -960,98 +948,121 @@ const ProductViewScreen = (props: any) => {
 
         {commentsArray?.[selectedCommentsRatingIndex]?.comments?.map(
           (val, ind) => {
-            return (
-              <View
-                style={{
-                  flexDirection: 'row',
-                  marginTop: 20,
-                  alignItems: 'center',
-                  marginLeft: 16,
-                  marginRight: 50,
-                }}>
-                {val?.profileIcon ? (
-                  <Image
-                    source={val?.profileIcon}
-                    height={30}
-                    width={30}
-                    style={{
-                      height: 50,
-                      width: 50,
-                      borderRadius: 25,
-                      marginTop: 10,
-                      borderWidth: 2,
-                      borderColor: colors?.darkBluegrey4,
-                    }}
-                    // testID={testID?.starIcon}
-                  />
-                ) : (
-                  <View
-                    style={{
-                      backgroundColor: getRandomColorForCommentNames(),
-                      height: 50,
-                      width: 50,
-                      marginTop: 10,
-                      borderRadius: 25,
-                      borderWidth: 2,
-                      borderColor: colors?.darkBluegrey4,
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                    }}>
-                    <Text
+            if (ind < 3) {
+              return (
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    marginTop: 20,
+                    alignItems: 'center',
+                    marginLeft: 16,
+                    marginRight: 50,
+                  }}>
+                  {val?.profileIcon ? (
+                    <Image
+                      source={val?.profileIcon}
+                      height={30}
+                      width={30}
                       style={{
-                        fontFamily: fontFamily?.primaryFont?.bold,
-                        fontSize: 14,
-                        color: colors.black,
-                        textTransform: 'uppercase',
-                      }}>
-                      {generateTwoLettersForCommentImage(val?.username)}
-                    </Text>
-                  </View>
-                )}
-
-                <View style={{marginLeft: 16, marginRight: 24}}>
-                  <View
-                    style={{
-                      flexDirection: 'row',
-                      justifyContent: 'space-between',
-                      width: 285,
-                    }}>
-                    <Text
+                        height: 50,
+                        width: 50,
+                        borderRadius: 25,
+                        marginTop: 10,
+                        borderWidth: 2,
+                        borderColor: colors?.darkBluegrey4,
+                      }}
+                      // testID={testID?.starIcon}
+                    />
+                  ) : (
+                    <View
                       style={{
-                        fontFamily: fontFamily?.primaryFont?.bold,
-                        fontSize: 14,
-                        color: colors.black,
-                        marginTop: 14,
-                        textTransform: 'uppercase',
+                        backgroundColor: getRandomColorForCommentNames(),
+                        height: 50,
+                        width: 50,
+                        marginTop: 10,
+                        borderRadius: 25,
+                        borderWidth: 2,
+                        borderColor: colors?.darkBluegrey4,
+                        alignItems: 'center',
+                        justifyContent: 'center',
                       }}>
-                      {val?.username}
-                    </Text>
-                    {val?.date && (
                       <Text
                         style={{
-                          fontFamily: fontFamily?.primaryFont?.medium,
-                          fontSize: 12,
-                          color: colors.darkBluegrey4,
+                          fontFamily: fontFamily?.primaryFont?.bold,
+                          fontSize: 14,
+                          color: colors.black,
+                          textTransform: 'uppercase',
+                        }}>
+                        {generateTwoLettersForCommentImage(val?.username)}
+                      </Text>
+                    </View>
+                  )}
+
+                  <View style={{marginLeft: 16, marginRight: 24}}>
+                    <View
+                      style={{
+                        flexDirection: 'row',
+                        justifyContent: 'space-between',
+                        width: 285,
+                      }}>
+                      <Text
+                        style={{
+                          fontFamily: fontFamily?.primaryFont?.bold,
+                          fontSize: 14,
+                          color: colors.black,
                           marginTop: 14,
                           textTransform: 'uppercase',
                         }}>
-                        {val?.date}
+                        {val?.username}
                       </Text>
-                    )}
+                      {val?.date && (
+                        <Text
+                          style={{
+                            fontFamily: fontFamily?.primaryFont?.medium,
+                            fontSize: 12,
+                            color: colors.darkBluegrey4,
+                            marginTop: 14,
+                            textTransform: 'uppercase',
+                          }}>
+                          {val?.date}
+                        </Text>
+                      )}
+                    </View>
+                    <Text
+                      style={{
+                        fontFamily: fontFamily?.primaryFont?.regular,
+                        fontSize: 14,
+                        color: colors.black,
+                        marginTop: 2,
+                      }}>
+                      {val?.comment}
+                    </Text>
                   </View>
-                  <Text
-                    style={{
-                      fontFamily: fontFamily?.primaryFont?.regular,
-                      fontSize: 14,
-                      color: colors.black,
-                      marginTop: 2,
-                    }}>
-                    {val?.comment}
-                  </Text>
                 </View>
-              </View>
-            );
+              );
+            }
           },
+        )}
+
+        {commentsArray?.[selectedCommentsRatingIndex]?.comments?.length > 3 && (
+          <TouchableOpacity
+            onPress={() => {
+              navigation?.navigate('CommentsScreen', {
+                comments:
+                  commentsArray?.[selectedCommentsRatingIndex]?.comments,
+              });
+            }}>
+            <View
+              style={{
+                alignSelf: 'center',
+                marginTop: 16,
+                marginBottom: 16,
+              }}>
+              <Text style={{fontFamily: fontFamily?.primaryFont?.medium}}>
+                MORE
+              </Text>
+            </View>
+          </TouchableOpacity>
         )}
 
         {totalComments !== 0 &&

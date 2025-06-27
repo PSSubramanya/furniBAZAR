@@ -62,8 +62,10 @@ const imagePath = {
   bedsideTable: require('../assets/images/icons/bedsideTable.png'),
   bedsideTableColored: require('../assets/images/icons/bedsideTableColored.png'),
   bookingIcon: require('../assets/images/icons/bookingIcon.png'),
+  cameraIcon: require('../assets/images/icons/cameraIcon.png'),
   categoryIcon: require('../assets/images/icons/categoryIcon.png'),
   cashIcon: require('../assets/images/icons/cashIcon.png'),
+  circlePlus: require('../assets/images/icons/circlePlus.png'),
   circleTickIcon: require('../assets/images/icons/circleTickIcon.png'),
   closeIconBlack: require('../assets/images/icons/closeIconBlack.png'),
   closeIconWhite: require('../assets/images/icons/closeIconWhite.png'),
@@ -84,6 +86,7 @@ const imagePath = {
   filterIconColored: require('../assets/images/icons/filterIconColored.png'),
   freeDeliveryIcon: require('../assets/images/icons/freeDeliveryIcon.png'),
   furnitureIcon: require('../assets/images/icons/furnitureIcon.png'),
+  galleryIcon: require('../assets/images/icons/galleryIcon.png'),
   googleIcon: require('../assets/images/icons/googleIcon.png'),
   halfStarIcon: require('../assets/images/icons/halfStarIcon.png'),
   homeIcon: require('../assets/images/icons/homeIcon.png'),
@@ -94,6 +97,7 @@ const imagePath = {
   infoIcon: require('../assets/images/icons/infoIcon.png'),
   leftChevron: require('../assets/images/icons/leftChevron.png'),
   leftChevronIcon: require('../assets/images/icons/leftChevronIcon.png'),
+  likeIcon: require('../assets/images/icons/likeIcon.png'),
   lockIcon: require('../assets/images/icons/lock.png'),
   menuIcon: require('../assets/images/icons/menuIcon.png'),
   menuIcon2: require('../assets/images/icons/menuIcon2.png'),
@@ -120,6 +124,7 @@ const imagePath = {
   searchIcon: require('../assets/images/icons/searchIcon.png'),
   secureIcon: require('../assets/images/icons/secureIcon.png'),
   securePackageIcon: require('../assets/images/icons/securePackageIcon.png'),
+  sendIcon: require('../assets/images/icons/sendIcon.png'),
   settingsIcon: require('../assets/images/icons/settingsIcon.png'),
   settingsFilledIcon: require('../assets/images/icons/settingsFilledIcon.png'),
   shareIcon: require('../assets/images/icons/shareIcon.png'),
@@ -156,6 +161,7 @@ const imagePath = {
   profileImage1: require('../assets/images/mockImages/profileImage1.jpg'),
   profileImage2: require('../assets/images/mockImages/profileImage2.jpg'),
   profileImage3: require('../assets/images/mockImages/profileImage3.jpg'),
+  profileImage4: require('../assets/images/mockImages/profileImage4.jpg'),
 };
 
 export default imagePath;

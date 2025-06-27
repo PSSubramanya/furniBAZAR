@@ -392,6 +392,12 @@ export const armChairsList = [
                 comment: 'This is a solid budget friendly comfy couch.',
                 date: '2/1/2025',
               },
+              {
+                username: 'Adithya',
+                profileIcon: imagePath?.oneDayDeliveryIcon,
+                comment: 'This is superb.',
+                date: '8/8/2023',
+              },
             ],
           },
         ],
