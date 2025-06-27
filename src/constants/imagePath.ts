@@ -104,6 +104,7 @@ const imagePath = {
   menuIcon3: require('../assets/images/icons/menuIcon3.png'),
   menuIcon4: require('../assets/images/icons/menuIcon4.png'),
   menuIcon5: require('../assets/images/icons/menuIcon5.png'),
+  micIcon: require('../assets/images/icons/micIcon.png'),
   mobileIcon: require('../assets/images/icons/mobileIcon.png'),
   packageShippingTrackerIcon: require('../assets/images/icons/packageShippingTrackerIcon.png'),
   profileIcon: require('../assets/images/icons/profileIcon.png'),

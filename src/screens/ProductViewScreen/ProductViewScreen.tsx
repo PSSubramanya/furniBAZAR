@@ -1044,26 +1044,27 @@ const ProductViewScreen = (props: any) => {
           },
         )}
 
-        {commentsArray?.[selectedCommentsRatingIndex]?.comments?.length > 3 && (
-          <TouchableOpacity
-            onPress={() => {
-              navigation?.navigate('CommentsScreen', {
-                comments:
-                  commentsArray?.[selectedCommentsRatingIndex]?.comments,
-              });
+        {/* {commentsArray?.[selectedCommentsRatingIndex]?.comments?.length > 3 && ( */}
+        <TouchableOpacity
+          onPress={() => {
+            navigation?.navigate('CommentsScreen', {
+              // comments: commentsArray?.[selectedCommentsRatingIndex]?.comments,
+              comments: commentsArray,
+              ratingValue: selectedCommentsRatingIndex,
+            });
+          }}>
+          <View
+            style={{
+              alignSelf: 'center',
+              marginTop: 16,
+              marginBottom: 16,
             }}>
-            <View
-              style={{
-                alignSelf: 'center',
-                marginTop: 16,
-                marginBottom: 16,
-              }}>
-              <Text style={{fontFamily: fontFamily?.primaryFont?.medium}}>
-                MORE
-              </Text>
-            </View>
-          </TouchableOpacity>
-        )}
+            <Text style={{fontFamily: fontFamily?.primaryFont?.medium}}>
+              MORE
+            </Text>
+          </View>
+        </TouchableOpacity>
+        {/* )} */}
 
         {totalComments !== 0 &&
           commentsArray?.[selectedCommentsRatingIndex]?.comments?.length ===
