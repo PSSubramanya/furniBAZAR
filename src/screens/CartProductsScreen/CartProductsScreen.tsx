@@ -228,10 +228,10 @@ const CartProductsScreen = (props: any) => {
                       marginRight: 20,
                     }}>
                     <Image
-                      source={imagePath?.deleteIconDark}
+                      source={imagePath?.deleteIcon3}
                       height={18}
                       width={18}
-                      style={{height: 18, width: 18}}
+                      style={{height: 22, width: 22}}
                     />
                   </View>
                 </TouchableOpacity>

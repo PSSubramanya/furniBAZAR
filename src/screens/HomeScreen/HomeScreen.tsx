@@ -75,6 +75,7 @@ const HomeScreen = (props: any) => {
         style={{
           flex: 1,
           justifyContent: 'space-between',
+          marginTop: 10,
         }}>
         {/* Header */}
         <View
@@ -82,6 +83,7 @@ const HomeScreen = (props: any) => {
             flexDirection: 'row',
             alignItems: 'center',
             justifyContent: 'space-between',
+            marginBottom: 5,
           }}>
           <View style={{flexDirection: 'row', marginLeft: 10}}>
             <TouchableOpacity onPress={() => {}}>

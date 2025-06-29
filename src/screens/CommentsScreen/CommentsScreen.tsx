@@ -58,62 +58,117 @@ const CommentsScreen = (props: any) => {
             marginTop: 10,
             flexDirection: 'row',
           }}>
-          <TouchableOpacity
-            onPress={() => {}}
-            style={{
-              width: 60,
-              height: 60,
-              alignItems: 'center',
-              justifyContent: 'center',
-              borderWidth: 1,
-              borderRadius: 5,
-              marginLeft: 10,
-            }}>
-            <Image
-              source={imagePath?.galleryIcon}
-              height={30}
-              width={30}
-              style={{height: 20, width: 20}}
-              resizeMode={'contain'}
-            />
+          <TouchableOpacity style={{alignItems: 'center'}}>
+            <View
+              style={{
+                width: 60,
+                height: 60,
+                alignItems: 'center',
+                justifyContent: 'center',
+                borderWidth: 1,
+                borderRadius: 5,
+                marginLeft: 10,
+              }}>
+              <Image
+                source={imagePath?.galleryIcon}
+                height={30}
+                width={30}
+                style={{height: 20, width: 20}}
+                resizeMode={'contain'}
+              />
+            </View>
+            <Text
+              style={{
+                fontFamily: fontFamily?.primaryFont?.regular,
+                marginLeft: 5,
+                marginTop: 5,
+              }}>
+              Gallery
+            </Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {}}
-            style={{
-              width: 60,
-              height: 60,
-              alignItems: 'center',
-              justifyContent: 'center',
-              borderWidth: 1,
-              borderRadius: 5,
-              marginLeft: 10,
-            }}>
-            <Image
-              source={imagePath?.cameraIcon}
-              height={30}
-              width={30}
-              style={{height: 20, width: 20}}
-              resizeMode={'contain'}
-            />
+          <TouchableOpacity style={{alignItems: 'center'}}>
+            <View
+              style={{
+                width: 60,
+                height: 60,
+                alignItems: 'center',
+                justifyContent: 'center',
+                borderWidth: 1,
+                borderRadius: 5,
+                marginLeft: 10,
+              }}>
+              <Image
+                source={imagePath?.cameraIcon}
+                height={30}
+                width={30}
+                style={{height: 20, width: 20}}
+                resizeMode={'contain'}
+              />
+            </View>
+            <Text
+              style={{
+                fontFamily: fontFamily?.primaryFont?.regular,
+                marginLeft: 5,
+                marginTop: 5,
+              }}>
+              Camera
+            </Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {}}
-            style={{
-              width: 60,
-              height: 60,
-              alignItems: 'center',
-              justifyContent: 'center',
-              borderWidth: 1,
-              borderRadius: 5,
-              marginLeft: 10,
-            }}>
-            <Image
-              source={imagePath?.micIcon}
-              height={30}
-              width={30}
-              style={{height: 20, width: 20}}
-              resizeMode={'contain'}
-            />
+          <TouchableOpacity style={{alignItems: 'center'}}>
+            <View
+              style={{
+                width: 60,
+                height: 60,
+                alignItems: 'center',
+                justifyContent: 'center',
+                borderWidth: 1,
+                borderRadius: 5,
+                marginLeft: 10,
+              }}>
+              <Image
+                source={imagePath?.micIcon}
+                height={30}
+                width={30}
+                style={{height: 20, width: 20}}
+                resizeMode={'contain'}
+              />
+            </View>
+            <Text
+              style={{
+                fontFamily: fontFamily?.primaryFont?.regular,
+                marginLeft: 5,
+                marginTop: 5,
+              }}>
+              Speak
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={{alignItems: 'center'}}>
+            <View
+              style={{
+                width: 60,
+                height: 60,
+                alignItems: 'center',
+                justifyContent: 'center',
+                borderWidth: 1,
+                borderRadius: 5,
+                marginLeft: 10,
+              }}>
+              <Image
+                source={imagePath?.starOutline}
+                height={30}
+                width={30}
+                style={{height: 30, width: 30}}
+                resizeMode={'contain'}
+              />
+            </View>
+            <Text
+              style={{
+                fontFamily: fontFamily?.primaryFont?.regular,
+                marginLeft: 5,
+                marginTop: 5,
+              }}>
+              Rating
+            </Text>
           </TouchableOpacity>
         </View>
       </View>
