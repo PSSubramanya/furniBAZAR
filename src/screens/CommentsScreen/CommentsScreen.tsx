@@ -195,7 +195,7 @@ const CommentsScreen = (props: any) => {
             backgroundColor:
               selectedCommentsRatingIndex === starCount - 1
                 ? colors?.darkBlueGrey
-                : 'none',
+                : colors?.greyColorLight2,
           }}>
           <Text
             style={{
@@ -426,6 +426,8 @@ const CommentsScreen = (props: any) => {
         </TouchableOpacity>
         <TextInput
           value={commentText}
+          placeholder={'Add comment'}
+          placeholderTextColor={colors?.greyColor}
           onChangeText={val => {
             setCommentText(val);
           }}

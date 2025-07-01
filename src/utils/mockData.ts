@@ -874,17 +874,17 @@ export const discountData = [
   {
     discountName: 'Monsoon Offer',
     discountCoupons: 'ABCD36',
-    discountPrice: '10%',
+    discountPercent: 20,
   },
   {
     discountName: 'Monsoon Offer',
     discountCoupons: 'ABCD24',
-    discountPrice: '10%',
+    discountPercent: 10,
   },
   {
     discountName: 'Monsoon Offer',
     discountCoupons: 'SHAG41',
-    discountPrice: '10%',
+    discountPercent: 10,
   },
   {
     discountName: 'Referral Offer',

@@ -16,7 +16,7 @@ import styles from './styles';
 import imagePath from '../../constants/imagePath';
 import fontFamily from '../../constants/fontFamily';
 import colors from '../../constants/colors';
-import FBModalView from '../../components/FBModalView/FBModalView';
+import {discountData} from '../../utils/mockData';
 
 const CartProductsScreen = (props: any) => {
   const {navigation} = props;
@@ -34,8 +34,11 @@ const CartProductsScreen = (props: any) => {
   const [slideCompleted, setSlideCompleted] = useState(false);
   const [cartData, setCartData] = useState(fetchCartData?.data);
   const [discountCode, setDiscountCode] = useState('');
+  const [discountValue, setDiscountValue] = useState(0);
   const [subTotalPrice, setSubTotalPrice] = useState<number>(0);
+  const [totalPrice, setTotalPrice] = useState<number>(0);
   const [selectedItems, setSelectedItems] = useState<string[]>([]); //NOTE: Original value is []
+  const [totalCartData, setTotalCartData] = useState<any>({});
 
   //NOTE: NEED To calculate total price based on the item selected * number of products in counter
   //NOTE: For this we need to maintain a dictionary -> key-value pair to update the product and number of values of it.
@@ -49,16 +52,54 @@ const CartProductsScreen = (props: any) => {
   //NOTE: Modularise the code and also move styles to different file
   //NOTE: Also add types wherever required and replace 'any' with it
 
-  useEffect(() => {
-    cartData?.map((val: any) => {
-      calculateSubTotalPrice(val?.price);
+  const calculateTotalCost = (cartItems: any) => {
+    let tempPrice = 0;
+    selectedItems?.map((val: any, ind: number) => {
+      tempPrice +=
+        Number(val?.price?.replace(',', '')) * cartItems?.[val?.name];
     });
-  }, []);
-
-  const calculateSubTotalPrice = (val: string) => {
-    const tempPrice = Number(val.replace(',', ''));
-    setSubTotalPrice(prev => prev + tempPrice);
+    setSubTotalPrice(tempPrice);
   };
+
+  const addItemsToCart = (item: any) => {
+    let tempObject: any = {...totalCartData};
+    let itemName: any = item?.name;
+    if (
+      Object?.keys(tempObject)?.length === 0 ||
+      tempObject[itemName] === undefined
+    ) {
+      tempObject[itemName] = 1;
+      setTotalCartData(tempObject);
+    } else {
+      tempObject[itemName] += 1;
+      setTotalCartData(tempObject);
+    }
+    calculateTotalCost(tempObject);
+  };
+
+  //removeItemsToCart
+
+  const applyDiscountCoupon = () => {
+    let tempDiscount = discountValue; //setDiscountValue
+
+    discountData?.map((val: any, ind: number) => {
+      if (val?.discountCoupons === discountCode) {
+        if (val?.discountPrice) {
+          tempDiscount += val?.discountPrice;
+          console.log('tempDiscount: 1 ', tempDiscount);
+        } else if (val?.discountPercent) {
+          tempDiscount += subTotalPrice * (val?.discountPercent / 100);
+        }
+      }
+    });
+    // NOTE: Add a new array which keeps track of added Coupon so duplication doesn't happen
+    setDiscountValue(tempDiscount);
+  };
+
+  useEffect(() => {
+    const tempTotal = subTotalPrice - discountValue;
+    setTotalPrice(tempTotal);
+  }, [discountValue]);
 
   const panResponder = useRef(
     PanResponder.create({
@@ -236,62 +277,69 @@ const CartProductsScreen = (props: any) => {
                   </View>
                 </TouchableOpacity>
               </View>
-              <View
-                style={{
-                  flexDirection: 'row',
-                  borderWidth: 0.5,
-                  borderRadius: 5,
-                  width: 105,
-                  marginLeft: 12,
-                  marginBottom: 20,
-                }}>
-                <TouchableOpacity>
-                  <View
-                    style={{
-                      height: 35,
-                      width: 35,
-                      borderRadius: 3,
-                    }}>
-                    <Text
-                      style={{
-                        fontFamily: fontFamily?.primaryFont?.regular,
-                        color: colors?.darkBluegrey4,
-                        fontSize: 20,
-                        textAlign: 'center',
-                      }}>
-                      --
-                    </Text>
-                  </View>
-                </TouchableOpacity>
-                <Text
+              {JSON.stringify(selectedItems)?.includes(
+                JSON.stringify(item),
+              ) && (
+                <View
                   style={{
-                    alignSelf: 'center',
-                    marginHorizontal: 10,
-                    fontFamily: fontFamily?.primaryFont?.medium,
-                    fontSize: 16,
-                    color: colors?.darkBluegrey4,
+                    flexDirection: 'row',
+                    borderWidth: 0.5,
+                    borderRadius: 5,
+                    width: 105,
+                    marginLeft: 12,
+                    marginBottom: 20,
                   }}>
-                  0
-                </Text>
-                <TouchableOpacity>
-                  <View
-                    style={{
-                      height: 35,
-                      width: 35,
-                      borderRadius: 3,
-                    }}>
-                    <Text
+                  <TouchableOpacity onPress={() => {}}>
+                    <View
                       style={{
-                        fontFamily: fontFamily?.primaryFont?.regular,
-                        color: colors?.darkBluegrey4,
-                        fontSize: 20,
-                        textAlign: 'center',
+                        height: 35,
+                        width: 35,
+                        borderRadius: 3,
                       }}>
-                      +
-                    </Text>
-                  </View>
-                </TouchableOpacity>
-              </View>
+                      <Text
+                        style={{
+                          fontFamily: fontFamily?.primaryFont?.regular,
+                          color: colors?.darkBluegrey4,
+                          fontSize: 20,
+                          textAlign: 'center',
+                        }}>
+                        --
+                      </Text>
+                    </View>
+                  </TouchableOpacity>
+                  <Text
+                    style={{
+                      alignSelf: 'center',
+                      marginHorizontal: 10,
+                      fontFamily: fontFamily?.primaryFont?.medium,
+                      fontSize: 16,
+                      color: colors?.darkBluegrey4,
+                    }}>
+                    {totalCartData[item?.name] ?? 0}
+                  </Text>
+                  <TouchableOpacity
+                    onPress={() => {
+                      addItemsToCart(item);
+                    }}>
+                    <View
+                      style={{
+                        height: 35,
+                        width: 35,
+                        borderRadius: 3,
+                      }}>
+                      <Text
+                        style={{
+                          fontFamily: fontFamily?.primaryFont?.regular,
+                          color: colors?.darkBluegrey4,
+                          fontSize: 20,
+                          textAlign: 'center',
+                        }}>
+                        +
+                      </Text>
+                    </View>
+                  </TouchableOpacity>
+                </View>
+              )}
             </View>
           );
         }}
@@ -353,7 +401,9 @@ const CartProductsScreen = (props: any) => {
               }}
             />
             <TouchableOpacity
-              onPress={() => {}}
+              onPress={() => {
+                applyDiscountCoupon();
+              }}
               disabled={selectedItems?.length <= 0}>
               <View
                 style={{
@@ -404,7 +454,7 @@ const CartProductsScreen = (props: any) => {
               Discount:
             </Text>
             <Text style={{fontFamily: fontFamily?.primaryFont?.medium}}>
-              ₹ 165
+              {discountValue === 0 ? 'N/A' : `₹ ${discountValue}`}
             </Text>
           </View>
           <View
@@ -427,7 +477,7 @@ const CartProductsScreen = (props: any) => {
               Final Price:
             </Text>
             <Text style={{fontFamily: fontFamily?.primaryFont?.medium}}>
-              ₹ 47475
+              ₹ {totalPrice}
             </Text>
           </View>
 
@@ -480,4 +530,3 @@ const CartProductsScreen = (props: any) => {
   );
 };
 export default CartProductsScreen;
-// Also write test cases for FBModalView
