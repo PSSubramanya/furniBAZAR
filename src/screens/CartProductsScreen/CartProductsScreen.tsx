@@ -35,6 +35,7 @@ const CartProductsScreen = (props: any) => {
   const [cartData, setCartData] = useState(fetchCartData?.data);
   const [discountCode, setDiscountCode] = useState('');
   const [discountValue, setDiscountValue] = useState(0);
+  const [appliedDiscounts, setAppliedDiscounts] = useState<string[]>([]);
   const [subTotalPrice, setSubTotalPrice] = useState<number>(0);
   const [totalPrice, setTotalPrice] = useState<number>(0);
   const [selectedItems, setSelectedItems] = useState<string[]>([]); //NOTE: Original value is []
@@ -80,15 +81,20 @@ const CartProductsScreen = (props: any) => {
   //removeItemsToCart
 
   const applyDiscountCoupon = () => {
-    let tempDiscount = discountValue; //setDiscountValue
+    let tempDiscount = discountValue;
+
+    discountData?.map((val: any, ind: number) => {
+      if (val?.discountCoupons === discountCode) {
+        if (val?.discountPercent) {
+          tempDiscount += subTotalPrice * (val?.discountPercent / 100);
+        }
+      }
+    });
 
     discountData?.map((val: any, ind: number) => {
       if (val?.discountCoupons === discountCode) {
         if (val?.discountPrice) {
-          tempDiscount += val?.discountPrice;
-          console.log('tempDiscount: 1 ', tempDiscount);
-        } else if (val?.discountPercent) {
-          tempDiscount += subTotalPrice * (val?.discountPercent / 100);
+          tempDiscount += Number(val?.discountPrice);
         }
       }
     });
@@ -100,6 +106,10 @@ const CartProductsScreen = (props: any) => {
     const tempTotal = subTotalPrice - discountValue;
     setTotalPrice(tempTotal);
   }, [discountValue]);
+
+  useEffect(() => {
+    console.log('appliedDiscounts: ', appliedDiscounts);
+  }, [appliedDiscounts]);
 
   const panResponder = useRef(
     PanResponder.create({
@@ -403,14 +413,22 @@ const CartProductsScreen = (props: any) => {
             <TouchableOpacity
               onPress={() => {
                 applyDiscountCoupon();
+                discountData?.map((val: any, ind: number) => {
+                  if (val?.discountCoupons === discountCode) {
+                    const tempDiscountCodes = [
+                      ...appliedDiscounts,
+                      discountCode,
+                    ];
+                    setAppliedDiscounts(tempDiscountCodes);
+                  }
+                });
               }}
-              disabled={selectedItems?.length <= 0}>
+              disabled={appliedDiscounts?.includes(discountCode)}>
               <View
                 style={{
-                  backgroundColor:
-                    selectedItems?.length <= 0
-                      ? colors?.greyColor
-                      : colors?.darkBluegrey4,
+                  backgroundColor: appliedDiscounts?.includes(discountCode)
+                    ? colors?.greyColor
+                    : colors?.darkBluegrey4,
                   height: 42,
                   paddingHorizontal: 14,
                   alignItems: 'center',
@@ -428,6 +446,59 @@ const CartProductsScreen = (props: any) => {
               </View>
             </TouchableOpacity>
           </View>
+
+          {/* List of Dicount Coupons added here */}
+          <View
+            style={{
+              flexWrap: 'wrap',
+              marginLeft: 20,
+              marginTop: 10,
+              flexDirection: 'row',
+            }}>
+            {appliedDiscounts?.map((val, ind) => {
+              return (
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    backgroundColor: colors?.darkBluegrey4,
+                    borderWidth: 1,
+                    padding: 5,
+                    borderColor: colors?.darkBluegrey4,
+                    borderRadius: 3,
+                    marginRight: 8,
+                    marginBottom: 5,
+                  }}>
+                  <Text
+                    style={{
+                      color: colors?.white,
+                      fontFamily: fontFamily?.primaryFont?.medium,
+                      fontSize: 12,
+                    }}>
+                    {val}
+                  </Text>
+                  <TouchableOpacity
+                    onPress={() => {
+                      const tempArray = [...appliedDiscounts];
+                      tempArray.splice(ind, 1);
+                      setAppliedDiscounts(tempArray);
+                    }}
+                    style={{alignSelf: 'center'}}>
+                    <Image
+                      source={imagePath?.closeIconWhite}
+                      height={15}
+                      width={15}
+                      style={{
+                        height: 15,
+                        width: 15,
+                        marginLeft: 5,
+                      }}
+                    />
+                  </TouchableOpacity>
+                </View>
+              );
+            })}
+          </View>
+
           <View
             style={{
               flexDirection: 'row',
