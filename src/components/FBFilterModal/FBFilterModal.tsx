@@ -530,6 +530,7 @@ const FBFilterModal = (props: FBFilterModalProps) => {
           style={{
             flexDirection: 'row',
             justifyContent: 'space-between',
+            marginHorizontal: 5,
           }}>
           <TouchableOpacity
             onPress={() => {
@@ -542,7 +543,7 @@ const FBFilterModal = (props: FBFilterModalProps) => {
                 height: 60,
                 width: 180,
                 marginBottom: 60,
-                marginLeft: 10,
+                // marginLeft: 10,
                 borderRadius: 6,
                 justifyContent: 'center',
                 alignItems: 'center',
@@ -568,7 +569,7 @@ const FBFilterModal = (props: FBFilterModalProps) => {
                 height: 60,
                 width: 180,
                 marginBottom: 60,
-                marginRight: 10,
+                // marginRight: 10,
                 borderRadius: 6,
                 justifyContent: 'center',
                 alignItems: 'center',

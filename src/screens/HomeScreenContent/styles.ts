@@ -102,6 +102,7 @@ export const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: fontFamily?.primaryFont?.medium,
     marginTop: -20,
+    paddingBottom: 30,
   },
   starIcon: {
     height: 20,

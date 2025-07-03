@@ -9,6 +9,7 @@ import {
   Animated,
   PanResponder,
   Dimensions,
+  Pressable,
 } from 'react-native';
 import {useSelector} from 'react-redux';
 import {RootState} from '../../store';
@@ -17,6 +18,7 @@ import imagePath from '../../constants/imagePath';
 import fontFamily from '../../constants/fontFamily';
 import colors from '../../constants/colors';
 import {discountData} from '../../utils/mockData';
+import FBModalView from '../../components/FBModalView/FBModalView';
 
 const CartProductsScreen = (props: any) => {
   const {navigation} = props;
@@ -40,18 +42,16 @@ const CartProductsScreen = (props: any) => {
   const [totalPrice, setTotalPrice] = useState<number>(0);
   const [selectedItems, setSelectedItems] = useState<string[]>([]); //NOTE: Original value is []
   const [totalCartData, setTotalCartData] = useState<any>({});
+  const [showVarietyModal, setShowVarietyModal] = useState(false);
+  const [productVarietyDetails, setProductVarietyDetails] = useState([]);
+  const [selectedSingleItem, setSelectedSingleItem] = useState<any>();
 
-  //NOTE: NEED To calculate total price based on the item selected * number of products in counter
-  //NOTE: For this we need to maintain a dictionary -> key-value pair to update the product and number of values of it.
-  //NOTE: Need a new redux action and reducer for this
-  //NOTE: Also discount needs to be calulated
-  //NOTE: By mapping from the disount mockdata checking if it includes the coupon that we have applied and then adding it
+  //NOTE: Need a new redux action and reducer for this values coming from products and numbers selected in this screen so it auto loads next time anywhere in any screen with related data.
   //NOTE: Add an info icon nextto discount to open a bottom Modal drawer to show what all discounts are added individually
   //NOTE: On slide navigate to the next page
   //NOTE: On delete of a product, 1st check if it is selected.
   //NOTE: Make it unselected(Manually or via code) then update the store via redux action "cartData"->state?.homeReducer?.cartData
   //NOTE: Modularise the code and also move styles to different file
-  //NOTE: Also add types wherever required and replace 'any' with it
 
   const calculateTotalCost = (cartItems: any) => {
     let tempPrice = 0;
@@ -108,8 +108,15 @@ const CartProductsScreen = (props: any) => {
   }, [discountValue]);
 
   useEffect(() => {
-    console.log('appliedDiscounts: ', appliedDiscounts);
-  }, [appliedDiscounts]);
+    if (slideCompleted === true) {
+      navigation?.navigate('AddressSelectionScreen');
+    }
+  }, [slideCompleted]);
+
+  useEffect(() => {
+    const varietyData = selectedSingleItem?.varieties;
+    setProductVarietyDetails(varietyData);
+  }, [selectedSingleItem]);
 
   const panResponder = useRef(
     PanResponder.create({
@@ -142,6 +149,79 @@ const CartProductsScreen = (props: any) => {
       },
     }),
   ).current;
+
+  const renderVarietySectionModal = () => {
+    return (
+      <View
+        style={{
+          marginTop: 5,
+        }}>
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'flex-end',
+          }}>
+          <TouchableOpacity
+            onPress={() => {
+              setShowVarietyModal(false);
+            }}>
+            <Image
+              source={imagePath?.roundCloseIcon}
+              height={30}
+              width={30}
+              style={{height: 20, width: 20}}
+              resizeMode={'contain'}
+            />
+          </TouchableOpacity>
+        </View>
+        <Text
+          style={{
+            fontFamily: fontFamily?.primaryFont?.medium,
+            fontSize: 16,
+            marginLeft: 13,
+            marginTop: 10,
+          }}>
+          Choose the variant
+        </Text>
+        <FlatList
+          data={productVarietyDetails}
+          horizontal={true}
+          contentContainerStyle={{marginTop: 10}}
+          keyExtractor={item => item?.id}
+          renderItem={({item, index}) => {
+            return (
+              <View
+                style={{
+                  width: 100,
+                  borderWidth: 0.5,
+                  marginLeft: 10,
+                  borderRadius: 5,
+                  alignItems: 'center',
+                  paddingHorizontal: 5,
+                  paddingBottom: 3,
+                }}>
+                <Image
+                  source={item?.image?.[0]}
+                  height={60}
+                  width={60}
+                  style={{height: 60, width: 60}}
+                  resizeMode={'contain'}
+                />
+                <Text
+                  style={{
+                    textAlign: 'center',
+                    fontFamily: fontFamily?.primaryFont?.regular,
+                    fontSize: 12,
+                  }}>
+                  {item?.name}
+                </Text>
+              </View>
+            );
+          }}
+        />
+      </View>
+    );
+  };
 
   return (
     <View style={{flex: 1}}>
@@ -232,31 +312,54 @@ const CartProductsScreen = (props: any) => {
                         }
                         height={25}
                         width={25}
-                        style={{height: 25, width: 25, marginRight: 5}}
+                        style={{
+                          height: 25,
+                          width: 25,
+                          marginRight: 5,
+                        }}
                       />
                     </TouchableOpacity>
-                    <View
-                      style={{
-                        backgroundColor: colors?.greyColorLight3,
-                        height: 80,
-                        width: 80,
-                        borderRadius: 5,
-                        alignItems: 'center',
-                        justifyContent: 'center',
+                    <Pressable
+                      onPress={() => {
+                        if (item?.varieties) {
+                          setSelectedSingleItem(item);
+                          setShowVarietyModal(true);
+                        }
                       }}>
-                      <Image
-                        source={item?.image?.[0]}
-                        height={60}
-                        width={60}
-                        style={{height: 60, width: 60}}
-                        resizeMode={'contain'}
-                      />
-                    </View>
+                      <View
+                        style={{
+                          backgroundColor: colors?.greyColorLight3,
+                          height: 80,
+                          width: 80,
+                          borderRadius: 5,
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          borderWidth: item?.varieties !== undefined ? 2 : 0,
+                          borderColor: colors?.borderColor,
+                        }}>
+                        <Image
+                          source={item?.image?.[0]}
+                          height={60}
+                          width={60}
+                          style={{height: 60, width: 60}}
+                          resizeMode={'contain'}
+                        />
+                      </View>
+                    </Pressable>
                     <View style={{marginLeft: 20}}>
-                      <Text
-                        style={{fontFamily: fontFamily?.primaryFont?.regular}}>
-                        {item?.name}
-                      </Text>
+                      <Pressable
+                        onPress={() => {
+                          navigation?.navigate('ProductViewScreen', {
+                            productData: item,
+                          });
+                        }}>
+                        <Text
+                          style={{
+                            fontFamily: fontFamily?.primaryFont?.regular,
+                          }}>
+                          {item?.name}
+                        </Text>
+                      </Pressable>
                       <Text
                         style={{
                           fontFamily: fontFamily?.primaryFont?.medium,
@@ -597,6 +700,12 @@ const CartProductsScreen = (props: any) => {
           </View>
         </View>
       )}
+      <FBModalView
+        children={renderVarietySectionModal}
+        modalVisible={showVarietyModal}
+        modalHeightPercentage={'40%'}
+        modalColor={colors?.white}
+      />
     </View>
   );
 };
