@@ -58,6 +58,7 @@ const CartProductsScreen = (props: any) => {
   const calculateTotalCost = (cartItems: any) => {
     let tempPrice = 0;
     selectedItems?.map((val: any, ind: number) => {
+      console.log('SELECTED ITEM VAL: ', val);
       tempPrice +=
         Number(val?.price?.replace(',', '')) * cartItems?.[val?.name];
     });
@@ -67,6 +68,7 @@ const CartProductsScreen = (props: any) => {
   const addItemsToCart = (item: any) => {
     let tempObject: any = {...totalCartData};
     let itemName: any = item?.name;
+    console.log('ADD ITEM TO CART: item name', itemName);
     if (
       Object?.keys(tempObject)?.length === 0 ||
       tempObject[itemName] === undefined
@@ -77,8 +79,11 @@ const CartProductsScreen = (props: any) => {
       tempObject[itemName] += 1;
       setTotalCartData(tempObject);
     }
+    console.log('ADD ITEM TO CART: cart data', tempObject);
     calculateTotalCost(tempObject);
   };
+  //NOTE: Remove cart function:
+  //NOTE: Make the variant count = 0 when a new variant product is chosen
 
   //removeItemsToCart
 
@@ -195,14 +200,14 @@ const CartProductsScreen = (props: any) => {
             fontFamily: fontFamily?.primaryFont?.medium,
             fontSize: 16,
             marginLeft: 13,
-            marginTop: 10,
+            marginTop: 8,
           }}>
           Choose the variant
         </Text>
         <FlatList
           data={productVarietyDetails}
           horizontal={true}
-          contentContainerStyle={{marginTop: 10}}
+          contentContainerStyle={{marginTop: 15}}
           keyExtractor={item => item?.id}
           renderItem={({item, index}) => {
             return (
@@ -332,24 +337,25 @@ const CartProductsScreen = (props: any) => {
                     <TouchableOpacity
                       onPress={() => {
                         let temporaryItems = [];
+                        let newItem = displayableCartData?.[index];
                         if (
                           JSON.stringify(selectedItems)?.includes(
-                            JSON.stringify(item),
+                            JSON.stringify(newItem),
                           )
                         ) {
                           temporaryItems = [...selectedItems];
-                          const indexOfItem = selectedItems?.indexOf(item);
+                          const indexOfItem = selectedItems?.indexOf(newItem);
                           temporaryItems.splice(indexOfItem, 1);
                           setSelectedItems(temporaryItems);
                         } else {
-                          const temporaryItems = [...selectedItems, item];
+                          const temporaryItems = [...selectedItems, newItem];
                           setSelectedItems(temporaryItems);
                         }
                       }}>
                       <Image
                         source={
                           JSON.stringify(selectedItems)?.includes(
-                            JSON.stringify(item),
+                            JSON.stringify(displayableCartData?.[index]),
                           )
                             ? imagePath?.checkCircle
                             : imagePath?.radioButton
@@ -479,8 +485,8 @@ const CartProductsScreen = (props: any) => {
                   </Text>
                   <TouchableOpacity
                     onPress={() => {
-                      addItemsToCart(item);
-                      // addItemsToCart(displayableCartData?.[index]); //NOTE: Need to fix + - thing here
+                      // addItemsToCart(item);
+                      addItemsToCart(displayableCartData?.[index]); //NOTE: Need to fix + - thing here
                     }}>
                     <View
                       style={{
