@@ -35,6 +35,7 @@ const CartProductsScreen = (props: any) => {
   const pan = useRef(new Animated.ValueXY()).current;
   const [slideCompleted, setSlideCompleted] = useState(false);
   const [cartData, setCartData] = useState(fetchCartData?.data);
+  const [displayableCartData, setDisplayableCartData] = useState([]);
   const [discountCode, setDiscountCode] = useState('');
   const [discountValue, setDiscountValue] = useState(0);
   const [appliedDiscounts, setAppliedDiscounts] = useState<string[]>([]);
@@ -45,6 +46,7 @@ const CartProductsScreen = (props: any) => {
   const [showVarietyModal, setShowVarietyModal] = useState(false);
   const [productVarietyDetails, setProductVarietyDetails] = useState([]);
   const [selectedSingleItem, setSelectedSingleItem] = useState<any>();
+  const [selectedSingleVariant, setSelectedSingleVariant] = useState<any>();
 
   //NOTE: Need a new redux action and reducer for this values coming from products and numbers selected in this screen so it auto loads next time anywhere in any screen with related data.
   //NOTE: Add an info icon nextto discount to open a bottom Modal drawer to show what all discounts are added individually
@@ -103,6 +105,19 @@ const CartProductsScreen = (props: any) => {
   };
 
   useEffect(() => {
+    let tempCartData = fetchCartData?.data;
+    let cartDataToSet: any = [];
+    tempCartData?.map((val: any, ind: any) => {
+      if (val?.varieties) {
+        cartDataToSet = [...cartDataToSet, val?.varieties?.[0]];
+      } else {
+        cartDataToSet = [...cartDataToSet, val];
+      }
+    });
+    setDisplayableCartData(cartDataToSet);
+  }, []);
+
+  useEffect(() => {
     const tempTotal = subTotalPrice - discountValue;
     setTotalPrice(tempTotal);
   }, [discountValue]);
@@ -116,6 +131,7 @@ const CartProductsScreen = (props: any) => {
   useEffect(() => {
     const varietyData = selectedSingleItem?.varieties;
     setProductVarietyDetails(varietyData);
+    setSelectedSingleVariant(varietyData?.[0]);
   }, [selectedSingleItem]);
 
   const panResponder = useRef(
@@ -190,32 +206,60 @@ const CartProductsScreen = (props: any) => {
           keyExtractor={item => item?.id}
           renderItem={({item, index}) => {
             return (
-              <View
-                style={{
-                  width: 100,
-                  borderWidth: 0.5,
-                  marginLeft: 10,
-                  borderRadius: 5,
-                  alignItems: 'center',
-                  paddingHorizontal: 5,
-                  paddingBottom: 3,
+              <TouchableOpacity
+                onPress={() => {
+                  let tempCartData = cartData;
+                  let cartDataToSet: any = [];
+
+                  tempCartData?.map((val: any, ind: any) => {
+                    if (val?.varieties) {
+                      cartDataToSet = [...cartDataToSet, item];
+                    } else {
+                      cartDataToSet = [...cartDataToSet, val];
+                    }
+                  });
+                  setDisplayableCartData(cartDataToSet);
+                  setShowVarietyModal(false);
+                  setSelectedSingleVariant(item);
                 }}>
-                <Image
-                  source={item?.image?.[0]}
-                  height={60}
-                  width={60}
-                  style={{height: 60, width: 60}}
-                  resizeMode={'contain'}
-                />
-                <Text
+                <View
                   style={{
-                    textAlign: 'center',
-                    fontFamily: fontFamily?.primaryFont?.regular,
-                    fontSize: 12,
+                    width: 100,
+                    marginLeft: 10,
+                    alignItems: 'center',
+                    paddingHorizontal: 5,
+                    paddingBottom: 3,
+                    borderRadius: 5,
+                    borderWidth:
+                      selectedSingleVariant?.image?.[0] === item?.image?.[0]
+                        ? 1
+                        : 0,
+                    borderColor:
+                      selectedSingleVariant?.image?.[0] === item?.image?.[0]
+                        ? colors?.greyishBlue
+                        : colors?.white,
+                    backgroundColor:
+                      selectedSingleVariant?.image?.[0] === item?.image?.[0]
+                        ? colors?.greyishBlue2
+                        : colors?.white,
                   }}>
-                  {item?.name}
-                </Text>
-              </View>
+                  <Image
+                    source={item?.image?.[0]}
+                    height={60}
+                    width={60}
+                    style={{height: 60, width: 60}}
+                    resizeMode={'contain'}
+                  />
+                  <Text
+                    style={{
+                      textAlign: 'center',
+                      fontFamily: fontFamily?.primaryFont?.regular,
+                      fontSize: 12,
+                    }}>
+                    {item?.name}
+                  </Text>
+                </View>
+              </TouchableOpacity>
             );
           }}
         />
@@ -338,7 +382,7 @@ const CartProductsScreen = (props: any) => {
                           borderColor: colors?.borderColor,
                         }}>
                         <Image
-                          source={item?.image?.[0]}
+                          source={displayableCartData?.[index]?.image?.[0]}
                           height={60}
                           width={60}
                           style={{height: 60, width: 60}}
@@ -357,7 +401,7 @@ const CartProductsScreen = (props: any) => {
                           style={{
                             fontFamily: fontFamily?.primaryFont?.regular,
                           }}>
-                          {item?.name}
+                          {displayableCartData?.[index]?.name}
                         </Text>
                       </Pressable>
                       <Text
@@ -365,7 +409,7 @@ const CartProductsScreen = (props: any) => {
                           fontFamily: fontFamily?.primaryFont?.medium,
                           fontSize: 16,
                         }}>
-                        ₹{item?.price}
+                        ₹ {displayableCartData?.[index]?.price}
                       </Text>
                     </View>
                   </View>
@@ -390,8 +434,11 @@ const CartProductsScreen = (props: any) => {
                   </View>
                 </TouchableOpacity>
               </View>
+              {/* displayableCartData?.[index]?.price */}
+              {/* {JSON.stringify(selectedItems)?.includes(
+                JSON.stringify(item), */}
               {JSON.stringify(selectedItems)?.includes(
-                JSON.stringify(item),
+                JSON.stringify(displayableCartData?.[index]),
               ) && (
                 <View
                   style={{
@@ -433,6 +480,7 @@ const CartProductsScreen = (props: any) => {
                   <TouchableOpacity
                     onPress={() => {
                       addItemsToCart(item);
+                      // addItemsToCart(displayableCartData?.[index]); //NOTE: Need to fix + - thing here
                     }}>
                     <View
                       style={{
@@ -703,7 +751,7 @@ const CartProductsScreen = (props: any) => {
       <FBModalView
         children={renderVarietySectionModal}
         modalVisible={showVarietyModal}
-        modalHeightPercentage={'40%'}
+        modalHeightPercentage={'30%'}
         modalColor={colors?.white}
       />
     </View>
