@@ -215,6 +215,21 @@ const CartProductsScreen = (props: any) => {
                 onPress={() => {
                   let tempCartData = cartData;
                   let cartDataToSet: any = [];
+                  let temporaryItems = [];
+                  let newItem = item;
+                  if (
+                    JSON.stringify(selectedItems)?.includes(
+                      JSON.stringify(newItem),
+                    )
+                  ) {
+                    temporaryItems = [...selectedItems];
+                    const indexOfItem = selectedItems?.indexOf(newItem);
+                    temporaryItems.splice(indexOfItem, 1);
+                    setSelectedItems(temporaryItems);
+                  } else {
+                    const temporaryItems = [...selectedItems, newItem];
+                    setSelectedItems(temporaryItems);
+                  }
 
                   tempCartData?.map((val: any, ind: any) => {
                     if (val?.varieties) {
@@ -336,20 +351,25 @@ const CartProductsScreen = (props: any) => {
                     }}>
                     <TouchableOpacity
                       onPress={() => {
-                        let temporaryItems = [];
-                        let newItem = displayableCartData?.[index];
-                        if (
-                          JSON.stringify(selectedItems)?.includes(
-                            JSON.stringify(newItem),
-                          )
-                        ) {
-                          temporaryItems = [...selectedItems];
-                          const indexOfItem = selectedItems?.indexOf(newItem);
-                          temporaryItems.splice(indexOfItem, 1);
-                          setSelectedItems(temporaryItems);
+                        if (item?.varieties) {
+                          setSelectedSingleItem(item);
+                          setShowVarietyModal(true);
                         } else {
-                          const temporaryItems = [...selectedItems, newItem];
-                          setSelectedItems(temporaryItems);
+                          let temporaryItems = [];
+                          let newItem = displayableCartData?.[index];
+                          if (
+                            JSON.stringify(selectedItems)?.includes(
+                              JSON.stringify(newItem),
+                            )
+                          ) {
+                            temporaryItems = [...selectedItems];
+                            const indexOfItem = selectedItems?.indexOf(newItem);
+                            temporaryItems.splice(indexOfItem, 1);
+                            setSelectedItems(temporaryItems);
+                          } else {
+                            const temporaryItems = [...selectedItems, newItem];
+                            setSelectedItems(temporaryItems);
+                          }
                         }
                       }}>
                       <Image
@@ -481,7 +501,7 @@ const CartProductsScreen = (props: any) => {
                       fontSize: 16,
                       color: colors?.darkBluegrey4,
                     }}>
-                    {totalCartData[item?.name] ?? 0}
+                    {totalCartData[displayableCartData?.[index]?.name] ?? 0}
                   </Text>
                   <TouchableOpacity
                     onPress={() => {
