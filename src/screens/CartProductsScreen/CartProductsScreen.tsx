@@ -58,7 +58,6 @@ const CartProductsScreen = (props: any) => {
   const calculateTotalCost = (cartItems: any) => {
     let tempPrice = 0;
     selectedItems?.map((val: any, ind: number) => {
-      console.log('SELECTED ITEM VAL: ', val);
       tempPrice +=
         Number(val?.price?.replace(',', '')) * cartItems?.[val?.name];
     });
@@ -68,7 +67,6 @@ const CartProductsScreen = (props: any) => {
   const addItemsToCart = (item: any) => {
     let tempObject: any = {...totalCartData};
     let itemName: any = item?.name;
-    console.log('ADD ITEM TO CART: item name', itemName);
     if (
       Object?.keys(tempObject)?.length === 0 ||
       tempObject[itemName] === undefined
@@ -79,13 +77,18 @@ const CartProductsScreen = (props: any) => {
       tempObject[itemName] += 1;
       setTotalCartData(tempObject);
     }
-    console.log('ADD ITEM TO CART: cart data', tempObject);
     calculateTotalCost(tempObject);
   };
-  //NOTE: Remove cart function:
-  //NOTE: Make the variant count = 0 when a new variant product is chosen
 
-  //removeItemsToCart
+  const removeItemsFromCart = (item: any) => {
+    let tempObject: any = {...totalCartData};
+    let itemName: any = item?.name;
+    if (tempObject[itemName] > 0) {
+      tempObject[itemName] -= 1;
+      setTotalCartData(tempObject);
+    }
+    calculateTotalCost(tempObject);
+  };
 
   const applyDiscountCoupon = () => {
     let tempDiscount = discountValue;
@@ -475,7 +478,10 @@ const CartProductsScreen = (props: any) => {
                     marginLeft: 12,
                     marginBottom: 20,
                   }}>
-                  <TouchableOpacity onPress={() => {}}>
+                  <TouchableOpacity
+                    onPress={() => {
+                      removeItemsFromCart(displayableCartData?.[index]);
+                    }}>
                     <View
                       style={{
                         height: 35,
@@ -505,8 +511,7 @@ const CartProductsScreen = (props: any) => {
                   </Text>
                   <TouchableOpacity
                     onPress={() => {
-                      // addItemsToCart(item);
-                      addItemsToCart(displayableCartData?.[index]); //NOTE: Need to fix + - thing here
+                      addItemsToCart(displayableCartData?.[index]);
                     }}>
                     <View
                       style={{
