@@ -50,7 +50,6 @@ const CartProductsScreen = (props: any) => {
 
   //NOTE: Need a new redux action and reducer for this values coming from products and numbers selected in this screen so it auto loads next time anywhere in any screen with related data.
   //NOTE: Add an info icon nextto discount to open a bottom Modal drawer to show what all discounts are added individually
-  //NOTE: On slide navigate to the next page
   //NOTE: On delete of a product, 1st check if it is selected.
   //NOTE: Make it unselected(Manually or via code) then update the store via redux action "cartData"->state?.homeReducer?.cartData
   //NOTE: Modularise the code and also move styles to different file

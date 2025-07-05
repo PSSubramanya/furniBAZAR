@@ -106,6 +106,7 @@ const imagePath = {
   hexagonCloseIconFilled: require('../assets/images/icons/hexagonCloseIconFilled.png'),
   hideIcon: require('../assets/images/icons/hideIcon.png'),
   infoIcon: require('../assets/images/icons/infoIcon.png'),
+  infoGreyIcon: require('../assets/images/icons/infoGreyIcon.png'),
   languageIcon: require('../assets/images/icons/languageIcon.png'),
   leftChevron: require('../assets/images/icons/leftChevron.png'),
   leftChevronIcon: require('../assets/images/icons/leftChevronIcon.png'),
