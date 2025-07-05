@@ -702,9 +702,26 @@ const CartProductsScreen = (props: any) => {
               marginTop: 15,
               marginHorizontal: 20,
             }}>
-            <Text style={{fontFamily: fontFamily?.primaryFont?.light}}>
-              Discount:
-            </Text>
+            <View style={{flexDirection: 'row'}}>
+              <Text style={{fontFamily: fontFamily?.primaryFont?.light}}>
+                Discount:
+              </Text>
+              {appliedDiscounts?.length > 0 && (
+                <TouchableOpacity onPress={() => {}}>
+                  <Image
+                    source={imagePath?.infoGreyIcon}
+                    height={30}
+                    width={30}
+                    style={{
+                      height: 15,
+                      width: 15,
+                      marginTop: 4,
+                    }}
+                    resizeMode={'contain'}
+                  />
+                </TouchableOpacity>
+              )}
+            </View>
             <Text style={{fontFamily: fontFamily?.primaryFont?.medium}}>
               {discountValue === 0 ? 'N/A' : `₹ ${discountValue}`}
             </Text>
