@@ -60,6 +60,7 @@ const CartProductsScreen = (props: any) => {
   const [selectedItems, setSelectedItems] = useState<string[]>([]); //NOTE: Original value is []
   const [totalCartData, setTotalCartData] = useState<any>({});
   const [showVarietyModal, setShowVarietyModal] = useState(false);
+  const [showDiscountModal, setShowDiscountModal] = useState(false);
   const [productVarietyDetails, setProductVarietyDetails] = useState([]);
   const [selectedSingleItem, setSelectedSingleItem] = useState<any>();
   const [selectedSingleVariant, setSelectedSingleVariant] = useState<any>();
@@ -67,6 +68,7 @@ const CartProductsScreen = (props: any) => {
   //NOTE: Need a new redux action and reducer for this values coming from products and numbers selected in this screen so it auto loads next time anywhere in any screen with related data.
   //NOTE: Add an info icon nextto discount to open a bottom Modal drawer to show what all discounts are added individually
   //NOTE: On delete of a product, 1st check if it is selected.
+  //NOTE: On cancelling discount coupon, cancel the discount money from total
   //NOTE: Make it unselected(Manually or via code) then update the store via redux action "cartData"->state?.homeReducer?.cartData
   //NOTE: Modularise the code and also move styles to different file
 
@@ -151,7 +153,7 @@ const CartProductsScreen = (props: any) => {
   useEffect(() => {
     const tempTotal = subTotalPrice - discountValue;
     setTotalPrice(tempTotal);
-  }, [discountValue]);
+  }, [subTotalPrice, discountValue]);
 
   useEffect(() => {
     if (slideCompleted === true) {
@@ -328,6 +330,78 @@ const CartProductsScreen = (props: any) => {
             );
           }}
         />
+      </View>
+    );
+  };
+
+  const renderDiscountSectionModal = () => {
+    const discountValues = appliedDiscounts;
+    const matchedDiscounts = discountData.filter(discount =>
+      discountValues.includes(discount.discountCoupons),
+    );
+
+    return (
+      <View style={{marginTop: 5}}>
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'flex-end',
+          }}>
+          <TouchableOpacity
+            onPress={() => {
+              setShowDiscountModal(false);
+            }}>
+            <Image
+              source={imagePath?.roundCloseIcon}
+              height={30}
+              width={30}
+              style={{height: 20, width: 20}}
+              resizeMode={'contain'}
+            />
+          </TouchableOpacity>
+        </View>
+        <Text
+          style={{
+            fontFamily: fontFamily?.primaryFont?.medium,
+            fontSize: 18,
+            marginLeft: 12,
+          }}>
+          The Discounts Applied
+        </Text>
+        {matchedDiscounts?.map((val, ind) => {
+          return (
+            <View style={{flexDirection: 'row', marginLeft: 10, marginTop: 20}}>
+              <Text
+                style={{
+                  fontFamily: fontFamily?.primaryFont?.bold,
+                  fontSize: 20,
+                  marginTop: -10,
+                  marginRight: 5,
+                }}>
+                .
+              </Text>
+              <Text style={{fontFamily: fontFamily?.primaryFont?.medium}}>
+                {val?.discountCoupons}:{' '}
+              </Text>
+              <Text style={{fontFamily: fontFamily?.primaryFont?.regular}}>
+                {val?.discountName} -{' '}
+              </Text>
+              {val?.discountPercent && (
+                <Text style={{fontFamily: fontFamily?.primaryFont?.regular}}>
+                  {val?.discountPercent}% off
+                </Text>
+              )}
+              {val?.discountPrice && (
+                <Text
+                  style={{
+                    fontFamily: fontFamily?.primaryFont?.regular,
+                  }}>
+                  ₹ {val?.discountPrice} discount
+                </Text>
+              )}
+            </View>
+          );
+        })}
       </View>
     );
   };
@@ -755,7 +829,10 @@ const CartProductsScreen = (props: any) => {
                 Discount:
               </Text>
               {appliedDiscounts?.length > 0 && (
-                <TouchableOpacity onPress={() => {}}>
+                <TouchableOpacity
+                  onPress={() => {
+                    setShowDiscountModal(true);
+                  }}>
                   <Image
                     source={imagePath?.infoGreyIcon}
                     height={30}
@@ -763,7 +840,7 @@ const CartProductsScreen = (props: any) => {
                     style={{
                       height: 15,
                       width: 15,
-                      marginTop: 4,
+                      marginTop: 3.5,
                     }}
                     resizeMode={'contain'}
                   />
@@ -849,6 +926,14 @@ const CartProductsScreen = (props: any) => {
         modalHeightPercentage={'30%'}
         modalColor={colors?.white}
       />
+
+      <FBModalView
+        children={renderDiscountSectionModal}
+        modalVisible={showDiscountModal}
+        modalHeightPercentage={'30%'}
+        modalColor={colors?.white}
+      />
+
       <FBToastView
         fadeAnim={fadeAnim}
         animatedValue={animatedValue}
