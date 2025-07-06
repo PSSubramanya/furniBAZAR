@@ -45,11 +45,14 @@ const CartProductsScreen = (props: any) => {
   ).current;
   const pan = useRef(new Animated.ValueXY()).current;
 
-  const [onConfirm, setOnConfirm] = useState<boolean>(false);
+  const [discountMessage, setDiscountMessage] = useState<boolean>(false);
   const [slideCompleted, setSlideCompleted] = useState(false);
   const [cartData, setCartData] = useState(fetchCartData?.data);
   const [displayableCartData, setDisplayableCartData] = useState([]);
   const [discountCode, setDiscountCode] = useState('');
+  const [discountStringMessage, setDiscountStringMessage] = useState(
+    'No such Discount coupon',
+  );
   const [discountValue, setDiscountValue] = useState(0);
   const [appliedDiscounts, setAppliedDiscounts] = useState<string[]>([]);
   const [subTotalPrice, setSubTotalPrice] = useState<number>(0);
@@ -109,6 +112,7 @@ const CartProductsScreen = (props: any) => {
       if (val?.discountCoupons === discountCode) {
         if (val?.discountPercent) {
           tempDiscount += subTotalPrice * (val?.discountPercent / 100);
+          setDiscountStringMessage('Discount Applied');
         }
       }
     });
@@ -117,6 +121,7 @@ const CartProductsScreen = (props: any) => {
       if (val?.discountCoupons === discountCode) {
         if (val?.discountPrice) {
           tempDiscount += Number(val?.discountPrice);
+          setDiscountStringMessage('Discount Applied');
         }
       }
     });
@@ -135,8 +140,13 @@ const CartProductsScreen = (props: any) => {
       }
     });
     setDisplayableCartData(cartDataToSet);
-    setOnConfirm(true);
   }, []);
+
+  useEffect(() => {
+    if (!discountMessage) {
+      setDiscountStringMessage('No such Discount coupon');
+    }
+  }, [discountMessage]);
 
   useEffect(() => {
     const tempTotal = subTotalPrice - discountValue;
@@ -160,14 +170,14 @@ const CartProductsScreen = (props: any) => {
     animatedValue,
     height,
     toastDirectionFromTop,
-    onConfirm,
+    discountMessage,
   );
 
   useEffect(() => {
-    if (onConfirm) {
+    if (discountMessage) {
       showToast();
     }
-  }, [onConfirm]);
+  }, [discountMessage]);
 
   const showToast = () => {
     fadeIn();
@@ -636,13 +646,18 @@ const CartProductsScreen = (props: any) => {
                     setAppliedDiscounts(tempDiscountCodes);
                   }
                 });
+                setDiscountMessage(true);
               }}
-              disabled={appliedDiscounts?.includes(discountCode)}>
+              disabled={
+                appliedDiscounts?.includes(discountCode) || subTotalPrice === 0
+              }>
               <View
                 style={{
-                  backgroundColor: appliedDiscounts?.includes(discountCode)
-                    ? colors?.greyColor
-                    : colors?.darkBluegrey4,
+                  backgroundColor:
+                    appliedDiscounts?.includes(discountCode) ||
+                    subTotalPrice === 0
+                      ? colors?.greyColor
+                      : colors?.darkBluegrey4,
                   height: 42,
                   paddingHorizontal: 14,
                   alignItems: 'center',
@@ -837,10 +852,14 @@ const CartProductsScreen = (props: any) => {
       <FBToastView
         fadeAnim={fadeAnim}
         animatedValue={animatedValue}
-        type={MessageType?.Success}
-        headerText={'Discount Applied'}
+        type={
+          discountStringMessage === 'Discount Applied'
+            ? MessageType?.Success
+            : MessageType?.Error
+        }
+        headerText={discountStringMessage}
         descriptionText={''}
-        setShowToastView={setOnConfirm}
+        setShowToastView={setDiscountMessage}
         toastDirectionFromTop={toastDirectionFromTop}
         shiningStarIcon={false}
       />

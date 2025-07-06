@@ -22,7 +22,7 @@ const FBToastView = (props: FBToastViewProps) => {
     descriptionText,
     setShowToastView,
     toastDirectionFromTop = true,
-    shiningStarIcon,
+    shiningStarIcon = true,
   } = props;
 
   const {height} = Dimensions.get('window');
@@ -47,6 +47,7 @@ const FBToastView = (props: FBToastViewProps) => {
         {
           opacity: fadeAnim,
           transform: [{translateY: animatedValue}],
+          paddingBottom: shiningStarIcon ? 15 : 0,
         },
       ]}>
       <View style={styles?.flexRowStyle}>
