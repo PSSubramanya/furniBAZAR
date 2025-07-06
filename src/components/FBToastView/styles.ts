@@ -6,7 +6,7 @@ const styles = StyleSheet?.create({
   toastMainContainerStyle: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    minHeight: 100,
+    minHeight: 48,
     width: '95%',
     paddingLeft: 10,
     paddingTop: 10,
@@ -35,6 +35,7 @@ const styles = StyleSheet?.create({
     height: 16,
     width: 16,
     marginRight: 10,
+    marginTop: 5,
   },
   flexRowStyle: {
     flexDirection: 'row',

@@ -16,4 +16,5 @@ export interface FBToastViewProps {
   toastDirectionFromTop?: boolean;
   fadeAnim?: Animated.Value;
   animatedValue?: Animated.Value;
+  shiningStarIcon?: boolean;
 }

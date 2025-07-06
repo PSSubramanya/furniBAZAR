@@ -10,6 +10,7 @@ import {
   PanResponder,
   Dimensions,
   Pressable,
+  useAnimatedValue,
 } from 'react-native';
 import {useSelector} from 'react-redux';
 import {RootState} from '../../store';
@@ -19,20 +20,32 @@ import fontFamily from '../../constants/fontFamily';
 import colors from '../../constants/colors';
 import {discountData} from '../../utils/mockData';
 import FBModalView from '../../components/FBModalView/FBModalView';
+import {FBToastView} from '../../components/FBToastView/FBToastView';
+import {MessageType} from '../../components/FBToastView/typesFile';
+import useToastAnimation from '../../components/FBToastView/useToastAnimatons';
 
 const CartProductsScreen = (props: any) => {
   const {navigation} = props;
 
-  const {width} = Dimensions.get('window');
+  const {width, height} = Dimensions.get('window');
+
   const SLIDER_WIDTH = width - 40;
   const SLIDER_HEIGHT = 60;
   const SLIDE_BUTTON_SIZE = 55;
+  const toastDirectionFromTop = false;
 
   const fetchCartData = useSelector(
     (state: RootState) => state?.homeReducer?.cartData,
   );
 
+  const fadeAnim = useAnimatedValue(0);
+
+  const animatedValue = useRef(
+    new Animated.Value(toastDirectionFromTop ? height : -height),
+  ).current;
   const pan = useRef(new Animated.ValueXY()).current;
+
+  const [onConfirm, setOnConfirm] = useState<boolean>(false);
   const [slideCompleted, setSlideCompleted] = useState(false);
   const [cartData, setCartData] = useState(fetchCartData?.data);
   const [displayableCartData, setDisplayableCartData] = useState([]);
@@ -122,6 +135,7 @@ const CartProductsScreen = (props: any) => {
       }
     });
     setDisplayableCartData(cartDataToSet);
+    setOnConfirm(true);
   }, []);
 
   useEffect(() => {
@@ -140,6 +154,25 @@ const CartProductsScreen = (props: any) => {
     setProductVarietyDetails(varietyData);
     setSelectedSingleVariant(varietyData?.[0]);
   }, [selectedSingleItem]);
+
+  const {fadeIn, startDecayAnimation} = useToastAnimation(
+    fadeAnim,
+    animatedValue,
+    height,
+    toastDirectionFromTop,
+    onConfirm,
+  );
+
+  useEffect(() => {
+    if (onConfirm) {
+      showToast();
+    }
+  }, [onConfirm]);
+
+  const showToast = () => {
+    fadeIn();
+    startDecayAnimation();
+  };
 
   const panResponder = useRef(
     PanResponder.create({
@@ -800,6 +833,16 @@ const CartProductsScreen = (props: any) => {
         modalVisible={showVarietyModal}
         modalHeightPercentage={'30%'}
         modalColor={colors?.white}
+      />
+      <FBToastView
+        fadeAnim={fadeAnim}
+        animatedValue={animatedValue}
+        type={MessageType?.Success}
+        headerText={'Discount Applied'}
+        descriptionText={''}
+        setShowToastView={setOnConfirm}
+        toastDirectionFromTop={toastDirectionFromTop}
+        shiningStarIcon={false}
       />
     </View>
   );

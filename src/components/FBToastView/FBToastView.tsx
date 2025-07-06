@@ -11,6 +11,7 @@ import imagePath from '../../constants/imagePath';
 import styles from './styles';
 import testIdConstants from '../../constants/testIdConstants';
 import {MessageType, FBToastViewProps} from './typesFile';
+import fontFamily from '../../constants/fontFamily';
 
 const FBToastView = (props: FBToastViewProps) => {
   const {
@@ -21,6 +22,7 @@ const FBToastView = (props: FBToastViewProps) => {
     descriptionText,
     setShowToastView,
     toastDirectionFromTop = true,
+    shiningStarIcon,
   } = props;
 
   const {height} = Dimensions.get('window');
@@ -57,23 +59,37 @@ const FBToastView = (props: FBToastViewProps) => {
             style={styles?.iconStyle}
           />
         </View>
-        <Image
-          source={imagePath?.shiningStarIcon}
-          height={1}
-          width={1}
-          style={styles?.iconStyle}
-        />
+        {shiningStarIcon && (
+          <Image
+            source={imagePath?.shiningStarIcon}
+            height={1}
+            width={1}
+            style={styles?.iconStyle}
+          />
+        )}
         <View style={styles?.toastTextView}>
           <Text
             testID={testIdConstants?.toastTitle}
-            style={styles?.headerStyle}>
+            style={[
+              styles?.headerStyle,
+              {
+                marginLeft: shiningStarIcon ? 0 : 5,
+                marginTop: shiningStarIcon ? 0 : 1,
+                fontFamily: shiningStarIcon
+                  ? fontFamily?.primaryFont?.semiBold
+                  : fontFamily?.primaryFont?.regular,
+                fontSize: 16,
+              },
+            ]}>
             {headerText}
           </Text>
-          <Text
-            testID={testIdConstants?.toastDescription}
-            style={styles?.descriptionStyle}>
-            {descriptionText}
-          </Text>
+          {descriptionText !== '' && (
+            <Text
+              testID={testIdConstants?.toastDescription}
+              style={styles?.descriptionStyle}>
+              {descriptionText}
+            </Text>
+          )}
         </View>
       </View>
       <TouchableOpacity
