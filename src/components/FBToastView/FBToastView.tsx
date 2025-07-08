@@ -68,7 +68,14 @@ const FBToastView = (props: FBToastViewProps) => {
             style={styles?.iconStyle}
           />
         )}
-        <View style={styles?.toastTextView}>
+        <View
+          style={[
+            styles?.toastTextView,
+            {
+              width: !shiningStarIcon && 300,
+              marginBottom: !shiningStarIcon && 10,
+            },
+          ]}>
           <Text
             testID={testIdConstants?.toastTitle}
             style={[

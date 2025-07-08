@@ -12,9 +12,10 @@ import {
   Pressable,
   useAnimatedValue,
 } from 'react-native';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import {RootState} from '../../store';
 import styles from './styles';
+import {addToCart} from '../../actions/homeActions';
 import imagePath from '../../constants/imagePath';
 import fontFamily from '../../constants/fontFamily';
 import colors from '../../constants/colors';
@@ -27,12 +28,14 @@ import useToastAnimation from '../../components/FBToastView/useToastAnimatons';
 const CartProductsScreen = (props: any) => {
   const {navigation} = props;
 
+  const dispatch = useDispatch();
+
   const {width, height} = Dimensions.get('window');
 
   const SLIDER_WIDTH = width - 40;
   const SLIDER_HEIGHT = 60;
   const SLIDE_BUTTON_SIZE = 55;
-  const toastDirectionFromTop = false;
+  const toastDirectionFromTop = true;
 
   const fetchCartData = useSelector(
     (state: RootState) => state?.homeReducer?.cartData,
@@ -41,8 +44,9 @@ const CartProductsScreen = (props: any) => {
   const fadeAnim = useAnimatedValue(0);
 
   const animatedValue = useRef(
-    new Animated.Value(toastDirectionFromTop ? height : -height),
+    new Animated.Value(toastDirectionFromTop ? -height : height),
   ).current;
+
   const pan = useRef(new Animated.ValueXY()).current;
 
   const [discountMessage, setDiscountMessage] = useState<boolean>(false);
@@ -50,9 +54,7 @@ const CartProductsScreen = (props: any) => {
   const [cartData, setCartData] = useState(fetchCartData?.data);
   const [displayableCartData, setDisplayableCartData] = useState([]);
   const [discountCode, setDiscountCode] = useState('');
-  const [discountStringMessage, setDiscountStringMessage] = useState(
-    'No such Discount coupon',
-  );
+  const [discountStringMessage, setDiscountStringMessage] = useState('');
   const [discountValue, setDiscountValue] = useState(0);
   const [appliedDiscounts, setAppliedDiscounts] = useState<string[]>([]);
   const [subTotalPrice, setSubTotalPrice] = useState<number>(0);
@@ -106,6 +108,16 @@ const CartProductsScreen = (props: any) => {
     calculateTotalCost(tempObject);
   };
 
+  const deleteItemsFromCart = (item: any) => {
+    let tempObject: any = {...totalCartData};
+    let itemName: any = item?.name;
+    if (tempObject[itemName] > 0) {
+      tempObject[itemName] = 0;
+      setTotalCartData(tempObject);
+    }
+    calculateTotalCost(tempObject);
+  };
+
   const applyDiscountCoupon = () => {
     let tempDiscount = discountValue;
 
@@ -150,7 +162,7 @@ const CartProductsScreen = (props: any) => {
   };
 
   useEffect(() => {
-    let tempCartData = fetchCartData?.data;
+    let tempCartData = cartData;
     let cartDataToSet: any = [];
     tempCartData?.map((val: any, ind: any) => {
       if (val?.varieties) {
@@ -160,7 +172,7 @@ const CartProductsScreen = (props: any) => {
       }
     });
     setDisplayableCartData(cartDataToSet);
-  }, []);
+  }, [cartData]);
 
   useEffect(() => {
     if (!discountMessage) {
@@ -577,10 +589,45 @@ const CartProductsScreen = (props: any) => {
                     </View>
                   </View>
                 </View>
-                <TouchableOpacity onPress={() => {}}>
+                <TouchableOpacity
+                  onPress={() => {
+                    if (appliedDiscounts?.length !== 0) {
+                      setDiscountMessage(true);
+                      setDiscountStringMessage(
+                        'Clear the discounts first before deleting the products',
+                      );
+                    } else {
+                      let temporaryCartItems = [];
+                      let temporaryItems = [];
+                      let currentItem = displayableCartData?.[index];
+                      if (
+                        JSON.stringify(selectedItems)?.includes(
+                          JSON.stringify(currentItem),
+                        )
+                      ) {
+                        temporaryItems = [...selectedItems];
+                        const indexOfItem = selectedItems?.indexOf(currentItem);
+                        temporaryItems.splice(indexOfItem, 1);
+                        setSelectedItems(temporaryItems);
+                      }
+                      deleteItemsFromCart(displayableCartData?.[index]);
+
+                      if (
+                        JSON.stringify(cartData)?.includes(JSON.stringify(item))
+                      ) {
+                        temporaryCartItems = [...cartData];
+                        const indexOfItem = cartData?.indexOf(item);
+                        temporaryCartItems.splice(indexOfItem, 1);
+                        setCartData(temporaryCartItems);
+                        // NOTE: Here add proper dispatch function so that it reflects in home page also
+                        /*
+                          dispatch(addToCart(temporaryCartItems));
+                        */
+                      }
+                    }
+                  }}>
                   <View
                     style={{
-                      //   backgroundColor: colors?.darkBluegrey4,
                       height: 40,
                       width: 40,
                       borderRadius: 5,
@@ -592,7 +639,11 @@ const CartProductsScreen = (props: any) => {
                       source={imagePath?.deleteIcon3}
                       height={18}
                       width={18}
-                      style={{height: 22, width: 22}}
+                      style={{
+                        height: 22,
+                        width: 22,
+                        opacity: appliedDiscounts?.length !== 0 ? 0.2 : 1,
+                      }}
                     />
                   </View>
                 </TouchableOpacity>
@@ -959,7 +1010,9 @@ const CartProductsScreen = (props: any) => {
         type={
           discountStringMessage === 'Discount Applied'
             ? MessageType?.Success
-            : MessageType?.Error
+            : discountStringMessage === 'No such Discount coupon'
+            ? MessageType?.Error
+            : MessageType?.Warning
         }
         headerText={discountStringMessage}
         descriptionText={''}
