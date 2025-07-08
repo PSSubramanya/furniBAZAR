@@ -68,7 +68,6 @@ const CartProductsScreen = (props: any) => {
   //NOTE: Need a new redux action and reducer for this values coming from products and numbers selected in this screen so it auto loads next time anywhere in any screen with related data.
   //NOTE: Add an info icon nextto discount to open a bottom Modal drawer to show what all discounts are added individually
   //NOTE: On delete of a product, 1st check if it is selected.
-  //NOTE: On cancelling discount coupon, cancel the discount money from total
   //NOTE: Make it unselected(Manually or via code) then update the store via redux action "cartData"->state?.homeReducer?.cartData
   //NOTE: Modularise the code and also move styles to different file
 
@@ -127,8 +126,27 @@ const CartProductsScreen = (props: any) => {
         }
       }
     });
-    // NOTE: Add a new array which keeps track of added Coupon so duplication doesn't happen
     setDiscountValue(tempDiscount);
+  };
+
+  const removeDiscountCoupon = (removedDiscountCodeVal: string) => {
+    let tempDiscount = discountValue;
+    const discountValues = appliedDiscounts;
+    const matchedDiscounts = discountData.filter(discount =>
+      discountValues.includes(discount.discountCoupons),
+    );
+
+    matchedDiscounts?.map((val, ind) => {
+      if (removedDiscountCodeVal === val?.discountCoupons) {
+        if (val?.discountPercent) {
+          tempDiscount -= subTotalPrice * (val?.discountPercent / 100);
+        }
+        if (val?.discountPrice) {
+          tempDiscount -= Number(val?.discountPrice);
+        }
+        setDiscountValue(tempDiscount);
+      }
+    });
   };
 
   useEffect(() => {
@@ -710,7 +728,6 @@ const CartProductsScreen = (props: any) => {
             />
             <TouchableOpacity
               onPress={() => {
-                applyDiscountCoupon();
                 discountData?.map((val: any, ind: number) => {
                   if (val?.discountCoupons === discountCode) {
                     const tempDiscountCodes = [
@@ -721,6 +738,7 @@ const CartProductsScreen = (props: any) => {
                   }
                 });
                 setDiscountMessage(true);
+                applyDiscountCoupon();
               }}
               disabled={
                 appliedDiscounts?.includes(discountCode) || subTotalPrice === 0
@@ -784,6 +802,7 @@ const CartProductsScreen = (props: any) => {
                       const tempArray = [...appliedDiscounts];
                       tempArray.splice(ind, 1);
                       setAppliedDiscounts(tempArray);
+                      removeDiscountCoupon(val);
                     }}
                     style={{alignSelf: 'center'}}>
                     <Image
@@ -891,15 +910,15 @@ const CartProductsScreen = (props: any) => {
               {...panResponder.panHandlers}
               style={[
                 {
-                  height: 50,
+                  height: 49.5,
                   width: 50,
                   backgroundColor: colors?.greyColorLight2,
                   justifyContent: 'center',
                   alignItems: 'center',
                   borderRadius: 5,
                   position: 'absolute',
-                  marginLeft: 3,
-                  marginTop: 2,
+                  marginLeft: 2.5,
+                  marginTop: 2.5,
                 },
                 pan.getLayout(),
               ]}>
